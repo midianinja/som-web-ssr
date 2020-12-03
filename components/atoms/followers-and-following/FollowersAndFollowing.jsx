@@ -6,6 +6,12 @@ import {
   FNumber,
 } from './followersAndFollowing.style';
 
+/**
+ * function that render FollowersAndFollowing react component
+ * 
+ * @param {object} props component props
+ * @returns contains FollowersAndFollowing Component
+ */
 const FollowersAndFollowing = ({
   nFollowers, nFollowing,
   followersLabel, followingLabel,

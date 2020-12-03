@@ -4,6 +4,12 @@ import {
   Container, IconWrapper, Icon, Adress,
 } from './eventPlace.style';
 
+/**
+ * function that render EventPlace react component
+ * 
+ * @param {object} props component props
+ * @returns contains EventPlace Component
+ */
 const EventPlace = ({
   address, district, city, state,
   complement, placeMarkIcon,

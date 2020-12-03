@@ -5,7 +5,15 @@ import {
   ECondition, Status,
 } from './eventCondition.style';
 
-const EventCondition = ({ condition, checked, title, checkedIcon }) => (
+/**
+ * function that render EventCondition react component
+ * 
+ * @param {object} props component props
+ * @returns contains EventCondition Component
+ */
+const EventCondition = ({
+  condition, checked, title, checkedIcon,
+}) => (
   <Container checked={checked}>
     <div>
       <Icon src={`/icons/${condition}.svg`} />

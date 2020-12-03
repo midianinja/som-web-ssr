@@ -7,6 +7,12 @@ import {
   Container,
 } from './eventDate.style';
 
+/**
+ * function that render EventDate react component
+ * 
+ * @param {object} props component props
+ * @returns contains EventDate Component
+ */
 const EventDate = ({ day, month, year, calendarIcon }) => (
   <Container>
     <Icon src={calendarIcon} />

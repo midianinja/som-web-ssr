@@ -1,5 +1,11 @@
 import { CoverStyle } from "./cover.style";
 
+/**
+ * function that render CoverAtom react component
+ * 
+ * @param {object} props component props
+ * @returns contains CoverAtom Component
+ */
 const CoverAtom = ({
   cover,
   customStyle,

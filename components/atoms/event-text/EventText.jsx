@@ -4,14 +4,18 @@ import {
   Container, Title, Text,
 } from './eventText.style';
 
-function EventText({ text, title }) {
-  return (
-    <Container>
-      <Title>{title}</Title>
-      <Text>{text}</Text>
-    </Container>
-  );
-}
+/**
+ * function that render EventText react component
+ * 
+ * @param {object} props component props
+ * @returns contains EventText Component
+ */
+const EventText = ({ text, title }) => (
+  <Container>
+    <Title>{title}</Title>
+    <Text>{text}</Text>
+  </Container>
+);
 
 EventText.propTypes = {
   text: PropTypes.string,

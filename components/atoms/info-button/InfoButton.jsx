@@ -5,6 +5,12 @@ import {
   Icon,
 } from './infoButton.style';
 
+/**
+ * function that render InfoButton react component
+ * 
+ * @param {object} props component props
+ * @returns contains InfoButton Component
+ */
 const InfoButton = (props) => (
   <IconContainer {...props}>
     <Icon src={props.infoIcon} />
