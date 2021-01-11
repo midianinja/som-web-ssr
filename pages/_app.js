@@ -10,6 +10,7 @@ export default class MyApp extends App {
   }
 
   render() {
+    console.log('🚀 ~ file: _app.js ~ line 14 ~ MyApp ~ render ~ this.props', this.props);
     const { Component, pageProps } = this.props;
     return (
       <Store.Provider>
