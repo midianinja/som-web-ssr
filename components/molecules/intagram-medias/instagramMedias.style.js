@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { white } from '../../settings/colors';
+import { white } from '../../../settings/colors';
 
 export const imgStyle = `
   width: 33.33vw;

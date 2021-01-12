@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
   white, gray, green,
-} from '../../settings/colors';
+} from '../../../settings/colors';
 
 export const Wrapper = styled.div``;
 

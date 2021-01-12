@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { green, red } from '../../settings/colors';
+import { green, red } from '../../../settings/colors';
 
 export const Container = styled.div`
   display: ${(props) => {

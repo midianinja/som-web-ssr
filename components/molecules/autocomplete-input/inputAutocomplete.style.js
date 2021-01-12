@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { white10, white, gray02 } from '../../settings/colors';
+import { white10, white, gray02 } from '../../../settings/colors';
 
 export const Input = styled.input`
   height: 38px;

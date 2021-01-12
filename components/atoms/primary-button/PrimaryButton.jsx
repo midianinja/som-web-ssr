@@ -12,10 +12,4 @@ const PrimaryButton = (props) => (
   <PrimaryButtonStyle {...props} />
 );
 
-PrimaryButton.propTypes = {
-};
-
-PrimaryButton.defualtProps = {
-};
-
 export default PrimaryButton;

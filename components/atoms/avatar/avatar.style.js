@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { getGradient } from '../../settings/gradients';
+import { getGradient } from '../../../settings/gradients';
 
 export const Wrapper = styled.div`
   display: inline-block;
@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   ${props => props.customStyle}
 `;
 
-export const PreLoaderImage = styled.img`
+export const PreLoaderImage = styled.div`
   width: 100%;
   height: 100%;
   opacity: ${(props) => {
@@ -22,4 +22,6 @@ export const PreLoaderImage = styled.img`
   transition-property: opacity;
   transition-duration: 1s;
   transition-delay: 0.5s; 
+  overflow: hidden;
 `;
+

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { orange } from '../../settings/colors';
+import { orange } from '../../../settings/colors';
 
 export const PlayPauseButtonStyle = styled.button`
   width: 50px;

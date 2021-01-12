@@ -35,7 +35,15 @@ function Avatar({
 
   return (
     <Wrapper customStyle={customStyle}>
-      <PreLoaderImage src={loaddedSrc} alt={alt} title={title} />
+      <PreLoaderImage>
+        <Image
+          src={loaddedSrc}
+          alt={alt}
+          width={120}
+          height={120}
+          title={title}
+        />
+      </PreLoaderImage>
     </Wrapper>
   );
 }

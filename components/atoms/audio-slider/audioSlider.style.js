@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
   white, orange, orange15, orange50,
-} from '../../settings/colors';
+} from '../../../settings/colors';
 
 export const AudioSliderStyle = styled.input.attrs({ type: 'range' })`
   -webkit-appearance: none;

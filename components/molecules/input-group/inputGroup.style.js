@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { secondaryRed, white } from '../../settings/colors';
+import { secondaryRed, white } from '../../../settings/colors';
 
 export const InptGroupContainer = styled.div`
   position: relative;

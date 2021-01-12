@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import {
   white, purple, green, orange, magenta, gray, secondaryPurple, transparent,
-  darkGray,
-} from '../../settings/colors';
+  darkGray, secondaryOrange,
+} from '../../../settings/colors';
 
 const sizes = {
   small: '28px',
@@ -23,6 +23,7 @@ const colors = {
   purple,
   green,
   orange,
+  secondaryOrange,
   magenta,
   gray,
   transparent,

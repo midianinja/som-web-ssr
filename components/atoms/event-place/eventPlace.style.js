@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { white, black } from '../../settings/colors';
+import { white, black } from '../../../settings/colors';
 
 export const Container = styled.h4`
   max-width: 300px;

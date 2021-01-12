@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { white50, white30 } from '../../settings/colors';
+import { white50, white30 } from '../../../settings/colors';
 
 export const TransparentInputStyle = styled.input`
   width: 100%;

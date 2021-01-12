@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { black, transparent } from '../../settings/colors';
-import { getGradient } from '../../settings/gradients';
+import { black, transparent } from '../../../settings/colors';
+import { getGradient } from '../../../settings/gradients';
 
 export const CoverStyle = styled.div`
   width: 100%;

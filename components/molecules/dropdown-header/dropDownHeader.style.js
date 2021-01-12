@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import {
   white, black, magenta, purple,
   theBestColor,
-} from '../../settings/colors';
-import { getGradient } from '../../settings/gradients';
+} from '../../../settings/colors';
+import { getGradient } from '../../../settings/gradients';
 
 export const Dropdown = styled.div`
   position: absolute;
@@ -53,6 +53,10 @@ export const Avatar = styled.img`
 
   @media (min-width: 1024px) {
     margin-top: 34px;
+  }
+
+  &[src=""] {
+    content: url("data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
   }
 `;
 

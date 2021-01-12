@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gray, gray02 } from '../../settings/colors';
+import { gray, gray02 } from '../../../settings/colors';
 
 export const Button = styled.button`
   height: 38px;

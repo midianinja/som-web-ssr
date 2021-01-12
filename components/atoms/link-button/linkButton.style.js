@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { purple, green, orange, magenta, gray, black, white } from '../../settings/colors';
+import { purple, green, orange, magenta, gray, black, white } from '../../../settings/colors';
 
 const sizes = {
   small: '30px',

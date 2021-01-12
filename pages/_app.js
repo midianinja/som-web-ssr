@@ -1,5 +1,8 @@
 import React from 'react';
 import App from 'next/app';
+import { StoreProvider } from '../store/Store';
+import '../css/fonts.css';
+import '../css/reset.css';
 import Main from '../components/main/Main';
 
 const Store = React.createContext();
@@ -10,14 +13,13 @@ export default class MyApp extends App {
   }
 
   render() {
-    console.log('🚀 ~ file: _app.js ~ line 14 ~ MyApp ~ render ~ this.props', this.props);
     const { Component, pageProps } = this.props;
     return (
-      <Store.Provider>
-        <Main search={pageProps.search_text}>
+      <StoreProvider>
+        <Main>
           <Component {...pageProps} />
         </Main>
-      </Store.Provider>
+      </StoreProvider>
     );
   }
 }

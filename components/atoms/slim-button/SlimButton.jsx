@@ -14,7 +14,7 @@ const SlimButton = ({
     color={color}
     customStyle={customStyle}
   />
-)
+);
 
 SlimButton.propTypes = {
   size: PropTypes.string,

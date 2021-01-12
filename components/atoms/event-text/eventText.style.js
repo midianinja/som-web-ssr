@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gray04, white } from '../../settings/colors';
+import { gray04, white } from '../../../settings/colors';
 
 export const Container = styled.section`
   width: 100%;

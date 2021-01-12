@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { white, purple, green, orange, magenta, gray, secondaryPurple, transparent } from '../../settings/colors';
+import { white, purple, green, orange, magenta, gray, secondaryPurple, transparent } from '../../../settings/colors';
 
 const colors = {
   secondaryPurple,

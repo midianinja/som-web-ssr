@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
   white, black, black30,
-} from '../../settings/colors';
+} from '../../../settings/colors';
 
 export const Input = styled.input`
   width: calc(100% - 22px);

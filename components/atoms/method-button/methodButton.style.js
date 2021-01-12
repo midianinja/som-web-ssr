@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { purple, white } from '../../settings/colors';
+import { purple, white } from '../../../settings/colors';
 
 export const Button = styled.button`
   width: calc(50% - 10px);

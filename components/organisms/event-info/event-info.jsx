@@ -11,7 +11,7 @@ import {
   Container, ClockIcon, Title,
   ClosingDateTimer, Space, SubSpace,
   ButtonWrapper,
-} from './eventInfo.style';
+} from './event-info.style';
 const unixTime = unixtime => new Date(+unixtime).toISOString().slice(0, 19);
 
 const EventInfo = ({

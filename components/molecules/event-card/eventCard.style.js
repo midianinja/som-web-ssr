@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { green } from '../../settings/colors';
-import { getGradient } from '../../settings/gradients';
+import { green } from '../../../settings/colors';
+import { getGradient } from '../../../settings/gradients';
 
 export const Container = styled.div`
   width: 100%;

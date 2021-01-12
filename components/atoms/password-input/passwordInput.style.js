@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {
   white10, white, secondaryRed, secondaryYellow, terciaryGreen,
   transparent,
-} from '../../settings/colors';
+} from '../../../settings/colors';
 
 const getColor = (point) => {
   if (point <= 0) return transparent;

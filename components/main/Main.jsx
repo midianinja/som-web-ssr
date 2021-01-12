@@ -1,82 +1,41 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'next/router';
+import { useRouter } from 'next/router';
+import Navigation from '../modals/navigation/navigation';
+import Store from '../../store/Store';
+import { initIDA } from './main.controller';
 import { MainWrapper } from './main.style';
 
+/**
+ * This render the main components. The main component controls authorize life cycle
+ * initilizing IDa SDK and build the link with the S.O.M API. Also, the main component
+ * defines the resets stylesheets
+ * @param {object} props component props
+ * @param {React.Component} props.children page to be render
+ * @returns contains PrimaryButton Component
+ */
 const Main = ({ children }) => {
+  const router = useRouter();
+  const { state, dispatch } = useContext(Store);
+
+  useEffect(() => {
+    initIDA(dispatch, router);
+  }, []);
+
+  if (state.loading.auth || state.loading.verify) return null;
+
   return (
     <MainWrapper>
       {children}
-      <style jsx global>
-        {`
-          *{
-            box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            outline: none;
-          }
-          
-          html, body, header, main, nav, footer, article, blockquote, 
-          div, section, span, iframe, img, video, figure, a, p, h1, h2,
-          h3, h4, h5, h6, strong, b, i, ul, ol, li, form, fieldset,
-          label, input, input:focus, select, select:focus, textarea, textarea:focus, table, button, thead, tbody, tfoot,
-          th, td, tr, aside, caption, sup, sub, q, small {
-            padding: 0;
-            margin: 0;
-            border: 0;
-          }
-          
-          a {
-            text-decoration: none;
-          }
-          
-          input:focus, select:focus, textarea:focus{
-            outline: none;
-            shadow-box: none;
-          }
-          
-          body {
-            font-size: 14px;
-            line-height: 1em;
-            font-family: 'Montserrat', sans-serif;
-          }
-          
-          body.__scroll-blocked {
-            overflow: hidden;
-          }
-          
-          ol, ul {
-            list-style: none;
-          }
-          
-          blockquote {
-            quotes: none;
-          }
-          
-          blockquote:after, blockquote:before {
-            content: "";
-            content: none;
-          }
-          
-          table {
-            border-collapse: collapse;
-            border-spacing: 0;
-          }
-          
-          @media (min-width: 769px) {
-            body {
-              font-size: 16px;
-            }
-          }
-        `}
-      </style>
+      <div>
+        <Navigation />
+      </div>
     </MainWrapper>
   );
 };
 
 Main.propTypes = {
   children: PropTypes.node.isRequired,
-  search: PropTypes.string.isRequired,
 };
 
-export default withRouter(Main);
+export default Main;
