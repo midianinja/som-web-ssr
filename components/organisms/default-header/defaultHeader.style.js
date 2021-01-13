@@ -196,10 +196,12 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const Logo = styled.img`
-  height: 100%;
-  max-height: 17px;
-  margin-left: 12px;
+  height: 18px;
   justify-self: center;
+
+  @media (min-width: 1024px) {
+    height: 24px;
+  }
 `;
 
 export const LoginIcon = styled.img`
