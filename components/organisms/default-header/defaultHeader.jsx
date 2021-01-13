@@ -30,11 +30,11 @@ const Header = ({ customStyle }) => {
   }, [state.auth]);
 
   const getAvatarIcon = () => {
-    if (state.connectionType === 'artist' && state.user.artist) {
+    if (state.connectionType === 'artist' && state.user && state.user.artist) {
       return state.user.artist.avatar_image.mimified;
     }
 
-    if (state.connectionType === 'productor' && state.user.productor) {
+    if (state.connectionType === 'productor' && state.user && state.user.productor) {
       return state.user.productor.photo;
     }
 
@@ -156,7 +156,9 @@ const Header = ({ customStyle }) => {
         <RightGroup hide={state.auth && state.auth.ida}>
           <IDALoginButton
             dark
-            onClick={state.idaSDK ? state.idaSDK.signinWithPopup : () => null}
+            onClick={() => {
+              if (state.idaSDK) state.idaSDK.signinWithPopup();
+            }}
           />
         </RightGroup>
       </Wrapper>

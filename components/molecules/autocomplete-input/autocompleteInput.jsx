@@ -1,11 +1,6 @@
 import PropTypes from 'prop-types';
-import {
-  Input,
-  Wrapper,
-} from './autocompleteInput.style';
-import {
-  Input, Wrapper,
-} from './autocompleteInput.style';
+import { Input, Wrapper } from './autocompleteInput.style';
+import { white10, gray02 } from '../../../settings/colors';
 
 const AutocompleteInput = ({
   value, predict, handleChange, handleSelect, placeholder,

@@ -16,6 +16,8 @@ export const fetchLoggedUser = async (ida, dispatch, router) => {
     throw err;
   }
 
+  console.log(router);
+
   let user = response.data.oneUser;
   if (!user) {
     router.push('/welcome');
@@ -37,7 +39,7 @@ export const fetchLoggedUser = async (ida, dispatch, router) => {
   // seta o usuário S.O.M na context API
   dispatch({
     type: 'SET_USER',
-    user: response.data.oneUser,
+    user: user,
   });
 
   let typeConnection = 'public';
@@ -63,12 +65,16 @@ export const fetchLoggedUser = async (ida, dispatch, router) => {
     type: 'SET_LOGIN_TYPE',
     data: typeConnection,
   });
+
+  dispatch({ type: 'STOP_AUTH_LOADING' });
+  dispatch({ type: 'STOP_VERIFY_LOADING' });
 };
 
 /**
  * initilize ida auth listener, stop de verify authentication
  * loading
  * @param {function} dispatch this set new global state
+ * @param {object} router this is the a manager app router
  */
 export const initIDA = async (dispatch, router) => {
   let sdk; 
@@ -77,6 +83,9 @@ export const initIDA = async (dispatch, router) => {
       onAuthChange: (auth) => {
         if (auth) {
           fetchLoggedUser(auth.ida, dispatch, router);
+        } else {
+          dispatch({ type: 'STOP_AUTH_LOADING' });
+          dispatch({ type: 'STOP_VERIFY_LOADING' });
         }
 
         // setta o usuário IDa na context API
@@ -84,9 +93,6 @@ export const initIDA = async (dispatch, router) => {
           type: 'SET_AUTH',
           auth,
         });
-
-        dispatch({ type: 'STOP_AUTH_LOADING' });
-        dispatch({ type: 'STOP_VERIFY_LOADING' });
       }
     });
   } catch (err) {

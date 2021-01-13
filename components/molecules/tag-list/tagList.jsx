@@ -20,7 +20,7 @@ const getItems = (data, handleClose) => data.map(
  * @returns React Component
  */
 const TagList = ({ data, handleClose, customStyle }) => (
-  <List customStyle={customStyle}>{getItems(data, handleClose)}</List>;
+  <List customStyle={customStyle}>{getItems(data, handleClose)}</List>
 );
 
 const tagShape = {

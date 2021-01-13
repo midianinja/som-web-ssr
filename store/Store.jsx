@@ -10,7 +10,7 @@ const initialState = {
   user: null,
   modalLogin: false,
   loading: {
-    auth: false,
+    auth: true,
     verify: true,
   },
   modals: {

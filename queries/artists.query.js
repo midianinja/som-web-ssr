@@ -1,6 +1,6 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-boost';
 
-const oneArtistQuery = gql`
+export const oneArtistQuery = gql`
   query($artist: ArtistInput){
     oneArtist( artist: $artist) {
       name
@@ -9,6 +9,4 @@ const oneArtistQuery = gql`
   }
 `;
 
-export default ({
-  oneArtistQuery,
-});
+export default oneArtistQuery;

@@ -2,7 +2,7 @@ import { client } from '../../../libs/apollo.lib';
 import {
   createProductorMutation, updateProductorMutation, createLocationMutation,
   updateLocationMutation,
-} from './productor.mutation';
+} from './productor.mutations';
 
 export const createProductor = productor => client().mutate({
   mutation: createProductorMutation,

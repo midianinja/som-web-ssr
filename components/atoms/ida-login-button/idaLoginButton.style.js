@@ -22,9 +22,8 @@ export const IDALoginButtonWrapper = styled.button`
   cursor: pointer;
 
   @media (min-width: 1024px) {
-    padding: 8px 24px;
+    padding: 4px 20px;
     font-size: 14px;
-    height: 44px;
   } 
 `;
 
@@ -33,7 +32,7 @@ export const IDALogo = styled.img`
   margin-right: 4px;
 
   @media (min-width: 1024px) {
-    width: 24px;
+    width: 20px;
     margin-right: 8px;  
   } 
 `;

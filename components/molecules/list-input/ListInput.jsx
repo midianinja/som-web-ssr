@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import Input from '../atoms/Input';
+import Input from '../../atoms/input/input';
 import {
   SelectWrapper, Image, Option, Options, Label,
 } from './listInput.style';

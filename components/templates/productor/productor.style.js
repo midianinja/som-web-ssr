@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { black } from '../../../settings/colors';
 
 export const LoadingWrapper = styled.div`
   display: flex;
@@ -15,4 +16,9 @@ export const Form = styled.form`
   align-items: center;
   display: flex;
   flex-direction: column;
+`;
+
+export const FormWrapper = styled.div`
+  width: 100%;
+  max-width: 768px;
 `;

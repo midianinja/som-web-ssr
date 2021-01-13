@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PrimaryButton from '../../atoms/primary-button/PrimaryButton';
 import Loading from '../../atoms/loading/loading';
+import { gray } from '../../../settings/colors';
 import {
   Footer, Wrapper, Icon, LoadingWrapper,
   LoadingText,

@@ -1,9 +1,9 @@
 import { client } from '../../../libs/apollo.lib';
+import { allMusicalStyleOptionsQuery } from '../../../queries/musicalGenres.query';
 import {
   createProductor, updateProductor, createLocation, updateLocation,
 } from './productor.repository';
 import { basicInformationIsValid } from './productor.validate';
-import { allMusicalStyleOptionsQuery } from '../../../queries/musicalGenres';
 import { allCountriesQuery, allStateQuery } from './productor.queries';
 import { getBase64, uploadImageToStorage } from '../../../utils/file.utils';
 
@@ -155,7 +155,7 @@ export const fetchMusicalStyleOptions = (setMusicalStylesOptions) => {
 };
 
 export const nextCallback = ({
-  visibles, setVisibles, history, id,
+  visibles, setVisibles, router, id,
 }) => {
   const next = Object.entries(visibles).find(item => !item[1]);
   const newVisibles = { ...visibles };
@@ -165,7 +165,7 @@ export const nextCallback = ({
     setVisibles(newVisibles);
   } else {
     setVisibles(newVisibles);
-    history.push(`/productor/${id}`);
+    router.push(`/productor/${id}`);
   }
 };
 
@@ -207,7 +207,7 @@ const saveLocation = (id, values) => {
 
 export const handleCreateProductor = async ({
   values, userId, setLoading, visibles, setId,
-  setVisibles, dispatch, user, history,
+  setVisibles, dispatch, user, router,
 }) => {
   const productor = { ...values };
   let newImage = null;
@@ -244,14 +244,14 @@ export const handleCreateProductor = async ({
     type: 'SET_USER',
     user: { ...JSON.parse(JSON.stringify(user)), productor: promise.data.createProductor },
   });
-  nextCallback({ visibles, setVisibles, history });
+  nextCallback({ visibles, setVisibles, router });
   setLoading({ show: false });
 };
 
 export const handleEditProductor = async (
   values, productorId, userId, setLoading,
   visibles, setVisibles, setLocationId,
-  dispatch, user, history,
+  dispatch, user, router,
 ) => {
   const productor = { ...values };
   let newImage = null;
@@ -310,6 +310,6 @@ export const handleEditProductor = async (
   });
   setLoading({ show: false });
   nextCallback({
-    visibles, setVisibles, history, id: productorId,
+    visibles, setVisibles, router, id: productorId,
   });
 };

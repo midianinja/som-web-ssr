@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import DefaultHeader from '../default-header/defaultHeader';
+import { magenta } from '../../../settings/colors';
 import {
   Header, Body, Title, Text, 
 } from './stepFormHeader.style';

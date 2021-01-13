@@ -9,7 +9,7 @@ export const getUser = ida => client().query({
   },
 });
 
-export const createUserSOM = ida => apollo.mutate({
+export const createUserSOM = ida => client().mutate({
     mutation: createUserMutation,
     variables: {
       user: { ida, likes: [] },
