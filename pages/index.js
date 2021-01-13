@@ -1,6 +1,5 @@
 // import Head from 'next/head'
-// import styles from '../styles/Home.module.css'
-
-const Home  = () => <div />
+import HomeTemplate from '../components/templates/home/home';
+const Home  = () => <HomeTemplate />
 
 export default Home;

@@ -7,13 +7,16 @@ import { SlimButtonStyle } from './slimButton.style';
  * @returns contains SlimButton Component
  */
 const SlimButton = ({
-  size, color, customStyle,
+  size, color, customStyle, children, onClick,
 }) => (
   <SlimButtonStyle
     size={size}
     color={color}
+    onClick={onClick}
     customStyle={customStyle}
-  />
+  >
+    {children}
+  </SlimButtonStyle>
 );
 
 SlimButton.propTypes = {

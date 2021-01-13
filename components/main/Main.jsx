@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import Navigation from '../modals/navigation/navigation';
 import Store from '../../store/Store';
-import { initIDA } from './main.controller';
 import { MainWrapper } from './main.style';
+import { initIDA } from './Main.controller';
 
 /**
  * This render the main components. The main component controls authorize life cycle
