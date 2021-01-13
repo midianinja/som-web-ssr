@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import {
   Input,
   Wrapper,
-} from './inputAutocomplete.style';
+} from './autocompleteInput.style';
 import {
   Input, Wrapper,
-} from './inputAutocomplete.style';
+} from './autocompleteInput.style';
 
 const AutocompleteInput = ({
   value, predict, handleChange, handleSelect, placeholder,

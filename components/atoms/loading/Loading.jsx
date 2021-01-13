@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Icon,
 } from './loading.style';
@@ -8,8 +9,8 @@ import {
  * @param {object} props component props
  * @returns contains Loading Component
  */
-const Loading = (loadingIcon) =>  (
-  <Icon src={loadingIcon} />
+const Loading = ({ loadingIcon }) =>  (
+  <Icon src={loadingIcon} alt="" />
 );
 
 Loading.propTypes = {

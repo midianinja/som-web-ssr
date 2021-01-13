@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
   white, black, magenta, purple,
-  theBestColor,
+  theBestColor, alertColor,
 } from '../../../settings/colors';
 import { getGradient } from '../../../settings/gradients';
 
@@ -140,23 +140,23 @@ export const ChagingAccount = styled.h4`
   }}
 `;
 
-// const Navigation = styled.div`
-//   border-top: 1px solid ${theBestColor};
-//   border-bottom: 1px solid ${theBestColor};
-//   padding: 10px;
-// `;
+export const Navigation = styled.div`
+  border-top: 1px solid ${theBestColor};
+  border-bottom: 1px solid ${theBestColor};
+  padding: 10px;
+`;
 
-// const Link = styled.a`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   text-decoration: none;
-//   color: ${black};
-//   font-size: 0.875rem;
-//   font-weight: 200;
-//   cursor: pointer;
-//   padding: 10px;
-// `;
+export const Link = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: ${black};
+  font-size: 0.875rem;
+  font-weight: 200;
+  cursor: pointer;
+  padding: 10px;
+`;
 
 export const ExitLink = styled.a`
   display: flex;
@@ -170,15 +170,15 @@ export const ExitLink = styled.a`
   padding: 20px;
 `;
 
-// const Alert = styled.span`
-//   display: inline-block;
-//   width: 16px;
-//   height: 16px;
-//   margin-right: 10px;
-//   background-color: ${alertColor};
-//   border-radius: 50%;
-//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-// `;
+export const Alert = styled.span`
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  background-color: ${alertColor};
+  border-radius: 50%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
 
 export const ExitWrapper = styled.div`
   width: 100%;

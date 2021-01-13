@@ -1,5 +1,5 @@
 import { init } from '../../libs/ida.lib';
-import { getUser } from './main.repository';
+import { getUser, createUserSOM } from './main.repository';
 
 /**
  * this find user on S.O.M api by the ida and set in global state 
@@ -16,12 +16,32 @@ export const fetchLoggedUser = async (ida, dispatch, router) => {
     throw err;
   }
 
+  let user = response.data.oneUser;
+  if (!user) {
+    router.push('/welcome');
+  } else if (router.pathname === '/') {
+    router.push('/wall');
+  }
+
+  // cria um novo usuário S.O.M caso não seja encontrado  
+  if (!user) {
+    try {
+      response = await createUserSOM(ida);
+    } catch (err) {
+      throw err;
+    }
+
+    user = response.data.createUser;
+  }
+
+  // seta o usuário S.O.M na context API
   dispatch({
     type: 'SET_USER',
     user: response.data.oneUser,
   });
 
   let typeConnection = 'public';
+  // crefica o tipo de login do usuário S.O.M
   if (response.data.oneUser && response.data.oneUser.productor) {
     typeConnection = 'productor';
 
@@ -38,16 +58,11 @@ export const fetchLoggedUser = async (ida, dispatch, router) => {
     }
   }
 
+  // seta o tipo de login do usuário S.O.M na context API
   dispatch({
     type: 'SET_LOGIN_TYPE',
     data: typeConnection,
   });
-
-  if (!response.data.oneUser) {
-    router.push('/welcome');
-  } else if (router.pathname === '/') {
-    router.push('/wall');
-  }
 };
 
 /**
@@ -64,8 +79,7 @@ export const initIDA = async (dispatch, router) => {
           fetchLoggedUser(auth.ida, dispatch, router);
         }
 
-        console.log(auth);
-
+        // setta o usuário IDa na context API
         dispatch({
           type: 'SET_AUTH',
           auth,
@@ -80,5 +94,6 @@ export const initIDA = async (dispatch, router) => {
     throw err;
   }
 
+  // setta o sdk do IDa na context API
   dispatch({ type: 'SET_IDA_SDK', sdk });
 };

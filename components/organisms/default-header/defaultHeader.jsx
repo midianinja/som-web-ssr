@@ -27,7 +27,7 @@ const Header = ({ customStyle }) => {
 
   useEffect(() => {
     setDropdown(false);
-  }, [state.auth || state.auth.ida]);
+  }, [state.auth]);
 
   const getAvatarIcon = () => {
     if (state.connectionType === 'artist' && state.user.artist) {
@@ -107,11 +107,11 @@ const Header = ({ customStyle }) => {
             connectionType={state.connectionType}
             onAccountChange={(type) => {
               if (type === 'artist' && !state.user.artist) {
-                router.push('/register-artist');
+                router.push('/artist');
               }
 
               if (type === 'productor' && !state.user.productor) {
-                router.push('/register-productor');
+                router.push('/productor');
               }
               window.localStorage.setItem('som@type', type);
               dispatch({ type: 'SET_LOGIN_TYPE', data: type });
@@ -144,7 +144,7 @@ const Header = ({ customStyle }) => {
             }}
             toProductor={() => {
               if (state.user.productor && state.user.productor.status === 'INCOMPLETE') {
-                router.push('/register-productor');
+                router.push('/productor');
                 return;
               }
               if (state.user.productor) {
