@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Apresentation from '../../organisms/home-apresentation/homeApresentation';
-import SlimButton from '../../atoms/slim-button/SlimButton';
+import IDALoginButton from '../../atoms/ida-login-button/idaLoginButton';
 import HowItsWork from '../../organisms/home-how-it-works/homeHowItWorks';
 import Instructions from '../../organisms/home-instructions/homeInstructions';
 import OpenSource from '../../organisms/home-open-source/homeOpenSource';
@@ -30,13 +30,9 @@ const Home = ({ history }) => {
   return (
     <Page>
       <LoginButtonContainer>
-        <SlimButton
-          color="white"
-          customStyle={loginButtonStyle}
+        <IDALoginButton
           onClick={() => state.idaSDK.signinWithPopup()}
-        >
-          Fazer login
-        </SlimButton>
+        />
       </LoginButtonContainer>
       <Apresentation
         onClick={() => {

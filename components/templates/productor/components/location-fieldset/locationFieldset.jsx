@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../../../atoms/input/input';
-import InputGroup from '../../../../molecules/input-group/InputGroup';
+import InputGroup from '../../../../molecules/input-group/inputGroup';
 import ListInput from '../../../../molecules/list-input/ListInput';
 import {
   Fieldset, Title, inputGroup30Style, LocationWrapper,

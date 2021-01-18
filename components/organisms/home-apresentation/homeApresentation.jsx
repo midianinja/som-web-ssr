@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PrimaryButton from '../../atoms/primary-button/PrimaryButton';
-
+import IDASignupButton from '../../atoms/ida-signup-button/idaSignupButton';
 import {
-  HomeWrapper, Wrapper,
-  Content, Logo, Title,
-  Description, buttonStyle,
+  HomeWrapper, Wrapper, Content, Logo,
+  Title, Description,
 } from './homeApresentation.style';
 
 const Home = ({ onClick }) => (
@@ -17,12 +15,9 @@ const Home = ({ onClick }) => (
         <Description>
           A plataforma para aceleração de oportunidades da música brasileira
         </Description>
-        <PrimaryButton
+        <IDASignupButton
           onClick={onClick}
-          customStyle={buttonStyle}
-        >
-          Inscrever-se
-        </PrimaryButton>
+        />
       </Content>
     </Wrapper>
   </HomeWrapper>

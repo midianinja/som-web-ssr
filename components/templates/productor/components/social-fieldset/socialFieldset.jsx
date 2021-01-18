@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../../../atoms/input/input';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
+import {
+  Fieldset, Title, InputsWrapper, inputGroupStyle,
+} from './socialFieldset.style';
 
 const SocialsFieldset = ({
   handleFacebookChange, handleTwitterChange, handleInstagramChange, handleYoutubeChange,

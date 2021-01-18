@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import Input from '../../../../atoms/input/input';
 import UploadAvatar from '../../../../atoms/upload-avatar/uploadAvatar';
 import TextArea from '../../../../atoms/text-area/TextArea';
-import InputGroup from '../../../../molecules/input-group/InputGroup';
-import TagList from '../../../../molecules/tag-list/TagList';
+import InputGroup from '../../../../molecules/input-group/inputGroup';
+import TagList from '../../../../molecules/tag-list/tagList';
 import AutocompleteInput from '../../../../molecules/autocomplete-input/autocompleteInput';
 import {
   Fieldset, MainInformationWrapper, TextInpustWrapper, Title,

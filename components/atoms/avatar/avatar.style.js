@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   ${props => props.customStyle}
 `;
 
-export const PreLoaderImage = styled.div`
+export const PreLoaderImage = styled.img`
   width: 100%;
   height: 100%;
   opacity: ${(props) => {

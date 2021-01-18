@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LinkButton from '../atoms/LinkButton';
+import LinkButton from '../../atoms/link-button/LinkButton';
 // import ProgresiveImage from '../atoms/ProgressiveImage.atom';
 import {
   imgStyle, Container, Row,

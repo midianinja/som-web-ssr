@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Container,
-  Icon,
-  EDate,
-  Container,
+  Container, Icon, EDate,
 } from './eventDate.style';
 
 /**

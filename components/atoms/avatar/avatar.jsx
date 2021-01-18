@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import NextImage from 'next/image';
 import {
   Wrapper, PreLoaderImage,
 } from './avatar.style';
@@ -10,13 +11,13 @@ import {
  * @param {string} src image source to be loading
  */
 const load = (src, callback) => {
-  const image = new Image();
+  const img = new Image();
 
-  image.onload = () => {
+  img.onload = () => {
     callback(src);
   };
 
-  image.src = src;
+  img.src = src;
 }
 
 /**
@@ -27,7 +28,7 @@ const load = (src, callback) => {
 function Avatar({
   src, alt, title, customStyle,
 }) {
-  const [loaddedSrc, setLoaddedSrc] = useState(null);
+  const [loaddedSrc, setLoaddedSrc] = useState('');
 
   useEffect(() => {
     load(src, setLoaddedSrc);
@@ -35,15 +36,11 @@ function Avatar({
 
   return (
     <Wrapper customStyle={customStyle}>
-      <PreLoaderImage>
-        <Image
-          src={loaddedSrc}
-          alt={alt}
-          width={120}
-          height={120}
-          title={title}
-        />
-      </PreLoaderImage>
+      <PreLoaderImage
+        alt={alt}
+        title={title}
+        src={loaddedSrc}
+      />
     </Wrapper>
   );
 }

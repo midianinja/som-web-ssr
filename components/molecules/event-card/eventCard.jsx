@@ -26,11 +26,11 @@ const Eventcard = ({ eventImageSrc }) => (
   </Container>
 );
 
-DropdownHeader.propTypes = {
+Eventcard.propTypes = {
   eventImageSrc: PropTypes.string,
 };
 
-DropdownHeader.defaultProps = {
+Eventcard.defaultProps = {
   eventImageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6CWoKE-mVXIuUoOHd0cZx__NYhHOhw_ncXWa5aLGmgYgXK2bceQ',
 };
 

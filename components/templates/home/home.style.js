@@ -11,6 +11,8 @@ export const Page = styled.div`
 
 export const LoginButtonContainer = styled.div`
   position: absolute;
+  display: flex;
+  justify-content: flex-end;
   width: 100%;
   max-width: 1024px;
   top: 0;

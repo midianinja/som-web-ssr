@@ -4,6 +4,7 @@ import { getGradient } from '../../../settings/gradients';
 
 export const CoverStyle = styled.div`
   width: 100%;
+  min-height: 400px;
   position: relative;
   padding-left: 40px;
   padding-right: 40px;
@@ -18,7 +19,7 @@ export const CoverStyle = styled.div`
     ${({ cover }) => (cover ? `background-image: url('${cover}');` : '')}
     background-position: center;
     background-size: cover;
-    top: 0;
+    top: -2px;
     left: 0;
     z-index: -1;
   }
