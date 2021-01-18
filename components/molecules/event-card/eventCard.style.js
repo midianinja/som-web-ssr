@@ -5,6 +5,7 @@ import { getGradient } from '../../../settings/gradients';
 export const Container = styled.div`
   width: 100%;
   display: flex;
+  text-align: left;
 `;
 
 export const EventImage = styled.img`
@@ -12,6 +13,10 @@ export const EventImage = styled.img`
   width: 100px;
   height: 100px;
   background: ${getGradient()};
+  
+  &[src=""] {
+    content: url("data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
+  }
 `;
 
 export const EventInfoWrapper = styled.div`
@@ -24,7 +29,6 @@ export const EventInfoWrapper = styled.div`
 
 export const ButtonWrapper = styled.div`
   width: 100%;
-  text-align: center;
 `;
 
 export const buttonCustomStyle = `
