@@ -7,11 +7,27 @@ import { basicInformationIsValid } from './productor.validate';
 import { allCountriesQuery, allStateQuery } from './productor.queries';
 import { getBase64, uploadImageToStorage } from '../../../utils/file.utils';
 
+/**
+ * this function remove tag of song of productor songs list
+ * @param {object} props song properties
+ * @param {string} props.id song reference 
+ * @param {array} props.tags songs list of productor 
+ * @param {cuntion} props.setTag this function set on form state the new songs list 
+ */
 export const deleteTag = ({ id, tags, setTag }) => {
   const myTags = tags.filter(tag => tag.id !== id);
   setTag(myTags);
 };
 
+/**
+ * this function change on form state the productor country
+ * @param {object} props properties
+ * @param {object} props.data country informations
+ * @param {function} props.setStates set states options on form state based
+ * on selected country by the productor
+ * @param {function} props.setCountry set selected country on form state based
+ * @param {function} props.cb callback function
+ */
 export const handleCountrySelect = async ({
   data, setStates, setCountry, cb,
 }) => {
@@ -35,10 +51,25 @@ export const handleCountrySelect = async ({
   setCountry(data);
 };
 
+/**
+ * this function change on form state the productor state
+ * @param {object} props properties
+ * @param {object} props.data state informations
+ * @param {function} props.setState set on form state the productor state
+ */
 export const handleStateSelect = async ({ data, setState }) => {
   setState(data);
 };
 
+/**
+ * request locations on S.O.M api
+ * @param {object} props properties
+ * @param {function} props.setCountries set on form state the country options
+ * @param {function} props.setState set on form state the productor state
+ * @param {object} props.productor productor informations
+ * @param {function} props.setCountry set country on form state
+ * @param {function} props.setState set on form state the productor state
+ */
 export const fetchLocations = async ({
   setCountries, setStates, productor, setCountry, setState,
 }) => {

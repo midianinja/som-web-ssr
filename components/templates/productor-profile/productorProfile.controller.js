@@ -1,6 +1,15 @@
 import { client } from '../../../libs/apollo.lib';
 import { oneProductorQuery } from './productorProfile.queries';
 
+/**
+ * this function request on S.O.M api infomation about the productor.
+ * @param {stirng} id this is a productor reference
+ * @param {function} setProductor this is a function that set on page state
+ * informations about the user
+ * @param {function} setProductionLoading this is a function that toggle tue loading state of page
+ * when a productor is in loading
+ * @param {function} setAlertModal this is a function manage error state of page
+ */
 export const fetchProductorData = async (
   id, setProductor, setProductorLoading, setAlertModal,
 ) => {
@@ -36,6 +45,12 @@ export const fetchProductorData = async (
   setProductorLoading(false);
 };
 
+/**
+ * this function request on NINJA Instagram api photos of the productor.
+ * @param {stirng} instaUri instagram url of productor
+ * @param {function} setInstaPics this is a function that set on the page state
+ * photos of productor instagram
+ */
 export const fetchProductorInstaImages = async (instaUri, setInstaPics) => {
   try {
     let promise;

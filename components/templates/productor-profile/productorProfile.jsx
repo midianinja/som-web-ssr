@@ -15,6 +15,15 @@ import {
   ColumnWrapper, EventsTitle, NotEvents, EventsContainer,
 } from './productorProfile.style';
 
+/**
+ * This render the edition form of productor.
+ * @param {array} events this is a list of events that the productor created
+ * @param {boolean} more this is flag if is showed more event or not
+ * @param {function} setMore this is a function to toggle if show more events or not
+ * @param {function} onSuccess function that run when the artist request subscription
+ * in the event in the list  
+ * @returns contains React.Component
+ */
 const renderEvents = (events, more, setMore, onSuccess) => {
   let sortedEvents = events.sort((a, b) => (
     new Date(+a.event_date) > new Date(+b.event_date) ? 1 : -1));
@@ -50,6 +59,12 @@ const renderEvents = (events, more, setMore, onSuccess) => {
   );
 };
 
+/**
+ * This render the edition form of productor.
+ * @param {object} props component props
+ * @param {stirng} props.label this is a productor reference
+ * @returns contains React.Component
+ */
 const ProductorPage = ({ label }) => {
   const router = useRouter();
   const { state } = useContext(Store);

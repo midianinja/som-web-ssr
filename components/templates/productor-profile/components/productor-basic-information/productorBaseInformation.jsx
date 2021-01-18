@@ -10,6 +10,12 @@ import {
   LocationCountryText, LerMoreBio,
 } from './productorBasicInformation.style';
 
+/**
+ * This render the component that show basic information about
+ * the productor.
+ * @param {object} props informations about the productor
+ * @returns contains React.Component
+ */
 const ProductorBasicInfo = ({
   name, avatar, musicalStyles, address,
   about, facebook, instagram, twitter,
