@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Wrapper, Circle, Label } from './checkBox.style';
 
 /**
  * function that render Checkbox react component
