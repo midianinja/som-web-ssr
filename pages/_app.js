@@ -3,7 +3,7 @@ import App from 'next/app';
 import { StoreProvider } from '../store/Store';
 import '../css/fonts.css';
 import '../css/reset.css';
-import Main from '../components/main/main';
+import Main from '../components/main/Main';
 
 const Store = React.createContext();
 
