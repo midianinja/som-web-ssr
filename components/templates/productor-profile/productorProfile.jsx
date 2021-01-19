@@ -65,8 +65,9 @@ const renderEvents = (events, more, setMore, onSuccess) => {
  * @param {stirng} props.label this is a productor reference
  * @returns contains React.Component
  */
-const ProductorPage = ({ label }) => {
+const ProductorPage = () => {
   const router = useRouter();
+  const { label } = router.query;
   const { state } = useContext(Store);
   const [productorLoading, setProductorLoading] = useState(false);
   const [update, setUpdate] = useState(false);
@@ -83,6 +84,8 @@ const ProductorPage = ({ label }) => {
     disagreeAction: '',
     isOpen: false,
   });
+
+  console.log(router);
 
   useEffect(() => {
     if (label) {
