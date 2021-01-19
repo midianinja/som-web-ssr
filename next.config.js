@@ -16,6 +16,7 @@ module.exports = withCSS({
     url: false,
   },
   webpack: (config) => {
+    config.resolve.extensions = ['.js', '.jsx'];
     config.resolve.modules.push(path.resolve('./'));
     return config;
   },
