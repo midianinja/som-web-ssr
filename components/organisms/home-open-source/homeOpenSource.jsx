@@ -1,5 +1,5 @@
 import React from 'react';
-import PrimaryButton from '../../atoms/primary-button/PrimaryButton';
+import PrimaryButton from '../../atoms/primary-button/primaryButton';
 import {
   Container, Header, Figure,
   TextWrapper, Title, Span,

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Navigation from '../modals/navigation/navigation';
 import Store from '../../store/Store';
 import { MainWrapper } from './main.style';
-import { initIDA } from './Main.controller';
+import { initIDA } from './main.controller';
 
 /**
  * This render the main components. The main component controls authorize life cycle

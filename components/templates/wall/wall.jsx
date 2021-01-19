@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import InputGroup from '../../molecules/input-group/inputGroup';
 import TagList from '../../molecules/tag-list/tagList';
-import ListInput from '../../molecules/list-input/ListInput';
+import ListInput from '../../molecules/list-input/listInput';
 import EventCard from '../../molecules/event-card/eventCard';
 import DefaultHeader from '../../organisms/default-header/defaultHeader';
 import Dialog from '../../modals/dialog/dialog';

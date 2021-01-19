@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EventCondition from '../../atoms/event-condition/EventCondition';
+import EventCondition from '../../atoms/event-condition/eventCondition';
 import {
   Container
 } from './eventConditions.style';

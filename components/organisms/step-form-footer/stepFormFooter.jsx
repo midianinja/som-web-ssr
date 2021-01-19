@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PrimaryButton from '../../atoms/primary-button/PrimaryButton';
+import PrimaryButton from '../../atoms/primary-button/primaryButton';
 import Loading from '../../atoms/loading/loading';
 import { gray } from '../../../settings/colors';
 import {
