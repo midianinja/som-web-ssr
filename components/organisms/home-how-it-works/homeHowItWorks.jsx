@@ -6,8 +6,12 @@ import {
   ScrollIndicator,
 } from './homeHowItWorks.style';
 
-
-const HowItsWork = () => {
+/**
+ * function that render How It Works React Component
+ * @param {object} props component props
+ * @returns contains HomeHowItsWork Component
+ */
+const HomeHowItsWork = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollWidth, setScrollWidth] = useState(0);
   return (
@@ -48,4 +52,4 @@ const HowItsWork = () => {
   );
 };
 
-export default HowItsWork;
+export default HomeHowItsWork;

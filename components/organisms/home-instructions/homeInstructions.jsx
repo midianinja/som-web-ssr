@@ -4,7 +4,11 @@ import {
   Container,
 } from './homeInstructions.style';
 
-
+/**
+ * function that render Instructions React Component
+ * @param {object} props component props
+ * @returns contains Instructions Component
+ */
 const Instructions = () => (
   <Container>
     <InstructionCard

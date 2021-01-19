@@ -1,7 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+<<<<<<< Updated upstream
 import Input from '../../atoms/input/input';
+=======
+// import Input from '../../atoms/input/input';
+>>>>>>> Stashed changes
 import IDALoginButton from '../../atoms/ida-login-button/idaLoginButton';
 import DropdownHeader from '../../molecules/dropdown-header/dropdownHeader';
 import Store from '../../../store/Store';

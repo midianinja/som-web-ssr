@@ -6,7 +6,12 @@ import {
   GitHubIcon, buttonStyle,
 } from './homeOpenSource.style';
 
-const OpenSource = () => (
+/**
+ * function that render Open Source React Component
+ * @param {object} props component props
+ * @returns contains HomeOpenSource Component
+ */
+const HomeOpenSource = () => (
   <Container>
     <Header>
       <Figure
@@ -31,4 +36,4 @@ const OpenSource = () => (
   </Container>
 );
 
-export default OpenSource;
+export default HomeOpenSource;

@@ -4,7 +4,12 @@ import {
   Social, SocialIcon,
 } from './homeNewsLetter.style';
 
-const OpenSource = () => (
+/**
+ * function that render News Letter React Component
+ * @param {object} props component props
+ * @returns contains NewsLetter Component
+ */
+const NewsLetter = () => (
   <Container>
     <Content>
       <SocialList>
@@ -22,4 +27,4 @@ const OpenSource = () => (
   </Container>
 );
 
-export default OpenSource;
+export default NewsLetter;
