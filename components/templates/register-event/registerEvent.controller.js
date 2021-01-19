@@ -15,6 +15,7 @@ export const deleteTag = ({ id, tags, setTag }) => {
 export const handleCountrySelect = async ({
   data, setStates, setCountry, cb,
 }) => {
+  console.log('test');
   const countries = await client().query({
     query: allStateQuery,
     variables: {
