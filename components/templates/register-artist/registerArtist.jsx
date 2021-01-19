@@ -52,10 +52,10 @@ const renderBasicInfos = ({
 
 
 /**
- * This contains the Home Page
+ * This contains the RegisterArtistTemplate Page
  * @returns {React.Component} productor form
  */
-const Home = () => {
+const RegisterArtistTemplate = () => {
   const { state } = useContext(Store);
 
   return (
@@ -92,4 +92,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default RegisterArtistTemplate;

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Loading from '../../atoms/loading/loading';
+import Loading from '../../atoms/loading/Loading';
 import StepFormHeader from '../../organisms/step-form-header/stepFormHeader';
 import StepFormFooter from '../../organisms/step-form-footer/stepFormFooter';
 import BasicInformationFieldset from './components/basic-information-fieldset/basicInformationFieldset';
