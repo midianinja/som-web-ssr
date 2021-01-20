@@ -4,10 +4,10 @@ import { useRouter } from 'next/router';
 import InputGroup from '../../molecules/input-group/inputGroup';
 import TagList from '../../molecules/tag-list/tagList';
 import ListInput from '../../molecules/list-input/listInput';
-import EventCard from '../../molecules/event-card/eventCard';
 import DefaultHeader from '../../organisms/default-header/defaultHeader';
 import Dialog from '../../modals/dialog/dialog';
 import Store from '../../../store/Store';
+import EventCard from './components/event-card/eventCard';
 import {
   fetchEventsData, initialLoading,
   fetchLocations, fetchMusicalStyleOptions,
@@ -163,7 +163,7 @@ const Wall = () => {
                 evt, dispatch, setDialog,
                 setEvents, router, events,
               )}
-              customStyle="margin-bottom: 90px;"
+              customStyle="margin-bottom: 24px;"
               user={state.user}
               event={evt}
               onClick={() => router.push(`/event/${evt.id}`)}

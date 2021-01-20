@@ -38,6 +38,7 @@ export const LocationLabel = styled.label`
   font-size: 1em;
   margin-right: 5px;
 `;
+
 export const LocationValue = styled.label`
   color: #51DBA9;
   font-size: 1.1em;
@@ -46,16 +47,16 @@ export const LocationValue = styled.label`
 export const EventsContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 24px;
+  grid-gap: 16px;
   background-color: ${black};
   width: 100%;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 32px;
   padding: 10px 0;
   max-width: 1024px;
 
   @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;
 

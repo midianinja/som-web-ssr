@@ -24,7 +24,7 @@ EventDate.propTypes = {
   subscribed: PropTypes.string,
 };
 
-EventDate.defualtProps = {
+EventDate.defaultProps = {
   subscribed: '',
   iconSrc: '/icons/audio_track.svg',
   linkColor: 'green',

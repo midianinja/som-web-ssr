@@ -22,7 +22,7 @@ export const Title = styled.h3`
 `;
 
 export const Text = styled.p`
-  font-size: 0.8571428571em;
+  font-size: 12px;
   color: ${white};
   text-align: left;
   line-height: 1.6em;

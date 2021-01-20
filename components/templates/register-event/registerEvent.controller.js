@@ -155,12 +155,12 @@ export const handleCreateEvent = async (
     throw err;
   }
 
-  const newEvents = [...user.events];
-  newEvents.push(promise.data.createEvent);
-  dispatch({
-    action: 'SET_USER',
-    user: { ...user, events: newEvents },
-  });
+  // const newEvents = [...user.events];
+  // newEvents.push(promise.data.createEvent);
+  // dispatch({
+  //   action: 'SET_USER',
+  //   user: { ...user, events: newEvents },
+  // });
 
   router.push('/my-events');
   setLoading(false);

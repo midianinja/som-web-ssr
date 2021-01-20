@@ -14,6 +14,6 @@ export const Icon = styled.img`
 export const EDate = styled.h4`
   margin-left: 5px;
   color: white;
-  font-size: 0.8571428571em;
+  font-size: 12px;
   font-weight: 300;
 `;

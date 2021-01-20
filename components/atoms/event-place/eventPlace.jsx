@@ -33,7 +33,7 @@ EventPlace.propTypes = {
   complement: PropTypes.string.isRequired,
 };
 
-EventPlace.defaultPros = {
+EventPlace.defaultProps = {
   placeMarkIcon: '/icons/place_mark.svg',
 };
 

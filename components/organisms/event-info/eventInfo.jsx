@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-
 import EventDate from '../../atoms/event-date/eventDate';
 import EventPlace from '../../atoms/event-place/eventPlace';
 import EventBands from '../../molecules/event-brands/eventBrands';
 import PrimaryButton from '../../atoms/primary-button/primaryButton';
-import SlimButton from '../../atoms/slim-button/SlimButton';
+import SlimButton from '../../atoms/slim-button/slimButton';
 import {
   Container, ClockIcon, Title,
   ClosingDateTimer, Space, SubSpace,
   ButtonWrapper,
-} from './event-info.style';
+} from './eventInfo.style';
 const unixTime = unixtime => new Date(+unixtime).toISOString().slice(0, 19);
 
 const EventInfo = ({

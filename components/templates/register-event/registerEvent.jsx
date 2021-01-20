@@ -3,9 +3,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Loading from '../../atoms/loading/loading';
 import StepFormHeader from '../../organisms/step-form-header/stepFormHeader';
-import StepEventFormFooter from '../../organisms/step-form-footer/stepFormFooter';
 import AvatarFieldset from './components/avatar-fieldset/avatarFieldset';
 import CoverFieldset from './components/cover-fieldset/coverFieldset';
+import StepEventFormFooter from './components/step-event-form-footer/stepEventFormFooter';
 import GeneralInformationFieldset from './components/general-information-fieldset/generalInformationFieldset';
 import AddressFieldset from './components/address-fieldset/addressFieldset';
 import ConditionsFieldset from './components/conditions-fieldset/conditionsFieldset';
@@ -126,7 +126,8 @@ const renderAddressFieldset = ({
   />
 );
 
-const RegisterEvent = ({ history }) => {
+const RegisterEvent = () => {
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const [address, setAddress] = useState('');
   const [avatar, setAvatar] = useState({ url: '' });
@@ -176,7 +177,7 @@ const RegisterEvent = ({ history }) => {
     || !state.user.productor.id
     || state.user.productor.status !== 'ACTIVE'
   ) {
-    history.push('/register-productor');
+    router.push('/register-productor');
   }
 
   const values = {
@@ -217,7 +218,10 @@ const RegisterEvent = ({ history }) => {
         }
       </FormWrapper>
       <StepEventFormFooter
-        saveAction={() => console.log('heree')}
+        saveAction={() => handleCreateEvent(
+          values, state.user.id, setLoading, setErrors,
+          setLocationId, dispatch, state.user, router,
+        )}
         actionLabel="Criar evento"
         loading={loading}
         cancelAction={() => null}
