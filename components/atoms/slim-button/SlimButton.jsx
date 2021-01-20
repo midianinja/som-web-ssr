@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { SlimButtonStyle } from './slimButton.style';
 
 /**
- * function that render Slim Button React Component
+ * function that render Slim Button React component
  * @param {object} props component props
  * @returns contains SlimButton Component
  */
