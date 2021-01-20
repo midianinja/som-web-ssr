@@ -15,7 +15,6 @@ export const deleteTag = ({ id, tags, setTag }) => {
 export const handleCountrySelect = async ({
   data, setStates, setCountry, cb,
 }) => {
-  console.log('test');
   const countries = await client().query({
     query: allStateQuery,
     variables: {
@@ -24,6 +23,7 @@ export const handleCountrySelect = async ({
       },
     },
   });
+
   const states = countries.data.allStates.map(c => ({
     label: c.name,
     short_name: c.short_name,
@@ -82,6 +82,7 @@ export const handleCreateEvent = async (
   values, userId, setLoading, setErrors,
   setLocationId, dispatch, user, router,
 ) => {
+  console.log('here');
   setLoading(true);
   const validate = validation(values);
 
