@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
-import PrimaryButton from '../../atoms/primary-button/PrimaryButton';
+import PrimaryButton from '../../atoms/primary-button/primaryButton';
 import Store from '../../../store/Store';
 import {
   Wrapper, Title, Name, Text,

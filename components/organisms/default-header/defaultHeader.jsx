@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import Input from '../../atoms/input/input';
 import IDALoginButton from '../../atoms/ida-login-button/idaLoginButton';
 import DropdownHeader from '../../molecules/dropdown-header/dropdownHeader';
 import Store from '../../../store/Store';

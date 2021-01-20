@@ -5,6 +5,11 @@ import {
   Content, Title, Description,
 } from './instructionCard.style';
 
+/**
+ * function that render Instruction Card React Component
+ * @param {object} props component props
+ * @returns contains InstructionCard Component
+ */
 const InstructionCard = ({
   icon, title, description,
 }) => {

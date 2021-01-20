@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '../../../../atoms/avatar/avatar';
-import PrimaryButton from '../../../../atoms/primary-button/PrimaryButton';
+import PrimaryButton from '../../../../atoms/primary-button/primaryButton';
 import TagList from '../../../../molecules/tag-list/tagList';
 import Socials from '../../../../organisms/social/social';
 import {

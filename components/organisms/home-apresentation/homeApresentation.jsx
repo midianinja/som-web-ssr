@@ -6,7 +6,11 @@ import {
   Title, Description,
 } from './homeApresentation.style';
 
-const Home = ({ onClick }) => (
+/**
+ * This contains the Home apresentation section
+ * @returns {React.Component} productor form
+ */
+const HomeApresentation = ({ onClick }) => (
   <HomeWrapper>
     <Wrapper>
       <Content>
@@ -23,8 +27,8 @@ const Home = ({ onClick }) => (
   </HomeWrapper>
 );
 
-Home.propTypes = {
+HomeApresentation.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default Home;
+export default HomeApresentation;

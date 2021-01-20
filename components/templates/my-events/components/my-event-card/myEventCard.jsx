@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import EventDate from '../../../../atoms/event-date/EventDate';
-import EventPlace from '../../../../atoms/event-place/EventPlace';
+import EventDate from '../../../../atoms/event-date/eventDate';
+import EventPlace from '../../../../atoms/event-place/eventPlace';
 import TagList from '../../../../molecules/tag-list/tagList';
 import {
   Wrapper, Container, View, ImageContainer,

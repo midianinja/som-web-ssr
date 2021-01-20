@@ -6,7 +6,6 @@ import Instructions from '../../organisms/home-instructions/homeInstructions';
 import OpenSource from '../../organisms/home-open-source/homeOpenSource';
 import Newsletter from '../../organisms/home-news-letter/homeNewsLetter';
 import Store from '../../../store/Store';
-import { blockBodyScroll } from '../../../utils/scroll.utils';
 import {
   Page, LoginButtonContainer, loginButtonStyle,
   PurpleWrapper,FiguresContainer, FiguresContent,
@@ -14,19 +13,12 @@ import {
   GreenRectangle, BlueRectangle, RedPolygon,
 } from './home.style';
 
-const showLogin = (dispatch) => {
-  blockBodyScroll();
-  dispatch({ type: 'SHOW_LOGIN_MODAL' });
-};
-
-const showRegister = (dispatch) => {
-  blockBodyScroll();
-  dispatch({ type: 'SHOW_REGISTER_MODAL' });
-};
-
-const Home = ({ history }) => {
-  const { state, dispatch } = useContext(Store);
-  console.log('🚀 ~ file: home.jsx ~ line 29 ~ Home ~ state', state);
+/**
+ * This contains the Home Page
+ * @returns {React.Component} productor form
+ */
+const Home = () => {
+  const { state } = useContext(Store);
   return (
     <Page>
       <LoginButtonContainer>

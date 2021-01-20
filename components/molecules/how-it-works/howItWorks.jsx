@@ -6,6 +6,11 @@ import {
   Description,
 } from './howItWorks.style';
 
+/**
+ * function that render How Its Work Card Card React Component
+ * @param {object} props component props
+ * @returns contains HowItsWorkCard Component
+ */
 const HowItsWorkCard = ({
   icon, title, number, description,
 }) => {

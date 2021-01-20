@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import PrimaryButton from '../../atoms/primary-button/PrimaryButton';
-import Cover from '../../atoms/cover/Cover';
+import PrimaryButton from '../../atoms/primary-button/primaryButton';
+import Cover from '../../atoms/cover/cover';
 import Header from '../../organisms/default-header/defaultHeader';
 import InstagramMedia from '../../molecules/intagram-medias/intagramMedias';
 import Eventcard from '../../molecules/event-card/eventCard';

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EventDate from '../../atoms/event-date/EventDate';
-import EventPlace from '../../atoms/event-place/EventPlace';
-import PrimaryButton from '../../atoms/primary-button/PrimaryButton';
+import EventDate from '../../atoms/event-date/eventDate';
+import EventPlace from '../../atoms/event-place/eventPlace';
+import PrimaryButton from '../../atoms/primary-button/primaryButton';
 import {
   Container, EventImage, EventInfoWrapper,
   ButtonWrapper, buttonCustomStyle, Link,

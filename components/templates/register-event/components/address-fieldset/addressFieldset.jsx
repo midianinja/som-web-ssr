@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import VMasker from 'vanilla-masker';
 import Input from '../../../../atoms/input/input';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
-import ListInput from '../../../../molecules/list-input/ListInput';
+import ListInput from '../../../../molecules/list-input/listInput';
 import {
   Fieldset, Title, Wrapper, customNumberStyle,
 } from './addressFieldset.style';
