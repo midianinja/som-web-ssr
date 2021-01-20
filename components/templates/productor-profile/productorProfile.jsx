@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import PrimaryButton from '../../atoms/primary-button/primaryButton';
 import Cover from '../../atoms/cover/cover';
 import Header from '../../organisms/default-header/defaultHeader';
-import InstagramMedia from '../../molecules/intagram-medias/intagramMedias';
+import InstagramMedia from '../../molecules/instagram-medias/instagramMedias';
 import Eventcard from '../../molecules/event-card/eventCard';
 import DialogModal from '../../modals/dialog/dialog';
 import ProductorBasicInfo from './components/productor-basic-information/productorBaseInformation';
@@ -84,8 +84,6 @@ const ProductorPage = () => {
     disagreeAction: '',
     isOpen: false,
   });
-
-  console.log(router);
 
   useEffect(() => {
     if (label) {
