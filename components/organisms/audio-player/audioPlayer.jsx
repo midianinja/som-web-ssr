@@ -75,6 +75,7 @@ const renderTracks = (tracks, handleClick, deleteAction, editAction, isUserArtis
 
 const handlePlayPause = (setPlay, play) => {
   if (!AUDIO_ELEMENT) return;
+  
   if (play) {
     AUDIO_ELEMENT.pause();
     setPlay(false);
