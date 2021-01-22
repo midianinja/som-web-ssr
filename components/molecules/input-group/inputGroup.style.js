@@ -13,7 +13,7 @@ export const InptGroupContainer = styled.div`
 export const Label = styled.label`
   display: inline-block;
   font-size: 0.8em;
-  color: ${white}
+  color: ${white};
   margin-bottom: 10px;
   margin-left: 5px;
 `;

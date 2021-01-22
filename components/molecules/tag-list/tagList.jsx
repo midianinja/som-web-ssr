@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Tag from '../../atoms/tag/Tag';
 import { List } from './tagList.style';
+
+const colors = [
+  'purple',
+  'green',
+  'orange',
+  'magenta',
+  'yellow',
+];
 
 /**
  * function that get items
@@ -19,9 +27,24 @@ const getItems = (data, handleClose) => data.map(
  * @param {object} props component props
  * @returns React Component
  */
-const TagList = ({ data, handleClose, customStyle }) => (
-  <List customStyle={customStyle}>{getItems(data, handleClose)}</List>
-);
+const TagList = ({ data, handleClose, customStyle }) => {
+  const [options, setOptions] = useState(data);
+  useEffect(() => {
+    const newOptions = data.map((opt) => {
+      if (opt.color) return opt;
+      return ({
+        id: styl.id,
+        text: styl.name,
+        color: colors[Math.floor(Math.random() * 5)],
+      });
+    });
+    setOptions(newOptions);
+  }, [data]);
+
+  return (
+    <List customStyle={customStyle}>{getItems(data, handleClose)}</List>
+  );
+}
 
 const tagShape = {
   text: PropTypes.string.isRequried,

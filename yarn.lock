@@ -252,6 +252,13 @@
   dependencies:
     "@babel/types" "^7.12.10"
 
+"@babel/helper-regex@^7.10.5":
+  version "7.10.5"
+  resolved "https://registry.yarnpkg.com/@babel/helper-regex/-/helper-regex-7.10.5.tgz#32dfbb79899073c415557053a19bd055aae50ae0"
+  integrity sha512-68kdUAzDrljqBrio7DYAEgCoJHxppJOERHOgOrDN7WjOzP0ZQ1LsSDRXcemzVZaLvjaJsJEESb6qt+znNuENDg==
+  dependencies:
+    lodash "^4.17.19"
+
 "@babel/helper-replace-supers@^7.12.1":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/helper-replace-supers/-/helper-replace-supers-7.12.11.tgz#ea511658fc66c7908f923106dd88e08d1997d60d"
@@ -666,12 +673,13 @@
   resolved "https://registry.yarnpkg.com/@oclif/screen/-/screen-1.0.4.tgz#b740f68609dfae8aa71c3a6cab15d816407ba493"
   integrity sha512-60CHpq+eqnTxLZQ4PGHYNwUX572hgpMHGPtTWMjdTMsAvlm69lZV/4ly6O3sAYkomo4NggGcomrDpBe34rxUqw==
 
-"@resystem/ida-js-sdk@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@resystem/ida-js-sdk/-/ida-js-sdk-0.1.4.tgz#d2d2a51367c363a325754ef20e0dda4c3eca908a"
-  integrity sha512-NuQJmHOyMcVDD5mH0xUPIUwpT8in/kDnrI4qaf6Q4jqN4ZoTKP9cQFQYypFekp+I7uSzV4uAWq+dNpW7u4q1Kw==
+"@resystem/ida-js-sdk@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@resystem/ida-js-sdk/-/ida-js-sdk-0.2.4.tgz#8c5c035edac17a4383eb53f9f6152d9183fae6da"
+  integrity sha512-ahm4JGCELVWzTayOGHthuZUQLY7xbyi+BQpN8fUGnIAfNOW6dUzdaN8ItqlNnRdw2sJJkkesobLp8vRYw57tkQ==
   dependencies:
     "@babel/core" "^7.11.6"
+    "@babel/helper-regex" "^7.10.5"
     ajv "^6.12.4"
     ajv-keywords "^3.5.2"
     ansi-regex "^4.1.0"

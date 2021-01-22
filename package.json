@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
-    "@resystem/ida-js-sdk": "^0.1.4",
+    "@resystem/ida-js-sdk": "^0.2.4",
     "@zeit/next-css": "^1.0.1",
     "apollo": "^2.32.1",
     "apollo-boost": "^0.4.9",

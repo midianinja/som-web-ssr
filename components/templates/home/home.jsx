@@ -50,7 +50,7 @@ const Home = () => {
           src="https://www.youtube.com/embed/bTUoq_zt2uM"
           frameBorder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowFullscreen
+          allowFullScreen
         />
       </PurpleWrapper>
       <OpenSource />
