@@ -16,7 +16,6 @@ export const fetchLoggedUser = async (ida, dispatch, router) => {
     throw err;
   }
 
-  console.log(router);
 
   let user = response.data.oneUser;
   if (!user) {
