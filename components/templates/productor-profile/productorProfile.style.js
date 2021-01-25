@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { black, tertiaryBlack } from '../../../settings/colors';
+import { black } from '../../../settings/colors';
 
 export const ProductorWrapper = styled.div`
   width: 100%;
