@@ -1,9 +1,17 @@
 import RegisterEventTemplate from '../../components/templates/register-event/registerEvent';
+import BaseHead from '../../components/baseHead'
 
 /**
  * This render the register event components. The register event component, render form to
  * register a new event as a produtor on S.O.M api 
  */
-const RegisterEvent  = () => <RegisterEventTemplate />
+const RegisterEvent  = () => (
+  <>
+    <BaseHead
+      title="Cadastre um novo evento"
+    />
+    <RegisterEventTemplate />
+  </>
+);
 
 export default RegisterEvent;
