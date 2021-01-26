@@ -34,15 +34,14 @@ export const HeaderWrapper = styled.div`
 export const Content = styled.div`
   width: 100%;
   display: inline-grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 40px;
   padding-top: 64px;
   position: relative;
   max-width: 1024px;
 
   @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
     padding-top: 150px;
-    display: inline-flex;
     justify-content: space-between;
   }
 `;
@@ -50,9 +49,9 @@ export const Content = styled.div`
 export const ColumnWrapper = styled.div`
   display: inline-block;
   width: 100%;
-  margin-top: 130px;
-
+  
   @media (min-width: 1024px) {
+    margin-top: 130px;
   }
 `;
 
@@ -61,7 +60,7 @@ export const EventsTitle = styled.h2`
   font-size: 1.3rem;
   font-weight: 400;
   margin-top: 40px;
-  margin-bottom: 20px;
+  margin-left: 30px
 `;
 
 export const NotEvents = styled.span`
@@ -70,5 +69,10 @@ export const NotEvents = styled.span`
 
 export const EventsContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  padding: 15px 30px;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr 1fr;\
+    grid-gap: 30px;
+  }
 `;

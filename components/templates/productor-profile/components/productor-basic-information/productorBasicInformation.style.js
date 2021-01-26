@@ -15,8 +15,9 @@ export const Wrapper = styled.section`
 `;
 
 export const ProductorReference = styled.span`
-  margin-bottom: 15px;
-  margin-top: 20px;
+  display: inline-block;
+  margin-bottom: 8px;
+  margin-top: 8px;
   padding-left: 40px;
   padding-right: 40px;
   font-weight: 200;
@@ -65,8 +66,8 @@ export const About = styled.p`
   margin-top: 30px;
   line-height: 1.5em;
   font-weight: 300;
-  padding-right: 40px;
-  padding-left: 40px;
+  padding-right: 30px;
+  padding-left: 30px;
   text-align: left;
   font-size: 0.8571428571em;
   transition-duration: 0.2s;

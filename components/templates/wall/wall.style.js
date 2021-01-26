@@ -11,6 +11,7 @@ export const Container = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  padding: 15px 20px;
 `;
 
 export const GlobalForm = styled.div`

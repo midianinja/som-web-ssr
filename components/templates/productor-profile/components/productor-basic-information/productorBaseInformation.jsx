@@ -63,7 +63,17 @@ const ProductorBasicInfo = ({
           text: n,
           color: colors[Math.floor(Math.random() * colors.length)],
         }))}
-        customStyle="margin-bottom: 20px; display: flex;"
+        customStyle={`
+          padding-left: 30px;
+          padding-right: 30px;
+          margin-bottom: 20px;
+          display: flex;
+
+          @media (min-width: 1024px) {
+            padding-left: 0;
+            padding-right: 0;
+          }
+        `}
       />
       <PrimaryButton
         onClick={() => {
