@@ -9,7 +9,7 @@ import {
 const StepFormHeader = (props) => {
     const [small, setSmall] = useState(0);
     const { items, index } = props;
-    if (!index || !items) return null;
+
     useEffect(() => {
       window.document.addEventListener('scroll', (event) => {
         setSmall(event.target.documentElement.scrollTop > 0);
@@ -19,7 +19,6 @@ const StepFormHeader = (props) => {
     return (
       <Header {...props}>
         <DefaultHeader />
-        {/* <IndexContainer>{renderBall(props)}</IndexContainer> */}
         <Body>
           <Title>{items[index].title}</Title>
           <Text small={small}>{items[index].description}</Text>

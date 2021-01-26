@@ -33,7 +33,10 @@ const BasicInformationFieldset = ({
         />
       </InputGroup>
       <TextInpustWrapper>
-        <InputGroup label={values.name ? 'Nome completo' : ''} error={productorStepErrors.name}>
+        <InputGroup
+          label={values.name ? 'Nome completo' : ''}
+          error={productorStepErrors.name}
+        >
           <Input
             id="name"
             type="text"

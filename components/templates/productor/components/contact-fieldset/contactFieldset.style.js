@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { white } from '../../../../../settings/colors';
 
 export const Fieldset = styled.fieldset`
-  padding: 30px 15px;
+  padding: 15px;
   width: 100%;
 `;
 
@@ -15,15 +15,14 @@ export const Title = styled.h2`
 
 export const Row = styled.div`
   width: 100%;
+  display: grid;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 16px; 
+    justify-content: space-between;
+  }
 `;
 
 export const inputGroup50CustomStyle = `
-  @media (min-width: 768px) {
-    display: inline-block;
-    width: calc(50% - 7px);
-    
-    & + & {
-      margin-left: 14px;
-    }
-  }
 `;

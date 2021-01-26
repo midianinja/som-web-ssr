@@ -5,7 +5,7 @@ export const PreLoaderImage = styled.img`
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
   opacity: ${props => (!props.src ? 0 : 1)};
   transition-property: opacity;
   transition-duration: 1s;

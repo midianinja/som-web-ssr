@@ -19,7 +19,7 @@ const AutocompleteInput = ({
       type="text"
       disabled
       placeholder={placeholder}
-      value={predict}
+      value={predict ? `${predict} - aperte enter` : ''}
       customStyle={`z-index: 1; background-color: ${white10}; color: ${gray02};`}
     />
   </Wrapper>

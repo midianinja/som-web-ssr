@@ -46,7 +46,7 @@ const renderEvents = (events, more, setMore, onSuccess) => {
         events.length > 2 ? (
           <PrimaryButton
             customStyle={`
-              background-color: ${tertiaryBlack};
+              background-color: #191919;
               width: 200px;
             `}
             onClick={() => setMore(!more)}

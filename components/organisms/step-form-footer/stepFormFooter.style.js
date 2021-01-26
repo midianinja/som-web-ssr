@@ -9,7 +9,8 @@ export const Footer = styled.div`
   margin-right: auto;
   color: #fff;
   flex-direction: column;
-  padding: 30px;
+  padding: 15px;
+  margin-bottom: 45px;
   ${props => props.customStyle}
 `;
 

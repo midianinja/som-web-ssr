@@ -18,7 +18,7 @@ export const PreLoaderImage = styled.img`
     const { src } = props;
     return !src ? 0 : 1;
   }};
-  object-fit: contain;
+  object-fit: cover;
   transition-property: opacity;
   transition-duration: 1s;
   transition-delay: 0.5s; 

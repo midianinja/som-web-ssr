@@ -156,7 +156,7 @@ const Productor = () => {
   const [productorStepErrors, setProductorStepErrors] = useState({});
   const [locationState, setState] = useState({});
   const [states, setStates] = useState([]);
-  const [step] = useState(0);
+  const [step, setStep] = useState(0);
   const [telegram, setTelegram] = useState('');
   const [twitter, setTwitter] = useState('https://twitter.com/');
   const [visibles, setVisibles] = useState({
@@ -214,10 +214,19 @@ const Productor = () => {
     if (state.user && state.user.productor) {
       const { productor } = state.user;
       mapContextToState(productor);
+
       fetchLocations({
         setCountries, setStates, setState, setCity,
         productor, setCountry,
       });
+
+      setVisibles({
+        location: true,
+        contact: true,
+        socials: true,
+      });
+
+      setStep(1);
     } else {
       fetchLocations({
         setCountries, setStates, setState, setCity,
@@ -299,6 +308,7 @@ const Productor = () => {
         }}
         loading={loading.show}
         loadingText={loading.text}
+        noShowSkip={visibles.socials}
         skipAction={() => nextCallback({ router, visibles, setVisibles })}
       />
     </Form>
