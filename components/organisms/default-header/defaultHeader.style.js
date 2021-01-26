@@ -198,7 +198,8 @@ export const ProfileWrapper = styled.div`
 export const Logo = styled.img`
   height: 18px;
   justify-self: center;
-
+  cursor: pointer;
+  
   @media (min-width: 1024px) {
     height: 24px;
   }

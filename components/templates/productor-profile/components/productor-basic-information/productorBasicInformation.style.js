@@ -4,7 +4,6 @@ import { green } from '../../../../../settings/colors';
 export const Wrapper = styled.section`
   display: inline-block;
   width: 100%;
-  max-width: 420px;
   padding-bottom: 40px;
 
   @media (min-width: 1024px) {
@@ -45,7 +44,6 @@ export const Title = styled.h1`
     padding-left: 10px;
     padding-right: 0px;
     margin-top: 0;
-    max-width: 200px;
   }
 `;
 
@@ -63,9 +61,9 @@ export const avatarCustomStyled = `
 `;
 
 export const About = styled.p`
-  margin-bottom: 45px;
-  margin-top: 45px;
-  line-height: 2em;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  line-height: 1.5em;
   font-weight: 300;
   padding-right: 40px;
   padding-left: 40px;
@@ -94,6 +92,7 @@ export const LocationText = styled.h4`
 
 export const LocationCountryText = styled.h4`
   font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 200;
   margin-top: 2px;
 

@@ -6,7 +6,6 @@ import {
 export const Wrapper = styled.section`
   display: inline-block;
   width: 100%;
-  max-width: 420px;
   padding-bottom: 40px;
 
   @media (min-width: 1024px) {
@@ -44,7 +43,7 @@ export const TitleAndFollowWrapper = styled.div`
 export const ConnectionsWrapper = styled.div``;
 
 export const buttonCustomStyled = `
-  width: 150px;
+  width: 180px;
   margin-right: 15px;
   vertical-align: middle;
 `;
@@ -57,7 +56,7 @@ export const EditIcon = styled.img`
 `;
 
 export const followButtonCustomStyled = `
-  width: 150px;
+  width: 180px;
   margin-right: 15px;
   border: solid 1px ${purple};
   color: ${white};
@@ -86,9 +85,9 @@ export const FollowNumber = styled.span`
 `;
 
 export const About = styled.p`
-  margin-bottom: 45px;
-  margin-top: 45px;
-  line-height: 2em;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  line-height: 1.5em;
   font-weight: 300;
   padding-right: 40px;
   text-align: left;

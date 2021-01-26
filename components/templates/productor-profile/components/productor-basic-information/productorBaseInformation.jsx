@@ -7,7 +7,7 @@ import Socials from '../../../../organisms/social/social';
 import {
   Wrapper, ProductorReference, Title, TitleAndFollowWrapper,
   avatarCustomStyled, About, LocationWrapper, LocationText,
-  LocationCountryText, LerMoreBio,
+  LerMoreBio,
 } from './productorBasicInformation.style';
 
 /**
@@ -23,8 +23,7 @@ const ProductorBasicInfo = ({
 }) =>  {
   const [lerMoreBio, setLerMoreBio] = useState(false);
   const colors = [
-    'purple', 'green', 'orange',
-    'magenta', 'yellow',
+    'green', 'orange', 'magenta', 'yellow',
   ];
 
   return (
@@ -37,11 +36,8 @@ const ProductorBasicInfo = ({
           address ? (
             <LocationWrapper>
               <LocationText>
-                {`${address.city}, ${address.state}`}
+                {`${address.city}, ${address.state}`} / {address.country}
               </LocationText>
-              <LocationCountryText>
-                {address.country}
-              </LocationCountryText>
             </LocationWrapper>
           ) : null
         }

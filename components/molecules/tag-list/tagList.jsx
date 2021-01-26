@@ -4,7 +4,6 @@ import Tag from '../../atoms/tag/Tag';
 import { List } from './tagList.style';
 
 const colors = [
-  'purple',
   'green',
   'orange',
   'magenta',
@@ -29,15 +28,18 @@ const getItems = (data, handleClose) => data.map(
  */
 const TagList = ({ data, handleClose, customStyle }) => {
   const [options, setOptions] = useState(data);
+
   useEffect(() => {
     const newOptions = data.map((opt) => {
       if (opt.color) return opt;
+      
       return ({
         id: styl.id,
         text: styl.name,
-        color: colors[Math.floor(Math.random() * 5)],
+        color: colors[Math.floor(Math.random() * colors.length )],
       });
     });
+
     setOptions(newOptions);
   }, [data]);
 

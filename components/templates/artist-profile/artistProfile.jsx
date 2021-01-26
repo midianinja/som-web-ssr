@@ -52,9 +52,6 @@ const ArtistPage = () => {
   }, [router.query]);
 
   useEffect(() => {
-    if (artist.instagram) {
-      fetchArtistInstaImages(artist.instagram, setInstagramPhotos);
-    }
     if (!relatedArtsts.length) {
       fetchRelatedArtsts(artist, setRelatedArtsts);
     }
@@ -138,29 +135,6 @@ const ArtistPage = () => {
               />
             ) : null
           }
-          <InstagramMedia
-            images={instagramPhotos}
-            navigateToInstagram={() => {
-              if (artist.instagram) {
-                window.open(artist.instagram, '_blank');
-              }
-            }}
-          />
-          {/* {
-            artist.spotify_artist_link ? (
-              <iframe
-                src={artist.spotify_artist_link}
-                width="100%"
-                height="200px"
-                title="spotify"
-                frameBorder="0"
-                allowTransparency="true"
-                allow="encrypted-media"
-              />
-            ) : (
-              null
-            )
-          } */}
           {
             artist.approved_events.length
               ? (

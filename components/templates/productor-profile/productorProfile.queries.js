@@ -14,6 +14,12 @@ export const oneProductorQuery = gql`
       events {
         id
         event_date
+        location {
+          address
+          city
+          state
+          district
+        }
         name
         subscribe_closing_date
         subscribers {

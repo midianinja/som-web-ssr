@@ -33,7 +33,9 @@ export const HeaderWrapper = styled.div`
 
 export const Content = styled.div`
   width: 100%;
-  display: inline-block;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
   padding-top: 64px;
   position: relative;
   max-width: 1024px;
@@ -49,11 +51,8 @@ export const ColumnWrapper = styled.div`
   display: inline-block;
   width: 100%;
   margin-top: 130px;
-  vertical-align: top;
 
   @media (min-width: 1024px) {
-    max-width: calc(100% - 454px);
-    text-align: left;
   }
 `;
 
@@ -70,7 +69,6 @@ export const NotEvents = styled.span`
 `;
 
 export const EventsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 `;

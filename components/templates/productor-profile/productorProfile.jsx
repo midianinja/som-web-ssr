@@ -28,7 +28,7 @@ const renderEvents = (events, more, setMore, onSuccess) => {
   let sortedEvents = events.sort((a, b) => (
     new Date(+a.event_date) > new Date(+b.event_date) ? 1 : -1));
 
-  if (!more) sortedEvents = sortedEvents.slice(0, 2);
+  if (!more) sortedEvents = sortedEvents.slice(0, 3);
 
   return (
     <EventsContainer>
@@ -43,7 +43,7 @@ const renderEvents = (events, more, setMore, onSuccess) => {
         ))
       }
       {
-        events.length > 2 ? (
+        events.length > 3 ? (
           <PrimaryButton
             customStyle={`
               background-color: #191919;

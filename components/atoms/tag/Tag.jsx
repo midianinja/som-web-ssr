@@ -40,7 +40,7 @@ Tag.propTypes = {
 };
 
 Tag.defaultProps = {
-  color: 'purple',
+  color: 'green',
   id: '',
   text: 'Label',
   customStyle: '',
