@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
 export const createProductorMutation = gql`
-  mutation ($productor: ProductorInput!) {
+  mutation($productor: ProductorInput!) {
     createProductor(productor: $productor) {
       id
       name
@@ -37,7 +37,7 @@ export const createProductorMutation = gql`
 `;
 
 export const updateProductorMutation = gql`
-  mutation ($productor_id: ID!, $productor: ProductorInput!) {
+  mutation($productor_id: ID!, $productor: ProductorInput!) {
     updateProductor(productor_id: $productor_id, productor: $productor) {
       id
       name
@@ -73,7 +73,7 @@ export const updateProductorMutation = gql`
 `;
 
 export const createLocationMutation = gql`
-  mutation ($location: LocationInput!) {
+  mutation($location: LocationInput!) {
     createLocation(location: $location) {
       id
     }
@@ -81,7 +81,7 @@ export const createLocationMutation = gql`
 `;
 
 export const updateLocationMutation = gql`
-  mutation ($id: ID!, $location: LocationInput!) {
+  mutation($id: ID!, $location: LocationInput!) {
     updateLocation(id: $id, location: $location) {
       id
     }

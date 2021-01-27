@@ -4,20 +4,24 @@ import VMasker from 'vanilla-masker';
 import Input from '../../../../atoms/input/input';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
 import ListInput from '../../../../molecules/list-input/listInput';
-import {
-  Fieldset, Title, Wrapper, customNumberStyle,
-} from './addressFieldset.style';
+import { Fieldset, Title, Wrapper, customNumberStyle } from './addressFieldset.style';
 
 const AddressFieldset = ({
-  values, eventErrors, handleAddressChange, handleDistrictChange,
-  handleZipcodeChange, handleComplementChange, handleCountrySelect,
-  countries, handleStateSelect, states, handleCityChange,
-  handleNumberChange,
+  values,
+  eventErrors,
+  handleAddressChange,
+  handleDistrictChange,
+  handleZipcodeChange,
+  handleComplementChange,
+  handleCountrySelect,
+  countries,
+  handleStateSelect,
+  states,
+  handleCityChange,
+  handleNumberChange
 }) => (
   <Fieldset>
-    <Title>
-      Endereço
-    </Title>
+    <Title>Endereço</Title>
     <Wrapper>
       <InputGroup label={values.address ? 'Rua' : ''} error={eventErrors.address}>
         <Input
@@ -31,8 +35,7 @@ const AddressFieldset = ({
       <InputGroup
         customStyle={customNumberStyle}
         label={values.number ? 'Numero' : ''}
-        error={eventErrors.number}
-      >
+        error={eventErrors.number}>
         <Input
           id="number"
           type="tel"
@@ -50,10 +53,7 @@ const AddressFieldset = ({
           onChange={handleDistrictChange}
         />
       </InputGroup>
-      <InputGroup
-        label={values.zipcode ? 'CEP' : ''}
-        error={eventErrors.zipcode}
-      >
+      <InputGroup label={values.zipcode ? 'CEP' : ''} error={eventErrors.zipcode}>
         <Input
           id="zipcode"
           type="tel"
@@ -62,10 +62,7 @@ const AddressFieldset = ({
           onChange={handleZipcodeChange}
         />
       </InputGroup>
-      <InputGroup
-        label={values.complement ? 'Complemento' : ''}
-        error={eventErrors.complement}
-      >
+      <InputGroup label={values.complement ? 'Complemento' : ''} error={eventErrors.complement}>
         <Input
           id="complement"
           type="text"
@@ -74,10 +71,7 @@ const AddressFieldset = ({
           onChange={handleComplementChange}
         />
       </InputGroup>
-      <InputGroup
-        label={values.city ? 'Cidade' : ''}
-        error={eventErrors.city}
-      >
+      <InputGroup label={values.city ? 'Cidade' : ''} error={eventErrors.city}>
         <Input
           id="city"
           type="text"
@@ -86,10 +80,7 @@ const AddressFieldset = ({
           onChange={handleCityChange}
         />
       </InputGroup>
-      <InputGroup
-        label={values.country.id ? 'País' : ''}
-        error={eventErrors.country}
-      >
+      <InputGroup label={values.country.id ? 'País' : ''} error={eventErrors.country}>
         <ListInput
           id="country"
           placeholder="País"
@@ -99,10 +90,7 @@ const AddressFieldset = ({
           onSelect={handleCountrySelect}
         />
       </InputGroup>
-      <InputGroup
-        label={values.country.id ? 'Estado' : ''}
-        error={eventErrors.state}
-      >
+      <InputGroup label={values.country.id ? 'Estado' : ''} error={eventErrors.state}>
         <ListInput
           id="state"
           placeholder="Estado"
@@ -118,7 +106,7 @@ const AddressFieldset = ({
 
 const optionShape = {
   id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired
 };
 
 const valuesShape = {
@@ -132,14 +120,13 @@ const valuesShape = {
   number: PropTypes.string.isRequired,
   zipcode: PropTypes.string.isRequired,
   state: PropTypes.shape(optionShape),
-  country: PropTypes.shape(optionShape),
+  country: PropTypes.shape(optionShape)
 };
 
 const errorsShape = {};
 Object.keys(valuesShape).forEach((key) => {
   errorsShape[key] = '';
 });
-
 
 AddressFieldset.propTypes = {
   values: PropTypes.shape(valuesShape).isRequired,
@@ -153,7 +140,7 @@ AddressFieldset.propTypes = {
   handleStateSelect: PropTypes.func.isRequired,
   handleCountrySelect: PropTypes.func.isRequired,
   states: PropTypes.arrayOf(PropTypes.shape(optionShape)).isRequired,
-  countries: PropTypes.arrayOf(PropTypes.shape(optionShape)).isRequired,
+  countries: PropTypes.arrayOf(PropTypes.shape(optionShape)).isRequired
 };
 
 export default AddressFieldset;

@@ -2,7 +2,7 @@ import { gql } from 'apollo-boost';
 
 export const oneProductorQuery = gql`
   query($productor: ProductorInput) {
-    oneProductor (productor: $productor) {
+    oneProductor(productor: $productor) {
       id
       photo
       name

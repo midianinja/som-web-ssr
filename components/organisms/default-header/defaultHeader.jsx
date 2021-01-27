@@ -6,10 +6,20 @@ import DropdownHeader from '../../molecules/dropdown-header/dropdownHeader';
 import Store from '../../../store/Store';
 import { blockBodyScroll } from '../../../utils/scroll.utils';
 import {
-  HeaderComponent, Wrapper, BurgerButton, Line,
-  Group, RightGroup, Avatar, Name,
-  SignWrapper, LoginText, ProfileWrapper, Logo,
-  LoginIcon, Type,
+  HeaderComponent,
+  Wrapper,
+  BurgerButton,
+  Line,
+  Group,
+  RightGroup,
+  Avatar,
+  Name,
+  SignWrapper,
+  LoginText,
+  ProfileWrapper,
+  Logo,
+  LoginIcon,
+  Type
 } from './defaultHeader.style';
 
 /**
@@ -20,9 +30,8 @@ const Header = ({ customStyle }) => {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const [dropdown, setDropdown] = useState(false);
-  const completed = state.user 
-    && state.user.productor
-    && state.user.productor.status !== 'INCOMPLETE';
+  const completed =
+    state.user && state.user.productor && state.user.productor.status !== 'INCOMPLETE';
 
   useEffect(() => {
     setDropdown(false);
@@ -45,8 +54,8 @@ const Header = ({ customStyle }) => {
       return '/icons/SOM_WHITE.svg';
     }
 
-    return '/icons/SOM.svg'
-  }
+    return '/icons/SOM.svg';
+  };
 
   const getName = () => {
     if (state.connectionType === 'artist' && state.user.artist) {
@@ -63,14 +72,11 @@ const Header = ({ customStyle }) => {
   const types = {
     artist: 'ARTISTA',
     productor: 'PRODUTOR',
-    public: '',
+    public: ''
   };
 
   return (
-    <HeaderComponent
-      type={state.connectionType}
-      customStyle={customStyle}
-    >
+    <HeaderComponent type={state.connectionType} customStyle={customStyle}>
       <Wrapper>
         <Group>
           <BurgerButton
@@ -78,8 +84,7 @@ const Header = ({ customStyle }) => {
               blockBodyScroll();
               setDropdown(false);
               dispatch({ type: 'SHOW_NAVIGATION_MODAL' });
-            }}
-          >
+            }}>
             <Line dark={state.connectionType === 'public'} />
             <Line dark={state.connectionType === 'public'} />
             <Line dark={state.connectionType === 'public'} />
@@ -92,9 +97,7 @@ const Header = ({ customStyle }) => {
         />
         <RightGroup hide={!state.auth || !state.auth.ida}>
           <ProfileWrapper onClick={() => setDropdown(!dropdown)}>
-            <Type dark={state.connectionType === 'public'}>
-              {types[state.connectionType]}
-            </Type>
+            <Type dark={state.connectionType === 'public'}>{types[state.connectionType]}</Type>
             <Name dark={state.connectionType === 'public'}>{getName()}</Name>
             <Avatar src={getAvatarIcon()} alt="" />
           </ProfileWrapper>
@@ -123,16 +126,16 @@ const Header = ({ customStyle }) => {
 
               dispatch({
                 type: 'SET_USER',
-                user: null,
+                user: null
               });
 
               dispatch({
-                type: 'RESET_AUTH',
+                type: 'RESET_AUTH'
               });
 
               dispatch({
                 type: 'SET_LOGIN_TYPE',
-                data: 'public',
+                data: 'public'
               });
 
               setDropdown(false);
@@ -164,14 +167,14 @@ const Header = ({ customStyle }) => {
       </Wrapper>
     </HeaderComponent>
   );
-}
+};
 
 Header.propTypes = {
-  customStyle: PropTypes.string,
+  customStyle: PropTypes.string
 };
 
 Header.default = {
-  customStyle: '',
-}
+  customStyle: ''
+};
 
 export default Header;

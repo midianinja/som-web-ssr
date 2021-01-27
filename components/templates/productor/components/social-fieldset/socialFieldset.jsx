@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../../../atoms/input/input';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
-import {
-  Fieldset, Title, InputsWrapper, inputGroupStyle,
-} from './socialFieldset.style';
+import { Fieldset, Title, InputsWrapper, inputGroupStyle } from './socialFieldset.style';
 
 const SocialsFieldset = ({
-  handleFacebookChange, handleTwitterChange, handleInstagramChange, handleYoutubeChange,
-  values, stepErrors,
+  handleFacebookChange,
+  handleTwitterChange,
+  handleInstagramChange,
+  handleYoutubeChange,
+  values,
+  stepErrors
 }) => (
   <Fieldset>
     <Title>Redes sociais</Title>
@@ -17,8 +19,7 @@ const SocialsFieldset = ({
         customStyle={inputGroupStyle}
         label={values.facebook ? 'Facebook url' : ''}
         info="O link deve conter https://"
-        error={stepErrors.facebook}
-      >
+        error={stepErrors.facebook}>
         <Input
           id="facebook"
           placeholder="Facebook"
@@ -31,8 +32,7 @@ const SocialsFieldset = ({
         customStyle={inputGroupStyle}
         label={values.instagram ? 'Instagram url' : ''}
         info="O link deve conter https://"
-        error={stepErrors.instagram}
-      >
+        error={stepErrors.instagram}>
         <Input
           id="instagram"
           placeholder="Instagram"
@@ -47,8 +47,7 @@ const SocialsFieldset = ({
         customStyle={inputGroupStyle}
         label={values.twitter ? 'Twitter url' : ''}
         info="O link deve conter https://"
-        error={stepErrors.twitter}
-      >
+        error={stepErrors.twitter}>
         <Input
           id="twitter"
           placeholder="Twitter"
@@ -61,8 +60,7 @@ const SocialsFieldset = ({
         customStyle={inputGroupStyle}
         label={values.youtube ? 'Youtube url' : ''}
         info="O link deve conter https://"
-        error={stepErrors.youtube}
-      >
+        error={stepErrors.youtube}>
         <Input
           id="youtube"
           placeholder="Youtube"
@@ -79,7 +77,7 @@ const valuesShape = {
   facebook: PropTypes.string.isRequired,
   instagram: PropTypes.string.isRequired,
   twitter: PropTypes.string.isRequired,
-  youtube: PropTypes.string.isRequired,
+  youtube: PropTypes.string.isRequired
 };
 
 SocialsFieldset.propTypes = {
@@ -88,7 +86,7 @@ SocialsFieldset.propTypes = {
   handleTwitterChange: PropTypes.func.isRequired,
   handleYoutubeChange: PropTypes.func.isRequired,
   stepErrors: PropTypes.shape(valuesShape).isRequired,
-  values: PropTypes.shape(valuesShape).isRequired,
+  values: PropTypes.shape(valuesShape).isRequired
 };
 
 export default SocialsFieldset;

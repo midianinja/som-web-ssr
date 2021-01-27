@@ -9,22 +9,30 @@ import InputGroup from '../../../../molecules/input-group/inputGroup';
 import TagList from '../../../../molecules/tag-list/tagList';
 import AutocompleteInput from '../../../../molecules/autocomplete-input/autocompleteInput';
 import {
-  Fieldset, MainInformationWrapper, TextInpustWrapper, Title,
-  musicalGenresCustomStyle, avatarInputGroupStyle,
+  Fieldset,
+  MainInformationWrapper,
+  TextInpustWrapper,
+  Title,
+  musicalGenresCustomStyle,
+  avatarInputGroupStyle
 } from './basicInformationFieldset.style';
 
 const BasicInformationFieldset = ({
-  handleNameChange, handleAboutChange, handleCPFChange, deleteTag,
-  handleAvatarChange, handleMusicalStyleChange, handleMusicalStyleSelect,
-  productorStepErrors, values, descriptionMaxLength,
+  handleNameChange,
+  handleAboutChange,
+  handleCPFChange,
+  deleteTag,
+  handleAvatarChange,
+  handleMusicalStyleChange,
+  handleMusicalStyleSelect,
+  productorStepErrors,
+  values,
+  descriptionMaxLength
 }) => (
   <Fieldset>
     <Title>Informações do Produtor</Title>
     <MainInformationWrapper>
-      <InputGroup
-        error={productorStepErrors.avatar}
-        customStyle={avatarInputGroupStyle}
-      >
+      <InputGroup error={productorStepErrors.avatar} customStyle={avatarInputGroupStyle}>
         <UploadAvatar
           alt="botão para subir imagem"
           title="avatar image"
@@ -33,10 +41,7 @@ const BasicInformationFieldset = ({
         />
       </InputGroup>
       <TextInpustWrapper>
-        <InputGroup
-          label={values.name ? 'Nome completo' : ''}
-          error={productorStepErrors.name}
-        >
+        <InputGroup label={values.name ? 'Nome completo' : ''} error={productorStepErrors.name}>
           <Input
             id="name"
             type="text"
@@ -45,10 +50,7 @@ const BasicInformationFieldset = ({
             onChange={handleNameChange}
           />
         </InputGroup>
-        <InputGroup
-          label={values.cpf ? 'CPF' : ''}
-          error={productorStepErrors.cpf}
-        >
+        <InputGroup label={values.cpf ? 'CPF' : ''} error={productorStepErrors.cpf}>
           <Input
             id="cpf"
             placeholder="CPF"
@@ -59,8 +61,7 @@ const BasicInformationFieldset = ({
         </InputGroup>
         <InputGroup
           label={values.musicalStyles.length ? 'Área de Atuação' : ''}
-          error={productorStepErrors.musicalStyles}
-        >
+          error={productorStepErrors.musicalStyles}>
           <AutocompleteInput
             placeholder={values.musicalStyles.length ? '' : 'Área de Atuação'}
             predict={values.musicalStylePredict}
@@ -89,7 +90,7 @@ const BasicInformationFieldset = ({
 );
 
 const avatarShape = {
-  uri: PropTypes.string,
+  uri: PropTypes.string
 };
 
 const valuesShape = {
@@ -98,7 +99,7 @@ const valuesShape = {
   name: PropTypes.string.isRequired,
   cpf: PropTypes.string.isRequired,
   cnpj: PropTypes.string.isRequired,
-  avatar: PropTypes.shape(avatarShape).isRequired,
+  avatar: PropTypes.shape(avatarShape).isRequired
 };
 
 const errorsShape = {
@@ -106,7 +107,7 @@ const errorsShape = {
   name: PropTypes.string,
   about: PropTypes.string,
   cnpj: PropTypes.string,
-  cpf: PropTypes.string,
+  cpf: PropTypes.string
 };
 
 BasicInformationFieldset.propTypes = {
@@ -119,8 +120,7 @@ BasicInformationFieldset.propTypes = {
   handleNameChange: PropTypes.func.isRequired,
   handleCPFChange: PropTypes.func.isRequired,
   values: PropTypes.shape(valuesShape).isRequired,
-  productorStepErrors: PropTypes.shape(errorsShape).isRequired,
+  productorStepErrors: PropTypes.shape(errorsShape).isRequired
 };
 
 export default BasicInformationFieldset;
-

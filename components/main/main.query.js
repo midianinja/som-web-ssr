@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
 export const oneUserQuery = gql`
-  query($ida: String){
+  query($ida: String) {
     oneUser(ida: $ida) {
       id
       ida

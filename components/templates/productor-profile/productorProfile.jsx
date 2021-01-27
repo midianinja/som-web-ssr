@@ -11,8 +11,14 @@ import ProductorBasicInfo from './components/productor-basic-information/product
 import Store from '../../../store/Store';
 import { fetchProductorData, fetchProductorInstaImages } from './productorProfile.controller';
 import {
-  ProductorWrapper, CoverWrapper, HeaderWrapper, Content,
-  ColumnWrapper, EventsTitle, NotEvents, EventsContainer,
+  ProductorWrapper,
+  CoverWrapper,
+  HeaderWrapper,
+  Content,
+  ColumnWrapper,
+  EventsTitle,
+  NotEvents,
+  EventsContainer
 } from './productorProfile.style';
 
 /**
@@ -21,40 +27,36 @@ import {
  * @param {boolean} more this is flag if is showed more event or not
  * @param {function} setMore this is a function to toggle if show more events or not
  * @param {function} onSuccess function that run when the artist request subscription
- * in the event in the list  
+ * in the event in the list
  * @returns contains React.Component
  */
 const renderEvents = (events, more, setMore, onSuccess) => {
-  let sortedEvents = events.sort((a, b) => (
-    new Date(+a.event_date) > new Date(+b.event_date) ? 1 : -1));
+  let sortedEvents = events.sort((a, b) =>
+    new Date(+a.event_date) > new Date(+b.event_date) ? 1 : -1
+  );
 
   if (!more) sortedEvents = sortedEvents.slice(0, 3);
 
   return (
     <EventsContainer>
-      {
-        sortedEvents.map(event => (
-          <Eventcard
-            key={event.id}
-            customStyle="margin: 40px 0;"
-            event={event}
-            onSubscribe={onSuccess}
-          />
-        ))
-      }
-      {
-        events.length > 3 ? (
-          <PrimaryButton
-            customStyle={`
+      {sortedEvents.map((event) => (
+        <Eventcard
+          key={event.id}
+          customStyle="margin: 40px 0;"
+          event={event}
+          onSubscribe={onSuccess}
+        />
+      ))}
+      {events.length > 3 ? (
+        <PrimaryButton
+          customStyle={`
               background-color: #191919;
               width: 200px;
             `}
-            onClick={() => setMore(!more)}
-          >
-            {more ? 'Carregar menos eventos' : 'Carregar mais eventos'}
-          </PrimaryButton>
-        ) : null
-      }
+          onClick={() => setMore(!more)}>
+          {more ? 'Carregar menos eventos' : 'Carregar mais eventos'}
+        </PrimaryButton>
+      ) : null}
     </EventsContainer>
   );
 };
@@ -82,7 +84,7 @@ const ProductorPage = () => {
     disagreeText: '',
     confirmAction: '',
     disagreeAction: '',
-    isOpen: false,
+    isOpen: false
   });
 
   useEffect(() => {
@@ -117,8 +119,8 @@ const ProductorPage = () => {
     );
   }
 
-  const isMyProductor = state.user
-    && state.user.productor && state.user.productor.id === productor.id;
+  const isMyProductor =
+    state.user && state.user.productor && state.user.productor.id === productor.id;
 
   return (
     <ProductorWrapper>
@@ -144,33 +146,26 @@ const ProductorPage = () => {
         />
         <ColumnWrapper>
           <EventsTitle>Eventos</EventsTitle>
-          {
-            productor.events.length ? (
-              renderEvents(
-                productor.events,
-                more,
-                setMore,
-                () => setUpdate(!update),
-              )
-            ) : <NotEvents>Nenhum evento cadastrado</NotEvents>
-          }
-          {
-            instagramPhotos.length ? (
-              <InstagramMedia
-                images={instagramPhotos}
-                navigateToInstagram={() => {
-                  if (productor.instagram) {
-                    window.open(productor.instagram, '_blank');
-                  }
-                }}
-              />
-            ) : null
-          }
+          {productor.events.length ? (
+            renderEvents(productor.events, more, setMore, () => setUpdate(!update))
+          ) : (
+            <NotEvents>Nenhum evento cadastrado</NotEvents>
+          )}
+          {instagramPhotos.length ? (
+            <InstagramMedia
+              images={instagramPhotos}
+              navigateToInstagram={() => {
+                if (productor.instagram) {
+                  window.open(productor.instagram, '_blank');
+                }
+              }}
+            />
+          ) : null}
         </ColumnWrapper>
       </Content>
     </ProductorWrapper>
   );
-}
+};
 
 ProductorPage.propTypes = {};
 

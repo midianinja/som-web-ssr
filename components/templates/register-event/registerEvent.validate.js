@@ -1,9 +1,19 @@
 export const validation = ({
-  title, address, avatar, cover,
-  country, state, city, number,
-  district, description, openingsNumber,
-  zipcode, closingSubscribeDate, eventDate,
-  endEventDate,
+  title,
+  address,
+  avatar,
+  cover,
+  country,
+  state,
+  city,
+  number,
+  district,
+  description,
+  openingsNumber,
+  zipcode,
+  closingSubscribeDate,
+  eventDate,
+  endEventDate
 }) => {
   let validated = true;
   const errors = {};
@@ -73,26 +83,25 @@ export const validation = ({
     validated = false;
     errors.closingSubscribeDate = 'Informe a data de encerramento das incrições.';
   } else if (
-    parseInt(splitedClosingSubscribeDate[0], 10) > 31
-    || splitedClosingSubscribeDate[0].length !== 2
-    || parseInt(splitedClosingSubscribeDate[1], 10) > 12
-    || splitedClosingSubscribeDate[1].length !== 2
-    || splitedClosingSubscribeDate[2].length !== 4
+    parseInt(splitedClosingSubscribeDate[0], 10) > 31 ||
+    splitedClosingSubscribeDate[0].length !== 2 ||
+    parseInt(splitedClosingSubscribeDate[1], 10) > 12 ||
+    splitedClosingSubscribeDate[1].length !== 2 ||
+    splitedClosingSubscribeDate[2].length !== 4
   ) {
     errors.closingSubscribeDate = 'Data inválida.';
   }
-
 
   const splitedEventDate = eventDate.split('/');
   if (!eventDate) {
     validated = false;
     errors.eventDate = 'Informe a data do evento.';
   } else if (
-    parseInt(splitedEventDate[0], 10) > 31
-    || splitedEventDate[0].length !== 2
-    || parseInt(splitedEventDate[1], 10) > 12
-    || splitedEventDate[1].length !== 2
-    || splitedEventDate[2].length !== 4
+    parseInt(splitedEventDate[0], 10) > 31 ||
+    splitedEventDate[0].length !== 2 ||
+    parseInt(splitedEventDate[1], 10) > 12 ||
+    splitedEventDate[1].length !== 2 ||
+    splitedEventDate[2].length !== 4
   ) {
     errors.eventDate = 'Data inválida.';
   }
@@ -100,14 +109,14 @@ export const validation = ({
   const splitedEndEventDate = endEventDate.split('/');
   if (endEventDate) {
     if (
-      parseInt(splitedEndEventDate[0], 10) > 31
-      || !splitedEndEventDate[0]
-      || splitedEndEventDate[0].length !== 2
-      || parseInt(splitedEndEventDate[1], 10) > 12
-      || !splitedEndEventDate[1]
-      || splitedEndEventDate[1].length !== 2
-      || !splitedEndEventDate[2]
-      || splitedEndEventDate[2].length !== 4
+      parseInt(splitedEndEventDate[0], 10) > 31 ||
+      !splitedEndEventDate[0] ||
+      splitedEndEventDate[0].length !== 2 ||
+      parseInt(splitedEndEventDate[1], 10) > 12 ||
+      !splitedEndEventDate[1] ||
+      splitedEndEventDate[1].length !== 2 ||
+      !splitedEndEventDate[2] ||
+      splitedEndEventDate[2].length !== 4
     ) {
       errors.endEventDate = 'Data inválida.';
     }

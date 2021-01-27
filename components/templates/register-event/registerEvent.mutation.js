@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
 export const createEventMutation = gql`
-  mutation ($event: EventInput!) {
+  mutation($event: EventInput!) {
     createEvent(event: $event) {
       id
       name
@@ -67,7 +67,7 @@ export const createEventMutation = gql`
 `;
 
 export const createLocationMutation = gql`
-  mutation ($location: LocationInput!) {
+  mutation($location: LocationInput!) {
     createLocation(location: $location) {
       id
     }

@@ -6,7 +6,7 @@ const colors = {
   green,
   orange,
   magenta,
-  yellow,
+  yellow
 };
 
 /**
@@ -16,13 +16,13 @@ const colors = {
  */
 const getColor = (key) => {
   return colors[key] ? colors[key] : colors.purple;
-}
+};
 
 export const TagWrapper = styled.label`
   display: inline-block;
   padding: 2px 5px;
   padding-right: 12px;
-  background-color: ${props => getColor(props.color)};
+  background-color: ${(props) => getColor(props.color)};
   color: ${white};
   text-transform: lowercase;
   border-radius: 8px;
@@ -31,8 +31,8 @@ export const TagWrapper = styled.label`
   font-size: 0.8571428571em;
   margin-right: 10px;
   margin-bottom: 10px;
-  ${props => (props.handleClose ? 'cursor: pointer;' : 'padding-left: 12px;')}
-  ${props => props.customStyle}
+  ${(props) => (props.handleClose ? 'cursor: pointer;' : 'padding-left: 12px;')}
+  ${(props) => props.customStyle}
 `;
 
 export const CloseIcon = styled.img`

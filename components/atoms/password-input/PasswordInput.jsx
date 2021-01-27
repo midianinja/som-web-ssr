@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Input, Icon, PasswordInputWrapper,
-} from './passwordInput.style';
+import { Input, Icon, PasswordInputWrapper } from './passwordInput.style';
 
 /**
  * function that render react component
@@ -10,9 +8,15 @@ import {
  * @returns contains PasswordInput Component
  */
 const PasswordInput = ({
-  onChange, placeholder, value,
-  width, point, id, autoComplete,
-  visibilityIconOn, visibilityIconOff,
+  onChange,
+  placeholder,
+  value,
+  width,
+  point,
+  id,
+  autoComplete,
+  visibilityIconOn,
+  visibilityIconOff
 }) => {
   const [visibility, setvisibility] = useState(false);
   const src = visibility ? visibilityIconOn : visibilityIconOff;
@@ -30,7 +34,7 @@ const PasswordInput = ({
       <Icon src={src} alt="" onClick={() => setvisibility(!visibility)} />
     </PasswordInputWrapper>
   );
-}
+};
 
 PasswordInput.propTypes = {
   onChange: PropTypes.func.isRequired,
@@ -41,7 +45,7 @@ PasswordInput.propTypes = {
   id: PropTypes.string,
   visibilityIconOn: PropTypes.string,
   visibilityIconOff: PropTypes.string,
-  autoComplete: PropTypes.string,
+  autoComplete: PropTypes.string
 };
 
 PasswordInput.defaultProps = {
@@ -50,7 +54,7 @@ PasswordInput.defaultProps = {
   width: 'auto',
   point: 10,
   visibilityIconOn: '/icons/visibility_outlined.svg',
-  visibilityIconOff: '/icons/visibility_off_outlined.svg',
+  visibilityIconOff: '/icons/visibility_off_outlined.svg'
 };
 
 export default PasswordInput;

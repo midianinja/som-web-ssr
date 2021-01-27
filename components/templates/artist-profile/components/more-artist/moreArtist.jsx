@@ -2,16 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '../../../../atoms/avatar/avatar';
 import {
-  Wrapper, Card, ListWrapper, Title,
-  avatarCustomStyle, ArtistName,
+  Wrapper,
+  Card,
+  ListWrapper,
+  Title,
+  avatarCustomStyle,
+  ArtistName
 } from './moreArtist.style';
 
-const renderArtists = (artists, history) => artists.map(art => (
-  <Card onClick={() => history.push(`/artist/${art.id}`)}>
-    <Avatar src={art.avatar_image.mimified} customStyle={avatarCustomStyle} />
-    <ArtistName>{art.name}</ArtistName>
-  </Card>
-));
+const renderArtists = (artists, history) =>
+  artists.map((art) => (
+    <Card onClick={() => history.push(`/artist/${art.id}`)}>
+      <Avatar src={art.avatar_image.mimified} customStyle={avatarCustomStyle} />
+      <ArtistName>{art.name}</ArtistName>
+    </Card>
+  ));
 
 const MoreArtist = ({ artists, history }) => (
   <Wrapper>
@@ -22,20 +27,20 @@ const MoreArtist = ({ artists, history }) => (
 
 const artistShape = {
   avatar_image: PropTypes.object,
-  name: PropTypes.string,
+  name: PropTypes.string
 };
 
 MoreArtist.propTypes = {
   artists: PropTypes.arrayOf(PropTypes.shape(artistShape)),
   // eslint-disable-next-line react/forbid-prop-types
   history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }),
+    push: PropTypes.func.isRequired
+  })
 };
 
 MoreArtist.defaultProps = {
   artists: [],
-  history: {},
+  history: {}
 };
 
 export default MoreArtist;

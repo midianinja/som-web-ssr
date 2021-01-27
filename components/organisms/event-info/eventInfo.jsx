@@ -7,15 +7,28 @@ import EventBands from '../../molecules/event-brands/eventBrands';
 import PrimaryButton from '../../atoms/primary-button/primaryButton';
 import SlimButton from '../../atoms/slim-button/slimButton';
 import {
-  Container, ClockIcon, Title,
-  ClosingDateTimer, Space, SubSpace,
-  ButtonWrapper,
+  Container,
+  ClockIcon,
+  Title,
+  ClosingDateTimer,
+  Space,
+  SubSpace,
+  ButtonWrapper
 } from './eventInfo.style';
-const unixTime = unixtime => new Date(+unixtime).toISOString().slice(0, 19);
+const unixTime = (unixtime) => new Date(+unixtime).toISOString().slice(0, 19);
 
 const EventInfo = ({
-  name, date, place, subscribers, subscribeAction, subscribed,
-  unsubscribeAction, isClosingSubscribe, diffDays, diffHours, loggedAs,
+  name,
+  date,
+  place,
+  subscribers,
+  subscribeAction,
+  subscribed,
+  unsubscribeAction,
+  isClosingSubscribe,
+  diffDays,
+  diffHours,
+  loggedAs
 }) => {
   const newDate = new Date(unixTime(date));
   const dateInstance = moment(newDate);
@@ -52,43 +65,29 @@ const EventInfo = ({
       <EventBands subscribed={subscribers} />
       <Space />
       <ButtonWrapper>
-        {
-          isClosingSubscribe
-            ? (
-              <PrimaryButton
-                onFocus={() => null}
-                onBlur={() => null}
-                onClick={() => null}
-                disabled
-              >
-                Inscrições encerradas
-              </PrimaryButton>
-            ) : null
-        }
-        {
-          !subscribed && !isClosingSubscribe && loggedAs !== 'productor'
-            ? <PrimaryButton onClick={subscribeAction}>Inscrever-se</PrimaryButton>
-            : null
-        }
-        {
-          subscribed && !isClosingSubscribe && loggedAs !== 'productor'
-            ? (
-              <SlimButton
-                onFocus={() => null}
-                onBlur={() => null}
-                onMouseOver={() => setHover(true)}
-                onMouseOut={() => setHover(false)}
-                onClick={unsubscribeAction}
-                customStyle={`
+        {isClosingSubscribe ? (
+          <PrimaryButton onFocus={() => null} onBlur={() => null} onClick={() => null} disabled>
+            Inscrições encerradas
+          </PrimaryButton>
+        ) : null}
+        {!subscribed && !isClosingSubscribe && loggedAs !== 'productor' ? (
+          <PrimaryButton onClick={subscribeAction}>Inscrever-se</PrimaryButton>
+        ) : null}
+        {subscribed && !isClosingSubscribe && loggedAs !== 'productor' ? (
+          <SlimButton
+            onFocus={() => null}
+            onBlur={() => null}
+            onMouseOver={() => setHover(true)}
+            onMouseOut={() => setHover(false)}
+            onClick={unsubscribeAction}
+            customStyle={`
                   width: 120px;
                   padding-left: 5px
                   padding-right: 5px
-                `}
-              >
-                { !hover ? 'Inscrito' : 'Desinscrever'}
-              </SlimButton>
-            ) : null
-        }
+                `}>
+            {!hover ? 'Inscrito' : 'Desinscrever'}
+          </SlimButton>
+        ) : null}
       </ButtonWrapper>
     </Container>
   );
@@ -98,7 +97,7 @@ const placeShape = {
   address: PropTypes.string,
   city: PropTypes.string,
   state: PropTypes.string,
-  complement: PropTypes.string,
+  complement: PropTypes.string
 };
 
 EventInfo.propTypes = {
@@ -112,7 +111,7 @@ EventInfo.propTypes = {
   isClosingSubscribe: PropTypes.bool,
   place: PropTypes.shape(placeShape),
   subscribeAction: PropTypes.func.isRequired,
-  unsubscribeAction: PropTypes.func.isRequired,
+  unsubscribeAction: PropTypes.func.isRequired
 };
 
 EventInfo.defaultProps = {
@@ -124,7 +123,7 @@ EventInfo.defaultProps = {
   diffHours: 0,
   subscribed: false,
   isClosingSubscribe: false,
-  place: {},
+  place: {}
 };
 
 export default EventInfo;

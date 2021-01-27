@@ -2,10 +2,7 @@ import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import PrimaryButton from '../../atoms/primary-button/primaryButton';
 import Store from '../../../store/Store';
-import {
-  Wrapper, Title, Name, Text,
-  Footer,
-} from './welcome.style';
+import { Wrapper, Title, Name, Text, Footer } from './welcome.style';
 
 const Welcome = () => {
   const router = useRouter();
@@ -21,13 +18,12 @@ const Welcome = () => {
           onClick={() => {
             router.push('/wall');
           }}
-          color="secondaryOrange"
-        >
+          color="secondaryOrange">
           Ver eventos!
         </PrimaryButton>
       </Footer>
     </Wrapper>
   );
-}
+};
 
 export default Welcome;

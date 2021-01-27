@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { getGradient } from '../../../settings/gradients';
-import {
-  white, black, magenta, purple,
-} from '../../../settings/colors';
+import { white, black, magenta, purple } from '../../../settings/colors';
 
 export const HeaderComponent = styled.header`
   position: fixed;
@@ -19,14 +17,14 @@ export const HeaderComponent = styled.header`
     padding-right: 0px;
   }
 
-  ${props => {
-    if (props.type === "artist") {
+  ${(props) => {
+    if (props.type === 'artist') {
       return `
       background-color: ${magenta};
     `;
     }
 
-    if (props.type === "productor") {
+    if (props.type === 'productor') {
       return `
       background-color: ${purple};
     `;
@@ -37,7 +35,7 @@ export const HeaderComponent = styled.header`
   `;
   }}
 
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const Wrapper = styled.div`
@@ -57,9 +55,9 @@ export const BurgerButton = styled.div`
   width: 20px;
   cursor: pointer;
 
-  ${props => {
+  ${(props) => {
     const { hide } = props;
-    return hide ? "display: none;" : "";
+    return hide ? 'display: none;' : '';
   }}
 `;
 
@@ -73,14 +71,14 @@ export const Line = styled.span`
     margin-top: 4px;
   }
 
-  ${props => {
+  ${(props) => {
     if (props.dark) {
       return `
         background-color: ${black};
       `;
     }
 
-    return "";
+    return '';
   }}
 `;
 
@@ -95,14 +93,14 @@ export const RightGroup = styled.div`
   align-items: center;
   justify-self: end;
 
-  ${props => {
+  ${(props) => {
     if (props.hide) {
       return `
         display: none;
       `;
     }
 
-    return "";
+    return '';
   }}
 `;
 
@@ -114,10 +112,10 @@ export const Avatar = styled.img`
   background: ${getGradient()};
   cursor: pointer;
   user-select: none;
-  object-fit: cover;  
+  object-fit: cover;
 
-  &[src=""] {
-    content: url("data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
+  &[src=''] {
+    content: url('data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
   }
 `;
 
@@ -131,7 +129,7 @@ export const Name = styled.h4`
   user-select: none;
   line-height: 1em;
 
-  ${props => {
+  ${(props) => {
     if (props.dark) {
       return `
         color: ${black};
@@ -160,7 +158,7 @@ export const Type = styled.h4`
   top: 3px;
   position: relative;
 
-  ${props => {
+  ${(props) => {
     if (props.dark) {
       return `
         color: ${black};
@@ -199,7 +197,7 @@ export const Logo = styled.img`
   height: 18px;
   justify-self: center;
   cursor: pointer;
-  
+
   @media (min-width: 1024px) {
     height: 24px;
   }

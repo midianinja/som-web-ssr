@@ -4,7 +4,7 @@ import { purple, green, orange, magenta, gray, black, white } from '../../../set
 const sizes = {
   small: '30px',
   medium: '38px',
-  default: 'none',
+  default: 'none'
 };
 
 /**
@@ -23,7 +23,7 @@ const colors = {
   magenta,
   gray,
   black,
-  white,
+  white
 };
 
 /**
@@ -38,7 +38,7 @@ function getColor(key) {
 const fontSizes = {
   medium: '0.8571428571em',
   large: '1em',
-  xlarge: '1.3em',
+  xlarge: '1.3em'
 };
 
 const getFontSize = (key) => (fontSizes[key] ? fontSizes[key] : fontSizes.medium);

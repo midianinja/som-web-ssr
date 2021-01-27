@@ -7,14 +7,18 @@ import InputGroup from '../../../../molecules/input-group/inputGroup';
 import { Fieldset, Row2Column, Title } from './generalInformationFieldset.style';
 
 const GeneralInformationFieldset = ({
-  values, handleTitleChange, handleEventDateChange, handleEndEventDateChange, 
-  handleClosingSubscribeDateChange, handleDescriptionChange, handleOpeningsNumberChange,
-  eventErrors, descriptionMaxLength,
+  values,
+  handleTitleChange,
+  handleEventDateChange,
+  handleEndEventDateChange,
+  handleClosingSubscribeDateChange,
+  handleDescriptionChange,
+  handleOpeningsNumberChange,
+  eventErrors,
+  descriptionMaxLength
 }) => (
   <Fieldset>
-    <Title>
-      Informações gerais
-    </Title>
+    <Title>Informações gerais</Title>
     <InputGroup label={values.title ? 'Título' : ''} error={eventErrors.title}>
       <Input
         id="title"
@@ -28,8 +32,7 @@ const GeneralInformationFieldset = ({
       <InputGroup
         label={values.eventDate ? 'Data do evento' : ''}
         error={eventErrors.eventDate}
-        info="Exemplo: 20/04/2020"
-      >
+        info="Exemplo: 20/04/2020">
         <Input
           id="eventDate"
           type="tel"
@@ -41,8 +44,7 @@ const GeneralInformationFieldset = ({
       <InputGroup
         label={values.endEventDate ? 'Término' : ''}
         error={eventErrors.endEventDate}
-        info="Exemplo: 20/04/2020"
-      >
+        info="Exemplo: 20/04/2020">
         <Input
           id="endEventDate"
           type="tel"
@@ -55,8 +57,7 @@ const GeneralInformationFieldset = ({
     <InputGroup
       label={values.closingSubscribeDate ? 'Data do fim das inscrições' : ''}
       error={eventErrors.closingSubscribeDate}
-      info="Exemplo: 20/04/2020"
-    >
+      info="Exemplo: 20/04/2020">
       <Input
         id="closingSubscribeDate"
         type="tel"
@@ -67,8 +68,7 @@ const GeneralInformationFieldset = ({
     </InputGroup>
     <InputGroup
       label={values.openingsNumber ? 'Quantidade de vagas no evento' : ''}
-      error={eventErrors.openingsNumber}
-    >
+      error={eventErrors.openingsNumber}>
       <Input
         id="openingsNumber"
         type="tel"
@@ -79,8 +79,7 @@ const GeneralInformationFieldset = ({
     </InputGroup>
     <InputGroup
       label={values.description ? 'Descrição do evento' : ''}
-      error={eventErrors.description}
-    >
+      error={eventErrors.description}>
       <TextArea
         id="description"
         placeholder="Descrição do evento"
@@ -98,7 +97,7 @@ const valuesShape = {
   closingSubscribeDate: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   openingsNumber: PropTypes.string.isRequired,
-  descriptionMaxLength: PropTypes.number.isRequired,
+  descriptionMaxLength: PropTypes.number.isRequired
 };
 
 const errorsShape = {};
@@ -115,7 +114,7 @@ GeneralInformationFieldset.propTypes = {
   handleClosingSubscribeDateChange: PropTypes.func.isRequired,
   handleDescriptionChange: PropTypes.func.isRequired,
   handleOpeningsNumberChange: PropTypes.func.isRequired,
-  descriptionMaxLength: PropTypes.number.isRequired,
+  descriptionMaxLength: PropTypes.number.isRequired
 };
 
 export default GeneralInformationFieldset;

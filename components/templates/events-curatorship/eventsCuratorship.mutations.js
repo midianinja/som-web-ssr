@@ -1,4 +1,4 @@
-import { gql } from "apollo-boost";
+import { gql } from 'apollo-boost';
 import { eventType } from './eventsCuratorship.queries';
 
 export const reproveArtistMutation = gql`

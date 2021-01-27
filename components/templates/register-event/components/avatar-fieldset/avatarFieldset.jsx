@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
 import UploadAvatar from '../../../../atoms/upload-avatar/uploadAvatar';
-import {
-  Fieldset, Title, Span, avatarCustomStyle,
-} from './avatarFieldset.style';
+import { Fieldset, Title, Span, avatarCustomStyle } from './avatarFieldset.style';
 
 const AvatarFieldset = ({ values, onChange, eventErrors }) => {
   return (
@@ -25,13 +23,10 @@ const AvatarFieldset = ({ values, onChange, eventErrors }) => {
       </InputGroup>
     </Fieldset>
   );
-}
+};
 
 const valuesShape = {
-  avatar: PropTypes.oneOfType([
-    PropTypes.string.isRequired,
-    PropTypes.object.isRequired,
-  ]),
+  avatar: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.object.isRequired])
 };
 
 const errorsShape = {};
@@ -42,7 +37,7 @@ Object.keys(valuesShape).forEach((key) => {
 AvatarFieldset.propTypes = {
   values: PropTypes.shape(valuesShape).isRequired,
   onChange: PropTypes.func.isRequired,
-  eventErrors: PropTypes.shape(errorsShape).isRequired,
+  eventErrors: PropTypes.shape(errorsShape).isRequired
 };
 
 export default AvatarFieldset;

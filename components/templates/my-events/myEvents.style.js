@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import {
-  white10, black, white, tertiaryBlack,
-} from '../../../settings/colors';
+import { white10, black, white, tertiaryBlack } from '../../../settings/colors';
 
 export const Container = styled.div`
   background-color: ${black};
@@ -68,7 +66,7 @@ export const Icon = styled.img`
 export const AddButton = styled.a`
   display: flex;
   padding: 15px 25px;
-  font-size: .8em;
+  font-size: 0.8em;
   color: ${white};
   background-color: ${tertiaryBlack};
   align-items: center;

@@ -12,7 +12,7 @@ export const InputsWrapper = styled.div`
   @media (min-width: 1024px) {
     width: 100%;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 16px; 
+    grid-gap: 16px;
     justify-content: space-between;
   }
 `;

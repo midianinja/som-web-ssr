@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import {
-  white, gray, green,
-} from '../../../settings/colors';
+import { white, gray, green } from '../../../settings/colors';
 
 export const Wrapper = styled.div``;
 
@@ -10,13 +8,14 @@ export const Circle = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: solid 2px ${(props) => {
-    const { checked } = props;
-    return checked ? green : gray;
-  }};
+  border: solid 2px
+    ${(props) => {
+      const { checked } = props;
+      return checked ? green : gray;
+    }};
   vertical-align: middle;
   position: relative;
-  
+
   ${(props) => {
     const { checked } = props;
     if (!checked) return '';

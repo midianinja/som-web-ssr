@@ -6,15 +6,8 @@ import { SlimButtonStyle } from './slimButton.style';
  * @param {object} props component props
  * @returns contains SlimButton Component
  */
-const SlimButton = ({
-  size, color, customStyle, children, onClick,
-}) => (
-  <SlimButtonStyle
-    size={size}
-    color={color}
-    onClick={onClick}
-    customStyle={customStyle}
-  >
+const SlimButton = ({ size, color, customStyle, children, onClick }) => (
+  <SlimButtonStyle size={size} color={color} onClick={onClick} customStyle={customStyle}>
     {children}
   </SlimButtonStyle>
 );
@@ -22,13 +15,13 @@ const SlimButton = ({
 SlimButton.propTypes = {
   size: PropTypes.string,
   color: PropTypes.string,
-  customStyle: PropTypes.string,
+  customStyle: PropTypes.string
 };
 
 SlimButton.defualtProps = {
   size: 'medium',
   color: 'purple',
-  customStyle: '',
+  customStyle: ''
 };
 
 export default SlimButton;

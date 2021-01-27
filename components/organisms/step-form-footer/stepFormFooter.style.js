@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gray, white } from '../../../settings/colors';
+import { white } from '../../../settings/colors';
 
 export const Footer = styled.div`
   display: flex;
@@ -11,12 +11,12 @@ export const Footer = styled.div`
   flex-direction: column;
   padding: 15px;
   margin-bottom: 45px;
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const Wrapper = styled.div`
   width: 100%;
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const Icon = styled.img`

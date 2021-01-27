@@ -49,7 +49,7 @@ export const Content = styled.div`
 export const ColumnWrapper = styled.div`
   display: inline-block;
   width: 100%;
-  
+
   @media (min-width: 1024px) {
     margin-top: 130px;
   }
@@ -60,7 +60,7 @@ export const EventsTitle = styled.h2`
   font-size: 1.3rem;
   font-weight: 400;
   margin-top: 40px;
-  margin-left: 30px
+  margin-left: 30px;
 `;
 
 export const NotEvents = styled.span`

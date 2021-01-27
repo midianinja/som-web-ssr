@@ -1,8 +1,8 @@
 import RegisterArtistTemplate from '../../components/templates/register-artist/registerArtist';
 
 /**
- * This render the RegisterArtist template. 
+ * This render the RegisterArtist template.
  */
-const RegisterArtist  = () => <RegisterArtistTemplate />
+const RegisterArtist = () => <RegisterArtistTemplate />;
 
 export default RegisterArtist;

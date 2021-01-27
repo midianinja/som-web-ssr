@@ -3,7 +3,7 @@ import { green, wrapperModal, white } from '../../../../../settings/colors';
 
 export const Wrapper = styled.div`
   display: inline-block;
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const Container = styled.div`
@@ -14,9 +14,9 @@ export const Container = styled.div`
   justify-content: space-between;
   vertical-align: top;
   @media (max-width: 768px) {
-      width: 100%;
-      align-items: center;
-    }
+    width: 100%;
+    align-items: center;
+  }
 `;
 
 export const View = styled.div``;
@@ -32,16 +32,16 @@ export const ImageContainer = styled.div`
 const IMAGE_SIZE = {
   mobile: {
     height: '140px',
-    width: '140px',
+    width: '140px'
   },
   desktop: {
     height: '140px',
-    width: '140px',
-  },
+    width: '140px'
+  }
 };
 
 export const Image = styled.img`
-  ${props => `
+  ${(props) => `
     background-image: url('${props.image}');
     height: ${IMAGE_SIZE.mobile.height};
     width: ${IMAGE_SIZE.mobile.width};
@@ -87,7 +87,7 @@ export const Title = styled.label`
   font-size: 1em;
   margin-bottom: 10px;
   display: block;
-  cursor: pointer
+  cursor: pointer;
 `;
 
 export const tagListStyl = `
@@ -104,6 +104,6 @@ export const FakeButton = styled.label`
   width: 130px;
   color: ${white};
   text-align: center;
-  font-size: .7em;
+  font-size: 0.7em;
   padding: 3px 5px;
 `;

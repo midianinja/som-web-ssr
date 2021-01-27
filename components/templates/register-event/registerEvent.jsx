@@ -12,27 +12,30 @@ import ConditionsFieldset from './components/conditions-fieldset/conditionsField
 import Store from '../../../store/Store';
 import { orange } from '../../../settings/colors';
 import {
-  fetchCountries, handleCountrySelect, handleStateSelect, handleCreateEvent,
+  fetchCountries,
+  handleCountrySelect,
+  handleStateSelect,
+  handleCreateEvent
 } from './registerEvent.controller';
-import {
-  Form, FormWrapper, LoadingWrapper,
-} from './registerEvent.style';
+import { Form, FormWrapper, LoadingWrapper } from './registerEvent.style';
 
 const steps = [
   {
     title: 'Criar evento',
     description: 'Preencha os campos abaixo com as informações do seu evento',
-    small: false,
-  },
+    small: false
+  }
 ];
 
 const renderAvatarFieldset = ({ values, setAvatar, errors }) => (
   <AvatarFieldset
-    onChange={({ target }) => setAvatar({
-      url: URL.createObjectURL(target.files[0]),
-      urls: null,
-      file: target.files[0],
-    })}
+    onChange={({ target }) =>
+      setAvatar({
+        url: URL.createObjectURL(target.files[0]),
+        urls: null,
+        file: target.files[0]
+      })
+    }
     values={values}
     eventErrors={errors}
   />
@@ -40,45 +43,57 @@ const renderAvatarFieldset = ({ values, setAvatar, errors }) => (
 
 const renderCoverFieldset = ({ values, setCover, errors }) => (
   <CoverFieldset
-    onChange={({ target }) => setCover({
-      url: URL.createObjectURL(target.files[0]),
-      urls: null,
-      file: target.files[0],
-    })}
+    onChange={({ target }) =>
+      setCover({
+        url: URL.createObjectURL(target.files[0]),
+        urls: null,
+        file: target.files[0]
+      })
+    }
     values={values}
     eventErrors={errors}
   />
 );
 
 const renderConditionsFieldset = ({
-  values, setHasAccomodation, setHasFood, setHasCityTransportation,
-  setHasLocalTransportation, setHasInterstateTransportation, setHasMoneyPaid,
-  setHasInternationalTransportation, errors,
+  values,
+  setHasAccomodation,
+  setHasFood,
+  setHasCityTransportation,
+  setHasLocalTransportation,
+  setHasInterstateTransportation,
+  setHasMoneyPaid,
+  setHasInternationalTransportation,
+  errors
 }) => (
   <ConditionsFieldset
     values={values}
     handleAccomodationChange={() => setHasAccomodation(!values.hasAccomodation)}
     handleHasFoodChange={() => setHasFood(!values.hasFood)}
     handleMoneyPaidChange={() => setHasMoneyPaid(!values.hasMoneyPaid)}
-    handleCityTransportationChange={
-      () => setHasCityTransportation(!values.hasCityTransportation)
+    handleCityTransportationChange={() => setHasCityTransportation(!values.hasCityTransportation)}
+    handleLocalTransportationChange={() =>
+      setHasLocalTransportation(!values.hasLocalTransportation)
     }
-    handleLocalTransportationChange={
-      () => setHasLocalTransportation(!values.hasLocalTransportation)
+    handleInterstateTransportationChange={() =>
+      setHasInterstateTransportation(!values.hasInterstateTransportation)
     }
-    handleInterstateTransportationChange={
-      () => setHasInterstateTransportation(!values.hasInterstateTransportation)
-    }
-    handleInternationalTransportationChange={
-      () => setHasInternationalTransportation(!values.hasInternationalTransportation)
+    handleInternationalTransportationChange={() =>
+      setHasInternationalTransportation(!values.hasInternationalTransportation)
     }
     eventErrors={errors}
   />
 );
 
 const renderGeneralInformationFieldset = ({
-  values, setClosingDate, setDescription, setEventDate,
-  setOpeningsNumber, setTitle, errors, setEndEventDate,
+  values,
+  setClosingDate,
+  setDescription,
+  setEventDate,
+  setOpeningsNumber,
+  setTitle,
+  errors,
+  setEndEventDate
 }) => {
   const handleOpeningsNumberChange = ({ target }) => {
     const validationNumber = /^[0-9]*$/;
@@ -96,7 +111,9 @@ const renderGeneralInformationFieldset = ({
       handleEventDateChange={({ target }) => setEventDate(target.value)}
       handleEndEventDateChange={({ target }) => setEndEventDate(target.value)}
       handleClosingSubscribeDateChange={({ target }) => setClosingDate(target.value)}
-      handleDescriptionChange={({ target }) => (target.value.length < 2000 ? setDescription(target.value) : null)}
+      handleDescriptionChange={({ target }) =>
+        target.value.length < 2000 ? setDescription(target.value) : null
+      }
       handleOpeningsNumberChange={handleOpeningsNumberChange}
       eventErrors={errors}
     />
@@ -104,10 +121,19 @@ const renderGeneralInformationFieldset = ({
 };
 
 const renderAddressFieldset = ({
-  values, setAddress, setCity, states,
-  countries, setStates, setCountry, setState,
-  setZipcode, setComplement, setDistrict, setNumber,
-  errors,
+  values,
+  setAddress,
+  setCity,
+  states,
+  countries,
+  setStates,
+  setCountry,
+  setState,
+  setZipcode,
+  setComplement,
+  setDistrict,
+  setNumber,
+  errors
 }) => (
   <AddressFieldset
     values={values}
@@ -120,8 +146,8 @@ const renderAddressFieldset = ({
     handleNumberChange={({ target }) => setNumber(target.value)}
     states={states}
     countries={countries}
-    handleCountrySelect={data => handleCountrySelect({ data, setStates, setCountry })}
-    handleStateSelect={data => handleStateSelect({ data, setState })}
+    handleCountrySelect={(data) => handleCountrySelect({ data, setStates, setCountry })}
+    handleStateSelect={(data) => handleStateSelect({ data, setState })}
     eventErrors={errors}
   />
 );
@@ -160,7 +186,9 @@ const RegisterEvent = () => {
 
   useEffect(() => {
     fetchCountries({
-      setCountries, setStates, setState,
+      setCountries,
+      setStates,
+      setState
     });
   }, []);
 
@@ -173,55 +201,98 @@ const RegisterEvent = () => {
   }
 
   if (
-    !state.user.productor
-    || !state.user.productor.id
-    || state.user.productor.status !== 'ACTIVE'
+    !state.user.productor ||
+    !state.user.productor.id ||
+    state.user.productor.status !== 'ACTIVE'
   ) {
     router.push('/register-productor');
   }
 
   const values = {
-    avatar, closingSubscribeDate, cover, description,
-    eventDate, openingsNumber, title, state: locationState,
-    countries, states, country, city, address, zipcode,
-    district, complement, hasMoneyPaid, hasAccomodation,
-    hasFood, hasLocalTransportation, hasCityTransportation, hasInterstateTransportation,
-    hasInternationalTransportation, number, locationId, endEventDate,
+    avatar,
+    closingSubscribeDate,
+    cover,
+    description,
+    eventDate,
+    openingsNumber,
+    title,
+    state: locationState,
+    countries,
+    states,
+    country,
+    city,
+    address,
+    zipcode,
+    district,
+    complement,
+    hasMoneyPaid,
+    hasAccomodation,
+    hasFood,
+    hasLocalTransportation,
+    hasCityTransportation,
+    hasInterstateTransportation,
+    hasInternationalTransportation,
+    number,
+    locationId,
+    endEventDate
   };
 
   return (
-    <Form onSubmit={e => e.preventDefault()}>
+    <Form onSubmit={(e) => e.preventDefault()}>
       <StepFormHeader color={orange} items={steps} index={0} />
       <FormWrapper>
         {renderAvatarFieldset({ values, setAvatar, errors })}
         {renderCoverFieldset({ values, setCover, errors })}
-        {
-          renderGeneralInformationFieldset({
-            values, setClosingDate, setDescription, setEventDate,
-            setOpeningsNumber, setTitle, errors, setEndEventDate,
-          })
-        }
-        {
-          renderConditionsFieldset({
-            values, setHasAccomodation, setHasFood, setHasCityTransportation,
-            setHasLocalTransportation, setHasInterstateTransportation, setHasMoneyPaid,
-            setHasInternationalTransportation, errors,
-          })
-        }
-        {
-          renderAddressFieldset({
-            values, setState, setCountry, setCity,
-            countries, states, setStates, setAddress,
-            setZipcode, setComplement, setDistrict, setNumber,
-            errors,
-          })
-        }
+        {renderGeneralInformationFieldset({
+          values,
+          setClosingDate,
+          setDescription,
+          setEventDate,
+          setOpeningsNumber,
+          setTitle,
+          errors,
+          setEndEventDate
+        })}
+        {renderConditionsFieldset({
+          values,
+          setHasAccomodation,
+          setHasFood,
+          setHasCityTransportation,
+          setHasLocalTransportation,
+          setHasInterstateTransportation,
+          setHasMoneyPaid,
+          setHasInternationalTransportation,
+          errors
+        })}
+        {renderAddressFieldset({
+          values,
+          setState,
+          setCountry,
+          setCity,
+          countries,
+          states,
+          setStates,
+          setAddress,
+          setZipcode,
+          setComplement,
+          setDistrict,
+          setNumber,
+          errors
+        })}
       </FormWrapper>
       <StepEventFormFooter
-        saveAction={() => handleCreateEvent(
-          values, state.user.id, setLoading, setErrors,
-          setLocationId, dispatch, state.user, router,
-        )}
+        saveAction={() =>
+          handleCreateEvent(
+            values,
+            state.user.id,
+            setLoading,
+            setErrors,
+            setLocationId,
+            dispatch,
+            state.user,
+            router
+          )
+        }
         actionLabel="Criar evento"
         loading={loading}
         cancelAction={() => null}

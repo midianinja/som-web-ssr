@@ -3,21 +3,31 @@ import PropTypes from 'prop-types';
 import Input from '../../../../atoms/input/input';
 import UploadDoc from '../upload-doc/uploadDoc';
 import {
-  Fieldset, Title, FirstLegend, inputGroupStyle, SecondLegend, CardsWrapper,
-  Card, CardTitle, CardDescription, SeeExempleButton, Actions, UploadButton,
-  ButtonIcon,
+  Fieldset,
+  Title,
+  FirstLegend,
+  inputGroupStyle,
+  SecondLegend,
+  CardsWrapper,
+  Card,
+  CardTitle,
+  CardDescription,
+  SeeExempleButton,
+  Actions,
+  UploadButton,
+  ButtonIcon
 } from './musicFieldset.style';
 
-const MusicFieldset = ({
-  musics,
-}) => {
+const MusicFieldset = ({ musics }) => {
   return (
     <Fieldset>
       <Title>Músicas</Title>
       <CardsWrapper>
         <Card>
           <CardTitle>Mapa de palco</CardTitle>
-          <CardDescription>Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco</CardDescription>
+          <CardDescription>
+            Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
+          </CardDescription>
           <Actions>
             <SeeExempleButton>Ver Exemplo</SeeExempleButton>
             <UploadDoc
@@ -29,7 +39,9 @@ const MusicFieldset = ({
         </Card>
         <Card>
           <CardTitle>Rider técnico</CardTitle>
-          <CardDescription>Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco</CardDescription>
+          <CardDescription>
+            Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
+          </CardDescription>
           <Actions>
             <SeeExempleButton>Ver Exemplo</SeeExempleButton>
             <UploadDoc
@@ -41,7 +53,9 @@ const MusicFieldset = ({
         </Card>
         <Card>
           <CardTitle>Release</CardTitle>
-          <CardDescription>Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco</CardDescription>
+          <CardDescription>
+            Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
+          </CardDescription>
           <Actions>
             <SeeExempleButton>Ver Exemplo</SeeExempleButton>
             <UploadDoc
@@ -54,12 +68,12 @@ const MusicFieldset = ({
       </CardsWrapper>
     </Fieldset>
   );
-}
+};
 const valuesShape = {
   facebook: PropTypes.string.isRequired,
   instagram: PropTypes.string.isRequired,
   twitter: PropTypes.string.isRequired,
-  youtube: PropTypes.string.isRequired,
+  youtube: PropTypes.string.isRequired
 };
 
 MusicFieldset.propTypes = {
@@ -68,11 +82,11 @@ MusicFieldset.propTypes = {
   handleReleaseChange: PropTypes.func.isRequired,
   musics: PropTypes.array,
   stepErrors: PropTypes.shape(valuesShape).isRequired,
-  values: PropTypes.shape(valuesShape).isRequired,
+  values: PropTypes.shape(valuesShape).isRequired
 };
 
 MusicFieldset.defaultProps = {
-  musics: PropTypes.array,
-}
+  musics: PropTypes.array
+};
 
 export default MusicFieldset;

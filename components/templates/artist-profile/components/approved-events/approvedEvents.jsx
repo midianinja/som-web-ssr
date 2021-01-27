@@ -2,8 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '../../../../atoms/avatar/avatar';
 import {
-  Wrapper, Card, ListWrapper, Title,
-  avatarCustomStyle, ArtistNameWrapper, ArtistName,
+  Wrapper,
+  Card,
+  ListWrapper,
+  Title,
+  avatarCustomStyle,
+  ArtistNameWrapper,
+  ArtistName
 } from './approvedEvents.style';
 
 const renderEvents = (events, eventClick) => {
@@ -20,7 +25,7 @@ const renderEvents = (events, eventClick) => {
       </Card>
     );
   });
-}
+};
 
 const ApprovedEvents = ({ events, eventClick }) => (
   <Wrapper>
@@ -33,16 +38,16 @@ const eventsShape = {
   id: PropTypes.string,
   cover: PropTypes.string,
   name: PropTypes.string,
-  event_date: PropTypes.string,
+  event_date: PropTypes.string
 };
 
 ApprovedEvents.propTypes = {
   events: PropTypes.arrayOf(PropTypes.shape(eventsShape)),
-  eventClick: PropTypes.func.isRequired,
+  eventClick: PropTypes.func.isRequired
 };
 
 ApprovedEvents.defaultProps = {
-  events: [],
+  events: []
 };
 
 export default ApprovedEvents;

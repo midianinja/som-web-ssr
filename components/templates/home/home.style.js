@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import {
-  purple, secondaryBlack, darkGray,
-} from '../../../settings/colors';
+import { purple, secondaryBlack, darkGray } from '../../../settings/colors';
 
 export const Page = styled.div`
   width: 100%;
@@ -68,7 +66,7 @@ export const RedEllipse = styled.img`
   height: 144px;
   left: -30px;
   z-index: 11;
-  
+
   @media (min-width: 768px) {
     left: 0px;
   }
@@ -92,7 +90,7 @@ export const Terms = styled.a`
   cursor: pointer;
 
   &:hover {
-    color: ${purple}; 
+    color: ${purple};
   }
 `;
 
@@ -135,7 +133,7 @@ export const RedPolygon = styled.img`
   position: absolute;
   width: 50px;
   height: 50px;
-  right: -3%;  
+  right: -3%;
   top: 67.5%;
   z-index: 11;
 `;

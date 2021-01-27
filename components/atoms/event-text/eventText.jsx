@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Container, Title, Text,
-} from './eventText.style';
+import { Container, Title, Text } from './eventText.style';
 
 /**
  * function that render EventText react component
- * 
+ *
  * @param {object} props component props
  * @returns contains EventText Component
  */
@@ -19,7 +17,7 @@ const EventText = ({ text, title }) => (
 
 EventText.propTypes = {
   text: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 EventText.defaultProps = {

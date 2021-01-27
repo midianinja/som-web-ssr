@@ -9,14 +9,25 @@ import DefaultHeader from '../../organisms/default-header/defaultHeader';
 import Dialog from '../../modals/dialog/dialog';
 import Store from '../../../store/Store';
 import {
-  fetchEventsData, initialLoading,
-  fetchLocations, fetchMusicalStyleOptions,
-  handleMusicalStyleSelect, removeTagAction, subscribeAction, unsubscribeAction,
+  fetchEventsData,
+  initialLoading,
+  fetchLocations,
+  fetchMusicalStyleOptions,
+  handleMusicalStyleSelect,
+  removeTagAction,
+  subscribeAction,
+  unsubscribeAction
 } from './wall.controller';
 import {
-  Container, GlobalForm, Form, LocationContainer,
-  LocationLabel, LocationValue, EventsContainer, filterGroupsStyle,
-  tagListStyle,
+  Container,
+  GlobalForm,
+  Form,
+  LocationContainer,
+  LocationLabel,
+  LocationValue,
+  EventsContainer,
+  filterGroupsStyle,
+  tagListStyle
 } from './wall.style';
 
 const YEARS_MODEL = [
@@ -30,7 +41,7 @@ const YEARS_MODEL = [
   { name: '2026', id: '2026' },
   { name: '2027', id: '2027' },
   { name: '2028', id: '2028' },
-  { name: '2029', id: '2029' },
+  { name: '2029', id: '2029' }
 ];
 
 const MONTH_MODEL = [
@@ -45,7 +56,7 @@ const MONTH_MODEL = [
   { name: 'Outubro', id: '8' },
   { name: 'Setembro', id: '9' },
   { name: 'Novembro', id: '10' },
-  { name: 'Dezembro', id: '11' },
+  { name: 'Dezembro', id: '11' }
 ];
 
 /**
@@ -66,16 +77,21 @@ const Wall = () => {
     {
       color: 'green',
       text: `${new Date('2020T00:01').getFullYear()}`,
-      id: `${new Date('2020T00:01').getFullYear()}`,
-    },
+      id: `${new Date('2020T00:01').getFullYear()}`
+    }
   ]);
   const [months, setMonths] = useState([]);
 
   useEffect(() => {
     fetchEventsData({
-      setEvents, loading, setLoading,
-      setDialog, router, musicStyles,
-      years, months,
+      setEvents,
+      loading,
+      setLoading,
+      setDialog,
+      router,
+      musicStyles,
+      years,
+      months
     });
     if (!countries.length && !states.length) {
       fetchLocations({ setCountries, setStates });
@@ -86,90 +102,104 @@ const Wall = () => {
     <Container>
       <DefaultHeader />
       <Form>
-        <InputGroup
-          customStyle={filterGroupsStyle}
-        >
+        <InputGroup customStyle={filterGroupsStyle}>
           <ListInput
             id="musical_style"
             placeholder="Estilo de música"
-            options={musicalStylesOptions.map(op => ({
+            options={musicalStylesOptions.map((op) => ({
               label: op.name,
-              id: op.id,
+              id: op.id
             }))}
-            onSelect={data => handleMusicalStyleSelect({
-              data, musicStyles,
-              setMusicStyles, musicalStylesOptions,
-            })}
+            onSelect={(data) =>
+              handleMusicalStyleSelect({
+                data,
+                musicStyles,
+                setMusicStyles,
+                musicalStylesOptions
+              })
+            }
           />
         </InputGroup>
-        <InputGroup
-          customStyle={filterGroupsStyle}
-        >
+        <InputGroup customStyle={filterGroupsStyle}>
           <ListInput
             id="year"
             placeholder="Ano"
-            options={YEARS_MODEL.map(op => ({
+            options={YEARS_MODEL.map((op) => ({
               label: op.name,
-              id: op.id,
+              id: op.id
             }))}
-            onSelect={data => handleMusicalStyleSelect({
-              data, musicStyles: years,
-              setMusicStyles: setYears,
-              musicalStylesOptions: YEARS_MODEL,
-            })}
+            onSelect={(data) =>
+              handleMusicalStyleSelect({
+                data,
+                musicStyles: years,
+                setMusicStyles: setYears,
+                musicalStylesOptions: YEARS_MODEL
+              })
+            }
           />
         </InputGroup>
-        <InputGroup
-          customStyle={filterGroupsStyle}
-        >
+        <InputGroup customStyle={filterGroupsStyle}>
           <ListInput
             id="month"
             placeholder="Mês"
-            options={MONTH_MODEL.map(op => ({
+            options={MONTH_MODEL.map((op) => ({
               label: op.name,
-              id: op.id,
+              id: op.id
             }))}
-            onSelect={data => handleMusicalStyleSelect({
-              data,
-              musicStyles: months,
-              setMusicStyles: setMonths,
-              musicalStylesOptions: MONTH_MODEL,
-            })}
+            onSelect={(data) =>
+              handleMusicalStyleSelect({
+                data,
+                musicStyles: months,
+                setMusicStyles: setMonths,
+                musicalStylesOptions: MONTH_MODEL
+              })
+            }
           />
         </InputGroup>
         <div>
           <TagList
-            handleClose={data => removeTagAction({
-              data, YEARS_MODEL, MONTH_MODEL,
-              musicalStylesOptions, musicStyles,
-              years, months, setMusicStyles,
-              setYears, setMonths,
-            })}
+            handleClose={(data) =>
+              removeTagAction({
+                data,
+                YEARS_MODEL,
+                MONTH_MODEL,
+                musicalStylesOptions,
+                musicStyles,
+                years,
+                months,
+                setMusicStyles,
+                setYears,
+                setMonths
+              })
+            }
             data={musicStyles.concat(years).concat(months)}
             customStyle={tagListStyle}
           />
         </div>
       </Form>
       <EventsContainer>
-        {
-          events.map(evt => (
-            <EventCard
-              loggedAs={state.connectionType}
-              unsubscribeAction={() => unsubscribeAction(
-                state.user, evt, setEvents, events,
-              )}
-              subscribeAction={() => subscribeAction(
-                state.auth, state.user,
-                evt, dispatch, setDialog,
-                setEvents, router, events,
-              )}
-              customStyle="margin-bottom: 24px;"
-              user={state.user}
-              event={evt}
-              onClick={() => router.push(`/event/${evt.id}`)}
-            />
-          ))
-        }
+        {events.map((evt) => (
+          <EventCard
+            loggedAs={state.connectionType}
+            unsubscribeAction={() => unsubscribeAction(state.user, evt, setEvents, events)}
+            subscribeAction={() =>
+              subscribeAction(
+                state.auth,
+                state.user,
+                evt,
+                dispatch,
+                setDialog,
+                setEvents,
+                router,
+                events
+              )
+            }
+            customStyle="margin-bottom: 24px;"
+            user={state.user}
+            event={evt}
+            onClick={() => router.push(`/event/${evt.id}`)}
+          />
+        ))}
       </EventsContainer>
       <Container>
         {dialog.title ? (

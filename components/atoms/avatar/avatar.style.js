@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   border-radius: 50%;
   overflow: hidden;
   background: ${getGradient()};
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const PreLoaderImage = styled.img`
@@ -21,7 +21,6 @@ export const PreLoaderImage = styled.img`
   object-fit: cover;
   transition-property: opacity;
   transition-duration: 1s;
-  transition-delay: 0.5s; 
+  transition-delay: 0.5s;
   overflow: hidden;
 `;
-

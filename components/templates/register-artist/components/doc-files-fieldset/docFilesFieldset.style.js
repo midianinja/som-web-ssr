@@ -9,11 +9,11 @@ export const Fieldset = styled.fieldset`
 `;
 
 export const InputsWrapper = styled.div`
-@media (min-width: 1024px) {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
+  @media (min-width: 1024px) {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 export const Title = styled.h2`
@@ -54,7 +54,7 @@ export const CardsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-  } 
+  }
 `;
 
 export const Card = styled.div`
@@ -63,7 +63,7 @@ export const Card = styled.div`
     margin: 30px 0 0 20px;
     width: 100%;
     max-width: 100%;
-  } 
+  }
 `;
 
 export const CardTitle = styled.label`
@@ -108,7 +108,6 @@ export const UploadButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
 `;
 
 export const ButtonIcon = styled.img`

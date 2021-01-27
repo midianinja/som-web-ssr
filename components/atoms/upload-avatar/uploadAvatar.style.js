@@ -6,12 +6,12 @@ export const PreLoaderImage = styled.img`
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  opacity: ${props => (!props.src ? 0 : 1)};
+  opacity: ${(props) => (!props.src ? 0 : 1)};
   transition-property: opacity;
   transition-duration: 1s;
   transition-delay: 0.5s;
 
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const Uploader = styled.label`
@@ -24,7 +24,7 @@ export const Uploader = styled.label`
   border-radius: 50%;
   align-self: center;
 
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const Icon = styled.img`

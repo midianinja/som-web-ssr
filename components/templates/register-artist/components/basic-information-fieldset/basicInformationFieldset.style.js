@@ -7,7 +7,7 @@ export const Fieldset = styled.fieldset`
 `;
 
 export const MainInformationWrapper = styled.div`
-width: 100%;
+  width: 100%;
   @media (min-width: 1024px) {
     display: flex;
   }

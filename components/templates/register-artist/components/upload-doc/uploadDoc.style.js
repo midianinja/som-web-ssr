@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { purple, white, white30 } from '../../../../../settings/colors';
+import { purple, white } from '../../../../../settings/colors';
 
 export const Uploader = styled.label`
   background-color: ${purple};
@@ -15,7 +15,7 @@ export const Uploader = styled.label`
   align-items: center;
   justify-content: center;
 
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const Icon = styled.img`

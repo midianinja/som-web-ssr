@@ -4,7 +4,7 @@ import { getGradient } from '../../../settings/gradients';
 
 export const Wrapper = styled.div`
   display: inline-block;
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -19,12 +19,12 @@ export const Container = styled.div`
   justify-content: space-between;
   vertical-align: top;
   @media (max-width: 768px) {
-      width: 100%;
-    }
+    width: 100%;
+  }
 `;
 
 export const View = styled.div`
-    max-width: 220px;
+  max-width: 220px;
 `;
 
 export const ButtonWrapper = styled.div`
@@ -42,16 +42,14 @@ export const Image = styled.div`
   background-repeat: no-repeat
   background-size: auto 100%;
   cursor: pointer;
-  background: ${({ gradient }) => gradient ? gradient : getGradient()};
+  background: ${({ gradient }) => (gradient ? gradient : getGradient())};
 
   @media (max-width: 768px) {
     width: 100%;
     max-height: 300px;
   }
 
-  ${props => (
-    props.image ? ` background-image: url('${props.image}');` : ''
-  )}
+  ${(props) => (props.image ? ` background-image: url('${props.image}');` : '')}
 `;
 export const Title = styled.label`
   color: ${green};

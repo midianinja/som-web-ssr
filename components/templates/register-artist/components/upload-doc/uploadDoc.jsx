@@ -1,8 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Uploader, Icon, Input,
-} from './uploadDoc.style';
+import { Uploader, Icon, Input } from './uploadDoc.style';
 
 /**
  * function that loading image before render
@@ -24,10 +22,7 @@ function load(src, callback) {
  * @param {object} props component props
  * @returns contains UploadDoc Component
  */
-function UploadDoc({
-  src, label, handleChange,
-  customStyle, id, accept,alt
-}) {
+function UploadDoc({ src, label, handleChange, customStyle, id, accept, alt }) {
   const [loaddedSrc, setLoaddedSrc] = useState(null);
 
   useEffect(() => {
@@ -36,15 +31,16 @@ function UploadDoc({
 
   return (
     <Fragment>
-      <Uploader
-        customStyle={customStyle}
-        onChange={handleChange}
-        htmlFor={id}
-      >
+      <Uploader customStyle={customStyle} onChange={handleChange} htmlFor={id}>
         {label}
         <Icon alt={alt} src="/icons/cloud-upload.svg" />
       </Uploader>
-      <Input id={id} onChange={handleChange} type="file"   accept={accept || "image/png, image/jpeg, application/pdf"} />
+      <Input
+        id={id}
+        onChange={handleChange}
+        type="file"
+        accept={accept || 'image/png, image/jpeg, application/pdf'}
+      />
     </Fragment>
   );
 }
@@ -55,7 +51,7 @@ UploadDoc.propTypes = {
   label: PropTypes.string,
   src: PropTypes.string,
   customStyle: PropTypes.string,
-  handleChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired
 };
 
 UploadDoc.defaultProps = {
@@ -63,7 +59,7 @@ UploadDoc.defaultProps = {
   alt: '',
   label: '',
   src: '',
-  customStyle: '',
+  customStyle: ''
 };
 
 export default UploadDoc;

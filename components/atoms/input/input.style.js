@@ -30,5 +30,5 @@ export const InputStyle = styled.input`
     color: ${white50};
   }
 
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;

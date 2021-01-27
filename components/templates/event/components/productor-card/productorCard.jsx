@@ -2,8 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '../../../../atoms/avatar/avatar';
 import {
-  Container, ImageWrapper, ProductorTitle, ProfileWrapper,
-  ProductorName, ProductorCity, ProductorText, avatarStyle,
+  Container,
+  ImageWrapper,
+  ProductorTitle,
+  ProfileWrapper,
+  ProductorName,
+  ProductorCity,
+  ProductorText,
+  avatarStyle
 } from './productorCard.style';
 
 const ProductorCard = ({ productor, router }) => (
@@ -14,11 +20,9 @@ const ProductorCard = ({ productor, router }) => (
     </ImageWrapper>
     <ProfileWrapper>
       <ProductorName>{productor.name}</ProductorName>
-      {
-        productor.location
-          ? <ProductorCity>{`${productor.location.city}, ${productor.location.state}`}</ProductorCity>
-          : null
-      }
+      {productor.location ? (
+        <ProductorCity>{`${productor.location.city}, ${productor.location.state}`}</ProductorCity>
+      ) : null}
       <ProductorText>{productor.description}</ProductorText>
       {/*
         <FollowersAndFollowing
@@ -36,7 +40,7 @@ const ProductorCard = ({ productor, router }) => (
 
 const locationShape = {
   city: PropTypes.string,
-  state: PropTypes.string,
+  state: PropTypes.string
 };
 
 const productorShape = {
@@ -45,16 +49,16 @@ const productorShape = {
   location: PropTypes.shape(locationShape),
   name: PropTypes.string,
   followers: PropTypes.array,
-  following: PropTypes.array,
+  following: PropTypes.array
 };
 
 const routerShape = {
-  push: PropTypes.func,
+  push: PropTypes.func
 };
 
 ProductorCard.propTypes = {
   productor: PropTypes.shape(productorShape).isRequired,
-  router: PropTypes.shape(routerShape).isRequired,
+  router: PropTypes.shape(routerShape).isRequired
 };
 
 export default ProductorCard;

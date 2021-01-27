@@ -6,14 +6,19 @@ import InputGroup from '../../molecules/input-group/inputGroup';
 import Header from '../../organisms/default-header/defaultHeader';
 import Dialog from '../../modals/dialog/dialog';
 import Store from '../../../store/Store';
-import {
-  fetchEventsData, initialLoading,
-} from './myEvents.controller';
+import { fetchEventsData, initialLoading } from './myEvents.controller';
 import EventCard from './components/my-event-card/myEventCard';
 import {
-  Container, GlobalForm, LocationContainer, InputIconWrapper,
-  SearchIcon, EventsContainer, searchStyle, Icon,
-  AddButton, searchInputStyle,
+  Container,
+  GlobalForm,
+  LocationContainer,
+  InputIconWrapper,
+  SearchIcon,
+  EventsContainer,
+  searchStyle,
+  Icon,
+  AddButton,
+  searchInputStyle
 } from './myEvents.style';
 
 /**
@@ -30,24 +35,24 @@ const MyEventsPage = () => {
   useEffect(() => {
     if (state.user) {
       fetchEventsData({
-        setEvents, loading, setLoading,
-        setDialog, state, user: state.user,
+        setEvents,
+        loading,
+        setLoading,
+        setDialog,
+        state,
+        user: state.user
       });
     }
   }, [state.user]);
 
   return (
     <Container>
-      <Header
-        logged={!!state.user}
-      />
+      <Header logged={!!state.user} />
       <GlobalForm>
         <LocationContainer />
         <InputGroup customStyle={searchStyle}>
           <InputIconWrapper>
-            <SearchIcon
-              src="/icons/search.svg"
-            />
+            <SearchIcon src="/icons/search.svg" />
             <Input
               id="keyword"
               placeholder="Buscar"
@@ -60,19 +65,17 @@ const MyEventsPage = () => {
         </InputGroup>
       </GlobalForm>
       <EventsContainer>
-        {
-          events.map(evt => (
-            <EventCard
-              customStyle={`
+        {events.map((evt) => (
+          <EventCard
+            customStyle={`
                 margin: 0 5px 90px;
                 max-width: 220px;
               `}
-              user={state.user}
-              event={evt}
-              onClick={() => router.push('/events-curatorship')}
-            />
-          ))
-        }
+            user={state.user}
+            event={evt}
+            onClick={() => router.push('/events-curatorship')}
+          />
+        ))}
       </EventsContainer>
       <AddButton onClick={() => router.push('/register-event')}>
         <Icon src="/icons/plus.svg" />

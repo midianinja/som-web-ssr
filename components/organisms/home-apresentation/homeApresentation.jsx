@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IDASignupButton from '../../atoms/ida-signup-button/idaSignupButton';
-import {
-  HomeWrapper, Wrapper, Content, Logo,
-  Title, Description,
-} from './homeApresentation.style';
+import { HomeWrapper, Wrapper, Content, Logo, Title, Description } from './homeApresentation.style';
 
 /**
  * This contains the Home apresentation section
@@ -19,16 +16,14 @@ const HomeApresentation = ({ onClick }) => (
         <Description>
           A plataforma para aceleração de oportunidades da música brasileira
         </Description>
-        <IDASignupButton
-          onClick={onClick}
-        />
+        <IDASignupButton onClick={onClick} />
       </Content>
     </Wrapper>
   </HomeWrapper>
 );
 
 HomeApresentation.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export default HomeApresentation;

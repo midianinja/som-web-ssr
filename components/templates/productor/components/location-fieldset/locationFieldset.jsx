@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 import Input from '../../../../atoms/input/input';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
 import ListInput from '../../../../molecules/list-input/listInput';
-import {
-  Fieldset, Title, inputGroup30Style, LocationWrapper,
-} from './locationFieldset.style';
+import { Fieldset, Title, inputGroup30Style, LocationWrapper } from './locationFieldset.style';
 
 const LocationFieldset = ({
-  country, countries, state, states,
-  productorStepErrors, handleCountrySelect, handleStateSelect, handleCityChange,
-  values,
+  country,
+  countries,
+  state,
+  states,
+  productorStepErrors,
+  handleCountrySelect,
+  handleStateSelect,
+  handleCityChange,
+  values
 }) => (
   <Fieldset>
     <Title>Residência</Title>
@@ -18,8 +22,7 @@ const LocationFieldset = ({
       <InputGroup
         customStyle={inputGroup30Style}
         label={country.id ? 'País' : ''}
-        error={productorStepErrors.country}
-      >
+        error={productorStepErrors.country}>
         <ListInput
           id="country"
           placeholder="País"
@@ -32,8 +35,7 @@ const LocationFieldset = ({
       <InputGroup
         customStyle={inputGroup30Style}
         label={state.id ? 'Estado' : ''}
-        error={productorStepErrors.state}
-      >
+        error={productorStepErrors.state}>
         <ListInput
           id="state"
           placeholder="Estado"
@@ -46,14 +48,8 @@ const LocationFieldset = ({
       <InputGroup
         customStyle={inputGroup30Style}
         label={values.city ? 'Cidade' : ''}
-        error={productorStepErrors.city}
-      >
-        <Input
-          id="city"
-          placeholder="Cidade"
-          value={values.city}
-          onChange={handleCityChange}
-        />
+        error={productorStepErrors.city}>
+        <Input id="city" placeholder="Cidade" value={values.city} onChange={handleCityChange} />
       </InputGroup>
     </LocationWrapper>
   </Fieldset>
@@ -63,7 +59,7 @@ const valuesShape = {
   about: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   cpf: PropTypes.string.isRequired,
-  cnpj: PropTypes.string.isRequired,
+  cnpj: PropTypes.string.isRequired
 };
 
 const errorsShape = {
@@ -71,12 +67,12 @@ const errorsShape = {
   name: PropTypes.string,
   about: PropTypes.string,
   cnpj: PropTypes.string,
-  cpf: PropTypes.string,
+  cpf: PropTypes.string
 };
 
 const optionShape = {
   id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired
 };
 
 LocationFieldset.propTypes = {
@@ -88,14 +84,14 @@ LocationFieldset.propTypes = {
   states: PropTypes.arrayOf(PropTypes.shape(optionShape)),
   state: PropTypes.shape(optionShape),
   values: PropTypes.shape(valuesShape).isRequired,
-  productorStepErrors: PropTypes.shape(errorsShape).isRequired,
+  productorStepErrors: PropTypes.shape(errorsShape).isRequired
 };
 
 LocationFieldset.defaultProps = {
   country: {},
   state: {},
   countries: [],
-  states: [],
+  states: []
 };
 
 export default LocationFieldset;

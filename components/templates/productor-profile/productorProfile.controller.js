@@ -10,16 +10,14 @@ import { oneProductorQuery } from './productorProfile.queries';
  * when a productor is in loading
  * @param {function} setAlertModal this is a function manage error state of page
  */
-export const fetchProductorData = async (
-  id, setProductor, setProductorLoading, setAlertModal,
-) => {
+export const fetchProductorData = async (id, setProductor, setProductorLoading, setAlertModal) => {
   setProductorLoading(true);
 
   let promise;
   try {
     promise = await client().query({
       query: oneProductorQuery,
-      variables: { productor: { id } },
+      variables: { productor: { id } }
     });
   } catch (err) {
     setProductorLoading(false);
@@ -36,7 +34,7 @@ export const fetchProductorData = async (
       disagreeText: '',
       confirmAction: () => setAlertModal({}),
       disagreeAction: undefined,
-      isOpen: true,
+      isOpen: true
     });
     return;
   }
@@ -52,19 +50,9 @@ export const fetchProductorData = async (
  * photos of productor instagram
  */
 export const fetchProductorInstaImages = async (instaUri, setInstaPics) => {
-  try {
-    let promise;
-    const instaname = instaUri.split('/').reverse()[0];
+  const instaname = instaUri.split('/').reverse()[0];
+  const promise = await fetch(`${process.env.INSTAGRAM_API_URI}/photos/${instaname}`);
+  const { data } = await promise.json();
 
-    try {
-      promise = await fetch(`${process.env.INSTAGRAM_API_URI}/photos/${instaname}`);
-    } catch (e) {
-      throw e;
-    }
-
-    const { data } = await promise.json();
-    setInstaPics(data);
-  } catch (err) {
-    console.log('err: ', err);
-  }
+  setInstaPics(data);
 };

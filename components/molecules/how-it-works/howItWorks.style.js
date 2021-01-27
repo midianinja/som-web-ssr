@@ -7,7 +7,7 @@ export const Card = styled.div`
   border-radius: 20px;
   overflow: hidden;
   vertical-align: top;
-  
+
   & + & {
     margin-left: 15px;
   }

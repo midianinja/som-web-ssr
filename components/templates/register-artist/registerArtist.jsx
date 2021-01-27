@@ -9,14 +9,15 @@ import LocationFieldset from './/components/location-fieldset/locationFieldset';
 import BasicInformationFieldset from './components/basic-information-fieldset/basicInformationFieldset';
 import steps from './registerArtist.collections';
 import {
-  fetchLocations, fetchMusicalStyleOptions, handleMusicalStyleSelect, handleACMusicalStyle,
+  fetchLocations,
+  fetchMusicalStyleOptions,
+  handleMusicalStyleSelect,
+  handleACMusicalStyle,
   nextCallback,
   handleCountrySelect,
-  handleStateSelect,
+  handleStateSelect
 } from './registerArtist.controller';
-import {
-  Form,
-} from './registerArtist.style';
+import { Form } from './registerArtist.style';
 import SocialsFieldset from './components/social-fieldset/socialFieldset';
 import DocFilesFieldset from './components/doc-files-fieldset/docFilesFieldset';
 import MusicFieldset from './components/music-fieldset/musicFieldset';
@@ -25,40 +26,57 @@ import MusicFieldset from './components/music-fieldset/musicFieldset';
  * render basic infos fields
  */
 const renderBasicInfos = ({
-  values, setAbout, setName, productorStepErrors,
-  musicalStylesOptions, musicalStyles, setMusicalStyle, setMusicalStylePredict,
-  setMusicalStyles, setAvatar, setCNPJ, handleIntegrants,
+  values,
+  setAbout,
+  setName,
+  productorStepErrors,
+  musicalStylesOptions,
+  musicalStyles,
+  setMusicalStyle,
+  setMusicalStylePredict,
+  setMusicalStyles,
+  setAvatar,
+  setCNPJ,
+  handleIntegrants
 }) => (
   <BasicInformationFieldset
     descriptionMaxLength={2000}
-    deleteTag={id => deleteTag({
-      id,
-      tags: musicalStyles,
-      setTag: setMusicalStyles,
-    })}
+    deleteTag={(id) =>
+      deleteTag({
+        id,
+        tags: musicalStyles,
+        setTag: setMusicalStyles
+      })
+    }
     handleAboutChange={({ target }) => (target.value.length < 2000 ? setAbout(target.value) : null)}
-    handleAvatarChange={({ target }) => setAvatar({
-      url: URL.createObjectURL(target.files[0]),
-      urls: null,
-      file: target.files[0],
-    })}
+    handleAvatarChange={({ target }) =>
+      setAvatar({
+        url: URL.createObjectURL(target.files[0]),
+        urls: null,
+        file: target.files[0]
+      })
+    }
     handleCNPJChange={({ target }) => setCNPJ(target.value)}
     handleIntegrants={({ target }) => handleIntegrants(target.value)}
     handleNameChange={({ target }) => setName(target.value)}
-    handleMusicalStyleChange={({ target }) => handleACMusicalStyle({
-      value: target.value,
-      musicalStylesOptions,
-      setMusicalStylePredict,
-      setMusicalStyle,
-    })}
-    handleMusicalStyleSelect={value => handleMusicalStyleSelect({
-      value,
-      musicalStylesOptions,
-      musicalStyles,
-      setMusicalStyle,
-      setMusicalStylePredict,
-      setMusicalStyles,
-    })}
+    handleMusicalStyleChange={({ target }) =>
+      handleACMusicalStyle({
+        value: target.value,
+        musicalStylesOptions,
+        setMusicalStylePredict,
+        setMusicalStyle
+      })
+    }
+    handleMusicalStyleSelect={(value) =>
+      handleMusicalStyleSelect({
+        value,
+        musicalStylesOptions,
+        musicalStyles,
+        setMusicalStyle,
+        setMusicalStylePredict,
+        setMusicalStyles
+      })
+    }
     productorStepErrors={productorStepErrors}
     values={values}
   />
@@ -68,8 +86,15 @@ const renderBasicInfos = ({
  * render location fields
  */
 const renderLocationFieldset = ({
-  values, visibles, setCity, setState, setCountry,
-  productorStepErrors, setStates, countries, states,
+  values,
+  visibles,
+  setCity,
+  setState,
+  setCountry,
+  productorStepErrors,
+  setStates,
+  countries,
+  states
 }) => {
   if (!visibles.location) return null;
   return (
@@ -81,8 +106,8 @@ const renderLocationFieldset = ({
       states={states}
       productorStepErrors={productorStepErrors}
       handleCityChange={({ target }) => setCity(target.value)}
-      handleCountrySelect={data => handleCountrySelect({ data, setStates, setCountry })}
-      handleStateSelect={data => handleStateSelect({ data, setState })}
+      handleCountrySelect={(data) => handleCountrySelect({ data, setStates, setCountry })}
+      handleStateSelect={(data) => handleStateSelect({ data, setState })}
     />
   );
 };
@@ -91,8 +116,14 @@ const renderLocationFieldset = ({
  * render contact fields
  */
 const renderContactFieldset = ({
-  visibles, values, setMainPhone, setSecondaryPhone,
-  setWhatsapp, setTelegram, setContactEmail, productorStepErrors,
+  visibles,
+  values,
+  setMainPhone,
+  setSecondaryPhone,
+  setWhatsapp,
+  setTelegram,
+  setContactEmail,
+  productorStepErrors
 }) => {
   if (!visibles.contact) return null;
   return (
@@ -112,8 +143,13 @@ const renderContactFieldset = ({
  * render social fields
  */
 const renderSocialsFieldset = ({
-  visibles, values, setFacebook, setTwitter,
-  setYoutube, setInstagram, productorStepErrors,
+  visibles,
+  values,
+  setFacebook,
+  setTwitter,
+  setYoutube,
+  setInstagram,
+  productorStepErrors
 }) => {
   if (!visibles.socials) return null;
   return (
@@ -131,27 +167,17 @@ const renderSocialsFieldset = ({
 /**
  * render social fields
  */
-const renderFilesDocs = ({
-  visibles,
-}) => {
+const renderFilesDocs = ({ visibles }) => {
   if (!visibles.files) return null;
-  return (
-    <DocFilesFieldset
-    />
-  );
+  return <DocFilesFieldset />;
 };
 
 /**
  * render social fields
  */
-const renderMusics = ({
-  visibles,
-}) => {
+const renderMusics = ({ visibles }) => {
   if (!visibles.files) return null;
-  return (
-    <MusicFieldset
-    />
-  );
+  return <MusicFieldset />;
 };
 
 /**
@@ -194,7 +220,7 @@ const RegisterArtistTemplate = () => {
     contact: false,
     socials: false,
     files: false,
-    musics: false,
+    musics: false
   });
 
   const mapContextToState = (productor) => {
@@ -228,7 +254,6 @@ const RegisterArtistTemplate = () => {
     // }
   }, [state.connectionType]);
 
-
   useEffect(() => {
     if (state.user && state.user.productor) {
       // mapContextToState(state.user.productor);
@@ -242,14 +267,21 @@ const RegisterArtistTemplate = () => {
       const { productor } = state.user;
       mapContextToState(productor);
       fetchLocations({
-        setCountries, setStates, setState, setCity,
-        productor, setCountry,
+        setCountries,
+        setStates,
+        setState,
+        setCity,
+        productor,
+        setCountry
       });
     } else {
       fetchLocations({
-        setCountries, setStates, setState, setCity,
+        setCountries,
+        setStates,
+        setState,
+        setCity,
         productor: {},
-        setCountry,
+        setCountry
       });
     }
   }, [state.user]);
@@ -261,67 +293,109 @@ const RegisterArtistTemplate = () => {
   }, [state.loading]);
 
   const values = {
-    avatar, about, integrants,
-    instagram, musicalStyles, musicalStylePredict, musicalStyle,
-    name, mainPhone, whatsapp, telegram,
-    contactEmail, facebook, youtube, twitter, country, state: locationState,
-    city, locationId,
+    avatar,
+    about,
+    integrants,
+    instagram,
+    musicalStyles,
+    musicalStylePredict,
+    musicalStyle,
+    name,
+    mainPhone,
+    whatsapp,
+    telegram,
+    contactEmail,
+    facebook,
+    youtube,
+    twitter,
+    country,
+    state: locationState,
+    city,
+    locationId
   };
 
-  
-
   return (
-    <Form autocomplete={false} onSubmit={e => e.preventDefault()}>
+    <Form autocomplete={false} onSubmit={(e) => e.preventDefault()}>
       <StepFormHeader color={magenta} items={steps} index={'0'} />
-      {
-        renderBasicInfos({
-          values, setAbout, setMusicalStyle, musicalStyles,
-          setMusicalStylePredict, musicalStylesOptions, setMusicalStyles,
-          setMusicalStylesOptions, setName, setAvatar, productorStepErrors,
-          setProductorStepErrors, handleIntegrants,
-        })
-      }
-      {
-          renderLocationFieldset({
-            visibles, values, setState, setCountry, setCity,
-            countries, states, productorStepErrors, setStates,
-            locationId, setLocationId,
-          })
-        }
-        {
-          renderContactFieldset({
-            visibles, values, setMainPhone,
-            setWhatsapp, setTelegram, setContactEmail, productorStepErrors,
-          })
-        }
-        {
-          renderSocialsFieldset({
-            visibles, values, setFacebook, setInstagram,
-            setTwitter, setYoutube, productorStepErrors,
-          })
-        }
-        {
-          renderFilesDocs({
-            visibles,
-          })
-        }
-        {
-          renderMusics({
-            visibles,
-          })
-        }
+      {renderBasicInfos({
+        values,
+        setAbout,
+        setMusicalStyle,
+        musicalStyles,
+        setMusicalStylePredict,
+        musicalStylesOptions,
+        setMusicalStyles,
+        setMusicalStylesOptions,
+        setName,
+        setAvatar,
+        productorStepErrors,
+        setProductorStepErrors,
+        handleIntegrants
+      })}
+      {renderLocationFieldset({
+        visibles,
+        values,
+        setState,
+        setCountry,
+        setCity,
+        countries,
+        states,
+        productorStepErrors,
+        setStates,
+        locationId,
+        setLocationId
+      })}
+      {renderContactFieldset({
+        visibles,
+        values,
+        setMainPhone,
+        setWhatsapp,
+        setTelegram,
+        setContactEmail,
+        productorStepErrors
+      })}
+      {renderSocialsFieldset({
+        visibles,
+        values,
+        setFacebook,
+        setInstagram,
+        setTwitter,
+        setYoutube,
+        productorStepErrors
+      })}
+      {renderFilesDocs({
+        visibles
+      })}
+      {renderMusics({
+        visibles
+      })}
       <StepFormFooter
         nextAction={() => {
           if (!id) {
             handleCreateProductor({
-              values, userId: state.user.id, setLoading, visibles, history,
-              setVisibles, setLocationId, dispatch, user: state.user, setId,
+              values,
+              userId: state.user.id,
+              setLoading,
+              visibles,
+              history,
+              setVisibles,
+              setLocationId,
+              dispatch,
+              user: state.user,
+              setId
             });
           } else {
             handleEditProductor(
-              values, id, state.user.id, setLoading,
-              visibles, setVisibles, setLocationId, dispatch,
-              state.user, history,
+              values,
+              id,
+              state.user.id,
+              setLoading,
+              visibles,
+              setVisibles,
+              setLocationId,
+              dispatch,
+              state.user,
+              history
             );
           }
         }}

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {
-  PlayPauseButtonStyle,
-} from './playPauseButton.style';
+import { PlayPauseButtonStyle } from './playPauseButton.style';
 
 /**
  * function that render react component
@@ -10,15 +8,11 @@ import {
  * @returns contains PlayPauseButton Component
  */
 const PlayPauseButton = (props) => {
-  return (
-    <PlayPauseButtonStyle {...props} />
-  );
-}
-
-PlayPauseButton.propTypes = {
+  return <PlayPauseButtonStyle {...props} />;
 };
 
-PlayPauseButton.defaultProps = {
-};
+PlayPauseButton.propTypes = {};
+
+PlayPauseButton.defaultProps = {};
 
 export default PlayPauseButton;

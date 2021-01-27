@@ -11,14 +11,14 @@ const initialState = {
   modalLogin: false,
   loading: {
     auth: true,
-    verify: true,
+    verify: true
   },
   modals: {
     login: false,
     register: false,
     navigation: false,
-    forgetPassword: false,
-  },
+    forgetPassword: false
+  }
 };
 
 const reducer = (state, action) => {
@@ -46,8 +46,8 @@ const reducer = (state, action) => {
         ...state,
         user: {
           ...(JSON.parse(JSON.stringify(state.user)) || {}),
-          ...JSON.parse(JSON.stringify(action.user)),
-        },
+          ...JSON.parse(JSON.stringify(action.user))
+        }
       };
     case 'RESET_AUTH':
       return { ...state, auth: null, user: null };
@@ -70,11 +70,11 @@ export const StoreProvider = (props) => {
 };
 
 StoreProvider.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 StoreProvider.defaultProps = {
-  children: [],
+  children: []
 };
 
 export default Store;

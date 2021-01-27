@@ -11,12 +11,12 @@ export const Footer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 30px;
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const Wrapper = styled.div`
   width: 100%;
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const LoadingWrapper = styled.div`

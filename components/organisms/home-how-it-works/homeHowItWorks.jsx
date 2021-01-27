@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import HowItsWorkCard from '../../molecules/how-it-works/howItWorks';
 import {
-  Container, Title, Content,
+  Container,
+  Title,
+  Content,
   ScrollIndicatorWrapper,
-  ScrollIndicator,
+  ScrollIndicator
 } from './homeHowItWorks.style';
 
 /**
@@ -21,8 +23,7 @@ const HomeHowItsWork = () => {
         onScroll={(e) => {
           setScrollPosition(e.target.scrollLeft);
           setScrollWidth(e.target.scrollWidth - (document.documentElement.clientWidth - 30));
-        }}
-      >
+        }}>
         <HowItsWorkCard
           icon="/icons/home-ida.svg"
           title="Crie sua IDa"
@@ -43,10 +44,7 @@ const HomeHowItsWork = () => {
         />
       </Content>
       <ScrollIndicatorWrapper>
-        <ScrollIndicator
-          position={scrollPosition}
-          scrollWidth={scrollWidth}
-        />
+        <ScrollIndicator position={scrollPosition} scrollWidth={scrollWidth} />
       </ScrollIndicatorWrapper>
     </Container>
   );

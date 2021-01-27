@@ -7,10 +7,19 @@ import OpenSource from '../../organisms/home-open-source/homeOpenSource';
 import Newsletter from '../../organisms/home-news-letter/homeNewsLetter';
 import Store from '../../../store/Store';
 import {
-  Page, LoginButtonContainer, loginButtonStyle,
-  PurpleWrapper,FiguresContainer, FiguresContent,
-  RedEllipse, TermsWrapper, Terms, YellowPolygon,
-  GreenRectangle, BlueRectangle, RedPolygon,
+  Page,
+  LoginButtonContainer,
+  loginButtonStyle,
+  PurpleWrapper,
+  FiguresContainer,
+  FiguresContent,
+  RedEllipse,
+  TermsWrapper,
+  Terms,
+  YellowPolygon,
+  GreenRectangle,
+  BlueRectangle,
+  RedPolygon
 } from './home.style';
 
 /**
@@ -22,13 +31,11 @@ const Home = () => {
   return (
     <Page>
       <LoginButtonContainer>
-        <IDALoginButton
-          onClick={() => state.idaSDK.signinWithPopup()}
-        />
+        <IDALoginButton onClick={() => state.idaSDK.signinWithPopup()} />
       </LoginButtonContainer>
       <Apresentation
         onClick={() => {
-          state.idaSDK.signinWithPopup()
+          state.idaSDK.signinWithPopup();
         }}
       />
       <FiguresContainer>
@@ -60,10 +67,9 @@ const Home = () => {
           onClick={() => {
             window.open(
               'https://s3-sa-east-1.amazonaws.com/festivalninja.org/img/termos-de-use-e-politicas-de-privacidade-som.pdf',
-              '_blank',
+              '_blank'
             );
-          }}
-        >
+          }}>
           Termos de uso e políticas de privacidade
         </Terms>
       </TermsWrapper>

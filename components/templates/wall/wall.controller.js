@@ -1,8 +1,8 @@
-import { client } from "../../../libs/apollo.lib";
-import { allMusicalStyleOptionsQuery } from "../../../queries/musicalGenres.query";
-import { allowBodyScroll } from "../../../utils/scroll.utils";
-import { getAllEventsQuery, allCountriesQuery } from "./wall.queries";
-import { subscribeEvent, unsubscribeEvent } from "./wall.repository";
+import { client } from '../../../libs/apollo.lib';
+import { allMusicalStyleOptionsQuery } from '../../../queries/musicalGenres.query';
+import { allowBodyScroll } from '../../../utils/scroll.utils';
+import { getAllEventsQuery, allCountriesQuery } from './wall.queries';
+import { subscribeEvent, unsubscribeEvent } from './wall.repository';
 
 export const loadingStatus = {
   LOADDED: 0,
@@ -16,9 +16,9 @@ export const initialLoading = {
 };
 
 export const initialEvent = {
-  cover: "",
-  about: "",
-  name: "-",
+  cover: '',
+  about: '',
+  name: '-',
   event_date: Date.now(),
   location: {},
   subscribers: [],
@@ -26,9 +26,9 @@ export const initialEvent = {
   has_accommodation: true,
   has_food: true,
   productor: {
-    name: "",
-    photo: "",
-    about: "",
+    name: '',
+    photo: '',
+    about: '',
     following: [],
     followers: [],
     location: {}
@@ -47,22 +47,22 @@ export const removeTagAction = ({
   setYears,
   setMonths
 }) => {
-  const month = MONTH_MODEL.find(m => m.id === data);
-  const year = YEARS_MODEL.find(m => m.id === data);
-  const style = musicalStylesOptions.find(m => m.id === data);
+  const month = MONTH_MODEL.find((m) => m.id === data);
+  const year = YEARS_MODEL.find((m) => m.id === data);
+  const style = musicalStylesOptions.find((m) => m.id === data);
 
   if (month) {
-    const myMonths = months.filter(m => m.id !== month.id);
+    const myMonths = months.filter((m) => m.id !== month.id);
     setMonths(myMonths);
   }
 
   if (year) {
-    const myYears = years.filter(m => m.id !== year.id);
+    const myYears = years.filter((m) => m.id !== year.id);
     setYears(myYears);
   }
 
   if (style) {
-    const myStyles = musicStyles.filter(m => m.id !== style.id);
+    const myStyles = musicStyles.filter((m) => m.id !== style.id);
     setMusicStyles(myStyles);
   }
 };
@@ -73,10 +73,10 @@ export const handleMusicalStyleSelect = ({
   musicStyles,
   setMusicStyles
 }) => {
-  const colors = ["purple", "green", "orange", "magenta", "yellow"];
-  const style = musicalStylesOptions.find(o => o.id === data.id);
+  const colors = ['purple', 'green', 'orange', 'magenta', 'yellow'];
+  const style = musicalStylesOptions.find((o) => o.id === data.id);
   const newMusicalStyles = musicStyles
-    .filter(o => o.id !== data.id)
+    .filter((o) => o.id !== data.id)
     .concat([
       {
         id: style.id,
@@ -87,7 +87,7 @@ export const handleMusicalStyleSelect = ({
 
   let cont = 0;
 
-  const stylesWithColor = newMusicalStyles.map(s => {
+  const stylesWithColor = newMusicalStyles.map((s) => {
     const stl = {
       ...s,
       color: colors[cont]
@@ -116,9 +116,9 @@ export const fetchEventsData = async ({
     eventData = await client().query({
       query: getAllEventsQuery,
       variables: {
-        musical_styles: musicStyles.map(s => s.id),
-        years: years.map(y => +y.id),
-        months: months.map(m => +m.id + 1),
+        musical_styles: musicStyles.map((s) => s.id),
+        years: years.map((y) => +y.id),
+        months: months.map((m) => +m.id + 1),
         paginator: {
           limit: 20
         }
@@ -126,11 +126,10 @@ export const fetchEventsData = async ({
     });
     if (!eventData.data.searchEvents.length) {
       setDialog({
-        title: "Nenhum evento encontrado",
-        icon: "/icons/guita-error.svg",
-        description:
-          "Logo teremos mais eventos, fique ligado para se inscrever.",
-        disagreeText: "Fechar",
+        title: 'Nenhum evento encontrado',
+        icon: '/icons/guita-error.svg',
+        description: 'Logo teremos mais eventos, fique ligado para se inscrever.',
+        disagreeText: 'Fechar',
         disagreeAction: () => setDialog({})
       });
       return;
@@ -160,7 +159,7 @@ export const subscribeAction = async (
   events
 ) => {
   if (!auth) {
-    dispatch({ type: "SHOW_LOGIN_MODAL" });
+    dispatch({ type: 'SHOW_LOGIN_MODAL' });
     return;
   }
 
@@ -168,8 +167,7 @@ export const subscribeAction = async (
     setDialog({
       title: 'Cadastro incompleto',
       icon: '/icons/guita-error.svg',
-      description:
-        'Para se escrever em eventos, você precisa preencher os dados obrigatórios.',
+      description: 'Para se escrever em eventos, você precisa preencher os dados obrigatórios.',
       agreeText: 'Cadastrar',
       disagreeText: 'Voltar',
       confirmAction: () => {
@@ -184,52 +182,46 @@ export const subscribeAction = async (
     return;
   }
 
-  try {
-    const updatedEvent = await subscribeEvent(event.id, user.artist.id);
+  const updatedEvent = await subscribeEvent(event.id, user.artist.id);
 
-    setDialog({
-      title: 'Pronto!',
-      icon: '/icons/yeah.svg',
-      description: `Você está inscrito no festival ${event.name}. Fique ligado no SOM para receber novas informações.`,
-      disagreeText: 'Voltar para a home',
-      disagreeAction: () => {
-        allowBodyScroll();
-        setDialog({
-          title: '',
-        });
-      }
-    });
+  setDialog({
+    title: 'Pronto!',
+    icon: '/icons/yeah.svg',
+    description: `Você está inscrito no festival ${event.name}. Fique ligado no SOM para receber novas informações.`,
+    disagreeText: 'Voltar para a home',
+    disagreeAction: () => {
+      allowBodyScroll();
+      setDialog({
+        title: ''
+      });
+    }
+  });
 
-    const updatedEvents = events.map(evt => {
-      if (evt.id === event.id) return updatedEvent.data.subscribeEvent;
-      return evt;
-    });
-    setEvents(updatedEvents);
-  } catch (err) {
-    throw err;
-  }
+  const updatedEvents = events.map((evt) => {
+    if (evt.id === event.id) return updatedEvent.data.subscribeEvent;
+    return evt;
+  });
+
+  setEvents(updatedEvents);
 };
 
 export const unsubscribeAction = async (user, event, setEvents, events) => {
-  try {
-    const updatedEvent = await unsubscribeEvent(event.id, user.artist.id);
-    const updatedEvents = events.map(evt => {
-      if (evt.id === event.id) return updatedEvent.data.unsubscribeEvent;
-      return evt;
-    });
-    setEvents(updatedEvents);
-  } catch (err) {
-    throw err;
-  }
+  const updatedEvent = await unsubscribeEvent(event.id, user.artist.id);
+  const updatedEvents = events.map((evt) => {
+    if (evt.id === event.id) return updatedEvent.data.unsubscribeEvent;
+    return evt;
+  });
+
+  setEvents(updatedEvents);
 };
 
-export const fetchMusicalStyleOptions = setMusicalStylesOptions => {
+export const fetchMusicalStyleOptions = (setMusicalStylesOptions) => {
   client()
     .query({
       query: allMusicalStyleOptionsQuery,
       variables: {}
     })
-    .then(resp => setMusicalStylesOptions(resp.data.allMusicalStyleOptions));
+    .then((resp) => setMusicalStylesOptions(resp.data.allMusicalStyleOptions));
 };
 
 export const fetchLocations = async ({ setCountries }) => {
@@ -237,7 +229,7 @@ export const fetchLocations = async ({ setCountries }) => {
     query: allCountriesQuery,
     variables: {}
   });
-  const myCountrires = countries.data.allCountries.map(c => ({
+  const myCountrires = countries.data.allCountries.map((c) => ({
     label: c.name,
     id: c.id
   }));

@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Dropdown, Avatar, Wrapper,
-  Name, LoginStatus, ChagingAccount,
-  ExitLink, ExitWrapper, ExitButton,
+  Dropdown,
+  Avatar,
+  Wrapper,
+  Name,
+  LoginStatus,
+  ChagingAccount,
+  ExitLink,
+  ExitWrapper,
+  ExitButton
 } from './dropDownHeader.style';
 
 const getLoginType = (connectionType, completed) => {
@@ -27,39 +33,40 @@ const getLoginType = (connectionType, completed) => {
 };
 
 const DropdownHeader = ({
-  hide, connectionType, avatar, name,
-  completed, onLogout, onAccountChange,
-  toArtist, toProductor, closeAction,
+  hide,
+  connectionType,
+  avatar,
+  name,
+  completed,
+  onLogout,
+  onAccountChange,
+  toArtist,
+  toProductor,
+  closeAction
 }) => (
   <Dropdown hide={hide}>
     <Wrapper>
       <ExitWrapper>
-        <ExitButton
-          src="/icons/close.svg"
-          onClick={() => closeAction()}
-        />
+        <ExitButton src="/icons/close.svg" onClick={() => closeAction()} />
       </ExitWrapper>
       <Avatar src={avatar} alt="" />
       <Name>{name}</Name>
       <LoginStatus
         onClick={connectionType === 'artist' ? toArtist : toProductor}
-        type={connectionType}
-      >
+        type={connectionType}>
         {getLoginType(connectionType, completed)}
       </LoginStatus>
       <ChagingAccount
         type="productor"
         hide={connectionType === 'productor'}
-        onClick={() => onAccountChange('productor')}
-      >
+        onClick={() => onAccountChange('productor')}>
         Usar como&nbsp;
         <span>produtor</span>
       </ChagingAccount>
       <ChagingAccount
         type="artist"
         hide={connectionType === 'artist'}
-        onClick={() => onAccountChange('artist')}
-      >
+        onClick={() => onAccountChange('artist')}>
         Usar como&nbsp;
         <span>artista</span>
       </ChagingAccount>
@@ -80,8 +87,7 @@ const DropdownHeader = ({
         onClick={(e) => {
           e.preventDefault();
           onLogout();
-        }}
-      >
+        }}>
         Sair
       </ExitLink>
     </Wrapper>
@@ -98,11 +104,11 @@ DropdownHeader.propTypes = {
   onAccountChange: PropTypes.func.isRequired,
   toArtist: PropTypes.func.isRequired,
   toProductor: PropTypes.func.isRequired,
-  closeAction: PropTypes.func.isRequired,
+  closeAction: PropTypes.func.isRequired
 };
 
 DropdownHeader.defaultProps = {
-  completed: true,
+  completed: true
 };
 
 export default DropdownHeader;

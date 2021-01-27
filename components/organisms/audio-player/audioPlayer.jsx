@@ -3,16 +3,29 @@ import PropTypes from 'prop-types';
 import PlayPauseButton from '../../atoms/play-pause-button/playPauseButton';
 import AudioSlider from '../../atoms/audio-slider/audioSlider';
 import {
-  TooltipContainer, Content, Triangle, Wrapper,
-  Header, Info, Title, Album,
-  List, Track, TrackContainer, TrackText,
-  TrackInfo, TrackTime, TrackLikedIcon, TrackEditIcon,
-  TooltipIcon, TrackHeaderWrapper,
+  TooltipContainer,
+  Content,
+  Triangle,
+  Wrapper,
+  Header,
+  Info,
+  Title,
+  Album,
+  List,
+  Track,
+  TrackContainer,
+  TrackText,
+  TrackInfo,
+  TrackTime,
+  TrackLikedIcon,
+  TrackEditIcon,
+  TooltipIcon,
+  TrackHeaderWrapper
 } from './audioPlayer.style';
 
 let AUDIO_ELEMENT = null;
 
-const secondToMinute = time => {
+const secondToMinute = (time) => {
   let minutes = parseInt(time / 60, 10);
   let seconds = parseInt(time % 60, 10);
 
@@ -20,9 +33,9 @@ const secondToMinute = time => {
   seconds = seconds < 10 ? `0${seconds}` : seconds;
 
   return `${minutes}:${seconds}`;
-}
+};
 
-const renderTracks = (tracks, handleClick, deleteAction, editAction, isUserArtist)  => {
+const renderTracks = (tracks, handleClick, deleteAction, editAction, isUserArtist) => {
   const [selected, setSelected] = useState('');
   const [name, setName] = useState('');
 
@@ -36,16 +49,21 @@ const renderTracks = (tracks, handleClick, deleteAction, editAction, isUserArtis
     setSelected('');
   };
 
-  return tracks.map(({
-    id, title, liked, time,
-  }, index) => (
+  return tracks.map(({ id, title, liked, time }, index) => (
     <Track onClick={() => handleClick(tracks[index])}>
       <TooltipContainer show={id === selected}>
-        <Content onClick={e => e.stopPropagation()}>
+        <Content onClick={(e) => e.stopPropagation()}>
           <TooltipIcon show={!name} onClick={() => setName(title)} src="/icons/edit-white.svg" />
           <TooltipIcon show={!name} onClick={() => deleteAct({ id })} src="/icons/trash.svg" />
           <TooltipIcon show={!!name} onClick={() => editAct({ id })} src="/icons/check-green.svg" />
-          <TooltipIcon show onClick={() => { setSelected(''); setName(''); }} src="/icons/close-white.svg" />
+          <TooltipIcon
+            show
+            onClick={() => {
+              setSelected('');
+              setName('');
+            }}
+            src="/icons/close-white.svg"
+          />
         </Content>
         <Triangle show={id === selected} />
       </TooltipContainer>
@@ -56,26 +74,27 @@ const renderTracks = (tracks, handleClick, deleteAction, editAction, isUserArtis
           disabled={!(id === selected && name)}
         />
         <TrackInfo>
-          {
-            isUserArtist
-              ? (
-                <TrackEditIcon
-                  onClick={(e) => { e.stopPropagation(); setSelected(selected === id ? '' : id); setName(''); }}
-                  src="/icons/tool.svg"
-                />
-              ) : null
-          }
+          {isUserArtist ? (
+            <TrackEditIcon
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelected(selected === id ? '' : id);
+                setName('');
+              }}
+              src="/icons/tool.svg"
+            />
+          ) : null}
           <TrackLikedIcon src={liked ? '/icons/star_outlined.svg' : '/icons/star.svg'} />
           <TrackTime>{secondToMinute(time)}</TrackTime>
         </TrackInfo>
       </TrackContainer>
     </Track>
   ));
-}
+};
 
 const handlePlayPause = (setPlay, play) => {
   if (!AUDIO_ELEMENT) return;
-  
+
   if (play) {
     AUDIO_ELEMENT.pause();
     setPlay(false);
@@ -86,9 +105,16 @@ const handlePlayPause = (setPlay, play) => {
 };
 
 const AudioPlayer = ({
-  tracks, isUserArtist, deleteAction, editAction,
-  customStyle, customListStyle, color, color15, color50,
-  playPress,
+  tracks,
+  isUserArtist,
+  deleteAction,
+  editAction,
+  customStyle,
+  customListStyle,
+  color,
+  color15,
+  color50,
+  playPress
 }) => {
   const [play, setPlay] = useState(false);
   const [songs, setSongs] = useState([]);
@@ -136,25 +162,26 @@ const AudioPlayer = ({
 
   useEffect(() => {
     const mapSongs = async () => {
-      const songsDataPromise = track => new Promise((resolve) => {
-        AUDIO_ELEMENT = null;
-        const audioFakeElement = new Audio();
-        audioFakeElement.onloadedmetadata = (data) => {
-          const metadata = {
-            id: track.id,
-            url: track.url,
-            title: track.title,
-            time: data.target.duration,
-            liked: false,
-            algum: '-',
+      const songsDataPromise = (track) =>
+        new Promise((resolve) => {
+          AUDIO_ELEMENT = null;
+          const audioFakeElement = new Audio();
+          audioFakeElement.onloadedmetadata = (data) => {
+            const metadata = {
+              id: track.id,
+              url: track.url,
+              title: track.title,
+              time: data.target.duration,
+              liked: false,
+              algum: '-'
+            };
+
+            resolve(metadata);
           };
 
-          resolve(metadata);
-        };
-
-        audioFakeElement.src = track.url;
-        audioFakeElement.load();
-      });
+          audioFakeElement.src = track.url;
+          audioFakeElement.load();
+        });
 
       const promises = tracks.map(songsDataPromise);
       const newSongs = await Promise.all(promises);
@@ -167,14 +194,16 @@ const AudioPlayer = ({
     mapSongs();
   }, [tracks]);
 
-  const currentRangeValue = currentTime && AUDIO_ELEMENT && AUDIO_ELEMENT.duration
-    ? Math.floor(currentTime / AUDIO_ELEMENT.duration * 1000) : 0;
+  const currentRangeValue =
+    currentTime && AUDIO_ELEMENT && AUDIO_ELEMENT.duration
+      ? Math.floor((currentTime / AUDIO_ELEMENT.duration) * 1000)
+      : 0;
 
   const song = {
     title: 'Nenhuma seleção.',
     album: '',
     url: '',
-    ...(selectSong || {}),
+    ...(selectSong || {})
   };
   return (
     <Wrapper customStyle={customStyle}>
@@ -201,7 +230,7 @@ const AudioPlayer = ({
           onChange={(e) => {
             if (!AUDIO_ELEMENT) return;
 
-            const time = e.target.value / 1000 * AUDIO_ELEMENT.duration;
+            const time = (e.target.value / 1000) * AUDIO_ELEMENT.duration;
             setCurrentTime(time);
 
             AUDIO_ELEMENT.currentTime = time;
@@ -213,18 +242,16 @@ const AudioPlayer = ({
         />
       </Header>
       <List customStyle={customListStyle}>
-        {
-          renderTracks(songs, setSelectSong, deleteAction, editAction, isUserArtist)
-        }
+        {renderTracks(songs, setSelectSong, deleteAction, editAction, isUserArtist)}
       </List>
     </Wrapper>
   );
-}
+};
 
 const trackShape = {
   id: PropTypes.string,
   url: PropTypes.string,
-  title: PropTypes.number,
+  title: PropTypes.number
 };
 
 AudioPlayer.propTypes = {
@@ -237,7 +264,7 @@ AudioPlayer.propTypes = {
   color: PropTypes.string,
   color15: PropTypes.string,
   color50: PropTypes.string,
-  playPress: PropTypes.string,
+  playPress: PropTypes.string
 };
 
 AudioPlayer.defaultProps = {
@@ -248,7 +275,7 @@ AudioPlayer.defaultProps = {
   color: '',
   color15: '',
   color50: '',
-  playPress: '',
+  playPress: ''
 };
 
 export default AudioPlayer;

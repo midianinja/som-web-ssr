@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import {
-  white, white30, purple, green,
-} from '../../../../../settings/colors';
+import { white, white30, purple, green } from '../../../../../settings/colors';
 
 export const Wrapper = styled.section`
   display: inline-block;

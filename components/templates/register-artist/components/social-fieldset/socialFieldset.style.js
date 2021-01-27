@@ -7,11 +7,11 @@ export const Fieldset = styled.fieldset`
 `;
 
 export const InputsWrapper = styled.div`
-@media (min-width: 1024px) {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
+  @media (min-width: 1024px) {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 export const Title = styled.h2`

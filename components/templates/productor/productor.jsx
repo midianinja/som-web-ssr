@@ -11,52 +11,75 @@ import Store from '../../../store/Store';
 import { purple } from '../../../settings/colors';
 import { steps } from './productor.collections';
 import {
-  fetchMusicalStyleOptions, handleACMusicalStyle, handleMusicalStyleSelect,
-  deleteTag, handleCreateProductor, mapMusicalStyles, handleEditProductor,
-  nextCallback, fetchLocations, handleCountrySelect, handleStateSelect,
+  fetchMusicalStyleOptions,
+  handleACMusicalStyle,
+  handleMusicalStyleSelect,
+  deleteTag,
+  handleCreateProductor,
+  mapMusicalStyles,
+  handleEditProductor,
+  nextCallback,
+  fetchLocations,
+  handleCountrySelect,
+  handleStateSelect
 } from './productor.controller';
-import {
-  LoadingWrapper, Form, FormWrapper,
-} from './productor.style';
+import { LoadingWrapper, Form, FormWrapper } from './productor.style';
 
 /**
  * render basic infos fields
  */
 const renderBasicInfos = ({
-  values, setAbout, setName, productorStepErrors,
-  musicalStylesOptions, musicalStyles, setMusicalStyle, setMusicalStylePredict,
-  setMusicalStyles, setAvatar, setCPF, setCNPJ,
+  values,
+  setAbout,
+  setName,
+  productorStepErrors,
+  musicalStylesOptions,
+  musicalStyles,
+  setMusicalStyle,
+  setMusicalStylePredict,
+  setMusicalStyles,
+  setAvatar,
+  setCPF,
+  setCNPJ
 }) => (
   <BasicInformationFieldset
     descriptionMaxLength={2000}
-    deleteTag={id => deleteTag({
-      id,
-      tags: musicalStyles,
-      setTag: setMusicalStyles,
-    })}
+    deleteTag={(id) =>
+      deleteTag({
+        id,
+        tags: musicalStyles,
+        setTag: setMusicalStyles
+      })
+    }
     handleAboutChange={({ target }) => (target.value.length < 2000 ? setAbout(target.value) : null)}
-    handleAvatarChange={({ target }) => setAvatar({
-      url: URL.createObjectURL(target.files[0]),
-      urls: null,
-      file: target.files[0],
-    })}
+    handleAvatarChange={({ target }) =>
+      setAvatar({
+        url: URL.createObjectURL(target.files[0]),
+        urls: null,
+        file: target.files[0]
+      })
+    }
     handleCNPJChange={({ target }) => setCNPJ(target.value)}
     handleCPFChange={({ target }) => setCPF(target.value)}
     handleNameChange={({ target }) => setName(target.value)}
-    handleMusicalStyleChange={({ target }) => handleACMusicalStyle({
-      value: target.value,
-      musicalStylesOptions,
-      setMusicalStylePredict,
-      setMusicalStyle,
-    })}
-    handleMusicalStyleSelect={value => handleMusicalStyleSelect({
-      value,
-      musicalStylesOptions,
-      musicalStyles,
-      setMusicalStyle,
-      setMusicalStylePredict,
-      setMusicalStyles,
-    })}
+    handleMusicalStyleChange={({ target }) =>
+      handleACMusicalStyle({
+        value: target.value,
+        musicalStylesOptions,
+        setMusicalStylePredict,
+        setMusicalStyle
+      })
+    }
+    handleMusicalStyleSelect={(value) =>
+      handleMusicalStyleSelect({
+        value,
+        musicalStylesOptions,
+        musicalStyles,
+        setMusicalStyle,
+        setMusicalStylePredict,
+        setMusicalStyles
+      })
+    }
     productorStepErrors={productorStepErrors}
     values={values}
   />
@@ -66,8 +89,15 @@ const renderBasicInfos = ({
  * render location fields
  */
 const renderLocationFieldset = ({
-  values, visibles, setCity, setState, setCountry,
-  productorStepErrors, setStates, countries, states,
+  values,
+  visibles,
+  setCity,
+  setState,
+  setCountry,
+  productorStepErrors,
+  setStates,
+  countries,
+  states
 }) => {
   if (!visibles.location) return null;
   return (
@@ -79,8 +109,8 @@ const renderLocationFieldset = ({
       states={states}
       productorStepErrors={productorStepErrors}
       handleCityChange={({ target }) => setCity(target.value)}
-      handleCountrySelect={data => handleCountrySelect({ data, setStates, setCountry })}
-      handleStateSelect={data => handleStateSelect({ data, setState })}
+      handleCountrySelect={(data) => handleCountrySelect({ data, setStates, setCountry })}
+      handleStateSelect={(data) => handleStateSelect({ data, setState })}
     />
   );
 };
@@ -89,8 +119,14 @@ const renderLocationFieldset = ({
  * render contact fields
  */
 const renderContactFieldset = ({
-  visibles, values, setMainPhone, setSecondaryPhone,
-  setWhatsapp, setTelegram, setContactEmail, productorStepErrors,
+  visibles,
+  values,
+  setMainPhone,
+  setSecondaryPhone,
+  setWhatsapp,
+  setTelegram,
+  setContactEmail,
+  productorStepErrors
 }) => {
   if (!visibles.contact) return null;
   return (
@@ -110,8 +146,13 @@ const renderContactFieldset = ({
  * render social fields
  */
 const renderSocialsFieldset = ({
-  visibles, values, setFacebook, setTwitter,
-  setYoutube, setInstagram, productorStepErrors,
+  visibles,
+  values,
+  setFacebook,
+  setTwitter,
+  setYoutube,
+  setInstagram,
+  productorStepErrors
 }) => {
   if (!visibles.socials) return null;
   return (
@@ -127,7 +168,7 @@ const renderSocialsFieldset = ({
 };
 
 /**
- * This contains a form edition to productor profile  
+ * This contains a form edition to productor profile
  * @returns {React.Component} productor form
  */
 const Productor = () => {
@@ -162,7 +203,7 @@ const Productor = () => {
   const [visibles, setVisibles] = useState({
     location: false,
     contact: false,
-    socials: false,
+    socials: false
   });
   const [whatsapp, setWhatsapp] = useState('');
   const [youtube, setYoutube] = useState('https://www.youtube.com/');
@@ -201,7 +242,6 @@ const Productor = () => {
     }
   }, [state.connectionType]);
 
-
   useEffect(() => {
     if (state.user && state.user.productor) {
       mapContextToState(state.user.productor);
@@ -216,22 +256,29 @@ const Productor = () => {
       mapContextToState(productor);
 
       fetchLocations({
-        setCountries, setStates, setState, setCity,
-        productor, setCountry,
+        setCountries,
+        setStates,
+        setState,
+        setCity,
+        productor,
+        setCountry
       });
 
       setVisibles({
         location: true,
         contact: true,
-        socials: true,
+        socials: true
       });
 
       setStep(1);
     } else {
       fetchLocations({
-        setCountries, setStates, setState, setCity,
+        setCountries,
+        setStates,
+        setState,
+        setCity,
         productor: {},
-        setCountry,
+        setCountry
       });
     }
   }, [state.user]);
@@ -243,11 +290,27 @@ const Productor = () => {
   }, [state.loading]);
 
   const values = {
-    avatar, about, cpf, cnpj,
-    instagram, musicalStyles, musicalStylePredict, musicalStyle,
-    name, mainPhone, secondaryPhone, whatsapp, telegram,
-    contactEmail, facebook, youtube, twitter, country, state: locationState,
-    city, locationId,
+    avatar,
+    about,
+    cpf,
+    cnpj,
+    instagram,
+    musicalStyles,
+    musicalStylePredict,
+    musicalStyle,
+    name,
+    mainPhone,
+    secondaryPhone,
+    whatsapp,
+    telegram,
+    contactEmail,
+    facebook,
+    youtube,
+    twitter,
+    country,
+    state: locationState,
+    city,
+    locationId
   };
 
   // verify S.O.M user, if there is not render loading
@@ -260,49 +323,85 @@ const Productor = () => {
   }
 
   return (
-    <Form autocomplete={false} onSubmit={e => e.preventDefault()}>
+    <Form autocomplete={false} onSubmit={(e) => e.preventDefault()}>
       <StepFormHeader color={purple} items={steps} index={step} />
       <FormWrapper>
-        {
-          renderBasicInfos({
-            values, setAbout, setMusicalStyle, musicalStyles,
-            setMusicalStylePredict, musicalStylesOptions, setMusicalStyles,
-            setMusicalStylesOptions, setName, setAvatar, productorStepErrors,
-            setProductorStepErrors, setCNPJ, setCPF,
-          })
-        }
-        {
-          renderLocationFieldset({
-            visibles, values, setState, setCountry, setCity,
-            countries, states, productorStepErrors, setStates,
-            locationId, setLocationId,
-          })
-        }
-        {
-          renderContactFieldset({
-            visibles, values, setMainPhone, setSecondaryPhone,
-            setWhatsapp, setTelegram, setContactEmail, productorStepErrors,
-          })
-        }
-        {
-          renderSocialsFieldset({
-            visibles, values, setFacebook, setInstagram,
-            setTwitter, setYoutube, productorStepErrors,
-          })
-        }
+        {renderBasicInfos({
+          values,
+          setAbout,
+          setMusicalStyle,
+          musicalStyles,
+          setMusicalStylePredict,
+          musicalStylesOptions,
+          setMusicalStyles,
+          setMusicalStylesOptions,
+          setName,
+          setAvatar,
+          productorStepErrors,
+          setProductorStepErrors,
+          setCNPJ,
+          setCPF
+        })}
+        {renderLocationFieldset({
+          visibles,
+          values,
+          setState,
+          setCountry,
+          setCity,
+          countries,
+          states,
+          productorStepErrors,
+          setStates,
+          locationId,
+          setLocationId
+        })}
+        {renderContactFieldset({
+          visibles,
+          values,
+          setMainPhone,
+          setSecondaryPhone,
+          setWhatsapp,
+          setTelegram,
+          setContactEmail,
+          productorStepErrors
+        })}
+        {renderSocialsFieldset({
+          visibles,
+          values,
+          setFacebook,
+          setInstagram,
+          setTwitter,
+          setYoutube,
+          productorStepErrors
+        })}
       </FormWrapper>
       <StepFormFooter
         nextAction={() => {
           if (!id) {
             handleCreateProductor({
-              values, userId: state.user.id, setLoading, visibles, router,
-              setVisibles, setLocationId, dispatch, user: state.user, setId,
+              values,
+              userId: state.user.id,
+              setLoading,
+              visibles,
+              router,
+              setVisibles,
+              setLocationId,
+              dispatch,
+              user: state.user,
+              setId
             });
           } else {
             handleEditProductor(
-              values, id, state.user.id, setLoading,
-              visibles, setVisibles, setLocationId, dispatch,
-              state.user, router,
+              values,
+              id,
+              state.user.id,
+              setLoading,
+              visibles,
+              setVisibles,
+              setLocationId,
+              dispatch,
+              state.user,
+              router
             );
           }
         }}

@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
 export const oneArtistQuery = gql`
-  query($id: ID!){
+  query($id: ID!) {
     oneArtist(id: $id) {
       id
       name

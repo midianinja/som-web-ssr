@@ -1,5 +1,14 @@
 import styled from 'styled-components';
-import { white, purple, green, orange, magenta, gray, secondaryPurple, transparent } from '../../../settings/colors';
+import {
+  white,
+  purple,
+  green,
+  orange,
+  magenta,
+  gray,
+  secondaryPurple,
+  transparent
+} from '../../../settings/colors';
 
 const colors = {
   secondaryPurple,
@@ -8,7 +17,7 @@ const colors = {
   orange,
   magenta,
   gray,
-  transparent,
+  transparent
 };
 
 /**
@@ -21,7 +30,7 @@ function getColor(key) {
 }
 
 const hoverColors = {
-  purple: green,
+  purple: green
 };
 
 /**

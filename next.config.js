@@ -9,15 +9,15 @@ module.exports = withCSS({
     INSTAGRAM_API_URI: process.env.INSTAGRAM_API_URI,
     API_KEY: process.env.API_KEY,
     IDA_API_ID: process.env.IDA_API_ID,
-    IDA_API_KEY: process.env.IDA_API_KEY,
+    IDA_API_KEY: process.env.IDA_API_KEY
   },
-  exportPathMap: defaultPathMap => defaultPathMap, 
+  exportPathMap: (defaultPathMap) => defaultPathMap,
   cssLoaderOptions: {
-    url: false,
+    url: false
   },
   webpack: (config) => {
     config.resolve.extensions = ['.js', '.jsx', ...config.resolve.extensions];
     config.resolve.modules.push(path.resolve('./'));
     return config;
-  },
+  }
 });

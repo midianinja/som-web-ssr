@@ -37,7 +37,7 @@ export const Triangle = styled.span`
   bottom: -9px;
 
   &:after {
-    content: "";
+    content: '';
     position: relative;
     display: inline-block;
     width: 20px;

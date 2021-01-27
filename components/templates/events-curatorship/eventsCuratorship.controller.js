@@ -1,22 +1,24 @@
 import { client } from '../../../libs/apollo.lib';
 import { getAllEventsQuery } from './eventsCuratorship.queries';
-import { approveArtistMutation, reproveArtistMutation, resetSubscriptionMutation } from './eventsCuratorship.mutations';
+import {
+  approveArtistMutation,
+  reproveArtistMutation,
+  resetSubscriptionMutation
+} from './eventsCuratorship.mutations';
 
-const getArtistsDetails = ({
-  evtArtists, event,
-  hasApprove, aprovationStats,
-}) => evtArtists.map(art => ({
-  uniqueId: `${art.id}-${event.id}`,
-  id: art.id,
-  about: art.about,
-  avatar: art.avatar_image,
-  name: art.name,
-  approved: hasApprove ? aprovationStats : '',
-  event: {
-    name: event.name,
-    id: event.id,
-  },
-}));
+const getArtistsDetails = ({ evtArtists, event, hasApprove, aprovationStats }) =>
+  evtArtists.map((art) => ({
+    uniqueId: `${art.id}-${event.id}`,
+    id: art.id,
+    about: art.about,
+    avatar: art.avatar_image,
+    name: art.name,
+    approved: hasApprove ? aprovationStats : '',
+    event: {
+      name: event.name,
+      id: event.id
+    }
+  }));
 
 export const getArtsts = async ({ productor, setArtists, setRatedArtists }) => {
   let subscribers = [];
@@ -26,15 +28,15 @@ export const getArtsts = async ({ productor, setArtists, setRatedArtists }) => {
       query: getAllEventsQuery,
       variables: {
         event: { productor: productor.id },
-        paginator: {},
-      },
+        paginator: {}
+      }
     });
 
     events.data.allEvents.forEach((evt) => {
       const subsArtists = getArtistsDetails({
         evtArtists: evt.subscribers,
         event: evt,
-        hasApprove: false,
+        hasApprove: false
       });
       subscribers = [...subscribers, ...subsArtists];
 
@@ -42,7 +44,7 @@ export const getArtsts = async ({ productor, setArtists, setRatedArtists }) => {
         evtArtists: evt.approved_artists,
         event: evt,
         hasApprove: true,
-        aprovationStats: 'aprovada',
+        aprovationStats: 'aprovada'
       });
       rateds = [...rateds, ...apprArtists];
 
@@ -50,7 +52,7 @@ export const getArtsts = async ({ productor, setArtists, setRatedArtists }) => {
         evtArtists: evt.reproved_artists,
         event: evt,
         hasApprove: true,
-        aprovationStats: 'reprovada',
+        aprovationStats: 'reprovada'
       });
       rateds = [...rateds, ...reprArtists];
     });
@@ -63,19 +65,22 @@ export const getArtsts = async ({ productor, setArtists, setRatedArtists }) => {
 };
 
 export const approveArtist = async ({
-  artist, artists, setArtists,
-  ratedArtists, setRatedArtists,
-  setArtist,
+  artist,
+  artists,
+  setArtists,
+  ratedArtists,
+  setRatedArtists,
+  setArtist
 }) => {
   try {
     await client().mutate({
       mutation: approveArtistMutation,
       variables: {
         event_id: artist.event.id,
-        artist_id: artist.id,
-      },
+        artist_id: artist.id
+      }
     });
-    setArtists(artists.filter(art => art.uniqueId !== `${artist.id}-${artist.event.id}`));
+    setArtists(artists.filter((art) => art.uniqueId !== `${artist.id}-${artist.event.id}`));
     setRatedArtists([...ratedArtists, { ...artist, approved: 'aprovada' }]);
     setArtist(null);
   } catch (err) {
@@ -84,19 +89,22 @@ export const approveArtist = async ({
 };
 
 export const reproveArtist = async ({
-  artist, artists, setArtists,
-  ratedArtists, setRatedArtists,
-  setArtist,
+  artist,
+  artists,
+  setArtists,
+  ratedArtists,
+  setRatedArtists,
+  setArtist
 }) => {
   try {
     await client().mutate({
       mutation: reproveArtistMutation,
       variables: {
         event_id: artist.event.id,
-        artist_id: artist.id,
-      },
+        artist_id: artist.id
+      }
     });
-    setArtists(artists.filter(art => art.uniqueId !== `${artist.id}-${artist.event.id}`));
+    setArtists(artists.filter((art) => art.uniqueId !== `${artist.id}-${artist.event.id}`));
     setRatedArtists([...ratedArtists, { ...artist, approved: 'reprovada' }]);
     setArtist(null);
   } catch (err) {
@@ -105,20 +113,25 @@ export const reproveArtist = async ({
 };
 
 export const resetSubscriptionAction = async ({
-  artist, artists, setArtists,
-  ratedArtists, setRatedArtists,
-  setArtist,
+  artist,
+  artists,
+  setArtists,
+  ratedArtists,
+  setRatedArtists,
+  setArtist
 }) => {
   try {
     await client().mutate({
       mutation: resetSubscriptionMutation,
       variables: {
         event_id: artist.event.id,
-        artist_id: artist.id,
-      },
+        artist_id: artist.id
+      }
     });
     setArtists([...artists, { ...artist, approved: '' }]);
-    setRatedArtists(ratedArtists.filter(art => art.uniqueId !== `${artist.id}-${artist.event.id}`));
+    setRatedArtists(
+      ratedArtists.filter((art) => art.uniqueId !== `${artist.id}-${artist.event.id}`)
+    );
     setArtist(null);
   } catch (err) {
     console.error('err:', err);

@@ -1,11 +1,11 @@
 import WallTemplate from '../../components/templates/wall/wall';
-import BaseHead from '../../components/baseHead'
+import BaseHead from '../../components/baseHead';
 
 /**
  * This render the wall components. The wall component, render events, artists, productors
  * and more about S.O.M
  */
-const Wall  = () => (
+const Wall = () => (
   <>
     <BaseHead
       title="Mural de eventos"

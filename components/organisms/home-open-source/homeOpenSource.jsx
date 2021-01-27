@@ -1,9 +1,14 @@
 import React from 'react';
 import PrimaryButton from '../../atoms/primary-button/primaryButton';
 import {
-  Container, Header, Figure,
-  TextWrapper, Title, Span,
-  GitHubIcon, buttonStyle,
+  Container,
+  Header,
+  Figure,
+  TextWrapper,
+  Title,
+  Span,
+  GitHubIcon,
+  buttonStyle
 } from './homeOpenSource.style';
 
 /**
@@ -28,8 +33,7 @@ const HomeOpenSource = () => (
         window.open('https://github.com/midianinja/som-web', '_blank');
       }}
       customStyle={buttonStyle}
-      color="darkGray"
-    >
+      color="darkGray">
       Colabore
       <GitHubIcon src="/icons/github.svg" />
     </PrimaryButton>

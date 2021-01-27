@@ -5,7 +5,7 @@ export const List = styled.div`
   overflow-y: auto;
   flex-wrap: wrap;
 
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export default List;

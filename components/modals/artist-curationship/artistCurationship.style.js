@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import {
-  black50, white, purple, black,
-  green, red, gray04,
-} from '../../../settings/colors';
+import { black50, white, purple, black, green, red, gray04 } from '../../../settings/colors';
 
 export const ArtistCurationshipModalWrapper = styled.section`
   position: fixed;
@@ -71,7 +68,7 @@ export const ArtistName = styled.h2`
 `;
 
 export const Label = styled.p`
-  font-size: .8em;
+  font-size: 0.8em;
   padding-top: 20px;
 `;
 
@@ -86,7 +83,6 @@ export const Empty = styled.p`
   @media (max-width: 768px) {
     height: 60vh;
   }
-
 `;
 
 export const Bold = styled.label`
@@ -104,7 +100,7 @@ export const RedBold = styled.label`
 `;
 
 export const ArtistDescription = styled.p`
-  font-size: .7em;
+  font-size: 0.7em;
   line-height: 1em;
   color: ${white};
   max-height: 20px;
@@ -120,7 +116,7 @@ export const ArtistDescription = styled.p`
 `;
 
 export const ProfileLink = styled.a`
-  font-size: .7em;
+  font-size: 0.7em;
   line-height: 1em;
   padding-top: 32px;
   color: ${white};

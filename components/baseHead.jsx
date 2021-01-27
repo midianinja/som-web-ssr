@@ -3,15 +3,16 @@ import React from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 
-const BaseHead = ({
-  description, keywords, title, imageUrl,
-}) => (
+const BaseHead = ({ description, keywords, title, imageUrl }) => (
   <Head>
     <title>{`${title} | S.O.M`}</title>
     <meta name="title" content={`${title} S.O.M`} />
     <meta charset="utf-8" />
 
-    <meta name="keywords" content={[...keywords, title, 'S.O.M', 'Sistema', 'Operacional', 'Música'].join(', ')} />
+    <meta
+      name="keywords"
+      content={[...keywords, title, 'S.O.M', 'Sistema', 'Operacional', 'Música'].join(', ')}
+    />
     <meta name="language" content="en-us" />
     <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content={description} />
@@ -32,14 +33,14 @@ BaseHead.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   imageUrl: PropTypes.string,
-  keywords: PropTypes.arrayOf(PropTypes.string),
+  keywords: PropTypes.arrayOf(PropTypes.string)
 };
 
 BaseHead.defaultProps = {
   keywords: [],
   imageUrl: '',
   title: 'S.O.M | Sistema Operacional da Música Brasileira',
-  description: '',
+  description: ''
 };
 
 export default BaseHead;

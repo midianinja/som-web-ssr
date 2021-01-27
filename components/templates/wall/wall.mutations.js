@@ -3,7 +3,7 @@ import { gql } from 'apollo-boost';
 export const subscribe = gql`
   mutation subscribe($id: String!, $artistID: String!) {
     subscribeEvent(id: $id, artistID: $artistID) {
-       id
+      id
       name
       about
       event_date
@@ -32,10 +32,10 @@ export const subscribe = gql`
         id
       }
       cover @defer {
-       mimified
+        mimified
       }
       photo {
-       mimified
+        mimified
       }
       productor @defer {
         id
@@ -60,7 +60,7 @@ export const subscribe = gql`
 export const unsubscribe = gql`
   mutation unsubscribe($id: String!, $artistID: String!) {
     unsubscribeEvent(id: $id, artistID: $artistID) {
-       id
+      id
       name
       about
       event_date
@@ -89,10 +89,10 @@ export const unsubscribe = gql`
         id
       }
       cover {
-       mimified 
+        mimified
       }
       photo {
-       mimified 
+        mimified
       }
       productor {
         id

@@ -1,8 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import {
-    black50, black, white, purple,
-    magenta, orange,
-  } from '../../../settings/colors';
+import { black50, black, white, purple, magenta, orange } from '../../../settings/colors';
 
 export const openModalKeyframes = keyframes`
     from {
@@ -98,7 +95,6 @@ export const Link = styled.a`
     if (props.hide) return 'display: none;';
     return '';
   }}
-  
 `;
 
 export const Logout = styled.a`

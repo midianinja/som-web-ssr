@@ -4,13 +4,11 @@ import { Wrapper, Circle, Label } from './checkBox.style';
 
 /**
  * function that render Checkbox react component
- * 
+ *
  * @param {object} props component props
  * @returns contains Checkbox Component
  */
-function Checkbox({
-  checked, text, onChange,
-}) {
+function Checkbox({ checked, text, onChange }) {
   return (
     <Wrapper onClick={onChange}>
       <Circle checked={checked} />
@@ -22,7 +20,7 @@ function Checkbox({
 Checkbox.propTypes = {
   checked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
 };
 
 Checkbox.defaultProps = {};

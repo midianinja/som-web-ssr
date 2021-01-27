@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { white10, white, gray02 } from '../../../settings/colors';
+import { white } from '../../../settings/colors';
 
 export const Input = styled.input`
   height: 38px;
@@ -17,7 +17,7 @@ export const Input = styled.input`
     padding-left: 14px;
     padding-right: 14px;
   }
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const Wrapper = styled.div`

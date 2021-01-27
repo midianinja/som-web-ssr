@@ -1,4 +1,4 @@
-import { gql } from "apollo-boost";
+import { gql } from 'apollo-boost';
 
 export const getOneEventQuery = gql`
   query oneEvent($id: ID!) {
@@ -65,4 +65,4 @@ export const getOneEventQuery = gql`
   }
 `;
 
-export const getAssociatedEvents = "";
+export const getAssociatedEvents = '';

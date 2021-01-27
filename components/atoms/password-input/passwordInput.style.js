@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import {
-  white10, white, secondaryRed, secondaryYellow, terciaryGreen,
-  transparent,
+  white10,
+  white,
+  secondaryRed,
+  secondaryYellow,
+  terciaryGreen,
+  transparent
 } from '../../../settings/colors';
 
 const getColor = (point) => {
@@ -9,7 +13,7 @@ const getColor = (point) => {
   if (point < 60) return secondaryRed;
   if (point < 90) return secondaryYellow;
   return terciaryGreen;
-}
+};
 
 export const Input = styled.input`
   width: calc(100% - 18px);
@@ -32,7 +36,7 @@ export const Icon = styled.img`
 `;
 
 export const PasswordInputWrapper = styled.div`
-  width: ${props => props.width};
+  width: ${(props) => props.width};
   height: 38px;
   background-color: ${white10};
   border-radius: 38px;
@@ -40,6 +44,6 @@ export const PasswordInputWrapper = styled.div`
   padding-right: 15px;
 
   :focus-within {
-    border: solid 2px ${props => getColor(props.point)};
+    border: solid 2px ${(props) => getColor(props.point)};
   }
 `;

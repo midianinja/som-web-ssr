@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import {
-  white, purple, black50, black,
-} from '../../../settings/colors';
+import { white, purple, black50, black } from '../../../settings/colors';
 
 export const ModalWrapper = styled.div`
   display: ${(props) => {
@@ -36,7 +34,7 @@ export const IconWrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 200px;
-  padding-top: 30px; 
+  padding-top: 30px;
 `;
 
 export const Icon = styled.img`

@@ -1,7 +1,4 @@
-export const basicInformationIsValid = (
-  { name, about, cpf, cnpj },
-  locationId,
-) => {
+export const basicInformationIsValid = ({ name, about, cpf, cnpj }, locationId) => {
   let validated = true;
 
   if (!name) validated = false;

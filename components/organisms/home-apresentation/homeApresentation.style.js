@@ -9,7 +9,7 @@ export const HomeWrapper = styled.section`
   min-height: 100vh;
   align-items: center;
   padding: 30px;
-  background-image: url("/images/lp-background.jpg");
+  background-image: url('/images/lp-background.jpg');
   background-size: 220%;
   background-position: top;
 
@@ -35,9 +35,8 @@ export const Wrapper = styled.div`
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
-  z-index: ${zindex + 1}; 
+  z-index: ${zindex + 1};
 `;
-
 
 export const Content = styled.div`
   width: 100%;
@@ -78,15 +77,15 @@ export const IDARegisterButton = styled.button`
   font-style: normal;
   width: auto;
   height: 48px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 14px;
   text-transform: uppercase;
   font-weight: 400;
   border-style: solid;
-  border-color: #1D1D1D;
+  border-color: #1d1d1d;
   border-width: 2px;
   border-radius: 48px;
-  background-color: #1D1D1D;
+  background-color: #1d1d1d;
   padding: 8px 24px;
   cursor: pointer;
 `;

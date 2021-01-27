@@ -1,7 +1,7 @@
-import { gql } from "apollo-boost";
+import { gql } from 'apollo-boost';
 
 export const oneArtistQuery = gql`
-  query($id: ID!){
+  query($id: ID!) {
     oneArtist(id: $id) {
       id
       name
@@ -58,14 +58,8 @@ export const allSongsQuery = gql`
 `;
 
 export const searchArtistsQuery = gql`
-  query searchArtists(
-    $artist: JSON
-    $paginator: PaginatorInput
-  ) {
-    searchArtists(
-      artist: $artist
-      paginator: $paginator
-    ) {
+  query searchArtists($artist: JSON, $paginator: PaginatorInput) {
+    searchArtists(artist: $artist, paginator: $paginator) {
       id
       name
       avatar_image {

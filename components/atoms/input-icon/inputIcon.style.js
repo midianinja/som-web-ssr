@@ -34,5 +34,5 @@ export const InputIconWrapper = styled.div`
 
 export const icons = {
   calendar: '/icons/calendar.svg',
-  info: '/icons/info.svg',
+  info: '/icons/info.svg'
 };

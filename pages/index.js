@@ -1,10 +1,11 @@
+import React from 'react';
 import HomeTemplate from '../components/templates/home/home';
-import BaseHead from '../components/baseHead'
+import BaseHead from '../components/baseHead';
 
 /**
- * This render the Home template. 
+ * This render the Home template.
  */
-const Home  = () => (
+const Home = () => (
   <>
     <BaseHead />
     <HomeTemplate />

@@ -7,11 +7,11 @@ export const loadingStatus = {
   LOADDED: 0,
   LOADING: 1,
   ERROR: 2,
-  TO_LOAD: 3,
+  TO_LOAD: 3
 };
 
 export const initialLoading = {
-  event: loadingStatus.TO_LOAD,
+  event: loadingStatus.TO_LOAD
 };
 
 export const initialEvent = {
@@ -30,8 +30,8 @@ export const initialEvent = {
     about: '',
     following: [],
     followers: [],
-    location: {},
-  },
+    location: {}
+  }
 };
 
 export const fetchEventData = async (id, setEvent, loading, setLoading, setDialog, router) => {
@@ -41,12 +41,10 @@ export const fetchEventData = async (id, setEvent, loading, setLoading, setDialo
   try {
     eventData = await client().query({
       query: getOneEventQuery,
-      variables: { id },
+      variables: { id }
     });
   } catch (err) {
-    // tratar esse erro
     setLoading({ ...loading, event: loadingStatus.ERROR });
-    console.error([err]);
     throw err;
   }
 
@@ -56,8 +54,9 @@ export const fetchEventData = async (id, setEvent, loading, setLoading, setDialo
       icon: '/icons/guita-error.svg',
       description: 'Logo teremos mais eventos, fique ligado para se inscrever.',
       disagreeText: 'Ir para home',
-      disagreeAction: () => router.push('/'),
+      disagreeAction: () => router.push('/')
     });
+
     return;
   }
 
@@ -69,10 +68,7 @@ export const associatedEvents = async (id, setAssociatedEvents) => {
   setAssociatedEvents([]);
 };
 
-export const subscribeAction = async (
-  auth, user, event, dispatch, setDialog, setEvent,
-  router,
-) => {
+export const subscribeAction = async (auth, user, event, dispatch, setDialog, setEvent, router) => {
   if (!auth) {
     dispatch({ type: 'SHOW_LOGIN_MODAL' });
     return;
@@ -92,19 +88,12 @@ export const subscribeAction = async (
       disagreeAction: () => {
         allowBodyScroll();
         setDialog({});
-      },
+      }
     });
     return;
   }
 
-
-  let resp;
-  try {
-    resp = await subscribeEvent(event.id, user.artist.id);
-  } catch (err) {
-    console.error([err]);
-    throw err;
-  }
+  const resp = await subscribeEvent(event.id, user.artist.id);
 
   setDialog({
     title: 'Pronto!',
@@ -115,17 +104,13 @@ export const subscribeAction = async (
       allowBodyScroll();
       router.push('/events');
       setDialog({});
-    },
+    }
   });
 
   setEvent(resp.data.subscribeEvent);
 };
 
 export const unsubscribeAction = async (user, event, setEvent) => {
-  try {
-    const myEvent = await unsubscribeEvent(event.id, user.artist.id);
-    setEvent(myEvent.data.unsubscribeEvent);
-  } catch (err) {
-    throw err;
-  }
+  const myEvent = await unsubscribeEvent(event.id, user.artist.id);
+  setEvent(myEvent.data.unsubscribeEvent);
 };

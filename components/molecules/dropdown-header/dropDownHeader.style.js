@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import {
-  white, black, magenta, purple,
-  theBestColor, alertColor,
-} from '../../../settings/colors';
+import { white, black, magenta, purple, theBestColor, alertColor } from '../../../settings/colors';
 import { getGradient } from '../../../settings/gradients';
 
 export const Dropdown = styled.div`
@@ -55,8 +52,8 @@ export const Avatar = styled.img`
     margin-top: 34px;
   }
 
-  &[src=""] {
-    content: url("data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
+  &[src=''] {
+    content: url('data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
   }
 `;
 
@@ -111,22 +108,22 @@ export const ChagingAccount = styled.h4`
     font-weight: 500;
 
     ${(props) => {
-    if (props.type === 'artist') {
-      return `
+      if (props.type === 'artist') {
+        return `
         color: ${magenta};    
       `;
-    }
+      }
 
-    if (props.type === 'productor') {
-      return `
+      if (props.type === 'productor') {
+        return `
         color: ${purple};
       `;
-    }
+      }
 
-    return `
+      return `
       color: ${black};
     `;
-  }}
+    }}
   }
 
   ${(props) => {

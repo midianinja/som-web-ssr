@@ -9,12 +9,12 @@ export const IDALoginButtonWrapper = styled.button`
   font-style: normal;
   width: auto;
   height: 38px;
-  color: ${({ dark }) => dark ? '#1D1D1D' : '#FFFFFF'};  
+  color: ${({ dark }) => (dark ? '#1D1D1D' : '#FFFFFF')};
   font-size: 11px;
   text-transform: uppercase;
   font-weight: 400;
   border-style: solid;
-  border-color: ${({ dark }) => dark ? '#1D1D1D' : '#FFFFFF'};
+  border-color: ${({ dark }) => (dark ? '#1D1D1D' : '#FFFFFF')};
   border-width: 2px;
   border-radius: 44px;
   background-color: transparent;
@@ -24,7 +24,7 @@ export const IDALoginButtonWrapper = styled.button`
   @media (min-width: 1024px) {
     padding: 4px 20px;
     font-size: 14px;
-  } 
+  }
 `;
 
 export const IDALogo = styled.img`
@@ -33,6 +33,6 @@ export const IDALogo = styled.img`
 
   @media (min-width: 1024px) {
     width: 20px;
-    margin-right: 8px;  
-  } 
+    margin-right: 8px;
+  }
 `;

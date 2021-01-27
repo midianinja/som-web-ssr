@@ -89,4 +89,4 @@ export const allStateQuery = gql`
   }
 `;
 
-export const getAssociatedEvents = "";
+export const getAssociatedEvents = '';

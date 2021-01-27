@@ -9,9 +9,9 @@ export const verifyAuth = async (token) => {
       {
         headers: {
           'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-        },
-      },
+          'Content-Type': 'application/json'
+        }
+      }
     );
   } catch (err) {
     window.localStorage.setItem('som@ida', '');

@@ -10,10 +10,10 @@ export const dateToStringDDMMYYY = (date) => {
   if (!date) return '--/--/---';
 
   let myDate = date;
-  if ((typeof myDate === 'string') || (typeof myDate === 'number')) myDate = new Date(myDate);
+  if (typeof myDate === 'string' || typeof myDate === 'number') myDate = new Date(myDate);
 
   const day = myDate.getDate() > 9 ? myDate.getDate() : `0${myDate.getDate()}`;
-  const month = (myDate.getMonth() + 1) > 9 ? (myDate.getMonth() + 1) : `0${myDate.getMonth() + 1}`;
+  const month = myDate.getMonth() + 1 > 9 ? myDate.getMonth() + 1 : `0${myDate.getMonth() + 1}`;
   const year = myDate.getFullYear();
 
   return `${day}/${month}/${year}`;
@@ -37,12 +37,13 @@ export const dateToStringDDMMYYYHHMM = (date) => {
   }
 
   const day = myDate.getDate() > 9 ? myDate.getDate() : `0${myDate.getDate()}`;
-  const month = (myDate.getMonth() + 1) > 9 ? (myDate.getMonth() + 1) : `0${myDate.getMonth() + 1}`;
+  const month = myDate.getMonth() + 1 > 9 ? myDate.getMonth() + 1 : `0${myDate.getMonth() + 1}`;
   const year = myDate.getFullYear();
 
   const hours = myDate.getHours();
   const min = myDate.getMinutes();
 
-
-  return `${day}/${month}/${year} - ${hours < 10 ? `0${hours}` : hours}:${min < 10 ? `0${min}` : min}`;
+  return `${day}/${month}/${year} - ${hours < 10 ? `0${hours}` : hours}:${
+    min < 10 ? `0${min}` : min
+  }`;
 };

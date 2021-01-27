@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import VMasker from 'vanilla-masker';
 import Input from '../../../../atoms/input/input';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
-import {
-  Fieldset, Title, Row, inputGroup50CustomStyle,
-} from './contactFieldset.style';
+import { Fieldset, Title, Row, inputGroup50CustomStyle } from './contactFieldset.style';
 
 const ContactFieldset = ({
-  handleMainPhoneChange, handleWhatsappChange, handleTelegramChange,
-  handleContactEmailChange, productorStepErrors, values,
+  handleMainPhoneChange,
+  handleWhatsappChange,
+  handleTelegramChange,
+  handleContactEmailChange,
+  productorStepErrors,
+  values
 }) => (
   <Fieldset>
     <Title>Informações de contato</Title>
@@ -17,8 +19,7 @@ const ContactFieldset = ({
       <InputGroup
         label={values.mainPhone ? 'Celular' : ''}
         error={productorStepErrors.mainPhone}
-        customStyle={inputGroup50CustomStyle}
-      >
+        customStyle={inputGroup50CustomStyle}>
         <Input
           id="mainPhone"
           type="text"
@@ -30,8 +31,7 @@ const ContactFieldset = ({
       <InputGroup
         label={values.whatsapp ? 'Whatsapp' : ''}
         error={productorStepErrors.whatsapp}
-        customStyle={inputGroup50CustomStyle}
-      >
+        customStyle={inputGroup50CustomStyle}>
         <Input
           id="whatsapp"
           placeholder="Whatsapp"
@@ -45,8 +45,7 @@ const ContactFieldset = ({
       <InputGroup
         label={values.telegram ? 'Telegram' : ''}
         error={productorStepErrors.telegram}
-        customStyle={inputGroup50CustomStyle}
-      >
+        customStyle={inputGroup50CustomStyle}>
         <Input
           id="telegram"
           placeholder="Telegram"
@@ -58,8 +57,7 @@ const ContactFieldset = ({
       <InputGroup
         label={values.contactEmail ? 'Email de contato' : ''}
         error={productorStepErrors.contactEmail}
-        customStyle={inputGroup50CustomStyle}
-      >
+        customStyle={inputGroup50CustomStyle}>
         <Input
           id="contactEmail"
           placeholder="Email de contato"
@@ -76,7 +74,7 @@ const valuesShape = {
   about: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   cpf: PropTypes.string.isRequired,
-  cnpj: PropTypes.string.isRequired,
+  cnpj: PropTypes.string.isRequired
 };
 
 const errorsShape = {
@@ -84,7 +82,7 @@ const errorsShape = {
   name: PropTypes.string,
   about: PropTypes.string,
   cnpj: PropTypes.string,
-  cpf: PropTypes.string,
+  cpf: PropTypes.string
 };
 
 ContactFieldset.propTypes = {
@@ -94,7 +92,7 @@ ContactFieldset.propTypes = {
   handleTelegramChange: PropTypes.func.isRequired,
   handleContactEmailChange: PropTypes.func.isRequired,
   values: PropTypes.shape(valuesShape).isRequired,
-  productorStepErrors: PropTypes.shape(errorsShape).isRequired,
+  productorStepErrors: PropTypes.shape(errorsShape).isRequired
 };
 
 export default ContactFieldset;

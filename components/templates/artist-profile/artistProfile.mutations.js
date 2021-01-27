@@ -1,7 +1,7 @@
-import { gql } from "apollo-boost";
+import { gql } from 'apollo-boost';
 
 export const followMutation = gql`
-  mutation($user: ID!, $artist: ID!){
+  mutation($user: ID!, $artist: ID!) {
     followArtist(user: $user, artist: $artist) {
       id
       follows {
@@ -14,7 +14,7 @@ export const followMutation = gql`
 `;
 
 export const unfollowMutation = gql`
-  mutation($user: ID!, $artist: ID!){
+  mutation($user: ID!, $artist: ID!) {
     unfollowArtist(user: $user, artist: $artist) {
       id
       follows {
@@ -27,12 +27,8 @@ export const unfollowMutation = gql`
 `;
 
 export const deleteSongMutation = gql`
-  mutation deleteSong(
-    $song_id: ID!
-  ) {
-    deleteSong(
-      song_id: $song_id
-    ) {
+  mutation deleteSong($song_id: ID!) {
+    deleteSong(song_id: $song_id) {
       id
       url
       title
@@ -44,14 +40,8 @@ export const deleteSongMutation = gql`
 `;
 
 export const editSongMutation = gql`
-  mutation updateSong(
-    $song_id: ID!
-    $song: SongInput!
-  ) {
-    updateSong(
-      song_id: $song_id
-      song: $song
-    ) {
+  mutation updateSong($song_id: ID!, $song: SongInput!) {
+    updateSong(song_id: $song_id, song: $song) {
       id
       url
       title

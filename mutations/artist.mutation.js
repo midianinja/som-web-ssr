@@ -1,12 +1,8 @@
 import gql from 'graphql-tag';
 
 export const createArtistMutation = gql`
-  mutation createArtist(
-    $artist: ArtistInput!
-  ) {
-    createArtist(
-      artist: $artist
-    ) {
+  mutation createArtist($artist: ArtistInput!) {
+    createArtist(artist: $artist) {
       id
       name
       members_number
@@ -35,14 +31,8 @@ export const createArtistMutation = gql`
 `;
 
 export const upadteArtistMutation = gql`
-  mutation updateArtist(
-    $artist_id: ID!
-    $artist: ArtistInput!
-  ) {
-    updateArtist(
-      artist_id: $artist_id
-      artist: $artist
-    ) {
+  mutation updateArtist($artist_id: ID!, $artist: ArtistInput!) {
+    updateArtist(artist_id: $artist_id, artist: $artist) {
       id
       stage_map
       tec_rider

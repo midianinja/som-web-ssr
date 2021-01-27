@@ -2,20 +2,13 @@ import { init } from '../../libs/ida.lib';
 import { getUser, createUserSOM } from './main.repository';
 
 /**
- * this find user on S.O.M api by the ida and set in global state 
+ * this find user on S.O.M api by the ida and set in global state
  * @param {string} ida this is the ativist identifier to search on S.O.M api
  * @param {function} dispatch this set new global state
  * @param {object} router this is the a manager app router
  */
 export const fetchLoggedUser = async (ida, dispatch, router) => {
-  let response;
-
-  try {
-    response = await getUser(ida);
-  } catch (err) {
-    throw err;
-  }
-
+  let response = await getUser(ida);
 
   let user = response.data.oneUser;
   if (!user) {
@@ -24,21 +17,16 @@ export const fetchLoggedUser = async (ida, dispatch, router) => {
     router.push('/wall');
   }
 
-  // cria um novo usuário S.O.M caso não seja encontrado  
+  // cria um novo usuário S.O.M caso não seja encontrado
   if (!user) {
-    try {
-      response = await createUserSOM(ida);
-    } catch (err) {
-      throw err;
-    }
-
+    response = await createUserSOM(ida);
     user = response.data.createUser;
   }
 
   // seta o usuário S.O.M na context API
   dispatch({
     type: 'SET_USER',
-    user: user,
+    user: user
   });
 
   let typeConnection = 'public';
@@ -62,7 +50,7 @@ export const fetchLoggedUser = async (ida, dispatch, router) => {
   // seta o tipo de login do usuário S.O.M na context API
   dispatch({
     type: 'SET_LOGIN_TYPE',
-    data: typeConnection,
+    data: typeConnection
   });
 
   dispatch({ type: 'STOP_AUTH_LOADING' });
@@ -76,7 +64,7 @@ export const fetchLoggedUser = async (ida, dispatch, router) => {
  * @param {object} router this is the a manager app router
  */
 export const initIDA = async (dispatch, router) => {
-  let sdk; 
+  let sdk;
   try {
     sdk = await init({
       onAuthChange: (auth) => {
@@ -90,7 +78,7 @@ export const initIDA = async (dispatch, router) => {
         // setta o usuário IDa na context API
         dispatch({
           type: 'SET_AUTH',
-          auth,
+          auth
         });
       }
     });

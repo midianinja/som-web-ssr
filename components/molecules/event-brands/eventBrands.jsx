@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LinkButton from '../../atoms/link-button/LinkButton';
-import {
-  Container, Icon, LinkContainer,
-} from './eventBrands.style';
+import { Container, Icon, LinkContainer } from './eventBrands.style';
 
-const EventDate = ({
-  subscribed, iconSrc, linkColor,
-  linkSize, linkFontSize,
-}) => (
+const EventDate = ({ subscribed, iconSrc, linkColor, linkSize, linkFontSize }) => (
   <Container>
     <Icon src={iconSrc} />
     <LinkContainer>
@@ -21,7 +16,7 @@ const EventDate = ({
 );
 
 EventDate.propTypes = {
-  subscribed: PropTypes.string,
+  subscribed: PropTypes.string
 };
 
 EventDate.defaultProps = {
@@ -29,7 +24,7 @@ EventDate.defaultProps = {
   iconSrc: '/icons/audio_track.svg',
   linkColor: 'green',
   linkSize: 'default',
-  linkFontSize: 'large',
+  linkFontSize: 'large'
 };
 
 export default EventDate;

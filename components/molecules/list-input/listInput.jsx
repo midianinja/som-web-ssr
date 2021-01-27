@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../atoms/input/input';
-import {
-  SelectWrapper, Image, Option, Options, Label,
-} from './listInput.style';
+import { SelectWrapper, Image, Option, Options, Label } from './listInput.style';
 
 /**
  * function that render options on props
@@ -11,19 +9,16 @@ import {
  * @param {function} onClick it is the function that select the option
  * @returns contains Option Component array
  */
-const renderOptions = (options, onClick) => options.map((value) => {
-  const { id, label, image } = value;
-  return (
-    <Option
-      key={id}
-      id={id}
-      onClick={() => onClick(value)}
-    >
-      <Image src={image} visible={!!image} />
-      {label}
-    </Option>
-  );
-});
+const renderOptions = (options, onClick) =>
+  options.map((value) => {
+    const { id, label, image } = value;
+    return (
+      <Option key={id} id={id} onClick={() => onClick(value)}>
+        <Image src={image} visible={!!image} />
+        {label}
+      </Option>
+    );
+  });
 
 const normalizeString = (text) => {
   let str = text;
@@ -34,9 +29,7 @@ const normalizeString = (text) => {
   return str.replace(/[^a-zA-Z ]/g, '').toUpperCase();
 };
 
-const handleChange = (
-  event, setValue, options, setList,
-) => {
+const handleChange = (event, setValue, options, setList) => {
   const { value } = event.target;
 
   const list = options.filter((op) => {
@@ -50,10 +43,7 @@ const handleChange = (
 };
 
 function ListInput(props) {
-  const {
-    placeholder, options, selected, id,
-    tabIndex, onSelect,
-  } = props;
+  const { placeholder, options, selected, id, tabIndex, onSelect } = props;
   const [focus, setFocus] = useState(false);
   const [value, setValue] = useState('');
   const [list, setList] = useState(options);
@@ -67,13 +57,13 @@ function ListInput(props) {
     setFocus(false);
   };
   useEffect(() => {
-    document.addEventListener("click", handleClickOutside, false);
+    document.addEventListener('click', handleClickOutside, false);
     return () => {
-      document.removeEventListener("click", handleClickOutside, false);
+      document.removeEventListener('click', handleClickOutside, false);
     };
   }, []);
 
-  const handleClickOutside = event => {
+  const handleClickOutside = (event) => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
       setFocus(false);
     }
@@ -87,10 +77,10 @@ function ListInput(props) {
           onFocus={() => setFocus(true)}
           customStyle="background-color: transparent;"
           placeholder={selected.label || placeholder}
-          onBlur={e => e.preventDefault()}
+          onBlur={(e) => e.preventDefault()}
           value={value || ''}
           autoComplete="new-password"
-          onChange={e => handleChange(e, setValue, options, setList)}
+          onChange={(e) => handleChange(e, setValue, options, setList)}
         />
       </Label>
       <Options focus={focus && list.length}>{renderOptions(list, select)}</Options>
@@ -101,7 +91,7 @@ function ListInput(props) {
 const optionShape = {
   image: PropTypes.string,
   label: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired
 };
 
 ListInput.propTypes = {
@@ -110,15 +100,15 @@ ListInput.propTypes = {
   options: PropTypes.arrayOf(PropTypes.shape(optionShape)),
   selected: PropTypes.shape(optionShape),
   onSelect: PropTypes.func.isRequired,
-  tabIndex: PropTypes.number,
+  tabIndex: PropTypes.number
 };
 
 ListInput.defaultProps = {
   placeholder: 'Selecione',
-  id: `${(Math.random() * 999)}`,
+  id: `${Math.random() * 999}`,
   options: [],
   selected: {},
-  tabIndex: 1,
+  tabIndex: 1
 };
 
 export default ListInput;

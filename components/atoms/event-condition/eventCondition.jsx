@@ -1,19 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Container, Icon,
-  ECondition, Status,
-} from './eventCondition.style';
+import { Container, Icon, ECondition, Status } from './eventCondition.style';
 
 /**
  * function that render EventCondition react component
- * 
+ *
  * @param {object} props component props
  * @returns contains EventCondition Component
  */
-const EventCondition = ({
-  condition, checked, title, checkedIcon,
-}) => (
+const EventCondition = ({ condition, checked, title, checkedIcon }) => (
   <Container checked={checked}>
     <div>
       <Icon src={`/icons/${condition}.svg`} />
@@ -29,14 +24,14 @@ EventCondition.propTypes = {
   condition: PropTypes.string,
   checked: PropTypes.bool,
   title: PropTypes.string,
-  checkedIcon: PropTypes.string,
+  checkedIcon: PropTypes.string
 };
 
 EventCondition.defaultProps = {
   condition: 'calendar',
   checked: false,
   title: 'Transporte',
-  checkedIcon: '/icons/checked.svg',
+  checkedIcon: '/icons/checked.svg'
 };
 
 export default EventCondition;

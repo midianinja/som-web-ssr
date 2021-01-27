@@ -4,7 +4,7 @@ import { allSongsQuery } from './artistCurationship.queries';
 export const fetchSongs = async ({ artist, setSongs }) => {
   const songsPromise = await client().query({
     query: allSongsQuery,
-    variables: { song: { artist: artist.id } },
+    variables: { song: { artist: artist.id } }
   });
   setSongs(songsPromise.data.allSongs);
 };

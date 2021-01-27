@@ -28,7 +28,7 @@ export const Title = styled.h1`
   vertical-align: top;
   margin-right: 40px;
   margin-bottom: 15px;
-  
+
   @media (min-width: 1024px) {
     font-size: 2.375rem;
   }

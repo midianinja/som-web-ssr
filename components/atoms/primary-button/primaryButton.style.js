@@ -1,12 +1,20 @@
 import styled from 'styled-components';
 import {
-  white, purple, green, orange, magenta, gray, secondaryPurple, transparent,
-  darkGray, secondaryOrange,
+  white,
+  purple,
+  green,
+  orange,
+  magenta,
+  gray,
+  secondaryPurple,
+  transparent,
+  darkGray,
+  secondaryOrange
 } from '../../../settings/colors';
 
 const sizes = {
   small: '28px',
-  medium: '38px',
+  medium: '38px'
 };
 
 /**
@@ -28,7 +36,7 @@ const colors = {
   gray,
   transparent,
   white,
-  darkGray,
+  darkGray
 };
 
 /**
@@ -41,7 +49,7 @@ function getColor(key) {
 }
 
 const hoverColors = {
-  purple: green,
+  purple: green
 };
 
 /**
@@ -54,11 +62,11 @@ function getHoverColor(key) {
 }
 
 export const PrimaryButtonStyle = styled.button`
-  height: ${props => getSize(props.size)};
+  height: ${(props) => getSize(props.size)};
   padding-left: 30px;
   padding-right: 30px;
-  border-radius: ${props => getSize(props.size)};
-  background-color: ${props => getColor(props.color)};
+  border-radius: ${(props) => getSize(props.size)};
+  background-color: ${(props) => getColor(props.color)};
   color: ${(props) => {
     const { color } = props;
     return color === 'white' ? purple : white;
@@ -68,7 +76,7 @@ export const PrimaryButtonStyle = styled.button`
   font-size: 0.8571428571em;
 
   :active {
-    background-color: ${props => getHoverColor(props.color)};
+    background-color: ${(props) => getHoverColor(props.color)};
   }
 
   :focus {
@@ -77,19 +85,19 @@ export const PrimaryButtonStyle = styled.button`
 
   :disabled {
     background-color: ${(props) => {
-    const { color } = props;
-    return color === 'white' ? white : gray;
-  }};
+      const { color } = props;
+      return color === 'white' ? white : gray;
+    }};
     color: ${(props) => {
-    const { color } = props;
-    return color === 'white' ? purple : white;
-  }};
-  opacity: ${(props) => {
-    const { color } = props;
-    return color === 'white' ? '0.7' : '1';
-  }};
+      const { color } = props;
+      return color === 'white' ? purple : white;
+    }};
+    opacity: ${(props) => {
+      const { color } = props;
+      return color === 'white' ? '0.7' : '1';
+    }};
     cursor: not-allowed;
   }
 
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;

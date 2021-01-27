@@ -5,11 +5,11 @@ export const loadingStatus = {
   LOADDED: 0,
   LOADING: 1,
   ERROR: 2,
-  TO_LOAD: 3,
+  TO_LOAD: 3
 };
 
 export const initialLoading = {
-  event: loadingStatus.TO_LOAD,
+  event: loadingStatus.TO_LOAD
 };
 
 export const initialEvent = {
@@ -28,14 +28,11 @@ export const initialEvent = {
     about: '',
     following: [],
     followers: [],
-    location: {},
-  },
+    location: {}
+  }
 };
 
-export const fetchEventsData = async ({
-  setEvents, loading, setLoading,
-  setDialog, user,
-}) => {
+export const fetchEventsData = async ({ setEvents, loading, setLoading, setDialog, user }) => {
   setLoading({ ...loading, event: loadingStatus.LOADING });
   let eventData;
 
@@ -45,9 +42,9 @@ export const fetchEventsData = async ({
       variables: {
         event: { productor: user.productor.id },
         paginator: {
-          limit: 20,
-        },
-      },
+          limit: 20
+        }
+      }
     });
     if (!eventData.data.allEvents.length) {
       setDialog({
@@ -55,7 +52,7 @@ export const fetchEventsData = async ({
         icon: '/icons/guita-error.svg',
         description: 'Logo teremos mais eventos, fique ligado para se inscrever.',
         disagreeText: 'Fechar',
-        disagreeAction: () => setDialog({}),
+        disagreeAction: () => setDialog({})
       });
       return;
     }
@@ -63,7 +60,7 @@ export const fetchEventsData = async ({
     setEvents(eventData.data.allEvents);
     setLoading({
       ...loading,
-      event: loadingStatus.LOADDED,
+      event: loadingStatus.LOADDED
     });
   } catch (err) {
     // tratar esse erro

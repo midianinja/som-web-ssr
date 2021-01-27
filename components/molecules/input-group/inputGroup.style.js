@@ -7,7 +7,7 @@ export const InptGroupContainer = styled.div`
   flex-direction: column;
   margin-bottom: 20px;
   vertical-align: top;
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const Label = styled.label`
@@ -22,8 +22,8 @@ export const ErrorText = styled.span`
   font-size: 0.8em;
   margin-bottom: 10px;
   margin-left: 5px;
-  font-weight: 300;   
-  color: ${secondaryRed};  
+  font-weight: 300;
+  color: ${secondaryRed};
 `;
 
 export const InfoText = styled.span`

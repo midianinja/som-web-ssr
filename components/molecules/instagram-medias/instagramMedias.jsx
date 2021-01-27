@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LinkButton from '../../atoms/link-button/LinkButton';
 // import ProgresiveImage from '../atoms/ProgressiveImage.atom';
-import {
-  imgStyle, Container, Row,
-  MobileRow, Title,
-} from './instagramMedias.style';
+import { imgStyle, Container, Row, MobileRow, Title } from './instagramMedias.style';
 
 const InstagramMedia = ({ images, navigateToInstagram }) => (
   <Container>
@@ -25,17 +22,20 @@ const InstagramMedia = ({ images, navigateToInstagram }) => (
       <ProgresiveImage src={images[7]} customStyle={imgStyle} />
       <ProgresiveImage src={images[8]} customStyle={imgStyle} />
     </MobileRow> */}
-    <LinkButton onClick={navigateToInstagram} color="white"> Abrir Instagram </LinkButton>
+    <LinkButton onClick={navigateToInstagram} color="white">
+      {' '}
+      Abrir Instagram{' '}
+    </LinkButton>
   </Container>
 );
 
 InstagramMedia.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string.required),
-  navigateToInstagram: PropTypes.func.isRequired,
+  navigateToInstagram: PropTypes.func.isRequired
 };
 
 InstagramMedia.defaultProps = {
-  images: [],
+  images: []
 };
 
 export default InstagramMedia;

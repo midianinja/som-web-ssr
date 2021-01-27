@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import {
-  green, white10, white30,
-  white,
-} from '../../../settings/colors';
+import { green, white10, white30, white } from '../../../settings/colors';
 
 export const SelectWrapper = styled.div`
   color: ${(props) => {

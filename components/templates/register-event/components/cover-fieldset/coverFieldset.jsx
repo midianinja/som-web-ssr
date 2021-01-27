@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
 import UploadAvatar from '../../../../atoms/upload-avatar/uploadAvatar';
-import {
-  Fieldset, Title, Span, avatarCustomStyle,
-} from './coverFieldset.style';
+import { Fieldset, Title, Span, avatarCustomStyle } from './coverFieldset.style';
 
 const CoverFieldset = ({ values, onChange, eventErrors }) => (
   <Fieldset>
@@ -26,10 +24,7 @@ const CoverFieldset = ({ values, onChange, eventErrors }) => (
 );
 
 const valuesShape = {
-  cover: PropTypes.oneOfType([
-    PropTypes.string.isRequired,
-    PropTypes.object.isRequired,
-  ]),
+  cover: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.object.isRequired])
 };
 
 const errorsShape = {};
@@ -37,12 +32,10 @@ Object.keys(valuesShape).forEach((key) => {
   errorsShape[key] = '';
 });
 
-
 CoverFieldset.propTypes = {
   values: PropTypes.shape(valuesShape).isRequired,
   onChange: PropTypes.func.isRequired,
-  eventErrors: PropTypes.shape(errorsShape).isRequired,
+  eventErrors: PropTypes.shape(errorsShape).isRequired
 };
-
 
 export default CoverFieldset;

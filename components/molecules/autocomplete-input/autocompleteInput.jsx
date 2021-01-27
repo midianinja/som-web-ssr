@@ -2,18 +2,16 @@ import PropTypes from 'prop-types';
 import { Input, Wrapper } from './autocompleteInput.style';
 import { white10, gray02 } from '../../../settings/colors';
 
-const AutocompleteInput = ({
-  value, predict, handleChange, handleSelect, placeholder,
-}) => (
+const AutocompleteInput = ({ value, predict, handleChange, handleSelect, placeholder }) => (
   <Wrapper>
     <Input
       type="search"
       customStyle="z-index: 2;"
       onChange={handleChange}
       keyn
-      onKeyDown={e => (e.keyCode === 13 ? e.preventDefault() : null)}
+      onKeyDown={(e) => (e.keyCode === 13 ? e.preventDefault() : null)}
       value={value}
-      onKeyUp={e => (e.keyCode === 13 && predict ? handleSelect(predict) : null)}
+      onKeyUp={(e) => (e.keyCode === 13 && predict ? handleSelect(predict) : null)}
     />
     <Input
       type="text"
@@ -26,7 +24,7 @@ const AutocompleteInput = ({
 );
 
 AutocompleteInput.defaultProps = {
-  placeholder: '',
+  placeholder: ''
 };
 
 AutocompleteInput.propTypes = {
@@ -34,7 +32,7 @@ AutocompleteInput.propTypes = {
   predict: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
-  handleSelect: PropTypes.func.isRequired,
+  handleSelect: PropTypes.func.isRequired
 };
 
 export default AutocompleteInput;

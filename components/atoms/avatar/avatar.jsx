@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Wrapper, PreLoaderImage,
-} from './avatar.style';
+import { Wrapper, PreLoaderImage } from './avatar.style';
 
 /**
  * function that loading image before render
@@ -17,16 +15,14 @@ const load = (src, callback) => {
   };
 
   img.src = src;
-}
+};
 
 /**
  * function that render Avatar react component
  * @param {object} props component props
  * @returns contains Avatar Component
  */
-function Avatar({
-  src, alt, title, customStyle,
-}) {
+function Avatar({ src, alt, title, customStyle }) {
   const [loaddedSrc, setLoaddedSrc] = useState('');
 
   useEffect(() => {
@@ -35,11 +31,7 @@ function Avatar({
 
   return (
     <Wrapper customStyle={customStyle}>
-      <PreLoaderImage
-        alt={alt}
-        title={title}
-        src={loaddedSrc}
-      />
+      <PreLoaderImage alt={alt} title={title} src={loaddedSrc} />
     </Wrapper>
   );
 }
@@ -48,14 +40,14 @@ Avatar.propTypes = {
   alt: PropTypes.string,
   customStyle: PropTypes.string,
   src: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 Avatar.defaultProps = {
   alt: '',
   customStyle: '',
   title: '',
-  src: '',
+  src: ''
 };
 
 export default Avatar;

@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import {
-  black, tertiaryBlack, secondaryBlack, white,
-  white50, purple, green, red,
+  black,
+  tertiaryBlack,
+  secondaryBlack,
+  white,
+  white50,
+  purple,
+  green,
+  red
 } from '../../../settings/colors';
 
 export const CuratorshiptWrapper = styled.section`
@@ -52,7 +58,7 @@ export const MenuOption = styled.a`
   padding: 7px 40px;
   color: white;
   cursor: pointer;
-  ${props => (props.selected ? `color: ${purple};` : '')}
+  ${(props) => (props.selected ? `color: ${purple};` : '')}
 `;
 
 export const Table = styled.div`
@@ -100,7 +106,7 @@ export const SmallCol = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${props => (props.hover ? `background-color: ${secondaryBlack};` : '')}
+  ${(props) => (props.hover ? `background-color: ${secondaryBlack};` : '')}
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -112,7 +118,7 @@ export const BigCol = styled.div`
   padding: 10px 20px;
   align-items: center;
   justify-content: space-between;
-  ${props => (props.hover ? `background-color: ${black};` : '')}
+  ${(props) => (props.hover ? `background-color: ${black};` : '')}
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -160,22 +166,23 @@ export const Line = styled.div`
 
 export const Name = styled.label`
   color: ${white};
-  font-size: .9em;
+  font-size: 0.9em;
 `;
 
 export const Profile = styled.label`
   color: ${white50};
-  font-size: .6em;
+  font-size: 0.6em;
   padding-left: 4px;
 `;
 export const EventName = styled.label`
   color: ${white};
-  font-size: .6em;
+  font-size: 0.6em;
 `;
 
 export const SubscriptionStatus = styled.div`
-  ${props => (props.hidde ? 'display: none;' : '')}
-  ${props => (props.approved === 'aprovada' ? `background-color: ${green}` : `background-color: ${red}`)}
+  ${(props) => (props.hidde ? 'display: none;' : '')}
+  ${(props) =>
+    props.approved === 'aprovada' ? `background-color: ${green}` : `background-color: ${red}`}
   height: 60px;
   position: absolute;
   width: 60px;
@@ -199,7 +206,7 @@ export const ArtistiInfos = styled.div`
 `;
 
 export const SubscriptionLabel = styled.label`
-  font-size: .8em;
+  font-size: 0.8em;
   color: ${white50};
   @media (max-width: 768px) {
     display: none;

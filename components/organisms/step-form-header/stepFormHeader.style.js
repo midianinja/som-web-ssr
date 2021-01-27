@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { magenta, white } from '../../../settings/colors';
+import { white } from '../../../settings/colors';
 
 export const Header = styled.div`
   position: sticky;
@@ -25,7 +25,7 @@ export const Title = styled.h1`
     margin-top: 35px;
   }
 
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const Body = styled.div`

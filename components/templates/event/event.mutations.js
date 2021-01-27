@@ -1,4 +1,4 @@
-import { gql } from "apollo-boost";
+import { gql } from 'apollo-boost';
 
 export const subscribe = gql`
   mutation subscribe($id: String!, $artistID: String!) {

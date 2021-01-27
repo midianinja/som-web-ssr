@@ -1,8 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import {
-  PreLoaderImage, Uploader, Icon, Input,
-} from './uploadAvatar.style';
+import { PreLoaderImage, Uploader, Icon, Input } from './uploadAvatar.style';
 
 /**
  * function that loading image before render
@@ -24,10 +22,7 @@ function load(src, callback) {
  * @param {object} props component props
  * @returns contains UploadAvatar Component
  */
-function UploadAvatar({
-  src, alt, title, handleChange,
-  customStyle, id,
-}) {
+function UploadAvatar({ src, alt, title, handleChange, customStyle, id }) {
   const [loaddedSrc, setLoaddedSrc] = useState(null);
 
   useEffect(() => {
@@ -36,21 +31,12 @@ function UploadAvatar({
 
   const emptyImage = <Icon src="/icons/add_a_photo.png" />;
   const image = (
-    <PreLoaderImage
-      src={loaddedSrc}
-      alt={alt}
-      title={title}
-      customStyle={customStyle}
-    />
+    <PreLoaderImage src={loaddedSrc} alt={alt} title={title} customStyle={customStyle} />
   );
 
   return (
     <Fragment>
-      <Uploader
-        customStyle={customStyle}
-        onChange={handleChange}
-        htmlFor={id}
-      >
+      <Uploader customStyle={customStyle} onChange={handleChange} htmlFor={id}>
         {src.url ? image : emptyImage}
       </Uploader>
       <Input id={id} onChange={handleChange} type="file" />
@@ -64,7 +50,7 @@ UploadAvatar.propTypes = {
   title: PropTypes.string,
   src: PropTypes.string,
   customStyle: PropTypes.string,
-  handleChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired
 };
 
 UploadAvatar.defaultProps = {
@@ -72,7 +58,7 @@ UploadAvatar.defaultProps = {
   alt: '',
   title: '',
   src: '',
-  customStyle: '',
+  customStyle: ''
 };
 
 export default UploadAvatar;

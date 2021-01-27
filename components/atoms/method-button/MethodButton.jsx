@@ -1,18 +1,12 @@
 import React from 'react';
-import {
-  Button, Wrapper,
-  Icon, Text,
-} from './methodButton.style';
+import { Button, Wrapper, Icon, Text } from './methodButton.style';
 
 /**
  * function that render MethodButton react component
  * @param {object} props component props
  * @returns contains MethodButton Component
  */
-const MethodButton = ({
-  onClick, selected, text,
-  iconSrc, buttonType,
-}) => {
+const MethodButton = ({ onClick, selected, text, iconSrc, buttonType }) => {
   return (
     <Button onClick={onClick} type={buttonType} selected={selected}>
       <Wrapper>
@@ -25,12 +19,12 @@ const MethodButton = ({
 
 MethodButton.propTypes = {
   customStyle: PropTypes.string,
-  buttonType: PropTypes.string,
+  buttonType: PropTypes.string
 };
 
 MethodButton.defaultProps = {
   customStyle: '',
-  buttonType: 'button',
+  buttonType: 'button'
 };
 
 export default MethodButton;

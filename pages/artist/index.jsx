@@ -1,8 +1,8 @@
 import ProductorTemplate from '../../components/templates/productor/productor';
 
 /**
- * This render the productor template. 
+ * This render the productor template.
  */
-const Productor  = () => <ProductorTemplate />
+const Productor = () => <ProductorTemplate />;
 
 export default Productor;

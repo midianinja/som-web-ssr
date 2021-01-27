@@ -1,30 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  TagWrapper, CloseIcon,
-} from './tag.style';
+import { TagWrapper, CloseIcon } from './tag.style';
 
 /**
  * function that render react component
  * @param {object} props component props
  * @returns contains Tag Component
  */
-const Tag = ({
-  color, id, handleClose,
-  text, customStyle, cliseIconAlt, closeIconSrc,
-}) => (
+const Tag = ({ color, id, handleClose, text, customStyle, cliseIconAlt, closeIconSrc }) => (
   <TagWrapper handleClose={!!handleClose} customStyle={customStyle} color={color}>
-    {
-      handleClose
-        ? (
-          <CloseIcon
-            color={color}
-            src={closeIconSrc}
-            alt={cliseIconAlt}
-            onClick={() => handleClose(id)}
-          />
-        ) : null
-    }
+    {handleClose ? (
+      <CloseIcon
+        color={color}
+        src={closeIconSrc}
+        alt={cliseIconAlt}
+        onClick={() => handleClose(id)}
+      />
+    ) : null}
     {text}
   </TagWrapper>
 );
@@ -36,7 +28,7 @@ Tag.propTypes = {
   text: PropTypes.string,
   customStyle: PropTypes.string,
   cliseIconAlt: PropTypes.string,
-  closeIconSrc: PropTypes.string,
+  closeIconSrc: PropTypes.string
 };
 
 Tag.defaultProps = {
@@ -45,7 +37,7 @@ Tag.defaultProps = {
   text: 'Label',
   customStyle: '',
   cliseIconAlt: 'botão de cancelar',
-  closeIconSrc: '/icons/cancel_outlined.svg',
+  closeIconSrc: '/icons/cancel_outlined.svg'
 };
 
 export default Tag;

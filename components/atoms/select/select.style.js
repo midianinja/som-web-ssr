@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import {
-  green, white10, white30,
-  white,
-} from '../../../settings/colors';
+import { green, white10, white30, white } from '../../../settings/colors';
 
 export const SelectWrapper = styled.div`
   color: ${(props) => {
@@ -63,7 +60,7 @@ export const Options = styled.ul`
 `;
 
 export const Label = styled.label`
-  width: 100%; 
+  width: 100%;
   height: 38px;
   display: flex;
   align-items: center;

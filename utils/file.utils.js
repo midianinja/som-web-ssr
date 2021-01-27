@@ -14,35 +14,38 @@ export const getBase64 = (file) => {
   return promise;
 };
 
-export const uploadImageToStorage = ({ file, id }) => axios({
-  method: 'POST',
-  url: `${process.env.STORAGE_API_URI}/image/upload/`,
-  headers: {},
-  data: {
-    file: JSON.stringify({ data: file }),
-    id,
-  },
-});
+export const uploadImageToStorage = ({ file, id }) =>
+  axios({
+    method: 'POST',
+    url: `${process.env.STORAGE_API_URI}/image/upload/`,
+    headers: {},
+    data: {
+      file: JSON.stringify({ data: file }),
+      id
+    }
+  });
 
-export const uploadPdfDocumentToStorage = ({ file, id, fileName }) => axios({
-  method: 'POST',
-  url: `${process.env.STORAGE_API_URI}/document/upload/`,
-  headers: {},
-  data: {
-    file,
-    id,
-    fileName,
-  },
-});
+export const uploadPdfDocumentToStorage = ({ file, id, fileName }) =>
+  axios({
+    method: 'POST',
+    url: `${process.env.STORAGE_API_URI}/document/upload/`,
+    headers: {},
+    data: {
+      file,
+      id,
+      fileName
+    }
+  });
 
-export const uploadSongToStorage = ({ file, id, updateProgress }) => axios({
-  method: 'POST',
-  url: `${process.env.STORAGE_API_URI}/song/upload/`,
-  headers: {},
-  data: {
-    file,
-    id,
-  },
-  // `onUploadProgress` allows handling of progress events for uploads
-  onUploadProgress: updateProgress,
-});
+export const uploadSongToStorage = ({ file, id, updateProgress }) =>
+  axios({
+    method: 'POST',
+    url: `${process.env.STORAGE_API_URI}/song/upload/`,
+    headers: {},
+    data: {
+      file,
+      id
+    },
+    // `onUploadProgress` allows handling of progress events for uploads
+    onUploadProgress: updateProgress
+  });

@@ -11,13 +11,20 @@ import MoreArtist from './components/more-artist/moreArtist';
 import ArtistBasicInfo from './components/artist-basic-info/artistBasicInfo';
 import ApprovedEvents from './components/approved-events/approvedEvents';
 import {
-  fetchArtistData, fetchArtistInstaImages,
-  fetchRelatedArtsts, follow, unfollow,
-  editSongAction, deleteSongAction,
+  fetchArtistData,
+  fetchArtistInstaImages,
+  fetchRelatedArtsts,
+  follow,
+  unfollow,
+  editSongAction,
+  deleteSongAction
 } from './artistProfile.controller';
 import {
-  ArtistWrapper, CoverWrapper, HeaderWrapper, Content,
-  ColumnWrapper,
+  ArtistWrapper,
+  CoverWrapper,
+  HeaderWrapper,
+  Content,
+  ColumnWrapper
 } from './artistProfile.style';
 
 const ArtistPage = () => {
@@ -37,11 +44,11 @@ const ArtistPage = () => {
     disagreeText: '',
     confirmAction: '',
     disagreeAction: '',
-    isOpen: false,
+    isOpen: false
   });
   const [songs, setSongs] = useState([]);
 
-  const isUserArtist = (state.user && state.user.artist && state.user.artist.id === label);
+  const isUserArtist = state.user && state.user.artist && state.user.artist.id === label;
   useEffect(() => {
     if (label !== artist.id) {
       const fetchArtist = async () => {
@@ -108,54 +115,42 @@ const ArtistPage = () => {
           instagram={artist.instagram}
           followers={follows.length}
           following={artist.user.following_artists.length}
-          isFollowing={
-            state.user && artist.follows
-              ? follows.indexOf(state.user.id) !== -1
-              : false
-          }
+          isFollowing={state.user && artist.follows ? follows.indexOf(state.user.id) !== -1 : false}
           followToggle={handleFollow}
           editAction={() => router.push('/register-artist')}
         />
         <ColumnWrapper>
-          {
-            songs.length ? (
-              <AudioPlayer
-                editAction={data => editSongAction({
+          {songs.length ? (
+            <AudioPlayer
+              editAction={(data) =>
+                editSongAction({
                   ...data,
                   artist: state.user.artist,
-                  setSongs,
-                })}
-                deleteAction={data => deleteSongAction({
+                  setSongs
+                })
+              }
+              deleteAction={(data) =>
+                deleteSongAction({
                   ...data,
                   artist: state.user.artist,
-                  setSongs,
-                })}
-                isUserArtist={isUserArtist}
-                tracks={songs}
-              />
-            ) : null
-          }
-          {
-            artist.approved_events.length
-              ? (
-                <ApprovedEvents
-                  eventClick={evtId => router.push(`/event/${evtId}`)}
-                  events={artist.approved_events}
-                />
-              )
-              : null
-          }
-          {
-            relatedArtsts.length
-              ? (
-                <MoreArtist history={router} artists={relatedArtsts} />
-              )
-              : null
-          }
+                  setSongs
+                })
+              }
+              isUserArtist={isUserArtist}
+              tracks={songs}
+            />
+          ) : null}
+          {artist.approved_events.length ? (
+            <ApprovedEvents
+              eventClick={(evtId) => router.push(`/event/${evtId}`)}
+              events={artist.approved_events}
+            />
+          ) : null}
+          {relatedArtsts.length ? <MoreArtist history={router} artists={relatedArtsts} /> : null}
         </ColumnWrapper>
       </Content>
     </ArtistWrapper>
   );
-}
+};
 
 export default ArtistPage;

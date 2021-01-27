@@ -1,7 +1,10 @@
 import { client } from '../../../libs/apollo.lib';
 import { allMusicalStyleOptionsQuery } from '../../../queries/musicalGenres.query';
 import {
-  createProductor, updateProductor, createLocation, updateLocation,
+  createProductor,
+  updateProductor,
+  createLocation,
+  updateLocation
 } from './productor.repository';
 import { basicInformationIsValid } from './productor.validate';
 import { allCountriesQuery, allStateQuery } from './productor.queries';
@@ -10,12 +13,12 @@ import { getBase64, uploadImageToStorage } from '../../../utils/file.utils';
 /**
  * this function remove tag of song of productor songs list
  * @param {object} props song properties
- * @param {string} props.id song reference 
- * @param {array} props.tags songs list of productor 
- * @param {cuntion} props.setTag this function set on form state the new songs list 
+ * @param {string} props.id song reference
+ * @param {array} props.tags songs list of productor
+ * @param {cuntion} props.setTag this function set on form state the new songs list
  */
 export const deleteTag = ({ id, tags, setTag }) => {
-  const myTags = tags.filter(tag => tag.id !== id);
+  const myTags = tags.filter((tag) => tag.id !== id);
   setTag(myTags);
 };
 
@@ -28,22 +31,20 @@ export const deleteTag = ({ id, tags, setTag }) => {
  * @param {function} props.setCountry set selected country on form state based
  * @param {function} props.cb callback function
  */
-export const handleCountrySelect = async ({
-  data, setStates, setCountry, cb,
-}) => {
+export const handleCountrySelect = async ({ data, setStates, setCountry, cb }) => {
   const countries = await client().query({
     query: allStateQuery,
     variables: {
       state: {
-        country: data.id,
-      },
-    },
+        country: data.id
+      }
+    }
   });
 
-  const states = countries.data.allStates.map(c => ({
+  const states = countries.data.allStates.map((c) => ({
     label: c.name,
     short_name: c.short_name,
-    id: c.id,
+    id: c.id
   }));
 
   if (cb) cb({ states });
@@ -71,38 +72,41 @@ export const handleStateSelect = async ({ data, setState }) => {
  * @param {function} props.setState set on form state the productor state
  */
 export const fetchLocations = async ({
-  setCountries, setStates, productor, setCountry, setState,
+  setCountries,
+  setStates,
+  productor,
+  setCountry,
+  setState
 }) => {
   const countries = await client().query({
     query: allCountriesQuery,
-    variables: {},
+    variables: {}
   });
 
-  const myCountries = countries.data.allCountries.map(c => ({
+  const myCountries = countries.data.allCountries.map((c) => ({
     label: c.name,
     short_name: c.short_name,
-    id: c.id,
+    id: c.id
   }));
 
   if (productor.location && productor.location.country) {
-    const data = myCountries.find(
-      country => productor.location.country === country.short_name,
-    );
+    const data = myCountries.find((country) => productor.location.country === country.short_name);
 
     let cb = null;
 
     if (productor.location.state) {
       cb = ({ states }) => {
-        const stateData = states.find(
-          state => productor.location.state === state.short_name,
-        );
+        const stateData = states.find((state) => productor.location.state === state.short_name);
 
         handleStateSelect({ data: stateData, setState });
       };
     }
 
     handleCountrySelect({
-      data, setStates, setCountry, cb,
+      data,
+      setStates,
+      setCountry,
+      cb
     });
   }
 
@@ -110,12 +114,20 @@ export const fetchLocations = async ({
 };
 
 export const handleACMusicalStyle = ({
-  value, musicalStylesOptions, setMusicalStylePredict, setMusicalStyle,
+  value,
+  musicalStylesOptions,
+  setMusicalStylePredict,
+  setMusicalStyle
 }) => {
   let match = '';
   const regex = new RegExp(`^${value.toUpperCase()}`);
   musicalStylesOptions.forEach((style) => {
-    const isMatch = regex.test(style.name.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''));
+    const isMatch = regex.test(
+      style.name
+        .toUpperCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+    );
     if (isMatch && !match && value) {
       match = style.name.toLowerCase();
     }
@@ -125,47 +137,44 @@ export const handleACMusicalStyle = ({
 };
 
 export const mapMusicalStyles = (styles) => {
-  const colors = [
-    'purple', 'green', 'orange',
-    'magenta', 'yellow',
-  ];
+  const colors = ['purple', 'green', 'orange', 'magenta', 'yellow'];
 
   if (!styles) return [];
   return styles.map(({ id, name }) => ({
     id,
     text: name,
-    color: colors[Math.floor(Math.random() * colors.length)],
+    color: colors[Math.floor(Math.random() * colors.length)]
   }));
 };
 
 export const handleMusicalStyleSelect = ({
-  value, musicalStylesOptions, musicalStyles, setMusicalStyle,
-  setMusicalStylePredict, setMusicalStyles,
+  value,
+  musicalStylesOptions,
+  musicalStyles,
+  setMusicalStyle,
+  setMusicalStylePredict,
+  setMusicalStyles
 }) => {
   setMusicalStyle(value);
-  const colors = [
-    'purple',
-    'green',
-    'orange',
-    'magenta',
-    'yellow',
-  ];
-  const style = musicalStylesOptions.filter(o => (o.name.toLowerCase() === value))[0];
-  const newMusicalStyles = musicalStyles.filter(o => (o.text.toLowerCase() !== value)).concat([
-    {
-      id: style.id,
-      text: style.name,
-      color: colors[Math.floor(Math.random() * 5)],
-    },
-  ]);
+  const colors = ['purple', 'green', 'orange', 'magenta', 'yellow'];
+  const style = musicalStylesOptions.filter((o) => o.name.toLowerCase() === value)[0];
+  const newMusicalStyles = musicalStyles
+    .filter((o) => o.text.toLowerCase() !== value)
+    .concat([
+      {
+        id: style.id,
+        text: style.name,
+        color: colors[Math.floor(Math.random() * 5)]
+      }
+    ]);
 
   let cont = 0;
 
   const stylesWithColor = newMusicalStyles.map((s) => {
-    const stl = ({
+    const stl = {
       ...s,
-      color: colors[cont],
-    });
+      color: colors[cont]
+    };
 
     if (cont >= 4) cont = -1;
 
@@ -179,16 +188,16 @@ export const handleMusicalStyleSelect = ({
 };
 
 export const fetchMusicalStyleOptions = (setMusicalStylesOptions) => {
-  client().query({
-    query: allMusicalStyleOptionsQuery,
-    variables: {},
-  }).then(resp => setMusicalStylesOptions(resp.data.allMusicalStyleOptions));
+  client()
+    .query({
+      query: allMusicalStyleOptionsQuery,
+      variables: {}
+    })
+    .then((resp) => setMusicalStylesOptions(resp.data.allMusicalStyleOptions));
 };
 
-export const nextCallback = ({
-  visibles, setVisibles, router, id,
-}) => {
-  const next = Object.entries(visibles).find(item => !item[1]);
+export const nextCallback = ({ visibles, setVisibles, router, id }) => {
+  const next = Object.entries(visibles).find((item) => !item[1]);
   const newVisibles = { ...visibles };
 
   if (next) {
@@ -218,7 +227,7 @@ const mapProductorToApi = (values, userId, locationId) => ({
   facebook: values.facebook,
   instagram: values.instagram,
   twitter: values.twitter,
-  youtube: values.youtube,
+  youtube: values.youtube
 });
 
 const saveLocation = (id, values) => {
@@ -226,7 +235,7 @@ const saveLocation = (id, values) => {
   const location = {
     city,
     state: state.short_name,
-    country: country.short_name,
+    country: country.short_name
   };
 
   if (id) {
@@ -237,69 +246,77 @@ const saveLocation = (id, values) => {
 };
 
 export const handleCreateProductor = async ({
-  values, userId, setLoading, visibles, setId,
-  setVisibles, dispatch, user, router,
+  values,
+  userId,
+  setLoading,
+  visibles,
+  setId,
+  setVisibles,
+  dispatch,
+  user,
+  router
 }) => {
   const productor = { ...values };
   let newImage = null;
 
   if (productor.avatar && productor.avatar.file) {
-    try {
-      setLoading({ show: true, text: 'Tratando imagen' });
-      const base64 = await getBase64(productor.avatar.file);
-      setLoading({ show: true, text: 'Subindo imagem' });
-      newImage = await uploadImageToStorage({
-        file: base64,
-        id: userId,
-      });
-    } catch (err) {
-      console.error('err:', [err]);
-      throw err;
-    }
+    setLoading({ show: true, text: 'Tratando imagen' });
+    const base64 = await getBase64(productor.avatar.file);
+    setLoading({ show: true, text: 'Subindo imagem' });
+    newImage = await uploadImageToStorage({
+      file: base64,
+      id: userId
+    });
 
     productor.avatar = newImage.data.data.urls.mimified;
   }
 
   let promise;
   const data = mapProductorToApi(productor, userId);
+  setLoading({ show: true, text: 'Atualizando Produtor' });
+
   try {
-    setLoading({ show: true, text: 'Atualizando Produtor' });
     promise = await createProductor(data);
   } catch (err) {
-    console.error([err]);
     setLoading({ show: false });
     throw err;
   }
+
   setId(promise.data.createProductor.id);
   dispatch({
     type: 'SET_USER',
-    user: { ...JSON.parse(JSON.stringify(user)), productor: promise.data.createProductor },
+    user: { ...JSON.parse(JSON.stringify(user)), productor: promise.data.createProductor }
   });
   nextCallback({ visibles, setVisibles, router });
   setLoading({ show: false });
 };
 
 export const handleEditProductor = async (
-  values, productorId, userId, setLoading,
-  visibles, setVisibles, setLocationId,
-  dispatch, user, router,
+  values,
+  productorId,
+  userId,
+  setLoading,
+  visibles,
+  setVisibles,
+  setLocationId,
+  dispatch,
+  user,
+  router
 ) => {
   const productor = { ...values };
   let newImage = null;
 
   if (productor.avatar && productor.avatar.file) {
-    try {
-      setLoading({ show: true, text: 'Tratando imagen' });
-      const base64 = await getBase64(productor.avatar.file);
-      setLoading({ show: true, text: 'Subindo imagem' });
-      newImage = await uploadImageToStorage({
-        file: base64,
-        id: userId,
-      });
-    } catch (err) {
-      // to be try
-      throw err;
-    }
+    setLoading({ show: true, text: 'Tratando imagen' });
+
+    const base64 = await getBase64(productor.avatar.file);
+
+    setLoading({ show: true, text: 'Subindo imagem' });
+
+    newImage = await uploadImageToStorage({
+      file: base64,
+      id: userId
+    });
 
     productor.avatar = { url: newImage.data.data.urls.mimified };
   }
@@ -308,13 +325,7 @@ export const handleEditProductor = async (
   if (productor.city || productor.country.short_name) {
     setLoading({ show: true, text: 'Salvando informações' });
     let locationResult;
-    try {
-      locationResult = await saveLocation(
-        values.locationId, values,
-      );
-    } catch (err) {
-      // to be try
-    }
+    locationResult = await saveLocation(values.locationId, values);
 
     if (values.locationId) {
       locationId = locationResult.data.updateLocation.id;
@@ -330,17 +341,19 @@ export const handleEditProductor = async (
     setLoading({ show: true, text: 'Atualizando Produtor' });
     promise = await updateProductor(productorId, data);
   } catch (err) {
-    console.error([err]);
     setLoading({ show: false });
     throw err;
   }
 
   dispatch({
     type: 'SET_USER',
-    user: { ...user, productor: promise.data.updateProductor },
+    user: { ...user, productor: promise.data.updateProductor }
   });
   setLoading({ show: false });
   nextCallback({
-    visibles, setVisibles, router, id: productorId,
+    visibles,
+    setVisibles,
+    router,
+    id: productorId
   });
 };

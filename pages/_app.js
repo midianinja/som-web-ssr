@@ -1,11 +1,9 @@
 import React from 'react';
 import App from 'next/app';
 import { StoreProvider } from '../store/Store';
+import Main from '../components/main/main';
 import '../css/fonts.css';
 import '../css/reset.css';
-import Main from '../components/main/main';
-
-const Store = React.createContext();
 
 export default class MyApp extends App {
   constructor(props) {

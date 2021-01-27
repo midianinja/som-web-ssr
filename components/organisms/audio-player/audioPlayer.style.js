@@ -1,8 +1,5 @@
-
 import styled from 'styled-components';
-import {
-  white10, white30, purple, white,
-} from '../../../settings/colors';
+import { white10, white30, purple, white } from '../../../settings/colors';
 
 export const TooltipContainer = styled.span`
   position: absolute;
@@ -20,12 +17,12 @@ export const TooltipContainer = styled.span`
     right: auto;
     width: 100%;
   }
-  ${props => (
+  ${(props) =>
     !props.show
       ? `
         display: none;   
-      ` : null
-  )}
+      `
+      : null}
 `;
 
 export const Content = styled.div`
@@ -58,12 +55,12 @@ export const Triangle = styled.span`
   bottom: -9px;
 
   &:after {
-    content: "";
+    content: '';
     position: relative;
     display: inline-block;
     width: 20px;
     height: 20px;
-    background:  ${purple};
+    background: ${purple};
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.35);
     transform: rotate(45deg);
     bottom: 16px;
@@ -73,17 +70,17 @@ export const Triangle = styled.span`
     right: 77px;
     bottom: -16px;
   }
-  ${props => (
+  ${(props) =>
     !props.show
       ? `
         display: none;   
-      ` : null
-  )}
+      `
+      : null}
 `;
 
 export const Wrapper = styled.div`
   width: 100%;
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const Header = styled.div`
@@ -116,7 +113,7 @@ export const List = styled.ul`
   padding-left: 30px;
   padding-right: 30px;
   margin-top: 30px;
-  ${props => props.customStyle}
+  ${(props) => props.customStyle}
 `;
 
 export const Track = styled.li.attrs({ className: 'track' })`
@@ -154,12 +151,15 @@ export const TrackText = styled.input`
   font-size: 0.7142857143em;
   color: ${white}
   font-weight: 300;
-  ${props => (props.disabled ? '' : `
+  ${(props) =>
+    props.disabled
+      ? ''
+      : `
     border-bottom: 1px solid ${white};
     :focus {
       border-bottom: 1px solid ${white};
     }
-  `)}
+  `}
 `;
 
 export const TrackInfo = styled.div`
@@ -194,7 +194,7 @@ export const TooltipIcon = styled.img`
   vertical-align: middle;
   cursor: pointer;
 
-  ${props => (props.show ? '' : 'display: none;')}
+  ${(props) => (props.show ? '' : 'display: none;')}
 `;
 
 export const TrackHeaderWrapper = styled.div`

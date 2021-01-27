@@ -35,13 +35,13 @@ export const LocationContainer = styled.div`
 `;
 
 export const LocationLabel = styled.label`
-  color: #FFF;
+  color: #fff;
   font-size: 1em;
   margin-right: 5px;
 `;
 
 export const LocationValue = styled.label`
-  color: #51DBA9;
+  color: #51dba9;
   font-size: 1.1em;
 `;
 

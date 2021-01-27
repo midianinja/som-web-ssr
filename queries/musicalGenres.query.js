@@ -14,10 +14,7 @@ export const allMusicalStyleOptionsQuery = gql`
     $musical_style_option: MusicalStyleOptionInput
     $paginator: PaginatorInput
   ) {
-    allMusicalStyleOptions(
-      musical_style_option: $musical_style_option
-      paginator: $paginator
-    ) {
+    allMusicalStyleOptions(musical_style_option: $musical_style_option, paginator: $paginator) {
       id
       name
     }

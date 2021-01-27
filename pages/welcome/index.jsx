@@ -1,14 +1,12 @@
 import WelcomeTemplate from '../../components/templates/welcome/welcome';
-import BaseHead from '../../components/baseHead'
+import BaseHead from '../../components/baseHead';
 
 /**
  * This render the welcome components.
  */
-const Welcome  = () => (
+const Welcome = () => (
   <>
-    <BaseHead
-      title="Seja bem vinde ao Sistema Operacional da Música"
-    />
+    <BaseHead title="Seja bem vinde ao Sistema Operacional da Música" />
     <WelcomeTemplate />
   </>
 );

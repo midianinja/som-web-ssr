@@ -1,8 +1,6 @@
 import React from 'react';
 import InstructionCard from '../../molecules/instruction-card/instructionCard';
-import {
-  Container,
-} from './homeInstructions.style';
+import { Container } from './homeInstructions.style';
 
 /**
  * function that render Instructions React Component

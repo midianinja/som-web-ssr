@@ -1,8 +1,8 @@
 import ArtistProfileTemplate from '../../../components/templates/artist-profile/artistProfile';
 
 /**
- * This render the artist profile template. 
+ * This render the artist profile template.
  */
-const ArtistProfile  = () => <ArtistProfileTemplate />;
+const ArtistProfile = () => <ArtistProfileTemplate />;
 
 export default ArtistProfile;

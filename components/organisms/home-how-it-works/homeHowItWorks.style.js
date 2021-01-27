@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 import { white, white50 } from '../../../settings/colors';
 
@@ -32,7 +31,9 @@ export const Content = styled.div`
   text-align: center;
   padding-right: 15px;
   padding-left: 15px;
-  &::-webkit-scrollbar { width: 0 !important }
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
 `;
 
 export const ScrollIndicatorWrapper = styled.div`
@@ -56,16 +57,17 @@ export const ScrollIndicator = styled.div`
   height: 2px;
   background-color: ${white50};
   border-radius: 2px;
-  
+
   :before {
     content: '';
     position: absolute;
     top: -2px;
     left: 0;
     transition-duration: 0.5s;
-    transform: translateX(${({ position, scrollWidth }) => (
-    ((scrollLineWidth - scrollIndicatorWidth) * position / scrollWidth) + 2.5
-  )}px);
+    transform: translateX(
+      ${({ position, scrollWidth }) =>
+        ((scrollLineWidth - scrollIndicatorWidth) * position) / scrollWidth + 2.5}px
+    );
     will-change: transform;
     width: ${scrollIndicatorWidth}px;
     height: 6px;

@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import {
-  white, black, black30,
-} from '../../../settings/colors';
+import { white, black, black30 } from '../../../settings/colors';
 
 export const Input = styled.input`
   width: calc(100% - 22px);
@@ -24,7 +22,7 @@ export const Icon = styled.img`
 `;
 
 export const NewsletterInputWrapper = styled.div`
-  width: ${props => props.width};
+  width: ${(props) => props.width};
   height: 50px;
   background-color: ${white};
   border-radius: 38px;

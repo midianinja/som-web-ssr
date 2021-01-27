@@ -1,21 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Container,
-  Followers,
-  FNumber,
-} from './followersAndFollowing.style';
+import { Container, Followers, FNumber } from './followersAndFollowing.style';
 
 /**
  * function that render FollowersAndFollowing react component
- * 
+ *
  * @param {object} props component props
  * @returns contains FollowersAndFollowing Component
  */
-const FollowersAndFollowing = ({
-  nFollowers, nFollowing,
-  followersLabel, followingLabel,
-}) => (
+const FollowersAndFollowing = ({ nFollowers, nFollowing, followersLabel, followingLabel }) => (
   <Container>
     <Followers>
       <FNumber>{nFollowers}</FNumber> {followersLabel}
@@ -30,14 +23,14 @@ FollowersAndFollowing.propTypes = {
   nFollowers: PropTypes.number,
   nFollowing: PropTypes.number,
   followersLabel: PropTypes.string,
-  followingLabel: PropTypes.string,
+  followingLabel: PropTypes.string
 };
 
 FollowersAndFollowing.defaultProps = {
   nFollowers: 26,
   nFollowing: 142,
   followersLabel: 'Seguidores',
-  followingLabel: 'Seguindo',
+  followingLabel: 'Seguindo'
 };
 
 export default FollowersAndFollowing;
