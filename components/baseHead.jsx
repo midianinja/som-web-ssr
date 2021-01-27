@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const BaseHead = ({ description, keywords, title, imageUrl }) => (
   <Head>
     <title>{`${title} | S.O.M`}</title>
-    <meta name="title" content={`${title} S.O.M`} />
+    <meta name="title" content={`${title} | S.O.M`} />
     <meta charset="utf-8" />
 
     <meta
@@ -39,7 +39,7 @@ BaseHead.propTypes = {
 BaseHead.defaultProps = {
   keywords: [],
   imageUrl: '',
-  title: 'S.O.M | Sistema Operacional da Música Brasileira',
+  title: 'Sistema Operacional da Música Brasileira',
   description: ''
 };
 
