@@ -14,16 +14,15 @@ export const getBase64 = (file) => {
   return promise;
 };
 
-export const uploadImageToStorage = ({ file, id }) =>
-  axios({
-    method: 'POST',
-    url: `${process.env.STORAGE_API_URI}/image/upload/`,
-    headers: {},
-    data: {
-      file: JSON.stringify({ data: file }),
-      id
-    }
-  });
+export const uploadImageToStorage = ({ file, id }) => axios({
+  method: 'POST',
+  url: `${process.env.STORAGE_API_URI}/image/upload/`,
+  headers: {},
+  data: {
+    file: file,
+    id,
+  },
+});
 
 export const uploadPdfDocumentToStorage = ({ file, id, fileName }) =>
   axios({

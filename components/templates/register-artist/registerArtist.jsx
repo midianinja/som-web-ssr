@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
-import { magenta } from '../../../settings/colors';
+import { magenta, theBestColor, white } from '../../../settings/colors';
 import Store from '../../../store/Store';
 import StepFormFooter from '../../organisms/step-form-footer/stepFormFooter';
 import StepFormHeader from '../../organisms/step-form-header/stepFormHeader';
@@ -15,15 +15,36 @@ import {
   handleACMusicalStyle,
   nextCallback,
   handleCountrySelect,
-  handleStateSelect
+  handleStateSelect,
+  makeBlob,
+  addSong,
+  deleteSong,
+  makeDocUploads, mapMusicalStyles,
+  handleCreateArtist,
+  handleEditArtist,
 } from './registerArtist.controller';
-import { Form } from './registerArtist.style';
+import {
+  Form, LoadingWrapper,
+} from './registerArtist.style';
 import SocialsFieldset from './components/social-fieldset/socialFieldset';
 import DocFilesFieldset from './components/doc-files-fieldset/docFilesFieldset';
 import MusicFieldset from './components/music-fieldset/musicFieldset';
+import Loading from '../../atoms/loading/loading';
+
+/**
+ * getFooterBackground return the background color from footer
+ * 
+ * @returns {String} color
+ */
+const getFooterBackground = (visibles) => {
+  if (visibles.files && !visibles.musics) return theBestColor;
+  if (visibles.musics) return white;
+}
 
 /**
  * render basic infos fields
+ * 
+ * @returns {React.Component} React Component
  */
 const renderBasicInfos = ({
   values,
@@ -84,6 +105,8 @@ const renderBasicInfos = ({
 
 /**
  * render location fields
+ * 
+ * @returns {React.Component} React Component
  */
 const renderLocationFieldset = ({
   values,
@@ -114,6 +137,8 @@ const renderLocationFieldset = ({
 
 /**
  * render contact fields
+ * 
+ * @returns {React.Component} React Component
  */
 const renderContactFieldset = ({
   visibles,
@@ -141,6 +166,8 @@ const renderContactFieldset = ({
 
 /**
  * render social fields
+ * 
+ * @returns {React.Component} React Component
  */
 const renderSocialsFieldset = ({
   visibles,
@@ -165,30 +192,66 @@ const renderSocialsFieldset = ({
 };
 
 /**
- * render social fields
+ * render file fields
+ * 
+ * @returns {React.Component} React Component
  */
-const renderFilesDocs = ({ visibles }) => {
+const renderFilesDocs = ({
+  visibles, tecRider, setTecRider,
+  tecMap, setTecMap,
+  tecRelease, setRelease,
+}) => {
   if (!visibles.files) return null;
-  return <DocFilesFieldset />;
+  return (
+    <DocFilesFieldset
+      handleRiderChange={(file) => setTecRider(file ? {
+        file,
+        blob: makeBlob(file),
+        blob_url: URL.createObjectURL(makeBlob(file)),
+      } : null)}
+      handleMapChange={(file) => setTecMap(file ? {
+        file,
+        blob: makeBlob(file),
+        blob_url: URL.createObjectURL(makeBlob(file)),
+      } : null)}
+      handleReleaseChange={(file) => setRelease(file ? {
+        file,
+        blob: makeBlob(file),
+        blob_url: URL.createObjectURL(makeBlob(file)),
+      } : null)}
+      tecRider={tecRider}
+      tecMap={tecMap}
+      tecRelease={tecRelease}
+    />
+  );
 };
 
 /**
- * render social fields
+ * render song fields
+ * 
+ * @returns {React.Component} React Component
  */
-const renderMusics = ({ visibles }) => {
-  if (!visibles.files) return null;
-  return <MusicFieldset />;
+const renderMusics = ({
+  visibles, setSongs, songs,
+}) => {
+  if (!visibles.musics) return null;
+  return (
+    <MusicFieldset
+      songs={songs}
+      addSong={(data) => addSong(data, songs, setSongs)}
+      deleteSong={(data) => deleteSong(data, songs, setSongs)}
+    />
+  );
 };
 
 /**
  * This contains the RegisterArtistTemplate Page
- * @returns {React.Component} productor form
+ * @returns {React.Component} React Component
  */
 const RegisterArtistTemplate = () => {
-  const { state, dispatch } = useContext(Store);
   const router = useRouter();
+  const { state, dispatch } = useContext(Store);
   const [about, setAbout] = useState('');
-  const [locationId, setLocationId] = useState('');
   const [avatar, setAvatar] = useState({ url: '' });
   const [city, setCity] = useState('');
   const [contactEmail, setContactEmail] = useState('');
@@ -205,7 +268,6 @@ const RegisterArtistTemplate = () => {
   const [musicalStylePredict, setMusicalStylePredict] = useState('');
   const [musicalStyle, setMusicalStyle] = useState('');
   const [name, setName] = useState('');
-  const [productorStepErrors, setProductorStepErrors] = useState({});
   const [locationState, setState] = useState({});
   const [states, setStates] = useState([]);
   const [telegram, setTelegram] = useState('');
@@ -215,6 +277,9 @@ const RegisterArtistTemplate = () => {
   const [tecRider, setTecRider] = useState(null);
   const [tecMap, setTecMap] = useState(null);
   const [tecRelease, setRelease] = useState(null);
+  const [songs, setSongs] = useState([]);
+  console.log('🚀 ~ file: registerArtist.jsx ~ line 281 ~ RegisterArtistTemplate ~ songs', songs.length);
+  const [productorStepErrors, setProductorStepErrors] = useState({});
   const [visibles, setVisibles] = useState({
     location: false,
     contact: false,
@@ -223,184 +288,157 @@ const RegisterArtistTemplate = () => {
     musics: false
   });
 
-  const mapContextToState = (productor) => {
-    setId(productor.id || '');
-    setName(productor.name || '');
-    setAbout(productor.description || '');
-    setAvatar({ url: productor.photo || '' });
-    setMusicalStyles(mapMusicalStyles(productor.musical_styles || []));
-    setMainPhone(productor.main_phone || '');
-    setWhatsapp(productor.whatsapp || '');
-    setTelegram(productor.telegram || '');
-    setContactEmail(productor.contact_email || '');
-    setFacebook(productor.facebook || 'https://www.facebook.com/');
-    setInstagram(productor.instagram || 'https://www.instagram.com/');
-    setTwitter(productor.twitter || 'https://twitter.com/');
-    setYoutube(productor.youtube || 'https://www.youtube.com/');
+  const mapContextToState = (artist) => {
+    setId(artist.id || '');
+    setName(artist.name || '');
+    setAbout(artist.about || '');
+    setAvatar({ url: artist.avatar_image.mimified || '' });
+    setMusicalStyles(mapMusicalStyles(artist.musical_styles || []));
+    handleIntegrants(artist.integrants.join(', '));
+    setMainPhone(artist.phone || '');
+    setWhatsapp(artist.whatsapp || '');
+    setTelegram(artist.telegram || '');
+    setContactEmail(artist.email || '');
+    setFacebook(artist.facebook || 'https://www.facebook.com/');
+    setInstagram(artist.instagram || 'https://www.instagram.com/');
+    setTwitter(artist.twitter || 'https://twitter.com/');
+    setYoutube(artist.youtube || 'https://www.youtube.com/');
+    setTecRider({ url: artist.tec_rider });
+    setTecMap({ url: artist.stage_map });
+    setRelease({ url: artist.tec_release });
 
-    if (productor.location && productor.location.id) {
-      setLocationId(productor.location.id);
-      setCity(productor.location.city);
+    if (artist.location && artist.location.id && countries.length) {
+      const selectedCountry = countries.find((c) => c.short_name === artist.location.country);
+      if (!country.id) handleCountrySelect({ data: selectedCountry, setStates, setCountry });
+      if(!city) setCity(artist.location.city);
+      setState(states.find((c) => c.short_name === artist.location.state));
+    }
+    if (artist.songs && artist.songs.length) {
+      setSongs(artist.songs.map((s) => ({
+        name: s.title,
+        url: s.url,
+        id: s.id
+      })));
     }
   };
 
-  if (state.connectionType === 'artist') {
-    // router.push('/register-artist');
-  }
-
   useEffect(() => {
-    // if (state.connectionType === 'artist') {
-    //   router.push('/register-artist');
-    // }
+    if (state.connectionType === 'productor') {
+      router.push('/productor');
+    }
   }, [state.connectionType]);
 
   useEffect(() => {
-    if (state.user && state.user.productor) {
-      // mapContextToState(state.user.productor);
+    if (state.user && state.user.artist) {
+      mapContextToState(state.user.artist);
     }
-
     fetchMusicalStyleOptions(setMusicalStylesOptions);
   }, []);
 
   useEffect(() => {
-    if (state.user && state.user.productor) {
-      const { productor } = state.user;
-      mapContextToState(productor);
-      fetchLocations({
-        setCountries,
-        setStates,
-        setState,
-        setCity,
-        productor,
-        setCountry
-      });
-    } else {
-      fetchLocations({
-        setCountries,
-        setStates,
-        setState,
-        setCity,
-        productor: {},
-        setCountry
-      });
-    }
-  }, [state.user]);
+    makeDocUploads({
+      tecRider, setTecRider, state,
+      tecMap, setTecMap, tecRelease,
+      setRelease
+    });
+  }, [tecRider, tecMap, tecRelease]);
 
   useEffect(() => {
-    // if (!state.loading.verify && !state.user) {
-    //   router.push('/');
-    // }
+    if (state.user && state.user.artist) {
+      const { artist } = state.user;
+      mapContextToState(artist);
+    }
+    if (!countries.length) {
+      fetchLocations({
+        setCountries, setStates, setState, setCity,
+        setCountry,
+      });
+    }
+  }, [state.user, countries, states]);
+
+  useEffect(() => {
+    if (!state.loading.verify && !state.user) {
+      router.push('/');
+    }
   }, [state.loading]);
 
   const values = {
-    avatar,
-    about,
-    integrants,
-    instagram,
-    musicalStyles,
-    musicalStylePredict,
-    musicalStyle,
-    name,
-    mainPhone,
-    whatsapp,
-    telegram,
-    contactEmail,
-    facebook,
-    youtube,
-    twitter,
-    country,
-    state: locationState,
-    city,
-    locationId
+    avatar, name, integrants, id,
+    about, musicalStyles, musicalStylePredict, musicalStyle,
+    country, state: locationState, city, mainPhone, whatsapp,
+    telegram, contactEmail, tecRider, tecMap, tecRelease,
+    facebook, youtube, twitter, instagram, songs,
   };
+  
+  if (!state.user) {
+    return (
+      <LoadingWrapper>
+        <Loading />
+      </LoadingWrapper>
+    );
+  }
+
 
   return (
     <Form autocomplete={false} onSubmit={(e) => e.preventDefault()}>
       <StepFormHeader color={magenta} items={steps} index={'0'} />
-      {renderBasicInfos({
-        values,
-        setAbout,
-        setMusicalStyle,
-        musicalStyles,
-        setMusicalStylePredict,
-        musicalStylesOptions,
-        setMusicalStyles,
-        setMusicalStylesOptions,
-        setName,
-        setAvatar,
-        productorStepErrors,
-        setProductorStepErrors,
-        handleIntegrants
-      })}
-      {renderLocationFieldset({
-        visibles,
-        values,
-        setState,
-        setCountry,
-        setCity,
-        countries,
-        states,
-        productorStepErrors,
-        setStates,
-        locationId,
-        setLocationId
-      })}
-      {renderContactFieldset({
-        visibles,
-        values,
-        setMainPhone,
-        setWhatsapp,
-        setTelegram,
-        setContactEmail,
-        productorStepErrors
-      })}
-      {renderSocialsFieldset({
-        visibles,
-        values,
-        setFacebook,
-        setInstagram,
-        setTwitter,
-        setYoutube,
-        productorStepErrors
-      })}
-      {renderFilesDocs({
-        visibles
-      })}
-      {renderMusics({
-        visibles
-      })}
+      {
+        renderBasicInfos({
+          values, setAbout, setMusicalStyle, musicalStyles,
+          setMusicalStylePredict, musicalStylesOptions, setMusicalStyles,
+          setMusicalStylesOptions, setName, setAvatar, productorStepErrors,
+          setProductorStepErrors, handleIntegrants,
+        })
+      }
+      {
+          renderLocationFieldset({
+            visibles, values, setState, setCountry, setCity,
+            countries, states, productorStepErrors, setStates,
+          })
+        }
+        {
+          renderContactFieldset({
+            visibles, values, setMainPhone,
+            setWhatsapp, setTelegram, setContactEmail, productorStepErrors,
+          })
+        }
+        {
+          renderSocialsFieldset({
+            visibles, values, setFacebook, setInstagram,
+            setTwitter, setYoutube, productorStepErrors,
+          })
+        }
+        {
+          renderFilesDocs({
+            visibles, tecRider, setTecRider,
+            tecMap, setTecMap,
+            tecRelease, setRelease,
+          })
+        }
+        {
+          renderMusics({
+            visibles, setSongs, songs,
+          })
+        }
       <StepFormFooter
         nextAction={() => {
           if (!id) {
-            handleCreateProductor({
-              values,
-              userId: state.user.id,
-              setLoading,
-              visibles,
-              history,
-              setVisibles,
-              setLocationId,
-              dispatch,
-              user: state.user,
-              setId
+            handleCreateArtist({
+              values, setLoading, visibles, history,
+              setVisibles, dispatch, user: state.user, setId,
             });
           } else {
-            handleEditProductor(
-              values,
-              id,
-              state.user.id,
-              setLoading,
-              visibles,
-              setVisibles,
-              setLocationId,
-              dispatch,
-              state.user,
-              history
-            );
+            handleEditArtist({
+              values, setLoading, setAvatar,
+              visibles, setVisibles, dispatch,
+              user: state.user, router,
+            });
           }
         }}
+        customStyle={`background-color: ${getFooterBackground(visibles)}`}
         loading={loading.show}
         loadingText={loading.text}
+        lastStep={visibles.musics}
         skipAction={() => nextCallback({ history, visibles, setVisibles })}
       />
     </Form>

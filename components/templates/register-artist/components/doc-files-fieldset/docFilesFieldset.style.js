@@ -21,17 +21,6 @@ export const Title = styled.h2`
   margin-bottom: 10px;
 `;
 
-export const inputGroupStyle = `
-  @media (min-width: 768px) {
-    display: inline-block;
-    width: calc(50% - 7px);
-    
-    & + & {
-      margin-left: 14px;
-    }
-  }
-`;
-
 export const FirstLegend = styled.p`
   font-size: 1em;
   line-height: 1.35em;
@@ -93,6 +82,18 @@ export const SeeExempleButton = styled.a`
   font-size: 0.812em;
   cursor: pointer;
   line-height: 1.25em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+  /* max-width: 100px; */
+  @media (max-width: 768px) {
+    max-width: 50%;
+  }
+  ${({ name }) => name ? `
+    opacity: .3;
+    color: #000; 
+  ` : ''}
 `;
 
 export const UploadButton = styled.button`

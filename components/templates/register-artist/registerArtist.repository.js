@@ -1,27 +1,26 @@
 import { client } from '../../../libs/apollo.lib';
 import {
-  createProductorMutation,
-  updateProductorMutation,
-  createLocationMutation,
-  updateLocationMutation
+  createArtistMutation, updateArtistMutation, createLocationMutation,
+  updateLocationMutation,
+  deleteSongMutation,
+  createSongMutation,
+  updateSongMutation,
 } from './registerArtist.mutations';
 
-export const createProductor = (productor) =>
-  client().mutate({
-    mutation: createProductorMutation,
-    variables: {
-      productor
-    }
-  });
+export const createArtist = artist => client().mutate({
+  mutation: createArtistMutation,
+  variables: {
+    artist,
+  },
+});
 
-export const updateProductor = (id, productor) =>
-  client().mutate({
-    mutation: updateProductorMutation,
-    variables: {
-      productor_id: id,
-      productor
-    }
-  });
+export const updateArtist = (id, artist) => client().mutate({
+  mutation: updateArtistMutation,
+  variables: {
+    artist_id: id,
+    artist,
+  },
+});
 
 export const createLocation = (location) =>
   client().mutate({
@@ -39,3 +38,41 @@ export const updateLocation = (id, location) =>
       location
     }
   });
+
+export const createSong = (song) =>
+  client().mutate({
+    mutation: createSongMutation,
+    variables: {
+      song: {
+        artist: song.artist,
+        url: song.url,
+        title: song.title,
+        image: song.image,
+      }
+    }
+  }
+);
+
+export const updateSong = (song) =>
+  client().mutate({
+    mutation: updateSongMutation,
+    variables: {
+      song_id: song.id,
+      song: {
+        artist: song.artist,
+        url: song.url,
+        title: song.title,
+        image: song.image,
+      }
+    }
+  }
+);
+
+export const deleteSong = (id) =>
+  client().mutate({
+    mutation: deleteSongMutation,
+    variables: {
+      song_id: id
+    }
+  }
+);

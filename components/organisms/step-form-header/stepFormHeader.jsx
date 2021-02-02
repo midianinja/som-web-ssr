@@ -7,7 +7,6 @@ import { Header, Body, Title, Text } from './stepFormHeader.style';
 const StepFormHeader = (props) => {
   const [small, setSmall] = useState(0);
   const { items, index } = props;
-
   useEffect(() => {
     window.document.addEventListener('scroll', (event) => {
       setSmall(event.target.documentElement.scrollTop > 0);
@@ -24,22 +23,23 @@ const StepFormHeader = (props) => {
     </Header>
   );
 };
-
-const itemShape = {
-  title: PropTypes.string.isRequired,
-  small: PropTypes.bool.isRequired,
-  description: PropTypes.string.isRequired
-};
-
-StepFormHeader.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape(itemShape)).isRequired,
-  index: PropTypes.string.isRequired,
-  customStyle: PropTypes.string.isRequired,
-  color: PropTypes.string
-};
-
-StepFormHeader.defaultProps = {
-  color: magenta
-};
-
-export default StepFormHeader;
+  
+  const itemShape = {   
+    title: PropTypes.string.isRequired,
+    small: PropTypes.bool.isRequired,
+    description: PropTypes.string.isRequired,
+  };
+  
+  StepFormHeader.propTypes = {
+    items: PropTypes.arrayOf(PropTypes.shape(itemShape)).isRequired,
+    index: PropTypes.string.isRequired,
+    customStyle: PropTypes.string.isRequired,
+    color: PropTypes.string,
+  };
+  
+  StepFormHeader.defaultProps = {
+    color: magenta,
+  };
+  
+  export default StepFormHeader;
+  

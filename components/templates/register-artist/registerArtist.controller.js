@@ -1,14 +1,13 @@
 import { client } from '../../../libs/apollo.lib';
 import { allMusicalStyleOptionsQuery } from '../../../queries/musicalGenres.query';
 import {
-  createProductor,
-  updateProductor,
-  createLocation,
-  updateLocation
+  createArtist, createLocation, createSong, updateArtist, updateLocation, updateSong,
 } from './registerArtist.repository';
-import { basicInformationIsValid } from './registerArtist.validate';
 import { allCountriesQuery, allStateQuery } from './registerArtist.queries';
 import { getBase64, uploadImageToStorage } from '../../../utils/file.utils';
+import axios from 'axios';
+import { ApolloCache } from '@apollo/react-hooks';
+import { deleteSongMutation } from './registerArtist.mutations';
 
 /**
  * this function remove tag of song of productor songs list
@@ -20,6 +19,54 @@ import { getBase64, uploadImageToStorage } from '../../../utils/file.utils';
 export const deleteTag = ({ id, tags, setTag }) => {
   const myTags = tags.filter((tag) => tag.id !== id);
   setTag(myTags);
+};
+
+/**
+ * This function makeBlob returns a Blob from file received
+ * 
+ * @param {File} file 
+ */
+export const makeBlob = (file) => {
+  return new Blob([file], {type : file.type});
+};
+
+/**
+ * function addSong set at state the list of songs updated
+ * 
+ * @param {File} file 
+ */
+export const addSong = (newSong, list, setList) => {
+  let updated = false;
+  const filtered = list.map((s) => {
+    if (s.url !== newSong.url) return s;
+    updated = true
+    return newSong
+  });
+  if (!updated) filtered.push(newSong);
+  setList(filtered);
+};
+
+/**
+ * function deleteSong set at state the list of songs updated
+ * 
+ * @param {File} file 
+ */
+export const deleteSong = async (newSong, list, setList) => {
+  console.log('🚀 ~ file: registerArtist.controller.js ~ line 53 ~ deleteSong ~ newSong', newSong);
+  let filtered = null;
+  if (newSong.id) {
+    const deletedSong = await client().mutate({
+      mutation: deleteSongMutation,
+      variables: {
+        song_id: newSong.id
+      },
+    });
+    console.log('🚀 ~ file: registerArtist.controller.js ~ line 61 ~ deletedSong ~ deletedSong', deletedSong);
+    filtered = list.filter((s) => s.id !== newSong.id);
+  } else {
+    filtered = list.filter((s) => s.url !== newSong.url);
+  }
+  setList(filtered);
 };
 
 /**
@@ -88,28 +135,6 @@ export const fetchLocations = async ({
     short_name: c.short_name,
     id: c.id
   }));
-
-  if (productor.location && productor.location.country) {
-    const data = myCountries.find((country) => productor.location.country === country.short_name);
-
-    let cb = null;
-
-    if (productor.location.state) {
-      cb = ({ states }) => {
-        const stateData = states.find((state) => productor.location.state === state.short_name);
-
-        handleStateSelect({ data: stateData, setState });
-      };
-    }
-
-    handleCountrySelect({
-      data,
-      setStates,
-      setCountry,
-      cb
-    });
-  }
-
   setCountries(myCountries);
 };
 
@@ -205,32 +230,60 @@ export const nextCallback = ({ visibles, setVisibles, router, id }) => {
     setVisibles(newVisibles);
   } else {
     setVisibles(newVisibles);
-    router.push(`/productor/${id}`);
+    router.push(`/artist/${id}`);
   }
 };
 
-const mapProductorToApi = (values, userId, locationId) => ({
+const toBase64 = file => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = error => reject(error);
+});
+
+export const uploadDoc = async (file, updateFile, state, name) => {
+  let doc;
+  if (file.blob.type === 'application/pdf') {
+    doc = await axios.post(`${process.env.STORAGE_API_URI}/document/upload`, {
+      file: await toBase64(file.file),
+      id: state.auth.ida,
+      fileName: name,
+    }, { onUploadProgress: (data) => console.log('upload: ', data) });
+  }
+  if (file.blob.type === 'image/jpg' || file.blob.type === 'image/png' || file.blob.type === 'image/jpeg') {
+    doc = await axios.post(`${process.env.STORAGE_API_URI}/image/upload`, {
+      file: await toBase64(file.file),
+      id: state.auth.ida,
+      fileName: name,
+    }, { onUploadProgress: (data) => console.log('upload: ', data) });
+  }
+
+  updateFile({
+    ...file,
+    url: doc.data.data.link,
+  });
+}
+
+const mapArtistToApi = (values, userId, locationId) => ({
   user: userId,
-  photo: values.avatar.url,
   name: values.name,
-  description: values.about,
-  cpf: values.cpf,
-  cnpj: values.cnpj,
-  location: locationId,
+  about: values.about,
   musical_styles: values.musicalStyles.map(({ id }) => id),
-  status: basicInformationIsValid(values) ? 'INCOMPLETE' : 'ACTIVE',
-  main_phone: values.mainPhone,
-  secondary_phone: values.secondaryPhone,
-  whatsapp: values.whatsapp,
-  telegram: values.telegram,
-  contact_email: values.contactEmail,
+  // status: basicInformationIsValid(values) ? 'INCOMPLETE' : 'ACTIVE',
+  phone: values.mainPhone,
+  email: values.contactEmail,
+  location: locationId,
   facebook: values.facebook,
   instagram: values.instagram,
   twitter: values.twitter,
-  youtube: values.youtube
+  youtube: values.youtube,
+  members_number: values.integrants.split(',').length,
+  integrants: values.integrants.split(',').map(str => str.trim()),
+  whatsapp: values.whatsapp,
+  telegram: values.telegram,
 });
 
-const saveLocation = (id, values) => {
+const saveLocation = (loc, values) => {
   const { city, state, country } = values;
   const location = {
     city,
@@ -238,115 +291,149 @@ const saveLocation = (id, values) => {
     country: country.short_name
   };
 
-  if (id) {
-    return updateLocation(id, location);
+  if (loc && loc.id) {
+    return updateLocation(loc.id, location);
   }
 
   return createLocation(location);
 };
 
-export const handleCreateProductor = async ({
-  values,
-  userId,
-  setLoading,
-  visibles,
-  setId,
-  setVisibles,
-  dispatch,
-  user,
-  router
+const uploadAvatar = async ({
+  setLoading, userId, artist,
 }) => {
-  const productor = { ...values };
-  let newImage = null;
+  let newImage;
+  try {
+    setLoading({ show: true, text: 'Tratando imagen' });
+    const base64 = await getBase64(artist.avatar.file);
+    setLoading({ show: true, text: 'Subindo imagem' });
+    newImage = await uploadImageToStorage({
+      file: base64,
+      id: userId,
+    });
+  } catch (err) {
+    console.error('err:', [err]);
+    throw err;
+  }
 
-  if (productor.avatar && productor.avatar.file) {
-    try {
-      setLoading({ show: true, text: 'Tratando imagen' });
-      const base64 = await getBase64(productor.avatar.file);
-      setLoading({ show: true, text: 'Subindo imagem' });
-      newImage = await uploadImageToStorage({
-        file: base64,
-        id: userId
-      });
-    } catch (err) {
-      console.error('err:', [err]);
-      throw err;
-    }
+  return newImage.data.data.urls;
+}
 
-    productor.avatar = newImage.data.data.urls.mimified;
+export const handleCreateArtist = async ({
+  values, userId, setLoading, visibles, setId,
+  setVisibles, dispatch, user, router,
+}) => {
+  const artist = { ...values };
+  if (artist.avatar && artist.avatar.file) {
+    const uploadedAvatar = await uploadAvatar({ setLoading, userId, artist })
+    artist.avatar = uploadedAvatar;
   }
 
   let promise;
-  const data = mapProductorToApi(productor, userId);
+  const data = mapArtistToApi(artist, userId);
+  if (artist.avatar.file) data.avatar_image = values.avatar;
   try {
     setLoading({ show: true, text: 'Atualizando Produtor' });
-    promise = await createProductor(data);
+    promise = await createArtist(data);
+    console.log('🚀 ~ file: registerArtist.controller.js ~ line 339 ~ promise', promise);
   } catch (err) {
     console.error([err]);
     setLoading({ show: false });
     throw err;
   }
-  setId(promise.data.createProductor.id);
+  setId(promise.data.createArtist.id);
   dispatch({
     type: 'SET_USER',
-    user: { ...JSON.parse(JSON.stringify(user)), productor: promise.data.createProductor }
+    user: { ...JSON.parse(JSON.stringify(user)), artist: promise.data.createArtist },
   });
   nextCallback({ visibles, setVisibles, router });
   setLoading({ show: false });
 };
 
-export const handleEditProductor = async (
-  values,
-  productorId,
-  userId,
-  setLoading,
-  visibles,
-  setVisibles,
-  setLocationId,
-  dispatch,
-  user,
-  router
-) => {
-  const productor = { ...values };
-  let newImage = null;
+export const handleEditArtist = async ({
+  values, setLoading, visibles,
+  setVisibles, dispatch, user,
+  router, setAvatar, tecRider,
+  tecMap, tecRelease,
+}) => {
+  const artist = { ...values };
 
-  if (productor.avatar && productor.avatar.file) {
-    setLoading({ show: true, text: 'Tratando imagen' });
-
-    const base64 = await getBase64(productor.avatar.file);
-    setLoading({ show: true, text: 'Subindo imagem' });
-
-    newImage = await uploadImageToStorage({
-      file: base64,
-      id: userId
-    });
-
-    productor.avatar = { url: newImage.data.data.urls.mimified };
+  if (artist.avatar && artist.avatar.file) {
+    try {
+      const uploadedAvatar = await uploadAvatar({ setLoading, userId: user.id, artist })
+      artist.avatar = uploadedAvatar;
+      setAvatar({ url: '' });
+    } catch (err) {
+      throw err;
+    }
   }
 
   let locationId = null;
-  if (productor.city || productor.country.short_name) {
+  if (artist.city || artist.country.short_name) {
     setLoading({ show: true, text: 'Salvando informações' });
     let locationResult;
     try {
-      locationResult = await saveLocation(values.locationId, values);
+      locationResult = await saveLocation(
+        user.artist.location, values,
+      );
+      console.log('🚀 ~ file: registerArtist.controller.js ~ line 380 ~ locationResult', locationResult);
     } catch (err) {
-      // to be try
+      console.log('🚀 ~ file: registerArtist.controller.js ~ line 384 ~ err', err);
     }
 
-    if (values.locationId) {
+    if (user.artist.location && user.artist.location.id) {
       locationId = locationResult.data.updateLocation.id;
     } else {
       locationId = locationResult.data.createLocation.id;
     }
-    setLocationId(locationId);
+  }
+  const data = mapArtistToApi(artist, user.id, locationId);
+
+  if (values.tecMap && values.tecMap.file) data.stage_map = values.tecMap.url;
+  if (values.tecRelease && values.tecRelease.file) data.tec_release = values.tecRelease.url;
+  if (values.tecRider && values.tecRider.file) data.tec_rider = values.tecRider.url;
+
+  console.log('🚀 ~ file: registerArtist.controller.js ~ line 379 ~ values.songs', values.songs);
+  const newSongs = values.songs.filter(s => s.file);
+  console.log('🚀 ~ file: registerArtist.controller.js ~ line 382 ~ newSongs', newSongs);
+  if (newSongs.length) {
+    setLoading({ show: true, text: 'Salvando Músicas' });
+    const promises = newSongs.map((s) => new Promise(async (res, rej) => {
+      const mapped = {
+        artist: values.id,
+        url: s.url,
+        title: s.name,
+      }
+      const song = await createSong(mapped);
+      res(song)
+    }));
+    console.log('🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 ENTROOO');
+    const response = await Promise.all(promises);
+  }
+  const songsToUpdate = values.songs.filter(s => s.id);
+  console.log('🚀 ~ file: registerArtist.controller.js ~ line 397 ~ songsToUpdate', songsToUpdate);
+  if (songsToUpdate.length) {
+    setLoading({ show: true, text: 'Atualizando Músicas' });
+    const promises = songsToUpdate.map((s) => new Promise(async (res, rej) => {
+      console.log('🚀 ~ file: registerArtist.controller.js ~ line 411 ~ promises ~ s', s);
+      const mapped = {
+        id: s.id,
+        artist: values.id,
+        url: s.url,
+        title: s.name,
+      }
+      const song = await updateSong(mapped);
+      res(song);
+    }));
+    console.log('🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 ENTROOO UPDATE');
+    console.log('🚀 ~ file: registerArtist.controller.js ~ line 407 ~ promises', promises);
+    const response = await Promise.all(promises);
+    console.log('🚀 ~ file: registerArtist.controller.js ~ line 407 ~ response', response);
   }
 
   let promise;
-  const data = mapProductorToApi(productor, userId, locationId);
   try {
     setLoading({ show: true, text: 'Atualizando Produtor' });
-    promise = await updateProductor(productorId, data);
+    promise = await updateArtist(values.id, data);
   } catch (err) {
     console.error([err]);
     setLoading({ show: false });
@@ -355,13 +442,34 @@ export const handleEditProductor = async (
 
   dispatch({
     type: 'SET_USER',
-    user: { ...user, productor: promise.data.updateProductor }
+    user: { ...user, artist: promise.data.updateArtist },
   });
   setLoading({ show: false });
   nextCallback({
-    visibles,
-    setVisibles,
-    router,
-    id: productorId
+    visibles, setVisibles, router, id: values.id,
   });
+};
+
+
+/**
+ * this function remove tag of song of productor songs list
+ * @param {object} props song properties
+ * @param {string} props.id song reference 
+ * @param {array} props.tags songs list of productor 
+ * @param {cuntion} props.setTag this function set on form state the new songs list 
+ */
+export const makeDocUploads = ({
+  tecRider, setTecRider, state,
+  tecMap, setTecMap, tecRelease,
+  setRelease
+}) => {
+  if (tecRider && tecRider.blob && !tecRider.url) {
+    uploadDoc(tecRider, setTecRider, state, `rider-tec.${tecRider.blob.type.split('/')[1]}`)
+  };
+  if (tecMap && tecMap.blob && !tecMap.url) {
+    uploadDoc(tecMap, setTecMap, state, `stage-map.${tecMap.blob.type.split('/')[1]}`);
+  }
+  if (tecRelease && tecRelease.blob && !tecRelease.url) {
+    uploadDoc(tecRelease, setRelease, state, `release.${tecRelease.blob.type.split('/')[1]}`);
+  }
 };

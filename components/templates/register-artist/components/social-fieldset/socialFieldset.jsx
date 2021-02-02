@@ -4,6 +4,10 @@ import Input from '../../../../atoms/input/input';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
 import { Fieldset, Title, InputsWrapper, inputGroupStyle } from './socialFieldset.style';
 
+/**
+ * This contains the Socials Fieldset Component
+ * @returns {React.Component} React Component
+ */
 const SocialsFieldset = ({
   handleFacebookChange,
   handleTwitterChange,

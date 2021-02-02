@@ -22,6 +22,11 @@ export const Icon = styled.img`
   margin-left: 5px;
 `;
 
+export const Label = styled.label`
+  max-width: 90%;
+  ${(props) => props.customStyle}
+`;
+
 export const Input = styled.input`
   display: none;
 `;

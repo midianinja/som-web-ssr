@@ -9,10 +9,26 @@ export const oneUserQuery = gql`
       artist {
         id
         members_number
+        integrants
+        telegram
+        tec_rider
+        stage_map
+        tec_release
+        whatsapp
+        location {
+          id
+          address
+          complement
+          district
+          city
+          number
+          zipcode
+          state
+          country
+          place_id
+          geometry
+        }
         about
-        country
-        state
-        city
         musical_styles {
           name
           id
@@ -21,6 +37,7 @@ export const oneUserQuery = gql`
         email
         songs {
           title
+          id
           url
         }
         spotify_id

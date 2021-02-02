@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import VMasker from 'vanilla-masker';
 import Input from '../../../../atoms/input/input';
 import UploadAvatar from '../../../../atoms/upload-avatar/uploadAvatar';
 import TextArea from '../../../../atoms/text-area/TextArea';
@@ -16,6 +15,11 @@ import {
   avatarInputGroupStyle
 } from './basicInformationFieldset.style';
 
+/**
+ * This contains the Basic Informations Fildset Component
+ * 
+ * @returns {React.Component} React Component
+ */
 const BasicInformationFieldset = ({
   handleNameChange,
   handleAboutChange,
@@ -55,7 +59,7 @@ const BasicInformationFieldset = ({
           label={values.integrants ? 'Integrantes (nomes sepados por vírgula)' : ''}
           error={productorStepErrors.integrants}>
           <Input
-            id="cpf"
+            id="integrants"
             placeholder="Integrantes (nomes sepados por vírgula)"
             type="tel"
             value={values.integrants}

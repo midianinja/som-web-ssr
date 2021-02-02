@@ -18,7 +18,7 @@ export const inputGroup30Style = `
     width: calc(30% - 10px);
 
     & + & {
-      margin-left: 15px;
+      // margin-left: 15px;
     }
   }
 `;

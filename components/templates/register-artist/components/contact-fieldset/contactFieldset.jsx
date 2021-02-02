@@ -5,6 +5,12 @@ import Input from '../../../../atoms/input/input';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
 import { Fieldset, Title, Row, inputGroup50CustomStyle } from './contactFieldset.style';
 
+
+/**
+ * This contains the Contact Fildset component
+ * 
+ * @returns {React.Component} React Component
+ */
 const ContactFieldset = ({
   handleMainPhoneChange,
   handleWhatsappChange,
@@ -31,7 +37,9 @@ const ContactFieldset = ({
       <InputGroup
         label={values.whatsapp ? 'Whatsapp' : ''}
         error={productorStepErrors.whatsapp}
-        customStyle={inputGroup50CustomStyle}>
+        marginLeft="14px"
+        customStyle={inputGroup50CustomStyle}
+      >
         <Input
           id="whatsapp"
           placeholder="Whatsapp"
@@ -57,7 +65,9 @@ const ContactFieldset = ({
       <InputGroup
         label={values.contactEmail ? 'Email de contato' : ''}
         error={productorStepErrors.contactEmail}
-        customStyle={inputGroup50CustomStyle}>
+        marginLeft="14px"
+        customStyle={inputGroup50CustomStyle}
+      >
         <Input
           id="contactEmail"
           placeholder="Email de contato"

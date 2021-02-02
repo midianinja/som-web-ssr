@@ -20,10 +20,5 @@ export const Row = styled.div`
 export const inputGroup50CustomStyle = `
   @media (min-width: 768px) {
     display: inline-block;
-    width: calc(50% - 7px);
-    
-    & + & {
-      margin-left: 14px;
-    }
-  }
+    width: calc(50% - 20px);
 `;

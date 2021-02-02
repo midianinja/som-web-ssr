@@ -11,7 +11,8 @@ const StepFormFooter = ({
   customStyle,
   loading,
   loadingText,
-  noShowSkip
+  noShowSkip,
+  lastStep
 }) => (
   <Wrapper customStyle={customStyle}>
     {!loading ? (
@@ -19,7 +20,7 @@ const StepFormFooter = ({
         <PrimaryButton
           onClick={nextAction}
           customStyle="padding: 20px 0; height: auto; letter-spacing: 3px;">
-          CONTINUAR
+          {lastStep ? 'SALVAR' : 'SALVAR & CONTINUAR'}
         </PrimaryButton>
         {!noShowSkip ? (
           <PrimaryButton

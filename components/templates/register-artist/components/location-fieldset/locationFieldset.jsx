@@ -5,6 +5,12 @@ import InputGroup from '../../../../molecules/input-group/inputGroup';
 import ListInput from '../../../../molecules/list-input/listInput';
 import { Fieldset, Title, inputGroup30Style, LocationWrapper } from './locationFieldset.style';
 
+
+/**
+ * This contains the Location Fildset Component
+ * 
+ * @returns {React.Component} React Component
+ */
 const LocationFieldset = ({
   country,
   countries,

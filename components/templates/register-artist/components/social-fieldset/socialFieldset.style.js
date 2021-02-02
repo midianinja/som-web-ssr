@@ -26,8 +26,8 @@ export const inputGroupStyle = `
     display: inline-block;
     width: calc(50% - 7px);
     
-    & + & {
-      margin-left: 14px;
-    }
+    // & + & {
+    //   margin-left: 14px;
+    // }
   }
 `;

@@ -18,7 +18,23 @@ import {
   ButtonIcon
 } from './docFilesFieldset.style';
 
-const DocFilesFieldset = ({ handleRiderChange, handleMapChange, handleReleaseChange }) => (
+const getFileName = (data) => {
+  if (data) {
+    if (data.file) return data.file.name;
+    if (data.url) return data.url;
+  }
+  return 'Ver Exemplo';
+}
+
+/**
+ * This contains the Document Files Fildset Component
+ * 
+ * @returns {React.Component} React Component
+ */
+const DocFilesFieldset = ({
+  handleRiderChange, handleMapChange, handleReleaseChange,
+  tecRider, tecMap, tecRelease,
+}) => (
   <Fieldset>
     <Title>Arquivos técnicos</Title>
     <FirstLegend>Documentos básicos para inscrição em qualquer evento do SOM</FirstLegend>
@@ -32,7 +48,12 @@ const DocFilesFieldset = ({ handleRiderChange, handleMapChange, handleReleaseCha
           Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
         </CardDescription>
         <Actions>
-          <SeeExempleButton>Ver Exemplo</SeeExempleButton>
+          <SeeExempleButton
+            onClick={() => window.open(tecMap ? tecMap.url : '')}
+            name={tecMap}
+          >
+            {getFileName(tecMap)}
+          </SeeExempleButton>
           <UploadDoc
             id="map-doc-uploader"
             handleChange={(data) => handleMapChange(data.target.files[0])}
@@ -46,7 +67,12 @@ const DocFilesFieldset = ({ handleRiderChange, handleMapChange, handleReleaseCha
           Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
         </CardDescription>
         <Actions>
-          <SeeExempleButton>Ver Exemplo</SeeExempleButton>
+          <SeeExempleButton
+            onClick={() => window.open(tecRider ? tecRider.url : '')}
+            name={tecRider}
+          >
+            {getFileName(tecRider)}
+          </SeeExempleButton>
           <UploadDoc
             id="rider-doc-uploader"
             handleChange={(data) => handleRiderChange(data.target.files[0])}
@@ -60,7 +86,12 @@ const DocFilesFieldset = ({ handleRiderChange, handleMapChange, handleReleaseCha
           Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
         </CardDescription>
         <Actions>
-          <SeeExempleButton>Ver Exemplo</SeeExempleButton>
+          <SeeExempleButton
+            onClick={() => window.open(tecRelease ? tecRelease.url : '')}
+            name={tecRelease}
+          >
+            {getFileName(tecRelease)}
+          </SeeExempleButton>
           <UploadDoc
             id="release-doc-uploader"
             handleChange={(data) => handleReleaseChange(data.target.files[0])}

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { white, black, purple } from '../../../../../settings/colors';
+import { white, black } from '../../../../../settings/colors';
 
 export const Fieldset = styled.fieldset`
   padding: 30px;
@@ -8,28 +8,9 @@ export const Fieldset = styled.fieldset`
   color: ${black};
 `;
 
-export const InputsWrapper = styled.div`
-  @media (min-width: 1024px) {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-`;
-
 export const Title = styled.h2`
   font-size: 1.2857142857rem;
   margin-bottom: 10px;
-`;
-
-export const inputGroupStyle = `
-  @media (min-width: 768px) {
-    display: inline-block;
-    width: calc(50% - 7px);
-    
-    & + & {
-      margin-left: 14px;
-    }
-  }
 `;
 
 export const FirstLegend = styled.p`
@@ -49,7 +30,8 @@ export const SecondLegend = styled.p`
 
 export const CardsWrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
+  flex-wrap: wrap;
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -57,59 +39,24 @@ export const CardsWrapper = styled.div`
   }
 `;
 
-export const Card = styled.div`
-  max-width: 250px;
-  @media (max-width: 768px) {
-    margin: 30px 0 0 20px;
-    width: 100%;
-    max-width: 100%;
-  }
-`;
-
-export const CardTitle = styled.label`
+export const UploadNewSongButton = styled.button`
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.15);
   font-family: CircularStd;
   font-size: 1em;
-  line-height: 1.25em;
-  font-weight: bold;
-`;
-
-export const CardDescription = styled.p`
-  font-family: CircularStd;
-  font-size: 0.9em;
-  line-height: 1.25em;
-  font-weight: 200;
-`;
-
-export const Actions = styled.div`
-  display: flex;
-  margin-top: 5px;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const SeeExempleButton = styled.a`
-  color: ${purple};
-  font-family: CircularStd;
-  font-size: 0.812em;
-  cursor: pointer;
-  line-height: 1.25em;
-`;
-
-export const UploadButton = styled.button`
-  background-color: ${purple};
-  color: ${white};
-  font-family: CircularStd;
-  font-size: 0.937em;
   line-height: 1.25em;
   cursor: pointer;
   padding: 5px 10px;
   letter-spacing: 0.6px;
   border-radius: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 2px dashed rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 300px;
 `;
 
-export const ButtonIcon = styled.img`
+export const LabelPlus = styled.label`
+  font-size: 1.5em;
+  vertical-align: middle;
   margin-left: 5px;
+  font-weight: bold;
 `;

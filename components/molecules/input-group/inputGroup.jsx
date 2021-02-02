@@ -3,15 +3,10 @@ import PropTypes from 'prop-types';
 import { InptGroupContainer, Label, ErrorText, InfoText, InputWrapper } from './inputGroup.style';
 
 const InputGroup = ({
-  children,
-  label,
-  info,
-  error,
-  customStyle,
-  customLabelStyle,
-  customErrorStyle
+  children, label, info, error, customStyle,
+  customLabelStyle, customErrorStyle, marginLeft,
 }) => (
-  <InptGroupContainer customStyle={customStyle}>
+  <InptGroupContainer marginLeft={marginLeft} customStyle={customStyle}>
     {label ? <Label customStyle={customLabelStyle}>{label}</Label> : null}
     <InputWrapper customStyle={customStyle}>{children}</InputWrapper>
     {info && !error ? <InfoText>{info}</InfoText> : null}

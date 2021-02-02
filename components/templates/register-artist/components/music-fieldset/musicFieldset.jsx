@@ -1,92 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Input from '../../../../atoms/input/input';
-import UploadDoc from '../upload-doc/uploadDoc';
 import {
-  Fieldset,
-  Title,
-  FirstLegend,
-  inputGroupStyle,
-  SecondLegend,
-  CardsWrapper,
-  Card,
-  CardTitle,
-  CardDescription,
-  SeeExempleButton,
-  Actions,
-  UploadButton,
-  ButtonIcon
+  Fieldset, Title, FirstLegend, CardsWrapper,
+  UploadNewSongButton, LabelPlus, SecondLegend,
 } from './musicFieldset.style';
+import MusicCard from '../music-card/musicCard';
 
-const MusicFieldset = ({ musics }) => {
+/**
+ * This contains the Music Fieldset Component
+ * @returns {React.Component} React Component
+ */
+const MusicFieldset = ({
+  songs, addSong, deleteSong, updateSongName,
+}) => {
+  const [newSong, setNewSong] = useState(false);
   return (
     <Fieldset>
       <Title>Músicas</Title>
+      <FirstLegend>Suba os arquivos de áudio que vão estar disponíveis no player do perfil da banda</FirstLegend>
+      <SecondLegend>Formato de arquivo suportado: .mp3, com no máximo 10 mb.</SecondLegend>
       <CardsWrapper>
-        <Card>
-          <CardTitle>Mapa de palco</CardTitle>
-          <CardDescription>
-            Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
-          </CardDescription>
-          <Actions>
-            <SeeExempleButton>Ver Exemplo</SeeExempleButton>
-            <UploadDoc
-              id="map-doc-uploader"
-              handleChange={(data) => handleMapChange(data.target.files[0])}
-              label="Subir Mapa"
-            />
-          </Actions>
-        </Card>
-        <Card>
-          <CardTitle>Rider técnico</CardTitle>
-          <CardDescription>
-            Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
-          </CardDescription>
-          <Actions>
-            <SeeExempleButton>Ver Exemplo</SeeExempleButton>
-            <UploadDoc
-              id="rider-doc-uploader"
-              handleChange={(data) => handleRiderChange(data.target.files[0])}
-              label="Subir Rider"
-            />
-          </Actions>
-        </Card>
-        <Card>
-          <CardTitle>Release</CardTitle>
-          <CardDescription>
-            Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
-          </CardDescription>
-          <Actions>
-            <SeeExempleButton>Ver Exemplo</SeeExempleButton>
-            <UploadDoc
-              id="release-doc-uploader"
-              handleChange={(data) => handleReleaseChange(data.target.files[0])}
-              label="Subir Release"
-            />
-          </Actions>
-        </Card>
+        {songs.filter((s) => !s.deleted).map((music, index) => (
+          <MusicCard
+            handleChange={(data) => addSong(data)}
+            deleteSong={(data) => deleteSong(data)}
+            key={index}
+            id={index + 1}
+            music={music}
+          />
+        ))}
+        {
+          newSong ?
+            (
+              <MusicCard
+                handleChange={(data) => { setNewSong(false); addSong(data); }}
+                unNameBlur={(song) => { addSong(song); }}
+                deleteSong={(data) => { setNewSong(false); deleteSong(data); }}
+                id={songs.length + 1}
+                music={null}
+              />
+            ) : null
+        }
       </CardsWrapper>
+      <UploadNewSongButton onClick={() => setNewSong(true)}>Carregar mais músicas<LabelPlus>+</LabelPlus></UploadNewSongButton>
     </Fieldset>
   );
-};
-const valuesShape = {
-  facebook: PropTypes.string.isRequired,
-  instagram: PropTypes.string.isRequired,
-  twitter: PropTypes.string.isRequired,
-  youtube: PropTypes.string.isRequired
-};
+}
+const songShape = {};
 
 MusicFieldset.propTypes = {
-  handleRiderChange: PropTypes.func.isRequired,
-  handleMapChange: PropTypes.func.isRequired,
-  handleReleaseChange: PropTypes.func.isRequired,
-  musics: PropTypes.array,
-  stepErrors: PropTypes.shape(valuesShape).isRequired,
-  values: PropTypes.shape(valuesShape).isRequired
+  songs: PropTypes.PropTypes.shape(songShape),
+  addSong: PropTypes.func.isRequired,
+  deleteSong: PropTypes.func.isRequired,
+  updateSongName: PropTypes.func.isRequired,
 };
 
 MusicFieldset.defaultProps = {
-  musics: PropTypes.array
-};
+  musics: [],
+}
 
 export default MusicFieldset;
