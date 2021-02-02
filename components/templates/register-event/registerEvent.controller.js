@@ -80,11 +80,9 @@ export const handleCreateEvent = async (
   setLoading,
   setErrors,
   setLocationId,
-  dispatch,
   user,
   router
 ) => {
-  console.log('here');
   setLoading(true);
   const validate = validation(values);
 

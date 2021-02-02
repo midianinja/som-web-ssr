@@ -278,7 +278,6 @@ const RegisterArtistTemplate = () => {
   const [tecMap, setTecMap] = useState(null);
   const [tecRelease, setRelease] = useState(null);
   const [songs, setSongs] = useState([]);
-  console.log('🚀 ~ file: registerArtist.jsx ~ line 281 ~ RegisterArtistTemplate ~ songs', songs.length);
   const [productorStepErrors, setProductorStepErrors] = useState({});
   const [visibles, setVisibles] = useState({
     location: false,

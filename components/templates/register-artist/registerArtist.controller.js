@@ -52,7 +52,6 @@ export const addSong = (newSong, list, setList) => {
  * @param {File} file 
  */
 export const deleteSong = async (newSong, list, setList) => {
-  console.log('🚀 ~ file: registerArtist.controller.js ~ line 53 ~ deleteSong ~ newSong', newSong);
   let filtered = null;
   if (newSong.id) {
     const deletedSong = await client().mutate({
@@ -61,7 +60,6 @@ export const deleteSong = async (newSong, list, setList) => {
         song_id: newSong.id
       },
     });
-    console.log('🚀 ~ file: registerArtist.controller.js ~ line 61 ~ deletedSong ~ deletedSong', deletedSong);
     filtered = list.filter((s) => s.id !== newSong.id);
   } else {
     filtered = list.filter((s) => s.url !== newSong.url);
@@ -334,7 +332,6 @@ export const handleCreateArtist = async ({
   try {
     setLoading({ show: true, text: 'Atualizando Produtor' });
     promise = await createArtist(data);
-    console.log('🚀 ~ file: registerArtist.controller.js ~ line 339 ~ promise', promise);
   } catch (err) {
     console.error([err]);
     setLoading({ show: false });
@@ -375,7 +372,6 @@ export const handleEditArtist = async ({
       locationResult = await saveLocation(
         user.artist.location, values,
       );
-      console.log('🚀 ~ file: registerArtist.controller.js ~ line 380 ~ locationResult', locationResult);
     } catch (err) {
       console.log('🚀 ~ file: registerArtist.controller.js ~ line 384 ~ err', err);
     }
@@ -392,9 +388,7 @@ export const handleEditArtist = async ({
   if (values.tecRelease && values.tecRelease.file) data.tec_release = values.tecRelease.url;
   if (values.tecRider && values.tecRider.file) data.tec_rider = values.tecRider.url;
 
-  console.log('🚀 ~ file: registerArtist.controller.js ~ line 379 ~ values.songs', values.songs);
   const newSongs = values.songs.filter(s => s.file);
-  console.log('🚀 ~ file: registerArtist.controller.js ~ line 382 ~ newSongs', newSongs);
   if (newSongs.length) {
     setLoading({ show: true, text: 'Salvando Músicas' });
     const promises = newSongs.map((s) => new Promise(async (res, rej) => {
@@ -410,11 +404,9 @@ export const handleEditArtist = async ({
     const response = await Promise.all(promises);
   }
   const songsToUpdate = values.songs.filter(s => s.id);
-  console.log('🚀 ~ file: registerArtist.controller.js ~ line 397 ~ songsToUpdate', songsToUpdate);
   if (songsToUpdate.length) {
     setLoading({ show: true, text: 'Atualizando Músicas' });
     const promises = songsToUpdate.map((s) => new Promise(async (res, rej) => {
-      console.log('🚀 ~ file: registerArtist.controller.js ~ line 411 ~ promises ~ s', s);
       const mapped = {
         id: s.id,
         artist: values.id,
@@ -424,10 +416,7 @@ export const handleEditArtist = async ({
       const song = await updateSong(mapped);
       res(song);
     }));
-    console.log('🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 ENTROOO UPDATE');
-    console.log('🚀 ~ file: registerArtist.controller.js ~ line 407 ~ promises', promises);
     const response = await Promise.all(promises);
-    console.log('🚀 ~ file: registerArtist.controller.js ~ line 407 ~ response', response);
   }
 
   let promise;
