@@ -425,12 +425,13 @@ const RegisterArtistTemplate = () => {
             handleCreateArtist({
               values, setLoading, visibles, history,
               setVisibles, dispatch, user: state.user, setId,
+              userId: state.user.id,
             });
           } else {
             handleEditArtist({
               values, setLoading, setAvatar,
               visibles, setVisibles, dispatch,
-              user: state.user, router,
+              user: state.user, router, userId: state.user.id,
             });
           }
         }}
