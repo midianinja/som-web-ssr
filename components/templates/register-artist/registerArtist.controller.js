@@ -330,7 +330,7 @@ export const handleCreateArtist = async ({
   const data = mapArtistToApi(artist, userId);
   if (artist.avatar.file) data.avatar_image = values.avatar;
   try {
-    setLoading({ show: true, text: 'Atualizando Produtor' });
+    setLoading({ show: true, text: 'Atualizando Artista' });
     promise = await createArtist(data);
   } catch (err) {
     console.error([err]);
@@ -421,7 +421,7 @@ export const handleEditArtist = async ({
 
   let promise;
   try {
-    setLoading({ show: true, text: 'Atualizando Produtor' });
+    setLoading({ show: true, text: 'Atualizando Artista' });
     promise = await updateArtist(values.id, data);
   } catch (err) {
     console.error([err]);
