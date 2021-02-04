@@ -41,7 +41,6 @@ const BaseHead = ({ description, keywords, title, imageUrl }) => (
         gtag('config', '${process.env.G_TAG}');
       `}
     />
-    </script>
   </Head>
 );
 
