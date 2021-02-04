@@ -313,7 +313,7 @@ const uploadAvatar = async ({
     throw err;
   }
 
-  return newImage.data.data.urls;
+  return newImage.data.urls;
 }
 
 export const handleCreateArtist = async ({
