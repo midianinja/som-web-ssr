@@ -29,6 +29,19 @@ const BaseHead = ({ description, keywords, title, imageUrl }) => (
 
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
+
+    {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.G_TAG}`} />
+    <script
+      dangerouslySetInnerHTML={`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '${process.env.G_TAG}');
+      `}
+    />
+    </script>
   </Head>
 );
 

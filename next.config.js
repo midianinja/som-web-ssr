@@ -5,6 +5,7 @@ const withCSS = require('@zeit/next-css');
 module.exports = withCSS({
   env: {
     GRAPHQL_URI: process.env.GRAPHQL_URI,
+    G_TAG: process.env.G_TAG,
     STORAGE_API_URI: process.env.STORAGE_API_URI,
     INSTAGRAM_API_URI: process.env.INSTAGRAM_API_URI,
     API_KEY: process.env.API_KEY,
