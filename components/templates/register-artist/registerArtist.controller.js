@@ -383,7 +383,7 @@ export const handleEditArtist = async ({
 
   const data = mapArtistToApi(artist, user.id, locationId);
   
-  if (uploadAvatar) data.avatar_image = uploadedAvatar;
+  if (uploadedAvatar) data.avatar_image = uploadedAvatar;
 
   if (values.tecMap && values.tecMap.file) data.stage_map = values.tecMap.url;
   if (values.tecRelease && values.tecRelease.file) data.tec_release = values.tecRelease.url;
