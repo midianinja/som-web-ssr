@@ -321,14 +321,14 @@ export const handleCreateArtist = async ({
   setVisibles, dispatch, user, router,
 }) => {
   const artist = { ...values };
+  let uploadAvatar
   if (artist.avatar && artist.avatar.file) {
-    const uploadedAvatar = await uploadAvatar({ setLoading, userId, artist })
-    artist.avatar = uploadedAvatar;
+    uploadedAvatar = await uploadAvatar({ setLoading, userId, artist })
   }
 
   let promise;
   const data = mapArtistToApi(artist, userId);
-  if (artist.avatar.file) data.avatar_image = values.avatar;
+  if (uploadedAvatar) data.avatar_image = uploadedAvatar;
   try {
     setLoading({ show: true, text: 'Atualizando Artista' });
     promise = await createArtist(data);
@@ -353,12 +353,10 @@ export const handleEditArtist = async ({
   tecMap, tecRelease,
 }) => {
   const artist = { ...values };
-
+  let uploadedAvatar;
   if (artist.avatar && artist.avatar.file) {
     try {
-      const uploadedAvatar = await uploadAvatar({ setLoading, userId: user.id, artist })
-      artist.avatar = uploadedAvatar;
-      setAvatar({ url: '' });
+      uploadedAvatar = await uploadAvatar({ setLoading, userId: user.id, artist });
     } catch (err) {
       throw err;
     }
@@ -382,7 +380,10 @@ export const handleEditArtist = async ({
       locationId = locationResult.data.createLocation.id;
     }
   }
+
   const data = mapArtistToApi(artist, user.id, locationId);
+  
+  if (uploadAvatar) data.avatar_image = uploadedAvatar;
 
   if (values.tecMap && values.tecMap.file) data.stage_map = values.tecMap.url;
   if (values.tecRelease && values.tecRelease.file) data.tec_release = values.tecRelease.url;
@@ -403,7 +404,9 @@ export const handleEditArtist = async ({
     console.log('🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 ENTROOO');
     const response = await Promise.all(promises);
   }
+
   const songsToUpdate = values.songs.filter(s => s.id);
+
   if (songsToUpdate.length) {
     setLoading({ show: true, text: 'Atualizando Músicas' });
     const promises = songsToUpdate.map((s) => new Promise(async (res, rej) => {
@@ -416,6 +419,7 @@ export const handleEditArtist = async ({
       const song = await updateSong(mapped);
       res(song);
     }));
+
     const response = await Promise.all(promises);
   }
 
