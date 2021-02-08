@@ -9,12 +9,20 @@ import { getUser, createUserSOM } from './main.repository';
  */
 export const fetchLoggedUser = async (ida, dispatch, router) => {
   let response = await getUser(ida);
-  let user;
+  let user = response.data.oneUser;
+
+  if (user && router.pathname === '/') {
+    router.push('/wall');
+  }
 
   // cria um novo usuário S.O.M caso não seja encontrado
-  if (!response.data.oneUser) {
+  if (!user) {
     response = await createUserSOM(ida);
     user = response.data.createUser;
+
+    if (router.pathname === '/') {
+      router.push('/welcome');
+    }
   }
 
   // seta o usuário S.O.M na context API
