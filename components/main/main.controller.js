@@ -10,13 +10,6 @@ import { getUser, createUserSOM } from './main.repository';
 export const fetchLoggedUser = async (ida, dispatch, router) => {
   let response = await getUser(ida);
 
-  let user = response.data.oneUser;
-  if (!user) {
-    router.push('/welcome');
-  } else if (router.pathname === '/') {
-    router.push('/wall');
-  }
-
   // cria um novo usuário S.O.M caso não seja encontrado
   if (!user) {
     response = await createUserSOM(ida);
