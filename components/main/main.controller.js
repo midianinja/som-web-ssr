@@ -9,9 +9,10 @@ import { getUser, createUserSOM } from './main.repository';
  */
 export const fetchLoggedUser = async (ida, dispatch, router) => {
   let response = await getUser(ida);
+  let user;
 
   // cria um novo usuário S.O.M caso não seja encontrado
-  if (!user) {
+  if (!response.data.createUser) {
     response = await createUserSOM(ida);
     user = response.data.createUser;
   }
@@ -19,7 +20,7 @@ export const fetchLoggedUser = async (ida, dispatch, router) => {
   // seta o usuário S.O.M na context API
   dispatch({
     type: 'SET_USER',
-    user: user
+    user,
   });
 
   let typeConnection = 'public';
