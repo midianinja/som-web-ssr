@@ -12,7 +12,7 @@ export const fetchLoggedUser = async (ida, dispatch, router) => {
   let user;
 
   // cria um novo usuário S.O.M caso não seja encontrado
-  if (!response.data.createUser) {
+  if (!response.data.user) {
     response = await createUserSOM(ida);
     user = response.data.createUser;
   }
