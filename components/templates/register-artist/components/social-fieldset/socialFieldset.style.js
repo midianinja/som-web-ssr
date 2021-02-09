@@ -4,6 +4,10 @@ import { white } from '../../../../../settings/colors';
 export const Fieldset = styled.fieldset`
   padding: 30px;
   width: 100%;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  
 `;
 
 export const InputsWrapper = styled.div`

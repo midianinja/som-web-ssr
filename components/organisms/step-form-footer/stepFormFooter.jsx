@@ -12,12 +12,14 @@ const StepFormFooter = ({
   loading,
   loadingText,
   noShowSkip,
-  lastStep
+  lastStep,
+  disabled,
 }) => (
   <Wrapper customStyle={customStyle}>
     {!loading ? (
       <Footer customStyle={customStyle}>
         <PrimaryButton
+          disabled={disabled}
           onClick={nextAction}
           customStyle="padding: 20px 0; height: auto; letter-spacing: 3px;">
           {lastStep ? 'SALVAR' : 'SALVAR & CONTINUAR'}
@@ -47,13 +49,15 @@ StepFormFooter.propTypes = {
   loading: PropTypes.bool.isRequired,
   customStyle: PropTypes.string,
   loadingText: PropTypes.string,
-  noShowSkip: PropTypes.bool
+  noShowSkip: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 StepFormFooter.defaultProps = {
   customStyle: '',
   loadingText: '',
-  noShowSkip: false
+  noShowSkip: false,
+  disabled: false,
 };
 
 export default StepFormFooter;

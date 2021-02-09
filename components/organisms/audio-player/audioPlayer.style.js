@@ -65,6 +65,7 @@ export const Triangle = styled.span`
     transform: rotate(45deg);
     bottom: 16px;
   }
+  
   @media (max-width: 1024px) {
     position: absolute;
     right: 77px;

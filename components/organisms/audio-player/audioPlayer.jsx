@@ -199,6 +199,10 @@ const AudioPlayer = ({
       ? Math.floor((currentTime / AUDIO_ELEMENT.duration) * 1000)
       : 0;
 
+  if (AUDIO_ELEMENT?.duration) {
+    console.log(currentRangeValue, currentTime, AUDIO_ELEMENT.duration);    
+  }
+
   const song = {
     title: 'Nenhuma seleção.',
     album: '',

@@ -17,7 +17,6 @@ export const Wrapper = styled.section`
 export const Title = styled.h1`
   margin-bottom: 10px;
   margin-top: 20px;
-  padding-right: 40px;
   font-size: 2.1428571429em;
   font-weight: 400;
   line-height: 1.1em;
@@ -27,6 +26,7 @@ export const Title = styled.h1`
     padding-right: 0px;
     margin-top: 0;
     max-width: 200px;
+    padding-right: 40px;
   }
 `;
 
@@ -55,11 +55,14 @@ export const EditIcon = styled.img`
 
 export const followButtonCustomStyled = `
   width: 180px;
-  margin-right: 15px;
   border: solid 1px ${purple};
   color: ${white};
   background-color: transparent;
   vertical-align: middle;
+  
+  @media (min-width: 1024px) {
+    margin-right: 15px;
+  }
 `;
 
 export const avatarCustomStyled = `
@@ -85,6 +88,8 @@ export const FollowNumber = styled.span`
 export const About = styled.p`
   margin-bottom: 30px;
   margin-top: 30px;
+  padding-left: 16px;
+  padding-right: 16px;
   line-height: 1.5em;
   font-weight: 300;
   padding-right: 40px;
@@ -95,8 +100,12 @@ export const About = styled.p`
 `;
 
 export const ActionWrapper = styled.div`
-  padding-right: 40px;
-  text-align: left;
+  text-align: center;
+
+  @media (min-width: 1024px) {
+    padding-right: 40px;
+    text-align: left;
+  }
 `;
 
 export const LerMoreBio = styled.span`

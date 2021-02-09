@@ -15,7 +15,8 @@ import {
   SeeExempleButton,
   Actions,
   UploadButton,
-  ButtonIcon
+  ButtonIcon,
+  Content,
 } from './docFilesFieldset.style';
 
 const getFileName = (data) => {
@@ -36,70 +37,73 @@ const DocFilesFieldset = ({
   tecRider, tecMap, tecRelease,
 }) => (
   <Fieldset>
-    <Title>Arquivos técnicos</Title>
-    <FirstLegend>Documentos básicos para inscrição em qualquer evento do SOM</FirstLegend>
-    <SecondLegend>
-      Formatos de arquivo suportados: .pdf, .jpg, e .png, com no máximo 10 mb.
-    </SecondLegend>
-    <CardsWrapper>
-      <Card>
-        <CardTitle>Mapa de palco</CardTitle>
-        <CardDescription>
-          Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
-        </CardDescription>
-        <Actions>
-          <SeeExempleButton
-            onClick={() => window.open(tecMap ? tecMap.url : '')}
-            name={tecMap}
-          >
-            {getFileName(tecMap)}
-          </SeeExempleButton>
-          <UploadDoc
-            id="map-doc-uploader"
-            handleChange={(data) => handleMapChange(data.target.files[0])}
-            label="Subir Mapa"
-          />
-        </Actions>
-      </Card>
-      <Card>
-        <CardTitle>Rider técnico</CardTitle>
-        <CardDescription>
-          Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
-        </CardDescription>
-        <Actions>
-          <SeeExempleButton
-            onClick={() => window.open(tecRider ? tecRider.url : '')}
-            name={tecRider}
-          >
-            {getFileName(tecRider)}
-          </SeeExempleButton>
-          <UploadDoc
-            id="rider-doc-uploader"
-            handleChange={(data) => handleRiderChange(data.target.files[0])}
-            label="Subir Rider"
-          />
-        </Actions>
-      </Card>
-      <Card>
-        <CardTitle>Release</CardTitle>
-        <CardDescription>
-          Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
-        </CardDescription>
-        <Actions>
-          <SeeExempleButton
-            onClick={() => window.open(tecRelease ? tecRelease.url : '')}
-            name={tecRelease}
-          >
-            {getFileName(tecRelease)}
-          </SeeExempleButton>
-          <UploadDoc
-            id="release-doc-uploader"
-            handleChange={(data) => handleReleaseChange(data.target.files[0])}
-            label="Subir Release"
-          />
-        </Actions>
-      </Card>
-    </CardsWrapper>
+    <Content>
+
+      <Title>Arquivos técnicos</Title>
+      <FirstLegend>Documentos básicos para inscrição em qualquer evento do SOM</FirstLegend>
+      <SecondLegend>
+        Formatos de arquivo suportados: .pdf, .jpg, e .png, com no máximo 10 mb.
+      </SecondLegend>
+      <CardsWrapper>
+        <Card>
+          <CardTitle>Mapa de palco</CardTitle>
+          <CardDescription>
+            Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
+          </CardDescription>
+          <Actions>
+            <SeeExempleButton
+              onClick={() => window.open(tecMap ? tecMap.url : '')}
+              name={tecMap}
+            >
+              {getFileName(tecMap)}
+            </SeeExempleButton>
+            <UploadDoc
+              id="map-doc-uploader"
+              handleChange={(data) => handleMapChange(data.target.files[0])}
+              label="Subir Mapa"
+            />
+          </Actions>
+        </Card>
+        <Card>
+          <CardTitle>Rider técnico</CardTitle>
+          <CardDescription>
+            Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
+          </CardDescription>
+          <Actions>
+            <SeeExempleButton
+              onClick={() => window.open(tecRider ? tecRider.url : '')}
+              name={tecRider}
+            >
+              {getFileName(tecRider)}
+            </SeeExempleButton>
+            <UploadDoc
+              id="rider-doc-uploader"
+              handleChange={(data) => handleRiderChange(data.target.files[0])}
+              label="Subir Rider"
+            />
+          </Actions>
+        </Card>
+        <Card>
+          <CardTitle>Release</CardTitle>
+          <CardDescription>
+            Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
+          </CardDescription>
+          <Actions>
+            <SeeExempleButton
+              onClick={() => window.open(tecRelease ? tecRelease.url : '')}
+              name={tecRelease}
+            >
+              {getFileName(tecRelease)}
+            </SeeExempleButton>
+            <UploadDoc
+              id="release-doc-uploader"
+              handleChange={(data) => handleReleaseChange(data.target.files[0])}
+              label="Subir Release"
+            />
+          </Actions>
+        </Card>
+      </CardsWrapper>
+    </Content>
   </Fieldset>
 );
 

@@ -20,6 +20,7 @@ export const fetchProductorData = async (id, setProductor, setProductorLoading, 
       variables: { productor: { id } }
     });
   } catch (err) {
+    console.log([err])
     setProductorLoading(false);
     throw err;
   }
@@ -36,6 +37,7 @@ export const fetchProductorData = async (id, setProductor, setProductorLoading, 
       disagreeAction: undefined,
       isOpen: true
     });
+
     return;
   }
 

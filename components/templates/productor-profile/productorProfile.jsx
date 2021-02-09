@@ -97,12 +97,6 @@ const ProductorPage = () => {
     if (productor) fetchProductorData(productor.id, setProductor, () => '', setAlertModal);
   }, [update]);
 
-  useEffect(() => {
-    if (productor && productor.instagram) {
-      fetchProductorInstaImages(productor.instagram, setInstagramPhotos);
-    }
-  }, [productor]);
-
   if (!productor || productorLoading) return null;
 
   if (alertModal.isOpen) {

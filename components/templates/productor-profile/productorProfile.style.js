@@ -64,6 +64,8 @@ export const EventsTitle = styled.h2`
 `;
 
 export const NotEvents = styled.span`
+  display: inline-block;
+  padding: 30px;
   font-weight: 200;
 `;
 

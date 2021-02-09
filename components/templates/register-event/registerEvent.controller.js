@@ -80,6 +80,7 @@ export const handleCreateEvent = async (
   setLoading,
   setErrors,
   setLocationId,
+  dispatch,
   user,
   router
 ) => {

@@ -12,7 +12,13 @@ const colors = ['green', 'orange', 'magenta', 'yellow'];
  */
 const getItems = (data, handleClose) =>
   data.map(({ color, text, id }) => (
-    <Tag text={text} id={id} color={color} handleClose={handleClose} />
+    <Tag
+      key={id}
+      text={text}
+      id={id}
+      color={color}
+      handleClose={handleClose}
+    />
   ));
 
 /**
@@ -49,12 +55,13 @@ const tagShape = {
 TagList.propTypes = {
   customStyle: PropTypes.string,
   data: PropTypes.arrayOf(PropTypes.shape(tagShape)),
-  handleClose: PropTypes.func.isRequired
+  handleClose: PropTypes.func,
 };
 
 TagList.defaultProps = {
   customStyle: '',
-  data: []
+  data: [],
+  handleClose: () => {},
 };
 
 export default TagList;

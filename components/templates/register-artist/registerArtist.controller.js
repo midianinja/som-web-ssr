@@ -246,20 +246,26 @@ export const uploadDoc = async (file, updateFile, state, name) => {
       file: await toBase64(file.file),
       id: state.auth.ida,
       fileName: name,
-    }, { onUploadProgress: (data) => console.log('upload: ', data) });
+    });
+
+    updateFile({
+      ...file,
+      url: doc.data.data.link,
+    });
   }
+
   if (file.blob.type === 'image/jpg' || file.blob.type === 'image/png' || file.blob.type === 'image/jpeg') {
     doc = await axios.post(`${process.env.STORAGE_API_URI}/image/upload`, {
       file: await toBase64(file.file),
       id: state.auth.ida,
       fileName: name,
-    }, { onUploadProgress: (data) => console.log('upload: ', data) });
-  }
+    });
 
-  updateFile({
-    ...file,
-    url: doc.data.data.link,
-  });
+    updateFile({
+      ...file,
+      url: doc.data.data.urls.original,
+    });
+  }  
 }
 
 const mapArtistToApi = (values, userId, locationId) => ({
@@ -313,7 +319,7 @@ const uploadAvatar = async ({
     throw err;
   }
 
-  return newImage.data.urls;
+  return newImage.data.data.urls;
 }
 
 export const handleCreateArtist = async ({
@@ -354,6 +360,9 @@ export const handleEditArtist = async ({
 }) => {
   const artist = { ...values };
   let uploadedAvatar;
+
+
+  // verifica se precisa atualizar a imagem de avatar do artista
   if (artist.avatar && artist.avatar.file) {
     try {
       uploadedAvatar = await uploadAvatar({ setLoading, userId: user.id, artist });
@@ -363,6 +372,8 @@ export const handleEditArtist = async ({
   }
 
   let locationId = null;
+
+  // verifica se precisa atualizar a localizacção do artista
   if (artist.city || artist.country.short_name) {
     setLoading({ show: true, text: 'Salvando informações' });
     let locationResult;
@@ -381,8 +392,9 @@ export const handleEditArtist = async ({
     }
   }
 
+  // mapeia artista para o recebimento na API
   const data = mapArtistToApi(artist, user.id, locationId);
-  
+
   if (uploadedAvatar) data.avatar_image = uploadedAvatar;
 
   if (values.tecMap && values.tecMap.file) data.stage_map = values.tecMap.url;
@@ -390,6 +402,8 @@ export const handleEditArtist = async ({
   if (values.tecRider && values.tecRider.file) data.tec_rider = values.tecRider.url;
 
   const newSongs = values.songs.filter(s => s.file);
+  let songs = [];
+
   if (newSongs.length) {
     setLoading({ show: true, text: 'Salvando Músicas' });
     const promises = newSongs.map((s) => new Promise(async (res, rej) => {
@@ -398,18 +412,21 @@ export const handleEditArtist = async ({
         url: s.url,
         title: s.name,
       }
+      
       const song = await createSong(mapped);
       res(song)
     }));
-    console.log('🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 ENTROOO');
-    const response = await Promise.all(promises);
-  }
 
+    const promiseResponse = await Promise.all(promises);
+    songs = songs.concat(promiseResponse.map((response) => response.data.createSong.id));
+  }
+  
   const songsToUpdate = values.songs.filter(s => s.id);
 
   if (songsToUpdate.length) {
     setLoading({ show: true, text: 'Atualizando Músicas' });
     const promises = songsToUpdate.map((s) => new Promise(async (res, rej) => {
+      console.log(s);
       const mapped = {
         id: s.id,
         artist: values.id,
@@ -420,8 +437,11 @@ export const handleEditArtist = async ({
       res(song);
     }));
 
-    const response = await Promise.all(promises);
+    const promiseResponse = await Promise.all(promises);
+    songs = songs.concat(promiseResponse.map((response) => response.data.updateSong.id));
   }
+
+  data.songs = songs;
 
   let promise;
   try {

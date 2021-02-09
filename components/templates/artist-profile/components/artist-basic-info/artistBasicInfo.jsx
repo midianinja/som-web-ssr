@@ -74,6 +74,7 @@ const ArtistBasicInfo = ({
         </ConnectionsWrapper>
       </TitleAndFollowWrapper>
       <About>
+        {!about ? 'Sem descrição' : ''}
         {!lerMoreBio ? about.slice(0, 200) : about}
         {!lerMoreBio && about.length > 200 ? '...' : ''}
         &nbsp;

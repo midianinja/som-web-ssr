@@ -8,11 +8,15 @@ export const Fieldset = styled.fieldset`
   color: ${black};
 `;
 
+export const Content = styled.div`
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
 export const InputsWrapper = styled.div`
   @media (min-width: 1024px) {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
   }
 `;
 
@@ -37,21 +41,18 @@ export const SecondLegend = styled.p`
 `;
 
 export const CardsWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: grid;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: space-between;
+    grid-gap: 30px;
   }
 `;
 
 export const Card = styled.div`
-  max-width: 250px;
   @media (max-width: 768px) {
-    margin: 30px 0 0 20px;
     width: 100%;
-    max-width: 100%;
   }
 `;
 
@@ -70,26 +71,25 @@ export const CardDescription = styled.p`
 `;
 
 export const Actions = styled.div`
-  display: flex;
-  margin-top: 5px;
-  align-items: center;
   justify-content: space-between;
+  margin-bottom: 30px;
 `;
 
 export const SeeExempleButton = styled.a`
-  color: ${purple};
+  display: inline-block;
+  width: 100%;
+  max-width: 200px;
   font-family: CircularStd;
   font-size: 0.812em;
   cursor: pointer;
+  color: ${purple};
   line-height: 1.25em;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100px;
-  /* max-width: 100px; */
-  @media (max-width: 768px) {
-    max-width: 50%;
-  }
+  white-space: nowrap;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  
   ${({ name }) => name ? `
     opacity: .3;
     color: #000; 

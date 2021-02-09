@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Uploader, Icon, Input, Label,
+  Uploader, Icon, Input, Text,
 } from './uploadDoc.style';
 
 /**
@@ -20,9 +20,9 @@ function UploadDoc({
         onChange={handleChange}
         htmlFor={id}
       >
-        <Label customStyle={customLabelStyle}>
+        <Text customStyle={customLabelStyle}>
           {label}
-        </Label>
+        </Text>
         <Icon alt={alt} src={icon || '/icons/cloud-upload.svg'} />
       </Uploader>
       <Input

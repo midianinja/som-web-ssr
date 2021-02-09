@@ -47,14 +47,25 @@ const toBase64 = file => new Promise((resolve, reject) => {
  * 
  * @returns Void
  */
-const setNewMusic = async (name, file, state, setFile, setProgress, deleted) => {
+const setNewMusic = async (name, file, state, setFile, setProgress, deleted, setSubmitDisabled) => {
   if (deleted) return setFile({ ...file, deleted });
+  setSubmitDisabled(true);
+  
   console.log('🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 SUBIU ');
+  
   const music = await axios.post(`${process.env.STORAGE_API_URI}/song/upload`, {
     file: await toBase64(file.file),
     id: state.auth.ida,
     fileName: name,
-  }, { onUploadProgress: (data) => setProgress({ loaded: data.loaded, total: data.total }) });
+  }, {
+    onUploadProgress: (data) => {
+      console.log('status...', data);
+      setProgress({ loaded: data.loaded, total: data.total });
+    },
+  });
+
+  setSubmitDisabled(false);
+  
   setFile({
     blob: makeBlob(file.file),
     blob_url: URL.createObjectURL(makeBlob(file.file)),
@@ -89,28 +100,35 @@ const verify = (file, music) => {
  */
 const MusicCard = ({
   music, id, handleChange, deleteSong,
+  setSubmitDisabled,
 }) => {
   const [name, setName] = useState('');
   const [file, setFile] = useState({});
   const [progress, setProgress] = useState(null);
   const { state } = useContext(Store);
-  if (music && music.deleted) return null;
+  
   useEffect(() => {
     const isDeleted = music && (file.blob_url !== music.blob_url);
     if (verify(file, music, deleteSong)) return;
     else if (!file.blob) {
       if (!name) setName(file.file.name.replace(/.mp3/, ''));
-      setNewMusic(name, file, state, setFile, setProgress, isDeleted);
+      setNewMusic(name, file, state, setFile, setProgress, isDeleted, setSubmitDisabled);
     } else if (file.url) {
       handleChange(file)
     }
   }, [file]);
+
   useEffect(() => {
     if (music) {
       setFile(music);
       setName(music.name);
     }
   }, [music]);
+
+  if (music && music.deleted) return null;
+
+  console.log(progress);
+
   return (
     <Wrapper>
       <Header>
@@ -168,6 +186,7 @@ const valuesShape = {
 MusicCard.propTypes = {
   handleRiderChange: PropTypes.func.isRequired,
   handleMapChange: PropTypes.func.isRequired,
+  setSubmitDisabled: PropTypes.func.isRequired,
   handleReleaseChange: PropTypes.func.isRequired,
   musics: PropTypes.array,
   stepErrors: PropTypes.shape(valuesShape).isRequired,

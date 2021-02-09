@@ -8,6 +8,12 @@ export const Fieldset = styled.fieldset`
   color: ${black};
 `;
 
+export const Content = styled.div`
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
 export const Title = styled.h2`
   font-size: 1.2857142857rem;
   margin-bottom: 10px;
@@ -51,7 +57,6 @@ export const UploadNewSongButton = styled.button`
   border-radius: 25px;
   border: 2px dashed rgba(0, 0, 0, 0.15);
   width: 100%;
-  max-width: 300px;
 `;
 
 export const LabelPlus = styled.label`

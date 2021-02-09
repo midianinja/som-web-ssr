@@ -24,7 +24,7 @@ import {
   handleEditArtist,
 } from './registerArtist.controller';
 import {
-  Form, LoadingWrapper,
+  Form, LoadingWrapper, ContentWrapper,
 } from './registerArtist.style';
 import SocialsFieldset from './components/social-fieldset/socialFieldset';
 import DocFilesFieldset from './components/doc-files-fieldset/docFilesFieldset';
@@ -232,7 +232,7 @@ const renderFilesDocs = ({
  * @returns {React.Component} React Component
  */
 const renderMusics = ({
-  visibles, setSongs, songs,
+  visibles, setSongs, songs, setSubmitDisabled,
 }) => {
   if (!visibles.musics) return null;
   return (
@@ -240,6 +240,7 @@ const renderMusics = ({
       songs={songs}
       addSong={(data) => addSong(data, songs, setSongs)}
       deleteSong={(data) => deleteSong(data, songs, setSongs)}
+      setSubmitDisabled={setSubmitDisabled}
     />
   );
 };
@@ -278,6 +279,7 @@ const RegisterArtistTemplate = () => {
   const [tecMap, setTecMap] = useState(null);
   const [tecRelease, setRelease] = useState(null);
   const [songs, setSongs] = useState([]);
+  const [submitDisabled, setSubmitDisabled] = useState(false);
   const [productorStepErrors, setProductorStepErrors] = useState({});
   const [visibles, setVisibles] = useState({
     location: false,
@@ -381,44 +383,46 @@ const RegisterArtistTemplate = () => {
   return (
     <Form autocomplete={false} onSubmit={(e) => e.preventDefault()}>
       <StepFormHeader color={magenta} items={steps} index={'0'} />
-      {
-        renderBasicInfos({
-          values, setAbout, setMusicalStyle, musicalStyles,
-          setMusicalStylePredict, musicalStylesOptions, setMusicalStyles,
-          setMusicalStylesOptions, setName, setAvatar, productorStepErrors,
-          setProductorStepErrors, handleIntegrants,
-        })
-      }
-      {
-          renderLocationFieldset({
-            visibles, values, setState, setCountry, setCity,
-            countries, states, productorStepErrors, setStates,
+      <ContentWrapper>
+        {
+          renderBasicInfos({
+            values, setAbout, setMusicalStyle, musicalStyles,
+            setMusicalStylePredict, musicalStylesOptions, setMusicalStyles,
+            setMusicalStylesOptions, setName, setAvatar, productorStepErrors,
+            setProductorStepErrors, handleIntegrants,
           })
         }
         {
-          renderContactFieldset({
-            visibles, values, setMainPhone,
-            setWhatsapp, setTelegram, setContactEmail, productorStepErrors,
-          })
-        }
-        {
-          renderSocialsFieldset({
-            visibles, values, setFacebook, setInstagram,
-            setTwitter, setYoutube, productorStepErrors,
-          })
-        }
-        {
-          renderFilesDocs({
-            visibles, tecRider, setTecRider,
-            tecMap, setTecMap,
-            tecRelease, setRelease,
-          })
-        }
-        {
-          renderMusics({
-            visibles, setSongs, songs,
-          })
-        }
+            renderLocationFieldset({
+              visibles, values, setState, setCountry, setCity,
+              countries, states, productorStepErrors, setStates,
+            })
+          }
+          {
+            renderContactFieldset({
+              visibles, values, setMainPhone,
+              setWhatsapp, setTelegram, setContactEmail, productorStepErrors,
+            })
+          }
+          {
+            renderSocialsFieldset({
+              visibles, values, setFacebook, setInstagram,
+              setTwitter, setYoutube, productorStepErrors,
+            })
+          }
+          {
+            renderFilesDocs({
+              visibles, tecRider, setTecRider,
+              tecMap, setTecMap,
+              tecRelease, setRelease,
+            })
+          }
+          {
+            renderMusics({
+              visibles, setSongs, songs, setSubmitDisabled,
+            })
+          }
+      </ContentWrapper>
       <StepFormFooter
         nextAction={() => {
           if (!id) {
@@ -436,7 +440,8 @@ const RegisterArtistTemplate = () => {
           }
         }}
         customStyle={`background-color: ${getFooterBackground(visibles)}`}
-        loading={loading.show}
+        loading={loading.show || submitDisabled}
+        disabled={submitDisabled}
         loadingText={loading.text}
         lastStep={visibles.musics}
         skipAction={() => nextCallback({ history, visibles, setVisibles })}
