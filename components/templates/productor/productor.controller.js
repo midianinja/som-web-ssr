@@ -261,14 +261,17 @@ export const handleCreateProductor = async ({
 
   if (productor.avatar && productor.avatar.file) {
     setLoading({ show: true, text: 'Tratando imagen' });
+
     const base64 = await getBase64(productor.avatar.file);
+
     setLoading({ show: true, text: 'Subindo imagem' });
+
     newImage = await uploadImageToStorage({
       file: base64,
       id: userId
     });
 
-    productor.avatar = newImage.data.data.urls.mimified;
+    productor.avatar = { url: newImage.data.data.urls.mimified };
   }
 
   let promise;
