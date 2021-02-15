@@ -327,7 +327,8 @@ export const handleCreateArtist = async ({
   setVisibles, dispatch, user, router,
 }) => {
   const artist = { ...values };
-  let uploadAvatar
+  let uploadedAvatar;
+
   if (artist.avatar && artist.avatar.file) {
     uploadedAvatar = await uploadAvatar({ setLoading, userId, artist })
   }
