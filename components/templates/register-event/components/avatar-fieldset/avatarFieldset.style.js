@@ -12,7 +12,7 @@ export const Title = styled.h2`
   color: ${white};
   font-size: 1.25em;
   font-weight: 300;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 `;
 
 export const Span = styled.span`

@@ -151,6 +151,11 @@ const AudioPlayer = ({
     }
 
     if (selectSong) loadingSong(isAudio ? cb : () => null);
+
+    return () => {
+      if (AUDIO_ELEMENT) AUDIO_ELEMENT.pause();
+      AUDIO_ELEMENT = null;
+    };
   }, [selectSong]);
 
   useEffect(() => {

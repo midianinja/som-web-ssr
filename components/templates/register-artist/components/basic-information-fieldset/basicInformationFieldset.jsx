@@ -67,10 +67,10 @@ const BasicInformationFieldset = ({
           />
         </InputGroup>
         <InputGroup
-          label={values.musicalStyles.length ? 'Área de Atuação' : ''}
+          label={values.musicalStyles.length ? 'Estilos de música' : ''}
           error={productorStepErrors.musicalStyles}>
           <AutocompleteInput
-            placeholder={values.musicalStyles.length ? '' : 'Área de Atuação'}
+            placeholder={values.musicalStyles.length ? '' : 'Estilos de música'}
             predict={values.musicalStylePredict}
             value={values.musicalStyle}
             handleChange={handleMusicalStyleChange}

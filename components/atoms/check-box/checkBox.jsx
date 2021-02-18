@@ -8,21 +8,24 @@ import { Wrapper, Circle, Label } from './checkBox.style';
  * @param {object} props component props
  * @returns contains Checkbox Component
  */
-function Checkbox({ checked, text, onChange }) {
-  return (
-    <Wrapper onClick={onChange}>
-      <Circle checked={checked} />
-      <Label>{text}</Label>
-    </Wrapper>
-  );
-}
+const Checkbox = ({
+  checked, text, onChange, multiple,
+}) => (
+  <Wrapper onClick={onChange}>
+    <Circle checked={checked} multiple={multiple} />
+    <Label>{text}</Label>
+  </Wrapper>
+);
 
 Checkbox.propTypes = {
   checked: PropTypes.bool.isRequired,
+  multiple: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired
 };
 
-Checkbox.defaultProps = {};
+Checkbox.defaultProps = {
+  multiple: false,
+};
 
 export default Checkbox;

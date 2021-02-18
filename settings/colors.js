@@ -15,6 +15,7 @@ export const white10 = 'rgba(255, 255, 255, 0.1)';
 export const white30 = 'rgba(255, 255, 255, 0.3)';
 export const white50 = 'rgba(255, 255, 255, 0.5)';
 export const magenta = '#FF2D76';
+export const secondaryMagenta = '#D62764';
 export const green = '#51DBA9';
 export const secondaryGreen = '#46BC91';
 export const terciaryGreen = '#62EBBA';

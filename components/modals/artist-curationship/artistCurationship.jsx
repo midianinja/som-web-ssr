@@ -72,7 +72,7 @@ const ArtistCurationshipModal = ({
   closeModal,
   resetSubscriptionAction,
   reproveAction,
-  approveAction
+  approveAction,
 }) => {
   const router = useRouter();
   const [songs, setSongs] = useState([]);
@@ -84,8 +84,10 @@ const ArtistCurationshipModal = ({
   if (!artist) return null;
 
   return (
-    <ArtistCurationshipModalWrapper id="artists-curationship">
-      <Container>
+    <ArtistCurationshipModalWrapper id="artists-curationship" onClick={() => {
+      closeModal();
+    }}>
+      <Container onClick={(e) => e.stopPropagation()}>
         <CoverWrapper>
           <Cover customStyle="padding: 0; height: 180px;" cover={artist.cover}>
             <HeaderWrapper>

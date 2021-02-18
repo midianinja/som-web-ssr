@@ -21,6 +21,7 @@ export const Row = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-gap: 16px;
     justify-content: space-between;
+    align-items: flex-end;    
   }
 `;
 

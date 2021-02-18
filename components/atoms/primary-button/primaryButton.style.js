@@ -9,7 +9,8 @@ import {
   secondaryPurple,
   transparent,
   darkGray,
-  secondaryOrange
+  secondaryOrange,
+  secondaryMagenta,
 } from '../../../settings/colors';
 
 const sizes = {
@@ -33,6 +34,7 @@ const colors = {
   orange,
   secondaryOrange,
   magenta,
+  secondaryMagenta,
   gray,
   transparent,
   white,
@@ -49,7 +51,9 @@ function getColor(key) {
 }
 
 const hoverColors = {
-  purple: green
+  purple,
+  magenta,
+  orange,
 };
 
 /**
@@ -75,7 +79,8 @@ export const PrimaryButtonStyle = styled.button`
   transition-duration: 0.3s;
   font-size: 0.8571428571em;
 
-  :active {
+  :active,
+  :hover {
     background-color: ${(props) => getHoverColor(props.color)};
   }
 

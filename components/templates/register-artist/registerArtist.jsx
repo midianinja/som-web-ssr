@@ -439,6 +439,8 @@ const RegisterArtistTemplate = () => {
             });
           }
         }}
+        dark={visibles.musics || visibles.files}
+        formType="artist"
         customStyle={`background-color: ${getFooterBackground(visibles)}`}
         loading={loading.show || submitDisabled}
         disabled={submitDisabled}

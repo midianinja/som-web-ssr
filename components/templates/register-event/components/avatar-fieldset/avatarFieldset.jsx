@@ -11,7 +11,9 @@ const AvatarFieldset = ({ values, onChange, eventErrors }) => {
         Avatar&nbsp;
         <Span>Tamanho sugerido: 500x500px</Span>
       </Title>
-      <InputGroup error={eventErrors.avatar}>
+      <InputGroup
+        error={eventErrors.avatar}
+      >
         <UploadAvatar
           id="avatar-uploader"
           alt="botão para subir imagem"

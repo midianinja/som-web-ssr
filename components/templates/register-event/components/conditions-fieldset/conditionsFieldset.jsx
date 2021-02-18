@@ -6,53 +6,50 @@ import { Fieldset, CheckboxWrapper, Title } from './conditionsFieldset.style';
 
 const renderConditions = ({
   values,
-  handleAccomodationChange,
-  handleHasFoodChange,
   handleMoneyPaidChange,
-  handleCityTransportationChange,
-  handleLocalTransportationChange,
-  handleInterstateTransportationChange,
-  handleInternationalTransportationChange
 }) =>
   [
-    {
-      text: 'Acomodação',
-      handle: handleHasFoodChange,
-      checked: values.hasFood
-    },
-    {
-      text: 'Alimentação',
-      handle: handleAccomodationChange,
-      checked: values.hasAccomodation
-    },
+    // {
+    //   text: 'Acomodação',
+    //   handle: handleHasFoodChange,
+    //   checked: values.hasFood
+    // },
+    // {
+    //   text: 'Alimentação',
+    //   handle: handleAccomodationChange,
+    //   checked: values.hasAccomodation
+    // },
     {
       text: 'Cachê',
       handle: handleMoneyPaidChange,
       checked: values.hasMoneyPaid
     },
-    {
-      text: 'Translado local',
-      handle: handleLocalTransportationChange,
-      checked: values.hasLocalTransportation
-    },
-    {
-      text: 'Translado intermunicipal',
-      handle: handleCityTransportationChange,
-      checked: values.hasCityTransportation
-    },
-    {
-      text: 'Translado interestadual',
-      handle: handleInterstateTransportationChange,
-      checked: values.hasInterstateTransportation
-    },
-    {
-      text: 'Translado internacional',
-      handle: handleInternationalTransportationChange,
-      checked: values.hasInternationalTransportation
-    }
+    // {
+    //   text: 'Translado intermunicipal',
+    //   handle: handleCityTransportationChange,
+    //   checked: values.hasCityTransportation
+    // },
+    // {
+    //   text: 'Translado interestadual',
+    //   handle: handleInterstateTransportationChange,
+    //   checked: values.hasInterstateTransportation
+    // },
+    // {
+    //   text: 'Translado internacional',
+    //   handle: handleInternationalTransportationChange,
+    //   checked: values.hasInternationalTransportation
+    // }
   ].map(({ text, checked, handle }) => (
     <CheckboxWrapper>
-      <Checkbox checked={checked} text={text} onChange={handle} />
+      <Checkbox
+        multiple
+        customStyle={`
+          border-radius: 4px;
+        `}
+        checked={checked}
+        text={text}
+        onChange={handle}
+      />
     </CheckboxWrapper>
   ));
 

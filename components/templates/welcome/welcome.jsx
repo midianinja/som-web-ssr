@@ -13,13 +13,13 @@ const Welcome = () => {
       <Title>Seja bem vinde ao S.O.M,</Title>
       <Name>{state.auth.username}</Name>
       <Footer>
-        <Text>Conheça os eventos e inscreva-se</Text>
+        <Text>Conheça os eventos e as oportunidades, inscreva-se nos que se interessar!</Text>
         <PrimaryButton
           onClick={() => {
             router.push('/wall');
           }}
           color="secondaryOrange">
-          Ver eventos!
+          Ver mural
         </PrimaryButton>
       </Footer>
     </Wrapper>

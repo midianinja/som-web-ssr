@@ -198,8 +198,14 @@ export const audioListStyle = `
   }
 `;
 export const resetSubscriptionStyle = `
-  margin-bottom: 10px
-  height: 20px
+  margin-bottom: 10px;
+  margin-top: 10px;
   background-color: transparent;
-  color: ${purple};
+  color: ${black};
+  font-weight: 600;
+  text-decoration: underline;
+
+  &:hover {
+    background-color: transparent;
+  }
 `;

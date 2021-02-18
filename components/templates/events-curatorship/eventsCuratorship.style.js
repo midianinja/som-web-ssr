@@ -16,7 +16,7 @@ export const CuratorshiptWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 50px;
+  margin-top: 90px;
   background-color: ${black};
   color: white;
   @media (max-width: 768px) {
@@ -25,14 +25,11 @@ export const CuratorshiptWrapper = styled.section`
 `;
 
 export const Title = styled.h1`
-  width: 100%
+  width: 100%;
+  margin-bottom: 30px;
   max-width: 900px;
   font-size: 2em;
   line-height: 2em;
-  padding-left: 200px;
-  @media (max-width: 768px) {
-    padding-left: 40px;
-  }
 `;
 
 export const Main = styled.div`
@@ -50,12 +47,12 @@ export const Main = styled.div`
 export const Menu = styled.nav`
   display: flex;
   flex-direction: column;
-  width: 258px;
-  // align-items: center;
+  width: 150px;
 `;
 
 export const MenuOption = styled.a`
-  padding: 7px 40px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   color: white;
   cursor: pointer;
   ${(props) => (props.selected ? `color: ${purple};` : '')}
@@ -68,6 +65,7 @@ export const Table = styled.div`
 export const Head = styled.div`
   display: flex;
   width: 100%;
+  margin-bottom: 16px;
 `;
 
 export const HSmallCol = styled.div`
@@ -77,8 +75,8 @@ export const HSmallCol = styled.div`
   text-transform: uppercase;
   width: 30%;
   color: ${white50};
-  text-align: center;
   background-color: transparent;
+
   @media (max-width: 768px) {
     display: none;
   }
@@ -90,9 +88,9 @@ export const HBigCol = styled.div`
   font-size: .6em;
   text-transform: uppercase;
   color: ${white50};
-  text-align: center;
   width: 70%;
   background-color: transparent;
+
   @media (max-width: 768px) {
     display: none;
   }
@@ -106,6 +104,8 @@ export const SmallCol = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1rem;
+
   ${(props) => (props.hover ? `background-color: ${secondaryBlack};` : '')}
   @media (max-width: 768px) {
     width: 100%;

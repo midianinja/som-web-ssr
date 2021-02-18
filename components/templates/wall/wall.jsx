@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { useRouter } from 'next/router';
 import InputGroup from '../../molecules/input-group/inputGroup';
 import TagList from '../../molecules/tag-list/tagList';
@@ -31,7 +32,6 @@ import {
 } from './wall.style';
 
 const YEARS_MODEL = [
-  { name: '2019', id: '2019' },
   { name: '2020', id: '2020' },
   { name: '2021', id: '2021' },
   { name: '2022', id: '2022' },
@@ -41,7 +41,10 @@ const YEARS_MODEL = [
   { name: '2026', id: '2026' },
   { name: '2027', id: '2027' },
   { name: '2028', id: '2028' },
-  { name: '2029', id: '2029' }
+  { name: '2029', id: '2029' },
+  { name: '2029', id: '2029' },
+  { name: '2029', id: '2029' },
+  { name: '2030', id: '2030' },
 ];
 
 const MONTH_MODEL = [
@@ -76,8 +79,8 @@ const Wall = () => {
   const [years, setYears] = useState([
     {
       color: 'green',
-      text: `${new Date('2020T00:01').getFullYear()}`,
-      id: `${new Date('2020T00:01').getFullYear()}`
+      text: YEARS_MODEL.find(y => y.id === moment().year().toString()).name,
+      id: YEARS_MODEL.find(y => y.id === moment().year().toString()).id,
     }
   ]);
   const [months, setMonths] = useState([]);

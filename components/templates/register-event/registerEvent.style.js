@@ -16,6 +16,7 @@ export const FormWrapper = styled.div`
 
   @media (min-width: 1024px) {
     display: grid;
+    margin-top: 60px;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       'avatar cover'

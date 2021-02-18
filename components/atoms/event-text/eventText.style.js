@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gray04, white } from '../../../settings/colors';
+import { white50, white } from '../../../settings/colors';
 
 export const Container = styled.section`
   width: 100%;
@@ -28,7 +28,7 @@ export const Text = styled.p`
   line-height: 1.6em;
   font-weight: 300;
   padding-bottom: 40px;
-  border-bottom: solid 1px ${gray04};
+  border-bottom: solid 1px ${white50};
   white-space: pre-wrap;
   white-space: -moz-pre-wrap;
   white-space: -pre-wrap;

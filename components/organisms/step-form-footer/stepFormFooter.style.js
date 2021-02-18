@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { white } from '../../../settings/colors';
+import { white, black } from '../../../settings/colors';
 
 export const Footer = styled.div`
   display: flex;
@@ -33,5 +33,5 @@ export const LoadingWrapper = styled.div`
 `;
 
 export const LoadingText = styled.div`
-  color: ${white};
+  color: ${({ dark }) => dark ? black : white};
 `;

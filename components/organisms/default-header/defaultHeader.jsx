@@ -92,7 +92,7 @@ const Header = ({ customStyle }) => {
         </Group>
         <Logo
           src={getSOMBrand()}
-          onClick={() => router.push('/')}
+          onClick={() => router.push('/wall')}
           alt="Som, Sistema Operacional da Música"
         />
         <RightGroup hide={!state.auth || !state.auth.ida}>
@@ -139,6 +139,7 @@ const Header = ({ customStyle }) => {
               });
 
               setDropdown(false);
+              router.push('/');
             }}
             toArtist={() => {
               if (state.user.artist) {

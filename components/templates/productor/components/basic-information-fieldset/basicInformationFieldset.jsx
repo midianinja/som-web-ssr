@@ -50,15 +50,6 @@ const BasicInformationFieldset = ({
             onChange={handleNameChange}
           />
         </InputGroup>
-        <InputGroup label={values.cpf ? 'CPF' : ''} error={productorStepErrors.cpf}>
-          <Input
-            id="cpf"
-            placeholder="CPF"
-            type="tel"
-            value={VMasker.toPattern(values.cpf, '999.999.999-99')}
-            onChange={handleCPFChange}
-          />
-        </InputGroup>
         <InputGroup
           label={values.musicalStyles.length ? 'Área de Atuação' : ''}
           error={productorStepErrors.musicalStyles}>

@@ -7,7 +7,7 @@ export const Circle = styled.div`
   display: inline-block;
   width: 20px;
   height: 20px;
-  border-radius: 50%;
+  border-radius: ${({ multiple }) => !multiple ? '50%' : '4px'};
   border: solid 2px
     ${(props) => {
       const { checked } = props;
@@ -23,7 +23,7 @@ export const Circle = styled.div`
       &:after {
         content: '';
         display: inline-block;
-        border-radius: 50%;
+        border-radius: ${({ multiple }) => !multiple ? '50%' : '4px'};
         right: 2px; 
         top: 2px;
         position: absolute;

@@ -5,6 +5,11 @@ import Loading from '../../atoms/loading/loading';
 import { gray } from '../../../settings/colors';
 import { Footer, Wrapper, Icon, LoadingWrapper, LoadingText } from './stepFormFooter.style';
 
+const colors = {
+  productor: "purple",
+  artist: "magenta",
+}
+
 const StepFormFooter = ({
   nextAction,
   skipAction,
@@ -12,8 +17,10 @@ const StepFormFooter = ({
   loading,
   loadingText,
   noShowSkip,
+  formType,
   lastStep,
   disabled,
+  dark,
 }) => (
   <Wrapper customStyle={customStyle}>
     {!loading ? (
@@ -21,6 +28,7 @@ const StepFormFooter = ({
         <PrimaryButton
           disabled={disabled}
           onClick={nextAction}
+          color={colors[formType]}
           customStyle="padding: 20px 0; height: auto; letter-spacing: 3px;">
           {lastStep ? 'SALVAR' : 'SALVAR & CONTINUAR'}
         </PrimaryButton>
@@ -28,7 +36,17 @@ const StepFormFooter = ({
           <PrimaryButton
             onClick={skipAction}
             color="transparent"
-            customStyle={`padding: 20px 0; height: auto; color: ${gray}`}>
+            customStyle={`
+              padding: 20px 0;
+              height: auto;
+              color: ${gray};
+
+              &:hover,
+              &:active {
+                color: ${gray};
+                background-color: transparent;
+              }
+            `}>
             Pular etapa
             <Icon src="/icons/right_arrow.svg" />
           </PrimaryButton>
@@ -36,8 +54,10 @@ const StepFormFooter = ({
       </Footer>
     ) : (
       <LoadingWrapper>
-        <Loading />
-        {loadingText ? <LoadingText>{loadingText}</LoadingText> : null}
+        <Loading
+          loadingIcon={!dark ? '/icons/white-loading.svg' : '/icons/dark-loading.svg'}
+        />
+        {loadingText ? <LoadingText dark={dark}>{loadingText}</LoadingText> : null}
       </LoadingWrapper>
     )}
   </Wrapper>
@@ -49,15 +69,19 @@ StepFormFooter.propTypes = {
   loading: PropTypes.bool.isRequired,
   customStyle: PropTypes.string,
   loadingText: PropTypes.string,
+  formType: PropTypes.string,
   noShowSkip: PropTypes.bool,
   disabled: PropTypes.bool,
+  dark: PropTypes.bool,
 };
 
 StepFormFooter.defaultProps = {
   customStyle: '',
   loadingText: '',
+  loadingText: 'productor',
   noShowSkip: false,
   disabled: false,
+  dark: false,
 };
 
 export default StepFormFooter;
