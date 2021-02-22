@@ -11,12 +11,16 @@ import Store from '../../../store/Store';
 import { purple } from '../../../settings/colors';
 import { steps } from './productor.collections';
 import {
-  fetchMusicalStyleOptions,
+  // fetchMusicalStyleOptions,
+  fetchOccupationsOptions,
   handleACMusicalStyle,
+  handleACOccupation,
   handleMusicalStyleSelect,
+  handleOccupationSelect,
   deleteTag,
   handleCreateProductor,
   mapMusicalStyles,
+  mapOccupations,
   handleEditProductor,
   nextCallback,
   fetchLocations,
@@ -33,11 +37,13 @@ const renderBasicInfos = ({
   setAbout,
   setName,
   productorStepErrors,
-  musicalStylesOptions,
-  musicalStyles,
-  setMusicalStyle,
-  setMusicalStylePredict,
-  setMusicalStyles,
+  setOccupation,
+  occupation,
+  occupations,
+  occupationOptions,
+  occupationPredict,
+  setOccupationPredict,
+  setOccupationOptions,
   setAvatar,
   setCPF,
   setCNPJ
@@ -63,21 +69,23 @@ const renderBasicInfos = ({
     handleCPFChange={({ target }) => setCPF(target.value)}
     handleNameChange={({ target }) => setName(target.value)}
     handleMusicalStyleChange={({ target }) =>
-      handleACMusicalStyle({
+    handleACOccupation({
         value: target.value,
-        musicalStylesOptions,
-        setMusicalStylePredict,
-        setMusicalStyle
+        occupationOptions,
+        occupationPredict,
+        setOccupation,
+        setOccupationPredict,
+        occupation,
       })
     }
     handleMusicalStyleSelect={(value) =>
-      handleMusicalStyleSelect({
+      handleOccupationSelect({
         value,
-        musicalStylesOptions,
-        musicalStyles,
-        setMusicalStyle,
-        setMusicalStylePredict,
-        setMusicalStyles
+        occupationOptions,
+        occupations,
+        setOccupation,
+        setOccupationPredict,
+        setOccupations,
       })
     }
     productorStepErrors={productorStepErrors}
@@ -189,6 +197,10 @@ const Productor = () => {
   const [loading, setLoading] = useState({ show: false });
   const [mainPhone, setMainPhone] = useState('');
   const [musicalStyles, setMusicalStyles] = useState([]);
+  const [occupations, setOccupations] = useState([]);
+  const [occupation, setOccupation] = useState([]);
+  const [occupationOptions, setOccupationOptions] = useState([]);
+  const [occupationPredict, setOccupationPredict] = useState('');
   const [musicalStylesOptions, setMusicalStylesOptions] = useState([]);
   const [musicalStylePredict, setMusicalStylePredict] = useState('');
   const [musicalStyle, setMusicalStyle] = useState('');
@@ -216,6 +228,7 @@ const Productor = () => {
     setCNPJ(productor.cnpj || '');
     setCPF(productor.cpf || '');
     setMusicalStyles(mapMusicalStyles(productor.musical_styles || []));
+    setOccupations(mapOccupations(productor.occupations || []));
     setMainPhone(productor.main_phone || '');
     setSecondaryPhone(productor.secondary_phone || '');
     setWhatsapp(productor.whatsapp || '');
@@ -247,7 +260,8 @@ const Productor = () => {
       mapContextToState(state.user.productor);
     }
 
-    fetchMusicalStyleOptions(setMusicalStylesOptions);
+    // fetchMusicalStyleOptions(setMusicalStylesOptions);
+    fetchOccupationsOptions(setOccupationOptions);
   }, []);
 
   useEffect(() => {
@@ -303,6 +317,9 @@ const Productor = () => {
     secondaryPhone,
     whatsapp,
     telegram,
+    occupations,
+    occupationPredict,
+    occupation,
     contactEmail,
     facebook,
     youtube,
@@ -329,6 +346,13 @@ const Productor = () => {
         {renderBasicInfos({
           values,
           setAbout,
+          setOccupation,
+          occupation,
+          occupations,
+          occupationPredict,
+          occupationOptions,
+          setOccupationPredict,
+          setOccupationOptions,
           setMusicalStyle,
           musicalStyles,
           setMusicalStylePredict,

@@ -51,18 +51,18 @@ const BasicInformationFieldset = ({
           />
         </InputGroup>
         <InputGroup
-          label={values.musicalStyles.length ? 'Área de Atuação' : ''}
-          error={productorStepErrors.musicalStyles}>
+          label={values.occupations.length ? 'Área de Atuação' : ''}
+          error={productorStepErrors.occupations}>
           <AutocompleteInput
-            placeholder={values.musicalStyles.length ? '' : 'Área de Atuação'}
-            predict={values.musicalStylePredict}
-            value={values.musicalStyle}
+            placeholder={values.occupations.length ? '' : 'Área de Atuação'}
+            predict={values.occupationPredict}
+            value={values.occupation}
             handleChange={handleMusicalStyleChange}
             handleSelect={handleMusicalStyleSelect}
           />
           <TagList
             handleClose={deleteTag}
-            data={values.musicalStyles}
+            data={values.occupations}
             customStyle={musicalGenresCustomStyle}
           />
         </InputGroup>
@@ -87,6 +87,7 @@ const avatarShape = {
 const valuesShape = {
   about: PropTypes.string.isRequired,
   musicalGenres: PropTypes.arrayOf(PropTypes.string),
+  occupations: PropTypes.arrayOf(PropTypes.string),
   name: PropTypes.string.isRequired,
   cpf: PropTypes.string.isRequired,
   cnpj: PropTypes.string.isRequired,

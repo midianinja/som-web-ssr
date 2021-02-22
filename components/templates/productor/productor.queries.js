@@ -1,5 +1,15 @@
 import { gql } from 'apollo-boost';
 
+export const allProductorOccupationsQuery = gql`
+  query {
+    allProductorOccupations {
+      id
+      label
+      order
+    }
+  }
+`;
+
 export const allCountriesQuery = gql`
   query allCountries($country: CountryInput) {
     allCountries(country: $country) {

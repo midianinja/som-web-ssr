@@ -60,6 +60,11 @@ export const oneUserQuery = gql`
           id
           name
         }
+        occupations {
+          id
+          label
+          order
+        }
         location {
           id
           state

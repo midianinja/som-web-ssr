@@ -1,5 +1,5 @@
 import { client } from '../../../libs/apollo.lib';
-import { allMusicalStyleOptionsQuery } from '../../../queries/musicalGenres.query';
+import { allProductorOccupationsQuery } from '../../../queries/productorOccupations.query';
 import {
   createProductor,
   updateProductor,
@@ -136,6 +136,29 @@ export const handleACMusicalStyle = ({
   setMusicalStyle(value.toLowerCase());
 };
 
+export const handleACOccupation = ({
+  value,
+  occupationOptions,
+  setOccupationPredict,
+  setOccupation,
+}) => {
+  let match = '';
+  const regex = new RegExp(`^${value.toUpperCase()}`);
+  occupationOptions.forEach((style) => {
+    const isMatch = regex.test(
+      style.label
+        .toUpperCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+    );
+    if (isMatch && !match && value) {
+      match = style.label.toLowerCase();
+    }
+  });
+  setOccupationPredict(match);
+  setOccupation(value.toLowerCase());
+};
+
 export const mapMusicalStyles = (styles) => {
   const colors = ['purple', 'green', 'orange', 'magenta', 'yellow'];
 
@@ -143,6 +166,17 @@ export const mapMusicalStyles = (styles) => {
   return styles.map(({ id, name }) => ({
     id,
     text: name,
+    color: colors[Math.floor(Math.random() * colors.length)]
+  }));
+};
+
+export const mapOccupations = (occupations) => {
+  const colors = ['purple', 'green', 'orange', 'magenta', 'yellow'];
+
+  if (!occupations) return [];
+  return occupations.map(({ id, label }) => ({
+    id,
+    text: label,
     color: colors[Math.floor(Math.random() * colors.length)]
   }));
 };
@@ -187,13 +221,53 @@ export const handleMusicalStyleSelect = ({
   setMusicalStyles(stylesWithColor);
 };
 
-export const fetchMusicalStyleOptions = (setMusicalStylesOptions) => {
+export const handleOccupationSelect = ({
+  value,
+  occuspationsOptions,
+  occupations,
+  setOccupation,
+  setOccupationPredict,
+  setOccupations,
+}) => {
+  setOccupation(value);
+  const colors = ['purple', 'green', 'orange', 'magenta', 'yellow'];
+  const style = occupations.filter((o) => o.label.toLowerCase() === value)[0];
+  const newOccupations = occupations
+    .filter((o) => o.text.toLowerCase() !== value)
+    .concat([
+      {
+        id: style.id,
+        text: style.label,
+        color: colors[Math.floor(Math.random() * 5)]
+      }
+    ]);
+
+  let cont = 0;
+
+  const stylesWithColor = newOccupations.map((s) => {
+    const stl = {
+      ...s,
+      color: colors[cont]
+    };
+
+    if (cont >= 4) cont = -1;
+
+    cont += 1;
+    return stl;
+  });
+
+  setOccupation('');
+  setOccupationPredict('');
+  setOccupations(stylesWithColor);
+};
+
+export const fetchOccupationsOptions = (setOccupations) => {
   client()
     .query({
-      query: allMusicalStyleOptionsQuery,
+      query: allProductorOccupationsQuery,
       variables: {}
     })
-    .then((resp) => setMusicalStylesOptions(resp.data.allMusicalStyleOptions));
+    .then((resp) => setOccupations(resp.data.allProductorOccupations));
 };
 
 export const nextCallback = ({ visibles, setVisibles, router, id }) => {
@@ -218,6 +292,7 @@ const mapProductorToApi = (values, userId, locationId) => ({
   cnpj: values.cnpj,
   location: locationId,
   musical_styles: values.musicalStyles.map(({ id }) => id),
+  occupations: values.occupations.map(({ id }) => id),
   status: basicInformationIsValid(values) ? 'INCOMPLETE' : 'ACTIVE',
   main_phone: values.mainPhone,
   secondary_phone: values.secondaryPhone,
