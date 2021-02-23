@@ -174,6 +174,8 @@ export const mapOccupations = (occupations) => {
   const colors = ['purple', 'green', 'orange', 'magenta', 'yellow'];
 
   if (!occupations) return [];
+
+  console.log('hereeee', occupations);
   return occupations.map(({ id, label }) => ({
     id,
     text: label,
@@ -223,7 +225,7 @@ export const handleMusicalStyleSelect = ({
 
 export const handleOccupationSelect = ({
   value,
-  occuspationsOptions,
+  occupationOptions,
   occupations,
   setOccupation,
   setOccupationPredict,
@@ -231,7 +233,7 @@ export const handleOccupationSelect = ({
 }) => {
   setOccupation(value);
   const colors = ['purple', 'green', 'orange', 'magenta', 'yellow'];
-  const style = occupations.filter((o) => o.label.toLowerCase() === value)[0];
+  const style = occupationOptions.filter((o) => o.label.toLowerCase() === value)[0];
   const newOccupations = occupations
     .filter((o) => o.text.toLowerCase() !== value)
     .concat([
@@ -381,6 +383,7 @@ export const handleEditProductor = async (
   user,
   router
 ) => {
+  console.log('values', values);
   const productor = { ...values };
   let newImage = null;
 

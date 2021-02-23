@@ -10,6 +10,11 @@ export const createProductorMutation = gql`
         id
         name
       }
+      occupations {
+        id
+        label
+        order
+      }
       location {
         id
         state
@@ -45,6 +50,11 @@ export const updateProductorMutation = gql`
       musical_styles {
         id
         name
+      }
+      occupations {
+        id
+        label
+        order
       }
       location {
         id

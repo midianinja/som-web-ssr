@@ -38,6 +38,7 @@ const renderBasicInfos = ({
   setName,
   productorStepErrors,
   setOccupation,
+  setOccupations,
   occupation,
   occupations,
   occupationOptions,
@@ -53,8 +54,8 @@ const renderBasicInfos = ({
     deleteTag={(id) =>
       deleteTag({
         id,
-        tags: musicalStyles,
-        setTag: setMusicalStyles
+        tags: occupations,
+        setTag: setOccupations,
       })
     }
     handleAboutChange={({ target }) => (target.value.length < 2000 ? setAbout(target.value) : null)}
@@ -353,6 +354,7 @@ const Productor = () => {
           occupationOptions,
           setOccupationPredict,
           setOccupationOptions,
+          setOccupations,
           setMusicalStyle,
           musicalStyles,
           setMusicalStylePredict,

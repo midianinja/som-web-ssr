@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '../../../../atoms/avatar/avatar';
 import PrimaryButton from '../../../../atoms/primary-button/primaryButton';
@@ -25,7 +25,7 @@ import {
 const ProductorBasicInfo = ({
   name,
   avatar,
-  musicalStyles,
+  occupations,
   address,
   about,
   facebook,
@@ -36,7 +36,18 @@ const ProductorBasicInfo = ({
   history
 }) => {
   const [lerMoreBio, setLerMoreBio] = useState(false);
+  const [stateOccupations, setStateOccupations] = useState([]);
   const colors = ['green', 'orange', 'magenta', 'yellow'];
+
+  useEffect(() => {
+    setStateOccupations(
+      occupations.map(({ id, label }) => ({
+        id,
+        text: label,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      })
+    ));
+  }, []);
 
   return (
     <Wrapper id="infos">
@@ -63,11 +74,7 @@ const ProductorBasicInfo = ({
         ) : null}
       </About>
       <TagList
-        data={musicalStyles.map(({ id, name: n }) => ({
-          id,
-          text: n,
-          color: colors[Math.floor(Math.random() * colors.length)]
-        }))}
+        data={stateOccupations}
         customStyle={`
           padding-left: 30px;
           padding-right: 30px;
@@ -92,8 +99,8 @@ const ProductorBasicInfo = ({
   );
 };
 
-const musicalShape = {
-  name: PropTypes.string,
+const occupationShape = {
+  label: PropTypes.string,
   id: PropTypes.string
 };
 
@@ -110,7 +117,7 @@ const historyShape = {
 ProductorBasicInfo.propTypes = {
   history: PropTypes.shape(historyShape).isRequired,
   isMyProductor: PropTypes.bool.isRequired,
-  musicalStyles: PropTypes.arrayOf(PropTypes.shape(musicalShape)).isRequired,
+  occupations: PropTypes.arrayOf(PropTypes.shape(occupationShape)).isRequired,
   address: PropTypes.shape(locationShape),
   email: PropTypes.string.isRequired,
   about: PropTypes.string.isRequired,

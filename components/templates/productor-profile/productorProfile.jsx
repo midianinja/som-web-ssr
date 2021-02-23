@@ -132,6 +132,7 @@ const ProductorPage = () => {
           facebook={productor.facebook}
           twitter={productor.twitter}
           instagram={productor.instagram}
+          occupations={productor.occupations}
           musicalStyles={productor.musical_styles}
           address={productor.location}
           email={productor.contact_email}

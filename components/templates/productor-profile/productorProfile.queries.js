@@ -11,6 +11,11 @@ export const oneProductorQuery = gql`
         id
         name
       }
+      occupations {
+        id
+        label
+        order
+      }
       events {
         id
         event_date
