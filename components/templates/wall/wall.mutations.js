@@ -20,7 +20,7 @@ export const subscribe = gql`
         city
         state
       }
-      subscribers @defer {
+      subscribers {
         id
         avatar_image {
           mimified
@@ -28,16 +28,16 @@ export const subscribe = gql`
         }
         name
       }
-      approved_artists @defer {
+      approved_artists {
         id
       }
-      cover @defer {
+      cover {
         mimified
       }
       photo {
         mimified
       }
-      productor @defer {
+      productor {
         id
         photo
         name

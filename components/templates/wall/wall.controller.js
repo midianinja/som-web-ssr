@@ -188,7 +188,7 @@ export const subscribeAction = async (
     title: 'Pronto!',
     icon: '/icons/yeah.svg',
     description: `Você está inscrito no festival ${event.name}. Fique ligado no SOM para receber novas informações.`,
-    disagreeText: 'Voltar para a home',
+    disagreeText: 'Fechar',
     disagreeAction: () => {
       allowBodyScroll();
       setDialog({

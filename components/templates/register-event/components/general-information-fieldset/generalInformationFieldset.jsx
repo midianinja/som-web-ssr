@@ -79,7 +79,9 @@ const GeneralInformationFieldset = ({
     </InputGroup>
     <InputGroup
       label={values.description ? 'Descrição do evento' : ''}
-      error={eventErrors.description}>
+      error={eventErrors.description}
+      info="Informe todas as condições oferecidas."
+    >
       <TextArea
         id="description"
         placeholder="Descrição do evento"

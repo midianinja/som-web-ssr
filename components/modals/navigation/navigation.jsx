@@ -17,7 +17,7 @@ import {
 const getLinks = (user, connectionType) => {
   const links = [
     {
-      href: '/',
+      href: '/wall',
       label: 'Início'
     },
     {
