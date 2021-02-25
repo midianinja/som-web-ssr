@@ -17,7 +17,7 @@ import {
 const getLinks = (user, connectionType) => {
   const links = [
     {
-      href: '/wall',
+      href: '/oportunities',
       label: 'Início'
     },
     {
@@ -35,8 +35,8 @@ const getLinks = (user, connectionType) => {
       hide: !user || connectionType !== 'productor'
     },
     {
-      href: '/wall',
-      label: 'Mural'
+      href: '/oportunities',
+      label: 'Oportunidades'
     },
     {
       href: '/my-events',

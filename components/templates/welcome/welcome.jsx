@@ -16,7 +16,7 @@ const Welcome = () => {
         <Text>Conheça os eventos e as oportunidades, inscreva-se nos que se interessar!</Text>
         <PrimaryButton
           onClick={() => {
-            router.push('/wall');
+            router.push('/oportunities');
           }}
           color="secondaryOrange">
           Ver mural
