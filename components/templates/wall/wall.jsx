@@ -21,14 +21,11 @@ import {
 } from './wall.controller';
 import {
   Container,
-  GlobalForm,
   Form,
-  LocationContainer,
-  LocationLabel,
-  LocationValue,
   EventsContainer,
+  Title,
   filterGroupsStyle,
-  tagListStyle
+  tagListStyle,
 } from './wall.style';
 
 const YEARS_MODEL = [
@@ -101,9 +98,11 @@ const Wall = () => {
       fetchMusicalStyleOptions(setMusicalStylesOptions);
     }
   }, [musicStyles, years, months]);
+
   return (
     <Container>
       <DefaultHeader />
+      <Title>Eventos e Oportunidades</Title>
       <Form>
         <InputGroup customStyle={filterGroupsStyle}>
           <ListInput

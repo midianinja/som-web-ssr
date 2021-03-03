@@ -32,7 +32,11 @@ const BasicInformationFieldset = ({
   <Fieldset>
     <Title>Informações do Produtor</Title>
     <MainInformationWrapper>
-      <InputGroup error={productorStepErrors.avatar} customStyle={avatarInputGroupStyle}>
+      <InputGroup
+        error={productorStepErrors.avatar}
+        customStyle={avatarInputGroupStyle}
+        info="Tamanho sugerido: 500x500px"
+      >
         <UploadAvatar
           alt="botão para subir imagem"
           title="avatar image"

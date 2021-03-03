@@ -1,5 +1,15 @@
 import styled from 'styled-components';
-import { black } from '../../../settings/colors';
+import { black, white } from '../../../settings/colors';
+
+export const Title = styled.h1`
+  width: 100%;
+  text-align: left;
+  margin-bottom: 30px;
+  max-width: 1024px;
+  font-size: 2em;
+  line-height: 2em;
+  color: ${white};
+`;
 
 export const Container = styled.div`
   background-color: ${black};

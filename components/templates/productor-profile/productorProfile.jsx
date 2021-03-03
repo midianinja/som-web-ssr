@@ -113,6 +113,8 @@ const ProductorPage = () => {
     );
   }
 
+  console.log(productor.events);
+  
   const isMyProductor =
     state.user && state.user.productor && state.user.productor.id === productor.id;
 
