@@ -4,7 +4,9 @@ import {
   followMutation,
   unfollowMutation,
   deleteSongMutation,
-  editSongMutation
+  editSongMutation,
+  favoriteSongMutation,
+  unfavoriteSongMutation,
 } from './artistProfile.mutations';
 
 const fetchSongs = (artist) =>
@@ -46,14 +48,10 @@ export const fetchRelatedArtsts = async (artist, setArtsts) => {
   const artsts = await client().query({
     query: searchArtistsQuery,
     variables: {
-      artist: {
-        musical_styles: { $in: artist.musical_styles.map((m) => m.id) },
-        _id: { $ne: [artist.id] }
-      },
       paginator: {
-        limit: 10
-      }
-    }
+        limit: 10,
+      },
+    },
   });
 
   setArtsts(artsts.data.searchArtists);
@@ -96,6 +94,7 @@ export const fetchArtistData = async (id, setArtist, setArtistLoading, setSongs,
     throw err;
   }
 
+  console.log(songsPromise.data.allSongs);
   setSongs(songsPromise.data.allSongs);
   setArtist(promise.data.oneArtist);
   setArtistLoading(false);
@@ -130,4 +129,64 @@ export const unfollow = async (artist, user, setFollows, follows) => {
     mutation: unfollowMutation,
     variables: { artist, user }
   });
+};
+
+export const favoriteSong = async (user, song, dispatch, favoritedSongs) => {
+  let newFavoritedSongs = [...favoritedSongs];
+  newFavoritedSongs.push(song);
+
+  let newUser = { ...user, favorited_songs: newFavoritedSongs };
+  dispatch({
+    type: 'SET_USER',
+    user: newUser,
+  });
+
+  try {
+    await client().mutate({
+      mutation: favoriteSongMutation,
+      variables: { song: song.id, user: user.id }
+    });
+  } catch (err) {
+    newFavoritedSongs = [...newUser.favorited_songs];
+    newFavoritedSongs.splice(newFavoritedSongs.indexOf(s => s.id === song.id), 1);
+
+    newUser = { ...newUser, favorited_songs: newFavoritedSongs };
+
+    dispatch({
+      type: 'SET_USER',
+      user: newUser,
+    });
+
+    throw err;
+  }
+};
+
+export const unfavoriteSong = async (user, song, dispatch, favoritedSongs) => {
+  let newFavoritedSongs = [...user.favorited_songs];
+  newFavoritedSongs.splice(newFavoritedSongs.indexOf(s => s.id === song.id), 1);
+
+  let newUser = { ...newUser, favorited_songs: newFavoritedSongs };
+
+  dispatch({
+    type: 'SET_USER',
+    user: newUser,
+  });
+
+  try {
+    await client().mutate({
+      mutation: unfavoriteSongMutation,
+      variables: { song: song.id, user: user.id }
+    });
+  } catch (err) {
+    newFavoritedSongs = [...favoritedSongs];
+    newFavoritedSongs.push(song);
+  
+    newUser = { ...newUser, favorited_songs: newFavoritedSongs };
+    dispatch({
+      type: 'SET_USER',
+      user: newUser,
+    });
+
+    throw err;
+  }
 };

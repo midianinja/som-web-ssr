@@ -7,7 +7,6 @@ export const Container = styled.div`
     return checked ? 'inline-flex' : 'none';
   }};
   flex-direction: column;
-  width: 100%;
   padding-left: 15px;
   padding-right: 15px;
 `;

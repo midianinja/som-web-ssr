@@ -6,6 +6,11 @@ export const oneUserQuery = gql`
       id
       ida
       type
+      favorited_songs {
+        id
+        title
+        url
+      }
       artist {
         id
         members_number

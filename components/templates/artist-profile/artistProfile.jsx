@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import Cover from '../../atoms/cover/cover';
-import InstagramMedia from '../../molecules/instagram-medias/instagramMedias';
 import AudioPlayer from '../../organisms/audio-player/audioPlayer';
 import Header from '../../organisms/default-header/defaultHeader';
 import DialogModal from '../../modals/dialog/dialog';
@@ -12,12 +10,13 @@ import ArtistBasicInfo from './components/artist-basic-info/artistBasicInfo';
 import ApprovedEvents from './components/approved-events/approvedEvents';
 import {
   fetchArtistData,
-  fetchArtistInstaImages,
   fetchRelatedArtsts,
   follow,
   unfollow,
   editSongAction,
-  deleteSongAction
+  deleteSongAction,
+  favoriteSong,
+  unfavoriteSong,
 } from './artistProfile.controller';
 import {
   ArtistWrapper,
@@ -95,6 +94,11 @@ const ArtistPage = () => {
     );
   }
 
+  console.log('sooongs', songs.map(s => ({
+    ...s,
+    liked: state.user.favorited_songs.findIndex(({ id }) => s.id === id) }) !== -1
+  ));
+
   return (
     <ArtistWrapper>
       <Header />
@@ -133,11 +137,16 @@ const ArtistPage = () => {
                 deleteSongAction({
                   ...data,
                   artist: state.user.artist,
-                  setSongs
+                  seArtistProfileTemplatetSongs
                 })
               }
               isUserArtist={isUserArtist}
-              tracks={songs}
+              tracks={songs.map(s => ({
+                ...s,
+                liked: state.user.favorited_songs.findIndex(({ id }) => s.id === id) !== -1,
+              }))}
+              favoriteSong={song => favoriteSong(state.user, song, dispatch, state.user.favorited_songs)}
+              unfavoriteSong={song => unfavoriteSong(state.user, song, dispatch, state.user.favorited_songs)}
             />
           ) : null}
           {artist.approved_events.length ? (

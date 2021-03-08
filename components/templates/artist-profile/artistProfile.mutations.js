@@ -26,6 +26,22 @@ export const unfollowMutation = gql`
   }
 `;
 
+export const favoriteSongMutation = gql`
+  mutation favoriteSong($user: ID!, $song: ID!) {
+    favoriteSong(user_id: $user, song_id: $song) {
+      id
+    }
+  }
+`;
+
+export const unfavoriteSongMutation = gql`
+  mutation unfavoriteSong($user: ID!, $song: ID!) {
+    unfavoriteSong(user_id: $user, song_id: $song) {
+      id
+    }
+  }
+`;
+
 export const deleteSongMutation = gql`
   mutation deleteSong($song_id: ID!) {
     deleteSong(song_id: $song_id) {

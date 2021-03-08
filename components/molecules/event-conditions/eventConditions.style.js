@@ -9,4 +9,6 @@ export const Container = styled.div`
   color: ${white};
   text-align: center;
   margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
 `;

@@ -35,7 +35,10 @@ const secondToMinute = (time) => {
   return `${minutes}:${seconds}`;
 };
 
-const renderTracks = (tracks, handleClick, deleteAction, editAction, isUserArtist) => {
+const renderTracks = (
+  tracks, handleClick, deleteAction, editAction,
+  isUserArtist, favoriteSong, unfavoriteSong,
+) => {
   const [selected, setSelected] = useState('');
   const [name, setName] = useState('');
 
@@ -49,7 +52,9 @@ const renderTracks = (tracks, handleClick, deleteAction, editAction, isUserArtis
     setSelected('');
   };
 
-  return tracks.map(({ id, title, liked, time }, index) => (
+  return tracks.map(({
+    id, title, liked, time,
+  }, index) => (
     <Track onClick={() => handleClick(tracks[index])}>
       <TooltipContainer show={id === selected}>
         <Content onClick={(e) => e.stopPropagation()}>
@@ -84,7 +89,13 @@ const renderTracks = (tracks, handleClick, deleteAction, editAction, isUserArtis
               src="/icons/tool.svg"
             />
           ) : null}
-          <TrackLikedIcon src={liked ? '/icons/star_outlined.svg' : '/icons/star.svg'} />
+          <TrackLikedIcon
+            onClick={liked
+              ? () => unfavoriteSong(tracks[index])
+              : () => favoriteSong(tracks[index])
+            }
+            src={liked ? '/icons/star_outlined.svg' : '/icons/star.svg'}
+          />
           <TrackTime>{secondToMinute(time)}</TrackTime>
         </TrackInfo>
       </TrackContainer>
@@ -114,7 +125,9 @@ const AudioPlayer = ({
   color,
   color15,
   color50,
-  playPress
+  playPress,
+  favoriteSong,
+  unfavoriteSong,
 }) => {
   const [play, setPlay] = useState(false);
   const [songs, setSongs] = useState([]);
@@ -177,7 +190,7 @@ const AudioPlayer = ({
               url: track.url,
               title: track.title,
               time: data.target.duration,
-              liked: false,
+              liked: track.liked,
               algum: '-'
             };
 
@@ -251,7 +264,10 @@ const AudioPlayer = ({
         />
       </Header>
       <List customStyle={customListStyle}>
-        {renderTracks(songs, setSelectSong, deleteAction, editAction, isUserArtist)}
+        {renderTracks(
+          songs, setSelectSong, deleteAction, editAction,
+          isUserArtist, favoriteSong, unfavoriteSong,
+        )}
       </List>
     </Wrapper>
   );
@@ -265,6 +281,8 @@ const trackShape = {
 
 AudioPlayer.propTypes = {
   deleteAction: PropTypes.func.isRequired,
+  favoriteSong: PropTypes.func.isRequired,
+  unfavoriteSong: PropTypes.func.isRequired,
   editAction: PropTypes.func.isRequired,
   tracks: PropTypes.arrayOf(PropTypes.shape(trackShape)),
   isUserArtist: PropTypes.bool,

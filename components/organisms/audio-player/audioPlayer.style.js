@@ -178,6 +178,7 @@ export const TrackLikedIcon = styled.img`
   vertical-align: middle;
   margin-right: 10px;
   margin-top: -2px;
+  cursor: pointer;
 `;
 
 export const TrackEditIcon = styled.img`
