@@ -71,6 +71,10 @@ export const About = styled.p`
   text-align: left;
   font-size: 0.8571428571em;
   transition-duration: 0.2s;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
 
   @media (min-width: 1024px) {
     padding-left: 0px;

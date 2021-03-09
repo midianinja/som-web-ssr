@@ -97,6 +97,10 @@ export const About = styled.p`
   font-size: 0.8571428571em;
   transition-duration: 0.2s;
   word-break: break-all;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
 `;
 
 export const ActionWrapper = styled.div`
