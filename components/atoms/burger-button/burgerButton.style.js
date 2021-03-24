@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { white, black } from '../../../settings/colors';
 
-export const BurgerButton = styled.div`
+export const Burger = styled.div`
   width: 20px;
   cursor: pointer;
 

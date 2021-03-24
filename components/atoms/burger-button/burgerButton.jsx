@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BurgerButton, Line } from './burgerButton.style';
+import { Burger, Line } from './burgerButton.style';
 
 const BurgerButton = ({ onClick, dark }) => (
-  <BurgerButton
+  <Burger
     onClick={onClick}
   >
     <Line dark={dark} />
     <Line dark={dark} />
     <Line dark={dark} />
-  </BurgerButton>
+  </Burger>
 );
 
 BurgerButton.propTypes = {
