@@ -50,11 +50,12 @@ export const SlimButtonStyle = styled.button`
   padding-right: 30px;
   background-color: transparent;
   border-radius: ${(props) => getSize(props.size)};
-  border: solid 1px ${(props) => getColor(props.color)};
+  border: solid 2px ${(props) => getColor(props.color)};
   color: ${white};
   cursor: pointer;
   transition-duration: 0.3s;
   font-size: 0.8571428571em;
+  font-weight: 700;
 
   :focus {
     outline: none;
