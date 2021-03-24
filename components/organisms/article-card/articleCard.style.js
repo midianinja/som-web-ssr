@@ -18,8 +18,7 @@ export const Cover = styled.img`
   margin-bottom: 16px;
 `;
 
-export const ActionWrapepr = styled.div`
-`;
+export const ActionWrapepr = styled.div``;
 
 export  const Title = styled.h3`
   font-family: CircularStd;

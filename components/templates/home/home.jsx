@@ -8,6 +8,7 @@ import Apresentation from '../../organisms/home-apresentation/homeApresentation'
 // import Newsletter from '../../organisms/home-news-letter/homeNewsLetter';
 import About from './components/about/about';
 import MovimentOnCommunity from './components/moviment-on-community/movimentOnCommunity';
+import TwentyYearsOfDevelopment from './components/20-years-of-development/20YearsOfDevelopment';
 import {
   Page,
 } from './home.style';
@@ -23,6 +24,7 @@ const Home = () => {
       <Apresentation />
       <About />
       <MovimentOnCommunity />
+      <TwentyYearsOfDevelopment />
     </Page>
   );
 };
