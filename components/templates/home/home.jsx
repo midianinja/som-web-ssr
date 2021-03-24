@@ -9,6 +9,7 @@ import Apresentation from '../../organisms/home-apresentation/homeApresentation'
 import About from './components/about/about';
 import MovimentOnCommunity from './components/moviment-on-community/movimentOnCommunity';
 import TwentyYearsOfDevelopment from './components/20-years-of-development/20YearsOfDevelopment';
+import NINJAAward from './components/ninja-award/ninjaAward';
 import {
   Page,
 } from './home.style';
@@ -25,6 +26,7 @@ const Home = () => {
       <About />
       <MovimentOnCommunity />
       <TwentyYearsOfDevelopment />
+      <NINJAAward />
     </Page>
   );
 };

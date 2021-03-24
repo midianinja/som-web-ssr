@@ -11,6 +11,7 @@ import {
   darkGray,
   secondaryOrange,
   secondaryMagenta,
+  black,
 } from '../../../settings/colors';
 
 const sizes = {
@@ -73,7 +74,7 @@ export const PrimaryButtonStyle = styled.button`
   background-color: ${(props) => getColor(props.color)};
   color: ${(props) => {
     const { color } = props;
-    return color === 'white' ? purple : white;
+    return color === 'white' ? black : white;
   }};
   cursor: pointer;
   transition-duration: 0.3s;
@@ -96,7 +97,7 @@ export const PrimaryButtonStyle = styled.button`
     }};
     color: ${(props) => {
       const { color } = props;
-      return color === 'white' ? purple : white;
+      return color === 'white' ? black : white;
     }};
     opacity: ${(props) => {
       const { color } = props;
