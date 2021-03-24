@@ -1,16 +1,15 @@
 import styled from 'styled-components';
-import { white, white50 } from '../../../settings/colors';
+import { purple, white, white50 } from '../../../settings/colors';
 
 export const Container = styled.section`
+  background-color: ${purple};
   position: relative;
-  padding-top: 60px;
-  padding-bottom: 30px;
+  padding: 60px 30px;
 `;
 
 export const Title = styled.h2`
-  font-size: 1.375em;
-  text-align: center;
-  font-weight: 300;
+  font-size: 30px;
+  font-weight: 700;
   line-height: 1.1em;
   color: ${white};
   margin-bottom: 30px;
@@ -28,10 +27,11 @@ export const Content = styled.div`
   width: 100%;
   white-space: nowrap;
   overflow-x: auto;
-  text-align: center;
-  padding-right: 15px;
-  padding-left: 15px;
+  ms-overflow-style: none;
+  scrollbar-width: none;
+  
   &::-webkit-scrollbar {
+    display: none;
     width: 0 !important;
   }
 `;

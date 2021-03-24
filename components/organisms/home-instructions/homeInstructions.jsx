@@ -11,8 +11,8 @@ const Instructions = () => (
   <Container>
     <InstructionCard
       icon="/icons/why-to-use.svg"
-      title="Pra que posso usá-lo?"
-      description="No SOM o produtor encontra artistas, os artistas encontram oportunidades e o público fica por dentro de tudo que está acontencendo"
+      title="Infinitas possibilidades"
+      description="O S.O.M conecta artistas e produtores a oportunidades de agenda, negócios, aprendizado, colaborações, trabalhos, eventos e muito mais. "
     />
     <InstructionCard
       icon="/icons/to-artists.svg"
@@ -21,13 +21,13 @@ const Instructions = () => (
     />
     <InstructionCard
       icon="/icons/music-brazil-map.svg"
-      title="Mapa da Música"
-      description="Coloque seu nome no mapa! Faça seu perfil e participa da construção de um novo mapa da música brasileira"
+      title="Amplifique seu som"
+      description="Coloque seu nome no Mapa da Música e crie rotas para formar a sua base pelo Brasil. Com o S.O.M surgem novas cenas de diferentes culturas."
     />
     <InstructionCard
       icon="/icons/productors.svg"
-      title="Para Produtores e Fãs"
-      description="Em Breve!"
+      title="Ofereça e acesse oportunidades"
+      description="No S.O.M você conversa com uma comunidade focada em música, produção cultural e audiovisual. O lugar certo para anunciar."
     />
   </Container>
 );

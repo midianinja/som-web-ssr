@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HowItsWorkCard from '../../molecules/how-it-works/howItWorks';
 import {
   Container,
@@ -13,41 +13,30 @@ import {
  * @param {object} props component props
  * @returns contains HomeHowItsWork Component
  */
-const HomeHowItsWork = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [scrollWidth, setScrollWidth] = useState(0);
-  return (
-    <Container>
-      <Title>Como funciona o SOM?</Title>
-      <Content
-        onScroll={(e) => {
-          setScrollPosition(e.target.scrollLeft);
-          setScrollWidth(e.target.scrollWidth - (document.documentElement.clientWidth - 30));
-        }}>
-        <HowItsWorkCard
-          icon="/icons/home-ida.svg"
-          title="Crie sua IDa"
-          description="IDa é a sua identidade digital. Através dela você tem acesso à rede SOM além de outras plataformas."
-          number="1"
-        />
-        <HowItsWorkCard
-          icon="/icons/home-subscribe-band.svg"
-          title="Inscreva sua banda"
-          description="Encontre produtores e festivais e inscreva-se em oportunidades."
-          number="2"
-        />
-        <HowItsWorkCard
-          icon="/icons/home-world.svg"
-          title="Circule o mundo"
-          description="Faça uma turnê e espalhe o seu som!"
-          number="3"
-        />
-      </Content>
-      <ScrollIndicatorWrapper>
-        <ScrollIndicator position={scrollPosition} scrollWidth={scrollWidth} />
-      </ScrollIndicatorWrapper>
-    </Container>
-  );
-};
+const HomeHowItsWork = () => (
+  <Container>
+    <Title>Como funciona o SOM?</Title>
+    <Content>
+      <HowItsWorkCard
+        icon="/icons/home-ida.svg"
+        title="Faça seu login"
+        description="IDa é a sua identidade digital. Através dela você tem acesso à rede S.O.M. além de outras plataformas"
+        number="1"
+      />
+      <HowItsWorkCard
+        icon="/icons/home-subscribe-band.svg"
+        title="Tenha personalidade"
+        description="Quanto mais completo e atraente for o seu perfil, mais chances você tem de garantir as melhores oportunidades e fazer contatos."
+        number="2"
+      />
+      <HowItsWorkCard
+        icon="/icons/home-world.svg"
+        title="Acelere sua carreira"
+        description="Conecte-se à indústria e ao mercado da música e espalhe seus projetos para o mundo."
+        number="3"
+      />
+    </Content>
+  </Container>
+);
 
 export default HomeHowItsWork;

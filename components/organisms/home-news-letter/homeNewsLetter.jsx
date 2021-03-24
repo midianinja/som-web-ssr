@@ -1,5 +1,10 @@
 import React from 'react';
-import { Container, Content, SocialList, Social, SocialIcon } from './homeNewsLetter.style';
+import NewsletterInput from '../../atoms/newsletter-input/NewsletterInput';
+import {
+  Footer, Content, SocialList, Social,
+  SocialIcon, FormWrapper, Title, Text,
+  Logo,
+} from './homeNewsLetter.style';
 
 /**
  * function that render News Letter React Component
@@ -7,8 +12,20 @@ import { Container, Content, SocialList, Social, SocialIcon } from './homeNewsLe
  * @returns contains NewsLetter Component
  */
 const NewsLetter = () => (
-  <Container>
+  <Footer>
     <Content>
+      <FormWrapper>
+        <Logo src="/images/logo-black.svg" alt="" />
+        <Title>
+          Não paramos por aqui 🔥
+        </Title>
+        <Text>
+          O Som está em desenvolvimentos! Insira seu e-mail para receber novidades
+        </Text>
+        <NewsletterInput
+          placeholder="Insira seu e-mail"
+        />
+      </FormWrapper>
       <SocialList>
         <Social href="https://www.facebook.com/sompontovc">
           <SocialIcon
@@ -30,7 +47,7 @@ const NewsLetter = () => (
         </Social>
       </SocialList>
     </Content>
-  </Container>
+  </Footer>
 );
 
 export default NewsLetter;

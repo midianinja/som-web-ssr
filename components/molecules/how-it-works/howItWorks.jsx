@@ -15,7 +15,6 @@ const HowItsWorkCard = ({ icon, title, number, description }) => {
       </IconWrapper>
       <Content>
         <Title>{title}</Title>
-        <Number>{number}</Number>
         <Description>{description}</Description>
       </Content>
     </Card>

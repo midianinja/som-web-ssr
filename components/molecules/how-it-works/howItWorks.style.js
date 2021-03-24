@@ -44,6 +44,7 @@ export const Content = styled.div`
   height: 150px;
   padding: 20px;
   padding-top: 30px;
+  text-align: center;
 
   @media (min-width: 1024px) {
     height: 165px;
