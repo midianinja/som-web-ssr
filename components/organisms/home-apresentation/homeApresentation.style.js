@@ -34,7 +34,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   padding: 30px;
-  padding-bottom: 15px;
+  padding-bottom: 45px;
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
