@@ -23,7 +23,7 @@ const colors = {
   magenta,
   gray,
   black,
-  white
+  white,
 };
 
 /**
@@ -44,6 +44,7 @@ const fontSizes = {
 const getFontSize = (key) => (fontSizes[key] ? fontSizes[key] : fontSizes.medium);
 
 export const LinkButtonStyle = styled.button`
+  width: 100%;
   height: ${(props) => getSize(props.size)};
   background-color: transparent;
   color: ${(props) => getColor(props.color)};
@@ -51,6 +52,7 @@ export const LinkButtonStyle = styled.button`
   transition-duration: 0.3s;
   font-size: ${(props) => getFontSize(props.fontSize)};
   line-height: 1em;
+  text-decoration: underline;
 
   :focus {
     outline: none;

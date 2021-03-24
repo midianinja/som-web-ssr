@@ -78,6 +78,7 @@ export const PrimaryButtonStyle = styled.button`
   cursor: pointer;
   transition-duration: 0.3s;
   font-size: 0.8571428571em;
+  font-weight: 700;
 
   :active,
   :hover {

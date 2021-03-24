@@ -11,7 +11,7 @@ const IDASignupButton = ({ onClick }) => (
       src="https://ida-design-system-assets.s3-us-west-2.amazonaws.com/icons/brand.svg"
       alt=""
     />
-    Cadastre-se com a IDa
+    Cadastre-se
   </IDASignupButtonWrapper>
 );
 

@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import BurgerButton from '../../atoms/burger-button/burgerButton';
 import IDALoginButton from '../../atoms/ida-login-button/idaLoginButton';
 import DropdownHeader from '../../molecules/dropdown-header/dropdownHeader';
 import Store from '../../../store/Store';
@@ -8,17 +9,12 @@ import { blockBodyScroll } from '../../../utils/scroll.utils';
 import {
   HeaderComponent,
   Wrapper,
-  BurgerButton,
-  Line,
   Group,
   RightGroup,
   Avatar,
   Name,
-  SignWrapper,
-  LoginText,
   ProfileWrapper,
   Logo,
-  LoginIcon,
   Type
 } from './defaultHeader.style';
 
@@ -84,11 +80,9 @@ const Header = ({ customStyle }) => {
               blockBodyScroll();
               setDropdown(false);
               dispatch({ type: 'SHOW_NAVIGATION_MODAL' });
-            }}>
-            <Line dark={state.connectionType === 'public'} />
-            <Line dark={state.connectionType === 'public'} />
-            <Line dark={state.connectionType === 'public'} />
-          </BurgerButton>
+            }}
+            dark={state.connectionType === 'public'}
+          />
         </Group>
         <Logo
           src={getSOMBrand()}

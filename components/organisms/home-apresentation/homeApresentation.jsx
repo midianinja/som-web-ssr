@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import IDASignupButton from '../../atoms/ida-signup-button/idaSignupButton';
-import { HomeWrapper, Wrapper, Content, Logo, Title, Description } from './homeApresentation.style';
+import LinkButton from '../../atoms/link-button/LinkButton';
+import {
+  HomeWrapper, Wrapper, Content, Logo,
+  Title, CTAWrapper, TextWrapper,
+} from './homeApresentation.style';
 
 /**
  * function that loading image before render
@@ -22,7 +26,7 @@ const load = (src, callback) => {
  * This contains the Home apresentation section
  * @returns {React.Component} productor form
  */
-const HomeApresentation = ({ onClick }) => {
+const HomeApresentation = ({ signupClick, signinClick }) => {
   const [bgSrc, setBgSrc] = useState('');
 
   useEffect(() => {
@@ -34,12 +38,16 @@ const HomeApresentation = ({ onClick }) => {
     <HomeWrapper>
       <Wrapper>
         <Content>
-          <Logo src={bgSrc} alt="Som, Sistema Operacional da Música" />
-          <Title>Sistema Operacional da Música</Title>
-          <Description>
-            A plataforma para aceleração de oportunidades da música brasileira
-          </Description>
-          <IDASignupButton onClick={onClick} />
+          <TextWrapper>
+            <Logo src={bgSrc} alt="Som, Sistema Operacional da Música" />
+            <Title>
+              Explore oportunidades na Música Brasileira
+            </Title>
+          </TextWrapper>
+          <CTAWrapper>
+            <IDASignupButton onClick={signupClick} />
+            <LinkButton color="white" onClick={signinClick}>Já tenho cadastro</LinkButton>
+          </CTAWrapper>
         </Content>
       </Wrapper>
     </HomeWrapper>
@@ -47,7 +55,8 @@ const HomeApresentation = ({ onClick }) => {
 };
 
 HomeApresentation.propTypes = {
-  onClick: PropTypes.func.isRequired
+  signinClick: PropTypes.func.isRequired,
+  signupClick: PropTypes.func.isRequired,
 };
 
 export default HomeApresentation;
