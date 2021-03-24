@@ -65,10 +65,11 @@ export const PlayIcon = styled.img`
 `;
 
 export const MIcon = styled.img`
-  height: 600px;
+  height: 200vw;
+  max-height: 1018px;
   position: absolute;
   z-index: ${zindex};
   top: 0;
-  left: calc(-50% - 150px);
+  left: calc(-50% - 37vw);
 `;
 
