@@ -5,6 +5,8 @@ export const Container = styled.section`
   background-color: ${purple};
   position: relative;
   padding: 60px 30px;
+  display: grid;
+  justify-content: center;
 `;
 
 export const Title = styled.h2`

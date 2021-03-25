@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import IDASignupButton from '../../atoms/ida-signup-button/idaSignupButton';
+import IDASigninButton from '../../atoms/ida-login-button/idaLoginButton';
 import LinkButton from '../../atoms/link-button/LinkButton';
 import {
   HomeWrapper, Wrapper, Content, Logo,
-  Title, CTAWrapper, TextWrapper,
+  Title, CTAWrapper, TextWrapper, SmallLogo,
+  Header, WrittenLogo,
 } from './homeApresentation.style';
 
 /**
@@ -27,7 +29,7 @@ const load = (src, callback) => {
  * @returns {React.Component} productor form
  */
 const HomeApresentation = ({ signupClick, signinClick }) => {
-  const [bgSrc, setBgSrc] = useState('');
+  const [bgSrc, setBgSrc] = useState('/images/colorful-logo.svg');
 
   useEffect(() => {
     const bg = '/images/colorful-logo.svg';
@@ -36,6 +38,10 @@ const HomeApresentation = ({ signupClick, signinClick }) => {
 
   return (
     <HomeWrapper>
+      <Header>
+        <SmallLogo src="/images/logo.svg" alt="" />
+        <IDASigninButton />
+      </Header>
       <Wrapper>
         <Content>
           <TextWrapper>
@@ -50,6 +56,7 @@ const HomeApresentation = ({ signupClick, signinClick }) => {
           </CTAWrapper>
         </Content>
       </Wrapper>
+      <WrittenLogo src="/icons/logo-written.svg" alt="" />
     </HomeWrapper>
   );
 };

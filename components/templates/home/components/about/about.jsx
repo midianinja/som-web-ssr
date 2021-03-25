@@ -6,8 +6,10 @@ import {
 
 const About = () => (
   <AboutSection>
-    <Title>Conheça o SOM</Title>
-    <Subtitle>Sistema Operacional da Música</Subtitle>
+    <div>
+      <Title>Conheça o SOM</Title>
+      <Subtitle>Sistema Operacional da Música</Subtitle>
+    </div>
     <VideoWrapper>
       <PlayIcon src="/icons/play.svg" alt="" />
     </VideoWrapper>

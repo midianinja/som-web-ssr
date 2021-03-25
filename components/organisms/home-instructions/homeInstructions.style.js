@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 import { purple } from '../../../settings/colors';
 
-export const Container = styled.section`
+export const Section = styled.section`
+  width: 100%;
+  position: relative;
   background-color: ${purple};
+`;
+
+export const Container = styled.div`
   position: relative;
   width: 100%;
   max-width: 992px;

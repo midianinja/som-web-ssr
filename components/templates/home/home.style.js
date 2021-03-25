@@ -1,10 +1,17 @@
 import styled from 'styled-components';
-import { purple, secondaryBlack, darkGray } from '../../../settings/colors';
+import {
+  purple, secondaryBlack, darkGray, white,
+} from '../../../settings/colors';
 
 export const Page = styled.div`
   width: 100%;
+  background-color: ${white};
   position: relative;
   overflow-x: hidden;
+
+  @media (min-width: 768px) {
+    padding-left: 58px;
+  }
 `;
 
 export const LoginButtonContainer = styled.div`

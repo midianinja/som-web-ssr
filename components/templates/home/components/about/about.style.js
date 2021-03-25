@@ -8,6 +8,14 @@ export const AboutSection = styled.section`
   padding: 30px;
   background-color: ${purple};
   padding-bottom: 75px;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding-bottom: 188px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -18,6 +26,11 @@ export const Title = styled.h2`
   line-height: 1.1em;
   text-align: right;
   z-index: ${zindex + 2};
+
+  @media (min-width: 1024px) {
+    max-width: 280px;
+    margin-left: -80px;
+  }
 `;
 
 export const Subtitle = styled.h3`
@@ -27,8 +40,14 @@ export const Subtitle = styled.h3`
   font-weight: 200;
   line-height: 1.1em;
   text-align: right;
-  margin-top: 30px;
+  margin-top: 10px;
+  margin-bottom: 30px;
   z-index: ${zindex + 2};
+
+  @media (min-width: 1024px) {
+    max-width: 280px;
+    margin-left: -80px;
+  }
 `;
 
 export const VideoWrapper = styled.div`
@@ -36,8 +55,11 @@ export const VideoWrapper = styled.div`
   right: -50px;
   background-color: ${black};
   background-image: url("/images/lp-video-cover.png");
+  background-size: cover;
   width: 100%;
+  max-width: 709px;
   height: calc(65vw - 60px);
+  max-height: 394px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,7 +74,7 @@ export const VideoWrapper = styled.div`
     position: absolute;
     width: 100%;
     height: 101%;
-    background: linear-gradient(270deg, rgba(0, 0, 0, 0.7) 49.18%, rgba(0, 0, 0, 0) 98.96%) ;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 49.18%, rgba(0, 0, 0, 0) 98.96%) ;
     transform: matrix(-1, 0, 0, 1, 0, 0);
     top: 0;
     left: 0;
@@ -71,5 +93,11 @@ export const MIcon = styled.img`
   z-index: ${zindex};
   top: 0;
   left: calc(-50% - 37vw);
+
+  @media (min-width: 1024px) {
+    left: inherit;
+    top: -10vh;
+    right: -17vw;
+  }
 `;
 

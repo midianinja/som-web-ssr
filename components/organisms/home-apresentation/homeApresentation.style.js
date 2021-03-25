@@ -47,22 +47,58 @@ export const Content = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 140px;
   width: 100%;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 export const Logo = styled.img`
   height: 36px;
   margin-bottom: 16px;
   margin-top: 100px;
+
+  @media (min-width: 1024px) {
+    height: 51px;
+    margin-bottom: 40px;
+  }
+`;
+
+export const Header = styled.header`
+  display: none ;
+
+  @media (min-width: 1024px) {
+    top: 0;
+    left: 18px;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 48px);
+    padding: 18px 30px;
+    z-index: 12;
+  }
+`;
+
+export const SmallLogo = styled.img`
+  height: 17px;
 `;
 
 export const Title = styled.h1`
-  font-size: 2.475em;
+  font-size: 38px;
   font-weight: 900;
   width: 100%;
   max-width: 200px;
   line-height: 1.1em;
   color: ${white};
   margin-bottom: 16px;
+
+  @media (min-width: 1024px) {
+    font-size: 64px;
+    max-width: 500px;
+    margin-bottom: 40px;
+  }
 `;
 
 export const Description = styled.h2`
@@ -72,14 +108,39 @@ export const Description = styled.h2`
   line-height: 1.4em;
   color: ${white};
   margin-bottom: 24px;
+
+  @media (min-width: 1024px) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const HomeBurgerWrapper = styled.div``;
 
 export const CTAWrapper = styled.div`
   align-self: end;
+
+  @media (min-width: 1024px) {
+    width: 225px;
+  }
 `;
 
 export const TextWrapper = styled.div`
   align-self: center;
+
+  @media (min-width: 1024px) {
+    align-self: flex-start;
+  }
+`;
+
+export const WrittenLogo = styled.img`
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: inline-block;
+    position: absolute;
+    left: 58px;
+    bottom: 30px;
+    height: 42px;
+    z-index: 12;
+  }
 `;

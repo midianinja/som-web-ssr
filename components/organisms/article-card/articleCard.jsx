@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SlimButton from '../../atoms/slim-button/slimButton';
 import {
   Card, Cover, Title, Text,
-  ActionWrapepr,
+  ActionWrapper, ContentWrapper,
 } from './articleCard.style';
 
 const ArticleCard = ({
@@ -11,11 +11,13 @@ const ArticleCard = ({
 }) => (
   <Card>
     <Cover src={cover} alt="" />
-    <Title>{title}</Title>
-    <Text>{description}</Text>
-    <ActionWrapepr>
-      <SlimButton color="white">Ler mais</SlimButton>
-    </ActionWrapepr>
+    <ContentWrapper>
+      <Title>{title}</Title>
+      <Text>{description}</Text>
+      <ActionWrapper>
+        <SlimButton color="white">Ler mais</SlimButton>
+      </ActionWrapper>
+    </ContentWrapper>
   </Card>
 );
 

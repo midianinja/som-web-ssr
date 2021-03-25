@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Store from '../../../store/Store';
 // import IDALoginButton from '../../atoms/ida-login-button/idaLoginButton';
+import Navigation from './components/navigation/navigation';
 import Apresentation from '../../organisms/home-apresentation/homeApresentation';
 import HowItsWork from '../../organisms/home-how-it-works/homeHowItWorks';
 import Instructions from '../../organisms/home-instructions/homeInstructions';
@@ -23,6 +24,7 @@ const Home = () => {
   const { state } = useContext(Store);
   return (
     <Page>
+      <Navigation />
       <Apresentation />
       <About />
       <MovimentOnCommunity />

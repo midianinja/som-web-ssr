@@ -15,6 +15,12 @@ const CommunityMainCard = ({ onSubscribe }) => (
       Explicação breve sobre como a ferramenta possibilita que o usuário movimente a cena e ajude a construir circuitos musicais
     </Description>
     <PrimaryButton
+      customStyle={`
+        @media (min-width: 1024px) {
+          z-index: 10;
+          max-width: 272px;
+        }
+      `}
       onClick={onSubscribe}
     >
       Quero me inscrever!

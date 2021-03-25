@@ -30,4 +30,12 @@ export const Line = styled.span`
 
     return '';
   }}
+
+  &:nth-child(2) {
+    opacity: 0.75;
+  }
+
+  &:nth-child(3) {
+    opacity: 0.5;
+  }
 `;
