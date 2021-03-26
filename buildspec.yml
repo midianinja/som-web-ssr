@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo runing npm install...
+      - npm install
+
+  build:
+    commands:
+      - echo runing build
+      - npm run build
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - .next/**/*
+    - public/**/*
+    - node_modules/**/*
+    - .ebextenstions/**/*
+    - package.json
