@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo runing npm install...
+      - npm install
+
+      - echo runing npm install with only dev...
+      - npm install --only=dev
+
+  build:
+    commands:
+      - echo runing build
+      - npm run build
+
+  post_build:
+    commands:
+      - echo ready to deploy
