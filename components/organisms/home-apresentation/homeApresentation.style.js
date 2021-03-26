@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { white } from '../../../settings/colors';
+
 const zindex = 10;
 
 export const HomeWrapper = styled.section`

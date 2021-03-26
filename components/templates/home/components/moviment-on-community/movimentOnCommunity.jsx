@@ -1,5 +1,5 @@
 import React from 'react';
-// import ProPTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import CommunityMainCard from '../../../../organisms/community-main-card/communityMainCard';
 import ArticleCard from '../../../../organisms/article-card/articleCard';
 import {
@@ -19,15 +19,19 @@ const renderArticles = () => articles.map(({
   />
 ));
 
-const MovimentOnCommunity = () => (
+const MovimentOnCommunity = ({ onSubscribe }) => (
   <MovimentOnCommunitySection>
     <CommunityMainCard         
-      onSubscribe={() => null}
+      onSubscribe={onSubscribe}
     />
     <ArticleList>
       { renderArticles() }
     </ArticleList>
   </MovimentOnCommunitySection>
 );
+
+MovimentOnCommunity.propTypes = {
+  onSubscribe: PropTypes.func.isRequired,
+};
 
 export default MovimentOnCommunity;

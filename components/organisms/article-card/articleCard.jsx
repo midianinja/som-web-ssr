@@ -15,7 +15,14 @@ const ArticleCard = ({
       <Title>{title}</Title>
       <Text>{description}</Text>
       <ActionWrapper>
-        <SlimButton color="white">Ler mais</SlimButton>
+        <SlimButton
+          color="white"
+          onClick={() => {
+            window.open(url);
+          }}
+        >
+          Ler mais
+        </SlimButton>
       </ActionWrapper>
     </ContentWrapper>
   </Card>

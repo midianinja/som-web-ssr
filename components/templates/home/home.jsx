@@ -32,15 +32,27 @@ const Home = () => {
           if (state.idaSDK) state.idaSDK.signupWithPopup();
         }}
       />
-      <OthersOportunities />
+      <OthersOportunities
+        onSubscribe={() => {
+          if (state.idaSDK) state.idaSDK.signinWithPopup();
+        }}
+      />
       <About />
-      <MovimentOnCommunity />
+      <MovimentOnCommunity
+        onSubscribe={() => {
+          if (state.idaSDK) state.idaSDK.signinWithPopup();
+        }}
+      />
       <TwentyYearsOfDevelopment />
-      <NINJAAward />
+      <NINJAAward
+        onSubscribe={() => {
+          if (state.idaSDK) state.idaSDK.signinWithPopup();
+        }}
+      />
       <HowItsWork />
       <Instructions />
       <OpenSource />
-      <Newsletter />
+      {/* <Newsletter /> */}
     </Page>
   );
 };

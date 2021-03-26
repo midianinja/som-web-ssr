@@ -14,6 +14,8 @@ export const Section = styled.section`
 
 export const Video = styled.div`
   position: relative;
+  background-image: url('/images/som-award.svg');
+  background-size: cover;
   top: -30px;
   right: -10px;
   background-color: ${green};
@@ -30,7 +32,7 @@ export const Video = styled.div`
   border-radius: 10px;
 
   @media (min-width: 1024px) {
-    right: -10%;
+    right: -5%;
   }
 `;
 
@@ -40,7 +42,7 @@ export const Container = styled.div`
   gap: 20px;
   padding-top: 10px;
   padding-left: 98px;
-  padding-right: 20px;
+  padding-right: 80px;
   padding-bottom: 20px;
 
   @media (min-width: 1024px) {
