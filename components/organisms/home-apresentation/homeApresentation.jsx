@@ -6,7 +6,7 @@ import LinkButton from '../../atoms/link-button/LinkButton';
 import {
   HomeWrapper, Wrapper, Content, Logo,
   Title, CTAWrapper, TextWrapper, SmallLogo,
-  Header, WrittenLogo,
+  Header, WrittenLogo, Description,
 } from './homeApresentation.style';
 
 /**
@@ -40,15 +40,18 @@ const HomeApresentation = ({ signupClick, signinClick }) => {
     <HomeWrapper>
       <Header>
         <SmallLogo src="/images/logo.svg" alt="" />
-        <IDASigninButton />
+        <IDASigninButton onClick={signinClick} />
       </Header>
       <Wrapper>
         <Content>
           <TextWrapper>
             <Logo src={bgSrc} alt="Som, Sistema Operacional da Música" />
             <Title>
-              Explore oportunidades na Música Brasileira
+              Sonha viver de música?
             </Title>
+            <Description>
+              Participe de nossa comunidade musical e aproveite oportunidades exclusivas.
+            </Description>
           </TextWrapper>
           <CTAWrapper>
             <IDASignupButton onClick={signupClick} />
