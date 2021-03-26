@@ -17,3 +17,6 @@ phases:
   post_build:
     commands:
       - echo ready to deploy
+artifacts:
+  files:
+    - ./**/*
