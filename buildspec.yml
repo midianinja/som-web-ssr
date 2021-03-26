@@ -16,7 +16,11 @@ phases:
 
   post_build:
     commands:
-      - echo ready to deploy
+      - echo Build completed on `date`
 artifacts:
   files:
-    - ./**/*
+    - .next/**/*
+    - public/**/*
+    - node_modules/**/*
+    - .ebextenstions/**/*
+    - package.json
