@@ -7,7 +7,7 @@ import {
 } from './ninjaAward.style';
 
 const NINJAAward = ({ onSubscribe }) => (
-  <Section>
+  <Section id="award">
     <Video />
     <Container>
       <Title>1o Prêmio NINJA Music de Música Online</Title>

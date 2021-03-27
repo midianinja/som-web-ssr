@@ -8,6 +8,7 @@ import {
 
 const ArticleCard = ({
   title, description, cover, url,
+  onSubscribe,
 }) => (
   <Card>
     <Cover src={cover} alt="" />
@@ -17,11 +18,9 @@ const ArticleCard = ({
       <ActionWrapper>
         <SlimButton
           color="white"
-          onClick={() => {
-            window.open(url);
-          }}
+          onClick={onSubscribe}
         >
-          Ler mais
+          Inscreva-se
         </SlimButton>
       </ActionWrapper>
     </ContentWrapper>
@@ -33,6 +32,7 @@ ArticleCard.propTypes = {
   description: PropTypes.string.isRequired,
   cover: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+  onSubscribe: PropTypes.func.isRequired,
 };
 
 export default ArticleCard;

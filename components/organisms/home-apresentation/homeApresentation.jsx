@@ -37,7 +37,7 @@ const HomeApresentation = ({ signupClick, signinClick }) => {
   }, []);
 
   return (
-    <HomeWrapper>
+    <HomeWrapper id="apresentation">
       <Header>
         <SmallLogo src="/images/logo.svg" alt="" />
         <IDASigninButton onClick={signinClick} />

@@ -5,7 +5,7 @@ import {
 } from './about.style';
 
 const About = () => (
-  <AboutSection>
+  <AboutSection id="about">
     <div>
       <Title>Conheça o SOM</Title>
       <Subtitle>Sistema Operacional da Música</Subtitle>

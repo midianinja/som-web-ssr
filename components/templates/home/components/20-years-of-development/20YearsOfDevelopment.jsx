@@ -6,7 +6,7 @@ import {
 } from './20YearsOfDevelopment.style';
 
 const TwentyYearsOfDevelopment = () => (
-  <Section>
+  <Section id="twenty-2">
     <Illustration src="/images/posters.png" alt="" />
     <Content>
       <Title>20 anos desenvolvendo tecnologias sociais para a música</Title>

@@ -30,8 +30,8 @@ const renderOportunities = () => oportunities.map(({ link, cover }) => (
 ));
 
 const OthersOportunities = () => (
-  <Section>
-    <Title>Outras oportunidades</Title>
+  <Section id="oportunities">
+    <Title>Oportunidades já disponíveis</Title>
     <OportunityList>
       { renderOportunities() }
     </OportunityList>

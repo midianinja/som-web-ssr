@@ -14,7 +14,7 @@ import {
  * @returns contains HomeHowItsWork Component
  */
 const HomeHowItsWork = () => (
-  <Container>
+  <Container id="how-work">
     <Title>Como funciona o SOM?</Title>
     <Content>
       <HowItsWorkCard

@@ -7,7 +7,7 @@ import {
 } from './movimentOnCommunity.style';
 import { articles } from './movimentOnCommunity.collection';
 
-const renderArticles = () => articles.map(({
+const renderArticles = ({ onSubscribe }) => articles.map(({
   title, cover, url, shortDescription,
 }) => (
   <ArticleCard
@@ -16,16 +16,17 @@ const renderArticles = () => articles.map(({
     description={shortDescription}
     cover={cover}
     url={url}
+    onSubscribe={onSubscribe}
   />
 ));
 
 const MovimentOnCommunity = ({ onSubscribe }) => (
-  <MovimentOnCommunitySection>
+  <MovimentOnCommunitySection id="community">
     <CommunityMainCard         
       onSubscribe={onSubscribe}
     />
     <ArticleList>
-      { renderArticles() }
+      { renderArticles({ onSubscribe }) }
     </ArticleList>
   </MovimentOnCommunitySection>
 );

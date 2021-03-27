@@ -41,5 +41,6 @@ export const Ball = styled.div`
     height: 10px;
     border-radius: 50%;
     background-color: ${({ selected }) => selected ? purple : black15};
+    transition-duration: 1s;
   }
 `;
