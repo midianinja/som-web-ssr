@@ -79,7 +79,7 @@ export const Illustration = styled.img`
 
   @media (min-width: 1024px) {
     position: absolute;
-    left: 120px;
+    left: 12vw;
     top: -190px;
     z-index: 13;
   }

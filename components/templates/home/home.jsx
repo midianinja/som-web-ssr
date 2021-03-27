@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import Store from '../../../store/Store';
-// import IDALoginButton from '../../atoms/ida-login-button/idaLoginButton';
 import Navigation from './components/navigation/navigation';
 import Apresentation from '../../organisms/home-apresentation/homeApresentation';
 import HowItsWork from '../../organisms/home-how-it-works/homeHowItWorks';
@@ -25,16 +24,35 @@ const Home = () => {
   return (
     <Page>
       <Navigation />
-      <Apresentation />
+      <Apresentation
+        signinClick={() => {
+          if (state.idaSDK) state.idaSDK.signinWithPopup();
+        }}
+        signupClick={() => {
+          if (state.idaSDK) state.idaSDK.signupWithPopup();
+        }}
+      />
+      <OthersOportunities
+        onSubscribe={() => {
+          if (state.idaSDK) state.idaSDK.signinWithPopup();
+        }}
+      />
       <About />
-      <MovimentOnCommunity />
+      <MovimentOnCommunity
+        onSubscribe={() => {
+          if (state.idaSDK) state.idaSDK.signinWithPopup();
+        }}
+      />
       <TwentyYearsOfDevelopment />
-      <NINJAAward />
-      <OthersOportunities />
+      <NINJAAward
+        onSubscribe={() => {
+          if (state.idaSDK) state.idaSDK.signinWithPopup();
+        }}
+      />
       <HowItsWork />
       <Instructions />
       <OpenSource />
-      <Newsletter />
+      {/* <Newsletter /> */}
     </Page>
   );
 };

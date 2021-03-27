@@ -7,7 +7,7 @@ import {
 
 const TwentyYearsOfDevelopment = () => (
   <Section>
-    <Illustration src="/icons/posters-illustration.svg" alt="" />
+    <Illustration src="/images/posters.png" alt="" />
     <Content>
       <Title>20 anos desenvolvendo tecnologias sociais para a música</Title>
       <StarsWrapper>

@@ -14,11 +14,13 @@ export const Card = styled.div`
   z-index: 11;
 
   @media (min-width: 1024px) {
+    top: -80px;   
     padding-top: 18vw;
     padding-left: 10vw;
     padding-right: 10vw;
     padding-bottom: 90px;
     gap: 43px;
+    max-width: 80vw;
   }
 `;
 
@@ -55,7 +57,9 @@ export const Title = styled.h3`
   z-index: ${zindex + 1};
 
   @media (min-width: 1024px) {
+    max-width: 768px;
     font-size: 72px;
+    margin-left: 10px;
   }
 `;
 
@@ -70,5 +74,6 @@ export const Description = styled.p`
 
   @media (min-width: 1024px) {
     max-width: 392px;
+    margin-left: 10px;
   }  
 `;

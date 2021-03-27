@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { white, green, magenta } from '../../../../../settings/colors';
+import { white, purple } from '../../../../../settings/colors';
 
 export const Section = styled.section`
-  background-color: ${magenta};
+  background-color: ${purple};
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 120px;
 `;
 
 export const Title = styled.h3`
@@ -41,7 +41,10 @@ export const Card = styled.li`
   max-height: 229px;
   border-radius: 10px;
   margin-left: 16px;
-
+  background-image: url('${({ background }) => background}');
+  background-size: cover;
+  cursor: pointer;
+  
   &:nth-child(1) {
     margin-right: 0;
     background-color: #D62C14;

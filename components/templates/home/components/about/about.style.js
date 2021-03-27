@@ -33,6 +33,11 @@ export const Title = styled.h2`
   }
 `;
 
+export const Iframe = styled.iframe`
+  width: 100%;
+  height: 100%;
+`;
+
 export const Subtitle = styled.h3`
   position: relative;
   font-size: 26px;
@@ -68,18 +73,6 @@ export const VideoWrapper = styled.div`
   z-index: ${zindex + 1};
   cursor: pointer;
   user-select: none;
-
-  :after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 101%;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 49.18%, rgba(0, 0, 0, 0) 98.96%) ;
-    transform: matrix(-1, 0, 0, 1, 0, 0);
-    top: 0;
-    left: 0;
-    user-select: none;
-  }
 `;
 
 export const PlayIcon = styled.img`

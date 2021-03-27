@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { white } from '../../../settings/colors';
+
 const zindex = 10;
 
 export const HomeWrapper = styled.section`
@@ -92,25 +93,24 @@ export const Title = styled.h1`
   max-width: 200px;
   line-height: 1.1em;
   color: ${white};
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 
   @media (min-width: 1024px) {
     font-size: 64px;
-    max-width: 500px;
-    margin-bottom: 40px;
+    max-width: 360px;
   }
 `;
 
 export const Description = styled.h2`
-  font-size: 1em;
-  max-width: 520px;
+  font-size: 28px;
+  max-width: 360px;
   font-weight: 300;
-  line-height: 1.4em;
+  line-height: 1.1em;
   color: ${white};
   margin-bottom: 24px;
 
   @media (min-width: 1024px) {
-    margin-bottom: 40px;
+    margin-bottom: 48px;
   }
 `;
 
@@ -137,8 +137,8 @@ export const WrittenLogo = styled.img`
 
   @media (min-width: 1024px) {
     display: inline-block;
-    position: absolute;
-    left: 58px;
+    position: fixed;
+    left: 108px;
     bottom: 30px;
     height: 42px;
     z-index: 12;

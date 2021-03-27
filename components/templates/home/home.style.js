@@ -5,12 +5,11 @@ import {
 
 export const Page = styled.div`
   width: 100%;
-  background-color: ${white};
   position: relative;
   overflow-x: hidden;
 
   @media (min-width: 768px) {
-    padding-left: 58px;
+    padding-left: 56px;
   }
 `;
 

@@ -12,7 +12,7 @@ const CommunityMainCard = ({ onSubscribe }) => (
       Movimente a cena e ajude a construir circuitos musicais!
     </Title>
     <Description>
-      Explicação breve sobre como a ferramenta possibilita que o usuário movimente a cena e ajude a construir circuitos musicais
+      Participe de uma rede de trocas e conexões com artistas e produtores de todo o Brasil. Pense sua carreira coletivamente! 
     </Description>
     <PrimaryButton
       customStyle={`
