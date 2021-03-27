@@ -17,7 +17,10 @@ export const getBase64 = (file) => {
 export const uploadImageToStorage = ({ file, id }) => axios({
   method: 'POST',
   url: `${process.env.STORAGE_API_URI}/image/upload/`,
-  headers: {},
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
+  },
   data: {
     file: file,
     id,
@@ -28,7 +31,10 @@ export const uploadPdfDocumentToStorage = ({ file, id, fileName }) =>
   axios({
     method: 'POST',
     url: `${process.env.STORAGE_API_URI}/document/upload/`,
-    headers: {},
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+    },
     data: {
       file,
       id,
@@ -40,7 +46,10 @@ export const uploadSongToStorage = ({ file, id, updateProgress }) =>
   axios({
     method: 'POST',
     url: `${process.env.STORAGE_API_URI}/song/upload/`,
-    headers: {},
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+    },
     data: {
       file,
       id
