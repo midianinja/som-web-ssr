@@ -6,19 +6,19 @@ import {
 const oportunities = [
   {
     link: '#1',
-    cover: '/images/som-bailedoganja-2.png',
+    cover: '/images/som-oportunidades-comunidade.png',
   },
   {
     link: '#2',
-    cover: '/images/som-pitching-bandas-1.png',
+    cover: '/images/som-oportunidades-ninja.png',
   },
   {
     link: '#3',
-    cover: '/images/som-playlist-2.png',
+    cover: '/images/som-oportunidades-playlist.png',
   },
   {
     link: '#4',
-    cover: '/images/som-terezacritina-2.png',
+    cover: '/images/som-oportunidades-dosolselo.png',
   },
 ];
 

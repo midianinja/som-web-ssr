@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { white, green, magenta } from '../../../../../settings/colors';
+import { white, green, purple } from '../../../../../settings/colors';
 
 export const Section = styled.section`
-  background-color: ${magenta};
+  background-color: ${purple};
   padding: 15px;
 
   @media (min-width: 1024px) {

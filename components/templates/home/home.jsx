@@ -20,10 +20,15 @@ import {
  * @returns {React.Component} productor form
  */
 const Home = () => {
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   return (
     <Page>
-      <Navigation />
+      <Navigation onClick={() => {
+        dispatch({
+          type: 'SHOW_NAVIGATION_MODAL'
+        });
+      }} />
+
       <Apresentation
         signinClick={() => {
           if (state.idaSDK) state.idaSDK.signinWithPopup();
@@ -32,6 +37,14 @@ const Home = () => {
           if (state.idaSDK) state.idaSDK.signupWithPopup();
         }}
       />
+
+      <NINJAAward
+        onSubscribe={() => {
+          if (state.idaSDK) state.idaSDK.signinWithPopup();
+        }}
+      />
+
+
       <OthersOportunities
         onSubscribe={() => {
           if (state.idaSDK) state.idaSDK.signinWithPopup();
@@ -43,12 +56,8 @@ const Home = () => {
           if (state.idaSDK) state.idaSDK.signinWithPopup();
         }}
       />
-      <TwentyYearsOfDevelopment />
-      <NINJAAward
-        onSubscribe={() => {
-          if (state.idaSDK) state.idaSDK.signinWithPopup();
-        }}
-      />
+      {/* <TwentyYearsOfDevelopment /> */}
+      
       <HowItsWork />
       <Instructions />
       <OpenSource />

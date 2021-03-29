@@ -84,7 +84,7 @@ export const MIcon = styled.img`
   max-height: 1018px;
   position: absolute;
   z-index: ${zindex};
-  top: 0;
+  top: -30px;
   left: calc(-50% - 37vw);
 
   @media (min-width: 1024px) {

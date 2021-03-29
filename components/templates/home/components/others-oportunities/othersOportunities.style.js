@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { white, purple } from '../../../../../settings/colors';
+import { white, magenta } from '../../../../../settings/colors';
 
 export const Section = styled.section`
-  background-color: ${purple};
-  padding-top: 30px;
-  padding-bottom: 120px;
+  background-color: ${magenta};
+  padding-top: 60px;
+  padding-bottom: 60px;
 `;
 
 export const Title = styled.h3`
@@ -35,10 +35,8 @@ export const OportunityList = styled.ul`
 
 export const Card = styled.li`
   display: inline-block;
-  width: 38vw;
-  height: 38vw;
-  max-width: 229px;
-  max-height: 229px;
+  width: 68vw;
+  height: 68vw;
   border-radius: 10px;
   margin-left: 16px;
   background-image: url('${({ background }) => background}');
@@ -60,6 +58,11 @@ export const Card = styled.li`
 
   &:nth-child(4) {
     background-color: #1C1C1C;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 229px;
+    max-height: 229px;
   }
 `;
 
