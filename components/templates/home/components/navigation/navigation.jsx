@@ -33,7 +33,7 @@ const Navigation = ({ onClick }) => {
       howWorkSection.getBoundingClientRect().top - howWorkSection.offsetParent.getBoundingClientRect().top;
 
     if (
-      window.scrollY <= awardOffset
+      window.scrollY < awardOffset
       && selected !== '#apresentation'
     ) {
       setSelected('#apresentation');
@@ -72,12 +72,12 @@ const Navigation = ({ onClick }) => {
       setSelected('#community');
     }
 
-    // if (
-    //   window.scrollY >= twentyOffset
-    //   && window.scrollY < awardOffset
-    //   && selected !== '#twenty'
-    // ) {
-    //   setSelected('#twenty');
+    if (
+      window.scrollY >= howWorkOffset
+      && selected !== '#how-work'
+    ) {
+      setSelected('#how-work');
+    }
   }
 
   useLayoutEffect(() => {
