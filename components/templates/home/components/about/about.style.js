@@ -5,9 +5,10 @@ const zindex = 10;
 
 export const AboutSection = styled.section`
   position: relative;
-  padding: 30px;
   background-color: ${purple};
+  padding: 30px;
   padding-bottom: 75px;
+  padding-top: 75px;
 
   @media (min-width: 1024px) {
     display: flex;
