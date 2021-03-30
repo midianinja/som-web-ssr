@@ -10,7 +10,7 @@ const NINJAAward = ({ onSubscribe }) => (
   <Section id="award">
     <Video />
     <Container>
-      <Title>Prêmio SOM de apoio à Musica Independente</Title>
+      <Title>Prêmio SOM de apoio a Musica Independente</Title>
       <Description>20 prêmios de R$1000,00</Description>
       <PrimaryButton
         customStyle={`

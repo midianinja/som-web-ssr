@@ -97,7 +97,6 @@ const Navigation = ({ onClick }) => {
         <Ball selected={selected === '#oportunities'} />
         <Ball selected={selected === '#about'} />
         <Ball selected={selected === '#community'} />
-        {/* <Ball selected={selected === '#twenty'} /> */}
         <Ball selected={selected === '#how-work'} />
       </Indicators>
     </NavigationWrapper>
