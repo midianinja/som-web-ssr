@@ -16,10 +16,8 @@ export const Video = styled.div`
   position: relative;
   background-image: url('/images/som-award.svg');
   background-size: cover;
-  top: -30px;
-  right: -10px;
   background-color: ${green};
-  width: 120%;
+  width: 100%;
   max-width: 842px;
   height: calc(65vw - 60px);
   max-height: 406px;
@@ -32,6 +30,7 @@ export const Video = styled.div`
   border-radius: 10px;
 
   @media (min-width: 1024px) {
+    top: -30px;
     right: -5%;
   }
 `;
@@ -40,16 +39,14 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  padding-top: 10px;
-  padding-left: 98px;
-  padding-right: 80px;
-  padding-bottom: 20px;
+  padding: 45px 30px;
 
   @media (min-width: 1024px) {
     display: flex;
     flex-direction: column;
+    padding: 0;
     justify-content: center;
-    max-width: 450px;
+    max-width: 400px;
   }
 `;
 

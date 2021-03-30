@@ -90,7 +90,6 @@ export const Title = styled.h1`
   font-size: 38px;
   font-weight: 900;
   width: 100%;
-  max-width: 200px;
   line-height: 1.1em;
   color: ${white};
   margin-bottom: 8px;

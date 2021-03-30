@@ -13,7 +13,13 @@ const NINJAAward = ({ onSubscribe }) => (
       <Title>1o Prêmio NINJA Music de Música Online</Title>
       <Description>20 prêmios de R$1000,00</Description>
       <PrimaryButton
-        customStyle="width: 100%;"
+        customStyle={`
+          width: 100%;
+
+          @media (min-width: 1024px) {
+            max-width: 340px;
+          }
+        `}
         onClick={onSubscribe}
         color="white"
       >
