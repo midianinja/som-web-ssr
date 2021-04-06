@@ -63,6 +63,7 @@ export const Wrapper = styled.div`
 
 export const Name = styled.h4`
   font-size: 1.5rem;
+  line-height: 1.2em;
   font-weight: 400;
   color: ${black};
   cursor: pointer;
@@ -182,13 +183,14 @@ export const ExitWrapper = styled.div`
   text-align: right;
   padding-top: 15px;
   padding-right: 15px;
-
-  @media (min-width: 1024px) {
-    display: none;
-  }
 `;
 
 export const ExitButton = styled.img`
   width: 18px;
   top: 15px;
+  cursor: pointer;
+
+  @media (min-width: 1024px) {
+    width: 15px;
+  }
 `;

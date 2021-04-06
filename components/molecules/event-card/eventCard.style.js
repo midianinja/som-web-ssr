@@ -15,7 +15,7 @@ export const Container = styled.div`
   text-align: start;
   width: 100%;
   flex-direction: column;
-  height: 290px;
+  min-height: 290px;
   justify-content: space-between;
   vertical-align: top;
   @media (max-width: 768px) {
@@ -39,14 +39,17 @@ export const Image = styled.div`
   height: 140px;
   width: 140px;
   border-radius: 8px;
-  background-repeat: no-repeat
-  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: ce;
   cursor: pointer;
-  background: ${({ gradient }) => (gradient ? gradient : getGradient())};
+  object-position: center;
+  object-fit: cover;
+  background-image: ${({ gradient }) => (gradient ? gradient : getGradient())};
 
   @media (max-width: 768px) {
-    width: 100%;
-    max-height: 300px;
+    width: 50vw;
+    height: 50vw;
   }
 
   ${(props) => (props.image ? ` background-image: url('${props.image}');` : '')}

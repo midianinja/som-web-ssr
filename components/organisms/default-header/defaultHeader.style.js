@@ -121,6 +121,10 @@ export const Avatar = styled.img`
 
 export const Name = styled.h4`
   display: none;
+  max-width: 150px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
   font-size: 1rem;
   font-weight: 200;
   color: ${white};

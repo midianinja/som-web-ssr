@@ -29,7 +29,7 @@ export const ProductorReference = styled.span`
   @media (min-width: 1024px) {
     padding-left: 10px;
     padding-right: 0px;
-    margin-top: 0;
+    margin-top: 30px;
   }
 `;
 
@@ -45,6 +45,7 @@ export const Title = styled.h1`
     padding-left: 10px;
     padding-right: 0px;
     margin-top: 0;
+    max-width: 340px;
   }
 `;
 

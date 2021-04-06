@@ -9,7 +9,7 @@ import Eventcard from '../../molecules/event-card/eventCard';
 import DialogModal from '../../modals/dialog/dialog';
 import ProductorBasicInfo from './components/productor-basic-information/productorBaseInformation';
 import Store from '../../../store/Store';
-import { fetchProductorData, fetchProductorInstaImages } from './productorProfile.controller';
+import { fetchProductorData } from './productorProfile.controller';
 import {
   ProductorWrapper,
   CoverWrapper,
@@ -30,7 +30,10 @@ import {
  * in the event in the list
  * @returns contains React.Component
  */
-const renderEvents = (events, more, setMore, onSuccess) => {
+const renderEvents = (
+  events, more, setMore, onSuccess,
+  loggedAs,
+) => {
   let sortedEvents = events.sort((a, b) =>
     new Date(+a.event_date) > new Date(+b.event_date) ? 1 : -1
   );
@@ -41,6 +44,7 @@ const renderEvents = (events, more, setMore, onSuccess) => {
     <EventsContainer>
       {sortedEvents.map((event) => (
         <Eventcard
+          loggedAs={loggedAs}
           key={event.id}
           customStyle="margin: 40px 0;"
           event={event}
@@ -94,6 +98,12 @@ const ProductorPage = () => {
   }, []);
 
   useEffect(() => {
+    if (label) {
+      fetchProductorData(label, setProductor, setProductorLoading, setAlertModal);
+    }
+  }, [label]);
+
+  useEffect(() => {
     if (productor) fetchProductorData(productor.id, setProductor, () => '', setAlertModal);
   }, [update]);
 
@@ -144,7 +154,13 @@ const ProductorPage = () => {
         <ColumnWrapper>
           <EventsTitle>Eventos</EventsTitle>
           {productor.events.length ? (
-            renderEvents(productor.events, more, setMore, () => setUpdate(!update))
+            renderEvents(
+              productor.events,
+              more,
+              setMore,
+              () => setUpdate(!update),
+              state.connectionType,
+            )
           ) : (
             <NotEvents>Nenhum evento cadastrado</NotEvents>
           )}
