@@ -18,7 +18,7 @@ const getLinks = (user, connectionType) => {
   const links = [
     {
       href: '/oportunities',
-      label: 'Início'
+      label: 'Oportunidades'
     },
     {
       href:
@@ -35,19 +35,19 @@ const getLinks = (user, connectionType) => {
       hide: !user || connectionType !== 'productor'
     },
     {
-      href: '/oportunities',
-      label: 'Oportunidades'
-    },
-    {
-      href: '/my-events',
-      label: 'Meus eventos',
+      href: '/events-curatorship',
+      label: 'Meu painel',
       hide: !user || connectionType !== 'productor'
     },
     {
       href: '/events-curatorship',
-      label: 'Avaliar inscrições',
+      label: 'Meu painel',
       hide: !user || connectionType !== 'productor'
-    }
+    },
+    {
+      href: 'https://conteudo.som.vc',
+      label: 'Conteúdo',
+    },
   ];
 
   return links;

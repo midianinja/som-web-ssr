@@ -78,7 +78,7 @@ StepFormFooter.propTypes = {
 StepFormFooter.defaultProps = {
   customStyle: '',
   loadingText: '',
-  loadingText: 'productor',
+  loadingText: '',
   noShowSkip: false,
   disabled: false,
   dark: false,
