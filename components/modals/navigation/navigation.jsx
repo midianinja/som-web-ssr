@@ -40,11 +40,6 @@ const getLinks = (user, connectionType) => {
       hide: !user || connectionType !== 'productor'
     },
     {
-      href: '/events-curatorship',
-      label: 'Meu painel',
-      hide: !user || connectionType !== 'productor'
-    },
-    {
       href: 'https://conteudo.som.vc',
       label: 'Conteúdo',
     },
