@@ -23,7 +23,7 @@ EventText.propTypes = {
 EventText.defaultProps = {
   text:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  title: 'Sobre o evento'
+  title: 'Sobre a oportunidade'
 };
 
 export default EventText;

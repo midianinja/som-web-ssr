@@ -10,11 +10,13 @@ const Welcome = () => {
 
   return (
     <Wrapper>
-      <Title>Seja bem vinde ao S.O.M,</Title>
-      <Name>{state.auth.username}</Name>
+      <Name>Oi, {state.auth.username}</Name>
+      <Title>Seja bem vinde ao S.O.M!</Title>
       <Footer>
-        <Text>Conheça os eventos e as oportunidades, inscreva-se nos que se interessar!</Text>
+        <Text>Acesse ou crie oportunidades.</Text>
+        <Text>Amplie suas conexões!</Text>
         <PrimaryButton
+          customStyle="margin-top: 30px;"
           onClick={() => {
             router.push('/oportunities');
           }}

@@ -32,7 +32,7 @@ import {
  */
 const renderEvents = (
   events, more, setMore, onSuccess,
-  loggedAs,
+  loggedAs, router,
 ) => {
   let sortedEvents = events.sort((a, b) =>
     new Date(+a.event_date) > new Date(+b.event_date) ? 1 : -1
@@ -48,6 +48,7 @@ const renderEvents = (
           key={event.id}
           customStyle="margin: 40px 0;"
           event={event}
+          onClick={() => router.push(`/event/${event.id}`)}
           onSubscribe={onSuccess}
         />
       ))}
@@ -152,7 +153,7 @@ const ProductorPage = () => {
           history={router}
         />
         <ColumnWrapper>
-          <EventsTitle>Eventos</EventsTitle>
+          <EventsTitle>Oportunidades</EventsTitle>
           {productor.events.length ? (
             renderEvents(
               productor.events,
@@ -160,6 +161,7 @@ const ProductorPage = () => {
               setMore,
               () => setUpdate(!update),
               state.connectionType,
+              router,
             )
           ) : (
             <NotEvents>Nenhum evento cadastrado</NotEvents>

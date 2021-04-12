@@ -35,7 +35,6 @@ export const Text = styled.p`
   font-size: 0.875em;
   font-weight: 300;
   line-height: 1.625em;
-  margin-bottom 20px;
   padding-left: 30px;
   padding-right: 30px;
 `;

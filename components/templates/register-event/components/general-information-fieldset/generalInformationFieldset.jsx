@@ -73,7 +73,7 @@ const GeneralInformationFieldset = ({
         id="openingsNumber"
         type="tel"
         placeholder="Quantidade de vagas no evento"
-        value={VMasker.toPattern(values.openingsNumber, '999')}
+        value={VMasker.toPattern(values.openingsNumber, '99999')}
         onChange={handleOpeningsNumberChange}
       />
     </InputGroup>

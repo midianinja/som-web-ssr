@@ -76,9 +76,9 @@ export const subscribeAction = async (auth, user, event, dispatch, setDialog, se
 
   if (!user.artist) {
     setDialog({
-      title: 'Cadastro incompleto',
+      title: 'Página incompleta',
       icon: '/icons/guita-error.svg',
-      description: 'Para se escrever em eventos, você precisa preencher os dados obrigatórios.',
+      description: 'Para se INSCREVER em OPORTUNIDADES conclua seu perfil.',
       agreeText: 'Cadastrar',
       disagreeText: 'Voltar',
       confirmAction: () => {
@@ -98,11 +98,11 @@ export const subscribeAction = async (auth, user, event, dispatch, setDialog, se
   setDialog({
     title: 'Pronto!',
     icon: '/icons/yeah.svg',
-    description: `Você está inscrito no festival ${event.name}. Fique ligado no SOM para receber novas informações.`,
-    disagreeText: 'Ver mais eventos',
+    description: `Inscrição confirmada para a oportunidade ${event.name}. Você receberá todas as informações no e-mail e telefone cadastrados.`,
+    disagreeText: 'Explore mais oportunidades',
     disagreeAction: () => {
       allowBodyScroll();
-      router.push('/events');
+      router.push('/oportunities');
       setDialog({});
     }
   });
