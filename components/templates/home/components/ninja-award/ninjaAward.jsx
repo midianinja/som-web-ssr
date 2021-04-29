@@ -8,24 +8,25 @@ import {
 
 const NINJAAward = ({ onSubscribe }) => (
   <Section id="award">
-    <Video />
-    <Container>
-      <Title>Prêmio SOM de apoio a Musica Independente</Title>
-      <Description>20 prêmios de R$1000,00</Description>
-      <PrimaryButton
-        customStyle={`
-          width: 100%;
+    <div>
+      <Video />
+      <Container>
+        <Title>1° Prêmio SOM de música</Title>
+        <Description>20 prêmios de R$1000,00</Description>
+        <PrimaryButton
+          customStyle={`
+            width: 100%;
 
-          @media (min-width: 1024px) {
-            max-width: 340px;
-          }
-        `}
-        onClick={onSubscribe}
-        color="white"
-      >
-        Quero me inscrever!
-      </PrimaryButton>
-    </Container>
+            @media (min-width: 1024px) {
+              max-width: 340px;
+            }
+          `}
+          onClick={onSubscribe}
+        >
+          Quero me inscrever!
+        </PrimaryButton>
+      </Container>
+    </div>
   </Section>
 );
 

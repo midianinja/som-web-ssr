@@ -9,7 +9,6 @@ export const HomeWrapper = styled.section`
   width: 100%;
   height: 100vh;
   align-items: center;
-  background-image: url('/images/lp-background.png');
   background-color: #7735E5;
   background-size: cover;
   background-position: center -17px;
@@ -23,7 +22,7 @@ export const HomeWrapper = styled.section`
     position: absolute;
     width: 100%;
     height: 101%;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, #7735E5 83.62%);
+    background: linear-gradient(180deg, rgba(119, 53, 229, 0) 0%, #7735E5 85.94%), #000000;
     transform: matrix(-1, 0, 0, 1, 0, 0);
     top: 0;
     left: 0;
@@ -39,7 +38,7 @@ export const Wrapper = styled.div`
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
-  z-index: ${zindex + 1};
+  z-index: ${zindex + 3};
 `;
 
 export const Content = styled.div`
@@ -68,7 +67,7 @@ export const Logo = styled.img`
 `;
 
 export const Header = styled.header`
-  display: none ;
+  display: none;
 
   @media (min-width: 1024px) {
     top: 0;
@@ -141,5 +140,29 @@ export const WrittenLogo = styled.img`
     bottom: 30px;
     height: 42px;
     z-index: 12;
+  }
+`;
+
+export const MapWrapper = styled.div`
+  position: absolute;
+  right: -102px;
+  top: 13vh;
+  z-index: ${zindex + 2};
+  width: 55%;
+
+  svg {
+    width: 100%;
+  }
+`;
+
+export const OverlayMWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: ${zindex + 1};
+  width: 60%;
+
+  svg {
+    width: 100%;
   }
 `;

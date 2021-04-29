@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import IDASignupButton from '../../atoms/ida-signup-button/idaSignupButton';
 import IDASigninButton from '../../atoms/ida-login-button/idaLoginButton';
 import LinkButton from '../../atoms/link-button/LinkButton';
+import OportunitiesMap from '../../molecules/opotunities-map/oportunities-map';
+import OverlayM from '../../molecules/overlay-m/overlay-m';
 import {
   HomeWrapper, Wrapper, Content, Logo,
   Title, CTAWrapper, TextWrapper, SmallLogo,
-  Header, WrittenLogo, Description,
+  Header, WrittenLogo, Description, MapWrapper,
+  OverlayMWrapper,
 } from './homeApresentation.style';
 
 /**
@@ -59,6 +62,12 @@ const HomeApresentation = ({ signupClick, signinClick }) => {
           </CTAWrapper>
         </Content>
       </Wrapper>
+      <MapWrapper>
+        <OportunitiesMap />
+      </MapWrapper>
+      <OverlayMWrapper>
+        <OverlayM />
+      </OverlayMWrapper>
       <WrittenLogo src="/icons/logo-written.svg" alt="" />
     </HomeWrapper>
   );

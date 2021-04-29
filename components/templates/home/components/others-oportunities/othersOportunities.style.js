@@ -1,25 +1,37 @@
 import styled from 'styled-components';
-import { white, magenta } from '../../../../../settings/colors';
+import { white, purple } from '../../../../../settings/colors';
 
 export const Section = styled.section`
-  background-color: ${magenta};
+  display: grid;
+  justify-content: center;
+  background-color: ${purple};
   padding-top: 60px;
   padding-bottom: 60px;
 `;
 
+export const Container = styled.div`
+  width: 100%;
+  max-width: 1008px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+`;
+
 export const Title = styled.h3`
+  display: inline;
+
   font-family: CircularStd;
-  text-align: center;
   font-weight: 400;
   font-size: 24px;
   line-height: 1.1em;
+  margin-left: 32px;
   color: ${white};
 `;
 
 export const OportunityList = styled.ul`
   list-style: none;
   width: auto;
-  min-width: 100%;
+  max-width: 1024px;
   white-space: nowrap;
   overflow-x: auto;
   text-align: center;
@@ -42,8 +54,8 @@ export const Card = styled.li`
   background-image: url('${({ background }) => background}');
   background-size: cover;
   cursor: pointer;
-  
-  &:nth-child(1) {
+
+  &:first-child {
     margin-right: 0;
     background-color: #D62C14;
   }

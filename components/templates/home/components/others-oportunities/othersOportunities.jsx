@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Section, Title, OportunityList, Card,
+  Container,
 } from './othersOportunities.style';
 
 const oportunities = [
@@ -31,10 +32,12 @@ const renderOportunities = () => oportunities.map(({ link, cover }) => (
 
 const OthersOportunities = () => (
   <Section id="oportunities">
-    <Title>Oportunidades já disponíveis</Title>
-    <OportunityList>
-      { renderOportunities() }
-    </OportunityList>
+    <Container>
+      <Title>Oportunidades já disponíveis</Title>
+      <OportunityList>
+        { renderOportunities() }
+      </OportunityList>
+    </Container>
   </Section>
 );
 
