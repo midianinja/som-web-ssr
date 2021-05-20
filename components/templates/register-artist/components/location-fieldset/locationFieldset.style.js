@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { white } from '../../../../../settings/colors';
 
 export const Fieldset = styled.fieldset`
-  padding: 30px 15px;
+  padding: 15px;
   width: 100%;
   max-width: 1024px;
   margin-left: auto;
@@ -16,20 +16,13 @@ export const Title = styled.h2`
   margin-bottom: 30px;
 `;
 
-export const inputGroup30Style = `
-  @media (min-width: 1024px) {
-    width: calc(30% - 10px);
-
-    & + & {
-      // margin-left: 15px;
-    }
-  }
-`;
-
 export const LocationWrapper = styled.div`
+  display: grid;
+  width: 100%;
+  gap: 16px;
+
   @media (min-width: 1024px) {
-    display: flex;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
-    align-items: flex-end;
   }
 `;

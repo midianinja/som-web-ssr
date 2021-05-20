@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { client } from '../../../libs/apollo.lib';
 import {
   createProductorMutation,
@@ -39,3 +40,5 @@ export const updateLocation = (id, location) =>
       location
     }
   });
+
+export const getViaCepLocation = (zipcode) => axios.get(`https://viacep.com.br/ws/${zipcode}/json`);

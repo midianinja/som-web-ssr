@@ -4,7 +4,8 @@ import {
   createProductor,
   updateProductor,
   createLocation,
-  updateLocation
+  updateLocation,
+  getViaCepLocation
 } from './productor.repository';
 import { basicInformationIsValid } from './productor.validate';
 import { allCountriesQuery, allStateQuery } from './productor.queries';
@@ -140,7 +141,7 @@ export const handleACOccupation = ({
   value,
   occupationOptions,
   setOccupationPredict,
-  setOccupation,
+  setOccupation
 }) => {
   let match = '';
   const regex = new RegExp(`^${value.toUpperCase()}`);
@@ -229,7 +230,7 @@ export const handleOccupationSelect = ({
   occupations,
   setOccupation,
   setOccupationPredict,
-  setOccupations,
+  setOccupations
 }) => {
   setOccupation(value);
   const colors = ['purple', 'green', 'orange', 'magenta', 'yellow'];
@@ -308,11 +309,14 @@ const mapProductorToApi = (values, userId, locationId) => ({
 });
 
 const saveLocation = (id, values) => {
-  const { city, state, country } = values;
+  const { city, state, country, zipcode, address, number } = values;
   const location = {
     city,
     state: state.short_name,
-    country: country.short_name
+    country: country.short_name,
+    zipcode,
+    address,
+    number
   };
 
   if (id) {
@@ -371,6 +375,21 @@ export const handleCreateProductor = async ({
   setLoading({ show: false });
 };
 
+export const getAddressInformation = async (zipcode, setAddress, setNumber, setCity) => {
+  let locationPromise;
+
+  try {
+    locationPromise = await getViaCepLocation(zipcode);
+  } catch (err) {
+    return;
+  }
+
+  if (!locationPromise.data.erro) {
+    setAddress(locationPromise.data.logradouro);
+    setCity(locationPromise.data.localidate);
+  }
+};
+
 export const handleEditProductor = async (
   values,
   productorId,
@@ -383,7 +402,6 @@ export const handleEditProductor = async (
   user,
   router
 ) => {
-  console.log('values', values);
   const productor = { ...values };
   let newImage = null;
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import WallTemplate from '../../components/templates/wall/wall';
 import BaseHead from '../../components/baseHead';
 

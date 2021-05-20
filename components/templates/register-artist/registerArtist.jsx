@@ -19,13 +19,14 @@ import {
   makeBlob,
   addSong,
   deleteSong,
-  makeDocUploads, mapMusicalStyles,
+  makeDocUploads,
+  mapMusicalStyles,
   handleCreateArtist,
   handleEditArtist,
+  deleteTag,
+  getAddressInformation
 } from './registerArtist.controller';
-import {
-  Form, LoadingWrapper, ContentWrapper,
-} from './registerArtist.style';
+import { Form, LoadingWrapper, ContentWrapper } from './registerArtist.style';
 import SocialsFieldset from './components/social-fieldset/socialFieldset';
 import DocFilesFieldset from './components/doc-files-fieldset/docFilesFieldset';
 import MusicFieldset from './components/music-fieldset/musicFieldset';
@@ -33,17 +34,17 @@ import Loading from '../../atoms/loading/loading';
 
 /**
  * getFooterBackground return the background color from footer
- * 
+ *
  * @returns {String} color
  */
 const getFooterBackground = (visibles) => {
   if (visibles.files && !visibles.musics) return theBestColor;
   if (visibles.musics) return white;
-}
+};
 
 /**
  * render basic infos fields
- * 
+ *
  * @returns {React.Component} React Component
  */
 const renderBasicInfos = ({
@@ -105,18 +106,21 @@ const renderBasicInfos = ({
 
 /**
  * render location fields
- * 
+ *
  * @returns {React.Component} React Component
  */
 const renderLocationFieldset = ({
   values,
   visibles,
   setCity,
+  setAddress,
+  setNumber,
   setState,
   setCountry,
   productorStepErrors,
   setStates,
   countries,
+  setZipcode,
   states
 }) => {
   if (!visibles.location) return null;
@@ -129,6 +133,9 @@ const renderLocationFieldset = ({
       states={states}
       productorStepErrors={productorStepErrors}
       handleCityChange={({ target }) => setCity(target.value)}
+      handleAddressChange={({ target }) => setAddress(target.value)}
+      handleZipcodeChange={({ target }) => setZipcode(target.value)}
+      handleNumberChange={({ target }) => setNumber(target.value)}
       handleCountrySelect={(data) => handleCountrySelect({ data, setStates, setCountry })}
       handleStateSelect={(data) => handleStateSelect({ data, setState })}
     />
@@ -137,7 +144,7 @@ const renderLocationFieldset = ({
 
 /**
  * render contact fields
- * 
+ *
  * @returns {React.Component} React Component
  */
 const renderContactFieldset = ({
@@ -166,7 +173,7 @@ const renderContactFieldset = ({
 
 /**
  * render social fields
- * 
+ *
  * @returns {React.Component} React Component
  */
 const renderSocialsFieldset = ({
@@ -193,32 +200,54 @@ const renderSocialsFieldset = ({
 
 /**
  * render file fields
- * 
+ *
  * @returns {React.Component} React Component
  */
 const renderFilesDocs = ({
-  visibles, tecRider, setTecRider,
-  tecMap, setTecMap,
-  tecRelease, setRelease,
+  visibles,
+  tecRider,
+  setTecRider,
+  tecMap,
+  setTecMap,
+  tecRelease,
+  setRelease
 }) => {
   if (!visibles.files) return null;
   return (
     <DocFilesFieldset
-      handleRiderChange={(file) => setTecRider(file ? {
-        file,
-        blob: makeBlob(file),
-        blob_url: URL.createObjectURL(makeBlob(file)),
-      } : null)}
-      handleMapChange={(file) => setTecMap(file ? {
-        file,
-        blob: makeBlob(file),
-        blob_url: URL.createObjectURL(makeBlob(file)),
-      } : null)}
-      handleReleaseChange={(file) => setRelease(file ? {
-        file,
-        blob: makeBlob(file),
-        blob_url: URL.createObjectURL(makeBlob(file)),
-      } : null)}
+      handleRiderChange={(file) =>
+        setTecRider(
+          file
+            ? {
+                file,
+                blob: makeBlob(file),
+                blob_url: URL.createObjectURL(makeBlob(file))
+              }
+            : null
+        )
+      }
+      handleMapChange={(file) =>
+        setTecMap(
+          file
+            ? {
+                file,
+                blob: makeBlob(file),
+                blob_url: URL.createObjectURL(makeBlob(file))
+              }
+            : null
+        )
+      }
+      handleReleaseChange={(file) =>
+        setRelease(
+          file
+            ? {
+                file,
+                blob: makeBlob(file),
+                blob_url: URL.createObjectURL(makeBlob(file))
+              }
+            : null
+        )
+      }
       tecRider={tecRider}
       tecMap={tecMap}
       tecRelease={tecRelease}
@@ -228,12 +257,10 @@ const renderFilesDocs = ({
 
 /**
  * render song fields
- * 
+ *
  * @returns {React.Component} React Component
  */
-const renderMusics = ({
-  visibles, setSongs, songs, setSubmitDisabled,
-}) => {
+const renderMusics = ({ visibles, setSongs, songs, setSubmitDisabled }) => {
   if (!visibles.musics) return null;
   return (
     <MusicFieldset
@@ -253,6 +280,8 @@ const RegisterArtistTemplate = () => {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const [about, setAbout] = useState('');
+  const [address, setAddress] = useState('');
+  const [zipcode, setZipcode] = useState('');
   const [avatar, setAvatar] = useState({ url: '' });
   const [city, setCity] = useState('');
   const [contactEmail, setContactEmail] = useState('');
@@ -269,6 +298,7 @@ const RegisterArtistTemplate = () => {
   const [musicalStylePredict, setMusicalStylePredict] = useState('');
   const [musicalStyle, setMusicalStyle] = useState('');
   const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
   const [locationState, setState] = useState({});
   const [states, setStates] = useState([]);
   const [telegram, setTelegram] = useState('');
@@ -311,15 +341,20 @@ const RegisterArtistTemplate = () => {
     if (artist.location && artist.location.id && countries.length) {
       const selectedCountry = countries.find((c) => c.short_name === artist.location.country);
       if (!country.id) handleCountrySelect({ data: selectedCountry, setStates, setCountry });
-      if(!city) setCity(artist.location.city);
+      if (!city) setCity(artist.location.city);
+      setAddress(artist.location.address);
+      setNumber(artist.location.number);
+      setZipcode(artist.location.zipcode);
       setState(states.find((c) => c.short_name === artist.location.state));
     }
     if (artist.songs && artist.songs.length) {
-      setSongs(artist.songs.map((s) => ({
-        name: s.title,
-        url: s.url,
-        id: s.id
-      })));
+      setSongs(
+        artist.songs.map((s) => ({
+          name: s.title,
+          url: s.url,
+          id: s.id
+        }))
+      );
     }
   };
 
@@ -338,8 +373,12 @@ const RegisterArtistTemplate = () => {
 
   useEffect(() => {
     makeDocUploads({
-      tecRider, setTecRider, state,
-      tecMap, setTecMap, tecRelease,
+      tecRider,
+      setTecRider,
+      state,
+      tecMap,
+      setTecMap,
+      tecRelease,
       setRelease
     });
   }, [tecRider, tecMap, tecRelease]);
@@ -351,8 +390,11 @@ const RegisterArtistTemplate = () => {
     }
     if (!countries.length) {
       fetchLocations({
-        setCountries, setStates, setState, setCity,
-        setCountry,
+        setCountries,
+        setStates,
+        setState,
+        setCity,
+        setCountry
       });
     }
   }, [state.user, countries, states]);
@@ -363,14 +405,41 @@ const RegisterArtistTemplate = () => {
     }
   }, [state.loading]);
 
+  useEffect(() => {
+    if (/[0-9]{8}/.test(zipcode)) {
+      getAddressInformation(zipcode, setAddress, setNumber, setCity, setState, setCountry);
+    }
+  }, [zipcode]);
+
   const values = {
-    avatar, name, integrants, id,
-    about, musicalStyles, musicalStylePredict, musicalStyle,
-    country, state: locationState, city, mainPhone, whatsapp,
-    telegram, contactEmail, tecRider, tecMap, tecRelease,
-    facebook, youtube, twitter, instagram, songs,
+    avatar,
+    name,
+    integrants,
+    id,
+    about,
+    musicalStyles,
+    musicalStylePredict,
+    musicalStyle,
+    country,
+    state: locationState,
+    city,
+    mainPhone,
+    whatsapp,
+    telegram,
+    contactEmail,
+    tecRider,
+    tecMap,
+    tecRelease,
+    facebook,
+    youtube,
+    twitter,
+    instagram,
+    songs,
+    address,
+    number,
+    zipcode
   };
-  
+
   if (!state.user) {
     return (
       <LoadingWrapper>
@@ -379,63 +448,98 @@ const RegisterArtistTemplate = () => {
     );
   }
 
-
   return (
     <Form autocomplete={false} onSubmit={(e) => e.preventDefault()}>
       <StepFormHeader color={magenta} items={steps} index={'0'} />
       <ContentWrapper>
-        {
-          renderBasicInfos({
-            values, setAbout, setMusicalStyle, musicalStyles,
-            setMusicalStylePredict, musicalStylesOptions, setMusicalStyles,
-            setMusicalStylesOptions, setName, setAvatar, productorStepErrors,
-            setProductorStepErrors, handleIntegrants,
-          })
-        }
-        {
-            renderLocationFieldset({
-              visibles, values, setState, setCountry, setCity,
-              countries, states, productorStepErrors, setStates,
-            })
-          }
-          {
-            renderContactFieldset({
-              visibles, values, setMainPhone,
-              setWhatsapp, setTelegram, setContactEmail, productorStepErrors,
-            })
-          }
-          {
-            renderSocialsFieldset({
-              visibles, values, setFacebook, setInstagram,
-              setTwitter, setYoutube, productorStepErrors,
-            })
-          }
-          {
-            renderFilesDocs({
-              visibles, tecRider, setTecRider,
-              tecMap, setTecMap,
-              tecRelease, setRelease,
-            })
-          }
-          {
-            renderMusics({
-              visibles, setSongs, songs, setSubmitDisabled,
-            })
-          }
+        {renderBasicInfos({
+          values,
+          setAbout,
+          setMusicalStyle,
+          musicalStyles,
+          setMusicalStylePredict,
+          musicalStylesOptions,
+          setMusicalStyles,
+          setMusicalStylesOptions,
+          setName,
+          setAvatar,
+          productorStepErrors,
+          setProductorStepErrors,
+          handleIntegrants
+        })}
+        {renderLocationFieldset({
+          visibles,
+          values,
+          setState,
+          setCountry,
+          setCity,
+          setAddress,
+          setZipcode,
+          setNumber,
+          countries,
+          states,
+          productorStepErrors,
+          setStates
+        })}
+        {renderContactFieldset({
+          visibles,
+          values,
+          setMainPhone,
+          setWhatsapp,
+          setTelegram,
+          setContactEmail,
+          productorStepErrors
+        })}
+        {renderSocialsFieldset({
+          visibles,
+          values,
+          setFacebook,
+          setInstagram,
+          setTwitter,
+          setYoutube,
+          productorStepErrors
+        })}
+        {renderFilesDocs({
+          visibles,
+          tecRider,
+          setTecRider,
+          tecMap,
+          setTecMap,
+          tecRelease,
+          setRelease
+        })}
+        {renderMusics({
+          visibles,
+          setSongs,
+          songs,
+          setSubmitDisabled
+        })}
       </ContentWrapper>
       <StepFormFooter
         nextAction={() => {
           if (!id) {
             handleCreateArtist({
-              values, setLoading, visibles, history,
-              setVisibles, dispatch, user: state.user, setId,
-              userId: state.user.id,
+              values,
+              setLoading,
+              visibles,
+              history,
+              setVisibles,
+              dispatch,
+              user: state.user,
+              setId,
+              userId: state.user.id
             });
           } else {
             handleEditArtist({
-              values, setLoading, setAvatar,
-              visibles, setVisibles, dispatch,
-              user: state.user, router, userId: state.user.id,
+              values,
+              setLoading,
+              setAvatar,
+              visibles,
+              setVisibles,
+              dispatch,
+              user: state.user,
+              router,
+              userId: state.user.id
             });
           }
         }}

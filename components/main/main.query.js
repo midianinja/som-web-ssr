@@ -78,6 +78,7 @@ export const oneUserQuery = gql`
           country
           zipcode
           address
+          number
         }
         description
         status

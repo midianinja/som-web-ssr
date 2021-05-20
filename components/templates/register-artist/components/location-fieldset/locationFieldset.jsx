@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../../../atoms/input/input';
+import InputIcon from '../../../../atoms/input-icon/InputIcon';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
 import ListInput from '../../../../molecules/list-input/listInput';
-import { Fieldset, Title, inputGroup30Style, LocationWrapper } from './locationFieldset.style';
+import { Fieldset, Title, LocationWrapper } from './locationFieldset.style';
 
-
-/**
- * This contains the Location Fildset Component
- * 
- * @returns {React.Component} React Component
- */
 const LocationFieldset = ({
   country,
   countries,
@@ -19,16 +14,60 @@ const LocationFieldset = ({
   productorStepErrors,
   handleCountrySelect,
   handleStateSelect,
+  handleZipcodeChange,
   handleCityChange,
+  handleAddressChange,
+  handleNumberChange,
   values
 }) => (
   <Fieldset>
     <Title>Residência</Title>
     <LocationWrapper>
       <InputGroup
-        customStyle={inputGroup30Style}
-        label={country.id ? 'País' : ''}
-        error={productorStepErrors.country}>
+        customStyle={`
+          grid-column-start: 1;
+          grid-column-end: 2;
+        `}
+        label="CEP"
+        error={productorStepErrors.zipcode}>
+        <InputIcon
+          icon="location"
+          id="zipcode"
+          placeholder="CEP"
+          value={values.zipcode}
+          onChange={handleZipcodeChange}
+        />
+      </InputGroup>
+
+      <InputGroup
+        customStyle={`
+          grid-column-start: 1;
+          grid-column-end: 3;
+        `}
+        label="Endereço"
+        error={productorStepErrors.address}>
+        <Input
+          id="address"
+          placeholder="Endereço"
+          value={values.address}
+          onChange={handleAddressChange}
+        />
+      </InputGroup>
+      <InputGroup
+        customStyle={`
+          grid-column-start: 3;
+          grid-column-end: 4;
+        `}
+        label="Número"
+        error={productorStepErrors.number}>
+        <Input
+          id="number"
+          placeholder="Número"
+          value={values.number}
+          onChange={handleNumberChange}
+        />
+      </InputGroup>
+      <InputGroup label="País" error={productorStepErrors.country}>
         <ListInput
           id="country"
           placeholder="País"
@@ -38,10 +77,7 @@ const LocationFieldset = ({
           onSelect={handleCountrySelect}
         />
       </InputGroup>
-      <InputGroup
-        customStyle={inputGroup30Style}
-        label={state.id ? 'Estado' : ''}
-        error={productorStepErrors.state}>
+      <InputGroup label="Estado" error={productorStepErrors.state}>
         <ListInput
           id="state"
           placeholder="Estado"
@@ -51,22 +87,14 @@ const LocationFieldset = ({
           onSelect={handleStateSelect}
         />
       </InputGroup>
-      <InputGroup
-        customStyle={inputGroup30Style}
-        label={values.city ? 'Cidade' : ''}
-        error={productorStepErrors.city}>
+      <InputGroup label="Cidade" error={productorStepErrors.city}>
         <Input id="city" placeholder="Cidade" value={values.city} onChange={handleCityChange} />
       </InputGroup>
     </LocationWrapper>
   </Fieldset>
 );
 
-const valuesShape = {
-  about: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  cpf: PropTypes.string.isRequired,
-  cnpj: PropTypes.string.isRequired
-};
+const valuesShape = {};
 
 const errorsShape = {
   musicalGenres: PropTypes.string,
@@ -85,6 +113,9 @@ LocationFieldset.propTypes = {
   handleCountrySelect: PropTypes.func.isRequired,
   handleStateSelect: PropTypes.func.isRequired,
   handleCityChange: PropTypes.func.isRequired,
+  handleZipcodeChange: PropTypes.func.isRequired,
+  handleAddressChange: PropTypes.func.isRequired,
+  handleNumberChange: PropTypes.func.isRequired,
   countries: PropTypes.arrayOf(PropTypes.shape(optionShape)),
   country: PropTypes.shape(optionShape),
   states: PropTypes.arrayOf(PropTypes.shape(optionShape)),

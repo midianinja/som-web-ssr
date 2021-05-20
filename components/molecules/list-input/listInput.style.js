@@ -36,6 +36,7 @@ export const Option = styled.li`
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 25px;
+  text-transform: capitalize;
 
   :hover {
     background-color: ${green};

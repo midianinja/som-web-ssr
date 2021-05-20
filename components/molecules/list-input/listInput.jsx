@@ -48,14 +48,17 @@ function ListInput(props) {
   const [value, setValue] = useState('');
   const [list, setList] = useState(options);
   const wrapperRef = useRef(null);
-  useEffect(() => {
-    setList(options);
-  }, [options]);
+
   const select = (data) => {
     setValue('');
     onSelect(data);
     setFocus(false);
   };
+
+  useEffect(() => {
+    setList(options);
+  }, [options]);
+
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, false);
     return () => {
@@ -68,18 +71,18 @@ function ListInput(props) {
       setFocus(false);
     }
   };
+
   return (
     <SelectWrapper focus={focus && list.length} tabIndex={tabIndex} ref={wrapperRef}>
       <Label>
         <Input
           id={id}
-          autoComplete="off"
+          autoComplete="new-password"
           onFocus={() => setFocus(true)}
           customStyle="background-color: transparent;"
           placeholder={selected.label || placeholder}
           onBlur={(e) => e.preventDefault()}
-          value={value || ''}
-          autoComplete="new-password"
+          value={value || selected.label || ''}
           onChange={(e) => handleChange(e, setValue, options, setList)}
         />
       </Label>

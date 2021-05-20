@@ -1,26 +1,31 @@
+import axios from 'axios';
 import { client } from '../../../libs/apollo.lib';
 import {
-  createArtistMutation, updateArtistMutation, createLocationMutation,
+  createArtistMutation,
+  updateArtistMutation,
+  createLocationMutation,
   updateLocationMutation,
   deleteSongMutation,
   createSongMutation,
-  updateSongMutation,
+  updateSongMutation
 } from './registerArtist.mutations';
 
-export const createArtist = artist => client().mutate({
-  mutation: createArtistMutation,
-  variables: {
-    artist,
-  },
-});
+export const createArtist = (artist) =>
+  client().mutate({
+    mutation: createArtistMutation,
+    variables: {
+      artist
+    }
+  });
 
-export const updateArtist = (id, artist) => client().mutate({
-  mutation: updateArtistMutation,
-  variables: {
-    artist_id: id,
-    artist,
-  },
-});
+export const updateArtist = (id, artist) =>
+  client().mutate({
+    mutation: updateArtistMutation,
+    variables: {
+      artist_id: id,
+      artist
+    }
+  });
 
 export const createLocation = (location) =>
   client().mutate({
@@ -47,11 +52,10 @@ export const createSong = (song) =>
         artist: song.artist,
         url: song.url,
         title: song.title,
-        image: song.image,
+        image: song.image
       }
     }
-  }
-);
+  });
 
 export const updateSong = (song) =>
   client().mutate({
@@ -62,11 +66,10 @@ export const updateSong = (song) =>
         artist: song.artist,
         url: song.url,
         title: song.title,
-        image: song.image,
+        image: song.image
       }
     }
-  }
-);
+  });
 
 export const deleteSong = (id) =>
   client().mutate({
@@ -74,5 +77,6 @@ export const deleteSong = (id) =>
     variables: {
       song_id: id
     }
-  }
-);
+  });
+
+export const getViaCepLocation = (zipcode) => axios.get(`https://viacep.com.br/ws/${zipcode}/json`);

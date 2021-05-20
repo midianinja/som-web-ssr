@@ -16,7 +16,7 @@ import {
   editSongAction,
   deleteSongAction,
   favoriteSong,
-  unfavoriteSong,
+  unfavoriteSong
 } from './artistProfile.controller';
 import {
   ArtistWrapper,
@@ -33,7 +33,6 @@ const ArtistPage = () => {
   const [artistLoading, setArtistLoading] = useState(false);
   const [artist, setArtist] = useState({});
   const [relatedArtsts, setRelatedArtsts] = useState([]);
-  const [instagramPhotos, setInstagramPhotos] = useState(false);
   const [follows, setFollows] = useState([]);
   const [alertModal, setAlertModal] = useState({
     title: '',
@@ -94,10 +93,16 @@ const ArtistPage = () => {
     );
   }
 
-  console.log('sooongs', songs.map(s => ({
-    ...s,
-    liked: state.user.favorited_songs.findIndex(({ id }) => s.id === id) }) !== -1
-  ));
+  console.log(
+    'sooongs',
+    songs.map(
+      (s) =>
+        ({
+          ...s,
+          liked: state.user.favorited_songs.findIndex(({ id }) => s.id === id)
+        } !== -1)
+    )
+  );
 
   return (
     <ArtistWrapper>
@@ -136,17 +141,20 @@ const ArtistPage = () => {
               deleteAction={(data) =>
                 deleteSongAction({
                   ...data,
-                  artist: state.user.artist,
-                  seArtistProfileTemplatetSongs
+                  artist: state.user.artist
                 })
               }
               isUserArtist={isUserArtist}
-              tracks={songs.map(s => ({
+              tracks={songs.map((s) => ({
                 ...s,
-                liked: state.user.favorited_songs.findIndex(({ id }) => s.id === id) !== -1,
+                liked: state.user.favorited_songs.findIndex(({ id }) => s.id === id) !== -1
               }))}
-              favoriteSong={song => favoriteSong(state.user, song, dispatch, state.user.favorited_songs)}
-              unfavoriteSong={song => unfavoriteSong(state.user, song, dispatch, state.user.favorited_songs)}
+              favoriteSong={(song) =>
+                favoriteSong(state.user, song, dispatch, state.user.favorited_songs)
+              }
+              unfavoriteSong={(song) =>
+                unfavoriteSong(state.user, song, dispatch, state.user.favorited_songs)
+              }
             />
           ) : null}
           {artist.approved_events.length ? (

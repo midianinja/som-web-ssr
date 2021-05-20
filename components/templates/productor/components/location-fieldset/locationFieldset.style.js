@@ -13,16 +13,13 @@ export const Title = styled.h2`
   margin-bottom: 30px;
 `;
 
-export const inputGroup30Style = '';
-
 export const LocationWrapper = styled.div`
-  width: 100%;
   display: grid;
+  width: 100%;
+  gap: 16px;
 
   @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
-    align-items: flex-end;
   }
 `;

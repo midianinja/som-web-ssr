@@ -13,9 +13,7 @@ import { steps } from './productor.collections';
 import {
   // fetchMusicalStyleOptions,
   fetchOccupationsOptions,
-  handleACMusicalStyle,
   handleACOccupation,
-  handleMusicalStyleSelect,
   handleOccupationSelect,
   deleteTag,
   handleCreateProductor,
@@ -25,7 +23,8 @@ import {
   nextCallback,
   fetchLocations,
   handleCountrySelect,
-  handleStateSelect
+  handleStateSelect,
+  getAddressInformation
 } from './productor.controller';
 import { LoadingWrapper, Form, FormWrapper } from './productor.style';
 
@@ -44,7 +43,6 @@ const renderBasicInfos = ({
   occupationOptions,
   occupationPredict,
   setOccupationPredict,
-  setOccupationOptions,
   setAvatar,
   setCPF,
   setCNPJ
@@ -55,7 +53,7 @@ const renderBasicInfos = ({
       deleteTag({
         id,
         tags: occupations,
-        setTag: setOccupations,
+        setTag: setOccupations
       })
     }
     handleAboutChange={({ target }) => (target.value.length < 2000 ? setAbout(target.value) : null)}
@@ -70,13 +68,13 @@ const renderBasicInfos = ({
     handleCPFChange={({ target }) => setCPF(target.value)}
     handleNameChange={({ target }) => setName(target.value)}
     handleMusicalStyleChange={({ target }) =>
-    handleACOccupation({
+      handleACOccupation({
         value: target.value,
         occupationOptions,
         occupationPredict,
         setOccupation,
         setOccupationPredict,
-        occupation,
+        occupation
       })
     }
     handleMusicalStyleSelect={(value) =>
@@ -86,7 +84,7 @@ const renderBasicInfos = ({
         occupations,
         setOccupation,
         setOccupationPredict,
-        setOccupations,
+        setOccupations
       })
     }
     productorStepErrors={productorStepErrors}
@@ -106,6 +104,9 @@ const renderLocationFieldset = ({
   productorStepErrors,
   setStates,
   countries,
+  setZipcode,
+  setAddress,
+  setNumber,
   states
 }) => {
   if (!visibles.location) return null;
@@ -117,6 +118,9 @@ const renderLocationFieldset = ({
       countries={countries}
       states={states}
       productorStepErrors={productorStepErrors}
+      handleZipcodeChange={({ target }) => setZipcode(target.value)}
+      handleAddressChange={({ target }) => setAddress(target.value)}
+      handleNumberChange={({ target }) => setNumber(target.value)}
       handleCityChange={({ target }) => setCity(target.value)}
       handleCountrySelect={(data) => handleCountrySelect({ data, setStates, setCountry })}
       handleStateSelect={(data) => handleStateSelect({ data, setState })}
@@ -209,6 +213,9 @@ const Productor = () => {
   const [secondaryPhone, setSecondaryPhone] = useState('');
   const [productorStepErrors, setProductorStepErrors] = useState({});
   const [locationState, setState] = useState({});
+  const [zipcode, setZipcode] = useState('');
+  const [address, setAddress] = useState('');
+  const [number, setNumber] = useState('');
   const [states, setStates] = useState([]);
   const [step, setStep] = useState(0);
   const [telegram, setTelegram] = useState('');
@@ -243,6 +250,9 @@ const Productor = () => {
     if (productor.location && productor.location.id) {
       setLocationId(productor.location.id);
       setCity(productor.location.city);
+      setZipcode(productor.location.zipcode);
+      setAddress(productor.location.address);
+      setNumber(productor.location.number);
     }
   };
 
@@ -261,7 +271,6 @@ const Productor = () => {
       mapContextToState(state.user.productor);
     }
 
-    // fetchMusicalStyleOptions(setMusicalStylesOptions);
     fetchOccupationsOptions(setOccupationOptions);
   }, []);
 
@@ -299,6 +308,12 @@ const Productor = () => {
   }, [state.user]);
 
   useEffect(() => {
+    if (/[0-9]{8}/.test(zipcode)) {
+      getAddressInformation(zipcode, setAddress, setNumber, setCity, setState, setCountry);
+    }
+  }, [zipcode]);
+
+  useEffect(() => {
     if (!state.loading.verify && !state.user) {
       router.push('/');
     }
@@ -323,11 +338,14 @@ const Productor = () => {
     occupation,
     contactEmail,
     facebook,
+    zipcode,
     youtube,
     twitter,
     country,
     state: locationState,
     city,
+    address,
+    number,
     locationId
   };
 
@@ -374,6 +392,9 @@ const Productor = () => {
           setState,
           setCountry,
           setCity,
+          setZipcode,
+          setAddress,
+          setNumber,
           countries,
           states,
           productorStepErrors,
