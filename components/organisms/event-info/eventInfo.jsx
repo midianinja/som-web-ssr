@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import EventDate from '../../atoms/event-date/eventDate';
 import EventPlace from '../../atoms/event-place/eventPlace';
-import EventBands from '../../molecules/event-brands/eventBrands';
+import Subscribers from '../../molecules/subscribers/subscribers';
 import PrimaryButton from '../../atoms/primary-button/primaryButton';
 import SlimButton from '../../atoms/slim-button/slimButton';
 import {
@@ -21,14 +21,14 @@ const EventInfo = ({
   name,
   date,
   place,
-  subscribers,
+  subscribedArtists,
+  subscribedProductors,
   subscribeAction,
   subscribed,
   unsubscribeAction,
   isClosingSubscribe,
   diffDays,
-  diffHours,
-  loggedAs
+  diffHours
 }) => {
   const newDate = new Date(unixTime(date));
   const dateInstance = moment(newDate);
@@ -62,7 +62,10 @@ const EventInfo = ({
         complement={place.complement}
       />
       <SubSpace />
-      <EventBands subscribed={subscribers} />
+      <Subscribers
+        subscribedArtists={subscribedArtists}
+        subscribedProductors={subscribedProductors}
+      />
       <Space />
       <ButtonWrapper>
         {isClosingSubscribe ? (
@@ -70,10 +73,10 @@ const EventInfo = ({
             Inscrições encerradas
           </PrimaryButton>
         ) : null}
-        {!subscribed && !isClosingSubscribe && loggedAs !== 'productor' ? (
+        {!subscribed && !isClosingSubscribe ? (
           <PrimaryButton onClick={subscribeAction}>Inscrever-se</PrimaryButton>
         ) : null}
-        {subscribed && !isClosingSubscribe && loggedAs !== 'productor' ? (
+        {subscribed && !isClosingSubscribe ? (
           <SlimButton
             onFocus={() => null}
             onBlur={() => null}
@@ -104,7 +107,8 @@ EventInfo.propTypes = {
   name: PropTypes.string,
   date: PropTypes.string,
   loggedAs: PropTypes.string,
-  subscribers: PropTypes.number,
+  subscribedArtists: PropTypes.number,
+  subscribedProductors: PropTypes.number,
   diffDays: PropTypes.number,
   diffHours: PropTypes.number,
   subscribed: PropTypes.bool,

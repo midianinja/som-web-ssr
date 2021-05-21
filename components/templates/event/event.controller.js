@@ -1,6 +1,11 @@
 import { client } from '../../../libs/apollo.lib';
 import { getOneEventQuery } from './event.queries';
-import { subscribeEvent, unsubscribeEvent } from './event.repository';
+import {
+  subscribeEvent,
+  subscribeProductorOnEvent,
+  unsubscribeEvent,
+  unsubscribeProductorOnEvent
+} from './event.repository';
 import { allowBodyScroll } from '../../../utils/scroll.utils';
 
 export const loadingStatus = {
@@ -68,17 +73,31 @@ export const associatedEvents = async (id, setAssociatedEvents) => {
   setAssociatedEvents([]);
 };
 
-export const subscribeAction = async (auth, user, event, dispatch, setDialog, setEvent, router) => {
+export const subscribeAction = async (
+  auth,
+  user,
+  event,
+  dispatch,
+  setDialog,
+  setEvent,
+  router,
+  loggedAs,
+  idaSDK
+) => {
   if (!auth) {
     dispatch({ type: 'SHOW_LOGIN_MODAL' });
     return;
   }
+  if (!user) {
+    if (idaSDK) idaSDK.signinWithPopup();
+    return;
+  }
 
-  if (!user.artist) {
+  if (!user.artist || !user.productor) {
     setDialog({
       title: 'Página incompleta',
       icon: '/icons/guita-error.svg',
-      description: 'Para se INSCREVER em OPORTUNIDADES conclua seu perfil.',
+      description: 'Para se INSCREVER em OPORTUNIDADES conclua seu perfil de artista ou produtor.',
       agreeText: 'Cadastrar',
       disagreeText: 'Voltar',
       confirmAction: () => {
@@ -93,7 +112,16 @@ export const subscribeAction = async (auth, user, event, dispatch, setDialog, se
     return;
   }
 
-  const resp = await subscribeEvent(event.id, user.artist.id);
+  let resp;
+
+  if (loggedAs === 'artist') {
+    resp = await subscribeEvent(event.id, user.artist.id);
+  } else {
+    console.log(user.productor.id);
+    resp = await subscribeProductorOnEvent(event.id, user.productor.id);
+  }
+
+  if (!resp) return;
 
   setDialog({
     title: 'Pronto!',
@@ -107,10 +135,20 @@ export const subscribeAction = async (auth, user, event, dispatch, setDialog, se
     }
   });
 
-  setEvent(resp.data.subscribeEvent);
+  setEvent(loggedAs === 'artist' ? resp.data.subscribeEvent : resp.data.subscribeProductorOnEvent);
 };
 
-export const unsubscribeAction = async (user, event, setEvent) => {
-  const myEvent = await unsubscribeEvent(event.id, user.artist.id);
-  setEvent(myEvent.data.unsubscribeEvent);
+export const unsubscribeAction = async (user, event, setEvent, loggedAs) => {
+  let resp;
+
+  if (loggedAs === 'artist') {
+    resp = await unsubscribeEvent(event.id, user.artist.id);
+  } else {
+    console.log(user.productor.id);
+    resp = await unsubscribeProductorOnEvent(event.id, user.productor.id);
+  }
+
+  setEvent(
+    loggedAs === 'artist' ? resp.data.unsubscribeEvent : resp.data.unsubscribeProductorOnEvent
+  );
 };

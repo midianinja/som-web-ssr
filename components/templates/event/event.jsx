@@ -25,6 +25,7 @@ import {
   ColumnWrapper,
   EventImage
 } from './event.style';
+import SubscribedProductors from './components/subscribed-propductors/subscribedProductors';
 
 const unixTime = (unixtime) => new Date(+unixtime).toISOString().slice(0, 19);
 
@@ -81,20 +82,31 @@ const EventPage = () => {
   const closingDiffHours = Math.ceil(closingDateInstance.diff(todayInstance, 'hours', true));
 
   const isClosingSubscribe = closingDiffDays <= 0 && closingDiffHours <= 0;
-  const isSubscribed = (u, e) => {
+  const isSubscribed = (u, e, loggedAs) => {
     let subscribed = false;
 
-    if (u && u.artist) {
-      if (
-        e.subscribers.find(({ id }) => u.artist.id === id) ||
-        e.approved_artists.find(({ id }) => u.artist.id === id)
-      ) {
-        subscribed = true;
-      }
+    if (
+      loggedAs === 'artist' &&
+      (e.subscribers.find(({ id }) => u.artist.id === id) ||
+        e.approved_artists.find(({ id }) => u.artist.id === id) ||
+        e.reproved_artists.find(({ id }) => u.artist.id === id))
+    ) {
+      subscribed = true;
+    }
+
+    if (
+      loggedAs === 'productor' &&
+      (e.subscribed_productors.find(({ id }) => u.productor.id === id) ||
+        e.approved_productors.find(({ id }) => u.productor.id === id) ||
+        e.reproved_productors.find(({ id }) => u.productor.id === id))
+    ) {
+      subscribed = true;
     }
 
     return subscribed;
   };
+
+  console.log(event.subscribed_productors.length);
 
   return (
     <Store.Consumer>
@@ -109,7 +121,7 @@ const EventPage = () => {
           </CoverWrapper>
           <Content>
             <EventInfo
-              subscribed={isSubscribed(state.user, event)}
+              subscribed={isSubscribed(state.user, event, myState.connectionType)}
               name={event.name}
               date={event.event_date}
               place={eventPlace}
@@ -117,7 +129,8 @@ const EventPage = () => {
               diffDays={closingDiffDays}
               diffHours={closingDiffHours}
               loggedAs={myState.connectionType}
-              subscribers={event.subscribers.length}
+              subscribedArtists={event.subscribers.length}
+              subscribedProductors={event.subscribed_productors.length}
               subscribeAction={() =>
                 subscribeAction(
                   state.auth,
@@ -127,7 +140,8 @@ const EventPage = () => {
                   setDialog,
                   setEvent,
                   router,
-                  event
+                  myState.connectionType,
+                  state.idaSDK
                 )
               }
               unsubscribeAction={() => unsubscribeAction(state.user, event, setEvent)}
@@ -142,6 +156,11 @@ const EventPage = () => {
                 artistClick={(artistId) => router.push(`/artist/${artistId}`)}
                 artists={event.subscribers}
                 approveds={event.approved_artists}
+              />
+              <SubscribedProductors
+                productorClick={(productorId) => router.push(`/productor/${productorId}`)}
+                productors={event.subscribed_productors}
+                approveds={event.approved_productors}
               />
             </ColumnWrapper>
           </Content>

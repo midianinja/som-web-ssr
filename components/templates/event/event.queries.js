@@ -54,6 +54,14 @@ export const getOneEventQuery = gql`
         }
         name
       }
+      reproved_artists {
+        id
+        avatar_image {
+          mimified
+          thumbnail
+        }
+        name
+      }
       subscribe_closing_date
       cover {
         thumbnail
