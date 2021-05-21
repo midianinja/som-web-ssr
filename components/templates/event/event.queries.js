@@ -12,6 +12,24 @@ export const getOneEventQuery = gql`
       has_accommodation
       has_city_transportation
       has_local_transportation
+      approved_productors {
+        id
+        name
+        photo
+        description
+      }
+      reproved_productors {
+        id
+        name
+        photo
+        description
+      }
+      subscribed_productors {
+        id
+        name
+        photo
+        description
+      }
       location {
         number
         address

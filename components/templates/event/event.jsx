@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import moment from 'moment';
 import Store from '../../../store/Store';
