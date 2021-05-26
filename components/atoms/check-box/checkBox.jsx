@@ -8,9 +8,7 @@ import { Wrapper, Circle, Label } from './checkBox.style';
  * @param {object} props component props
  * @returns contains Checkbox Component
  */
-const Checkbox = ({
-  checked, text, onChange, multiple,
-}) => (
+const Checkbox = ({ checked, text, onChange, multiple }) => (
   <Wrapper onClick={onChange}>
     <Circle checked={checked} multiple={multiple} />
     <Label>{text}</Label>
@@ -25,7 +23,7 @@ Checkbox.propTypes = {
 };
 
 Checkbox.defaultProps = {
-  multiple: false,
+  multiple: false
 };
 
 export default Checkbox;

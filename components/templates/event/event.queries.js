@@ -7,11 +7,18 @@ export const getOneEventQuery = gql`
       name
       about
       event_date
+      end_event_date
+      stream_url
       has_food
       has_money_paid
       has_accommodation
       has_city_transportation
       has_local_transportation
+      is_to_productor
+      is_to_artist
+      is_online
+      is_physical
+      is_on_som
       approved_productors {
         id
         name

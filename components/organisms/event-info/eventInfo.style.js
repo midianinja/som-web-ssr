@@ -53,9 +53,5 @@ export const SubSpace = styled.div`
 export const ButtonWrapper = styled.div`
   width: 100%;
   margin-top: 30px;
-  text-align: center;
-
-  @media (min-width: 1024px) {
-    text-align: left;
-  }
+  text-align: left;
 `;

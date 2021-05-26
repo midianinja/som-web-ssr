@@ -76,6 +76,7 @@ const EventPage = () => {
   };
 
   const closingDateInstance = moment(new Date(unixTime(event.subscribe_closing_date)));
+  const eventDateInstance = moment(new Date(unixTime(event.event_date)));
   const todayInstance = moment();
 
   const closingDiffDays = Math.floor(closingDateInstance.diff(todayInstance, 'days', true));
@@ -106,8 +107,6 @@ const EventPage = () => {
     return subscribed;
   };
 
-  console.log(event.subscribed_productors.length);
-
   return (
     <Store.Consumer>
       {({ state, dispatch }) => (
@@ -125,6 +124,11 @@ const EventPage = () => {
               name={event.name}
               date={event.event_date}
               place={eventPlace}
+              isOnline={event.is_online}
+              streamUrl={event.stream_url}
+              happeningNow={Math.ceil(eventDateInstance.diff(todayInstance, 'minutes', true)) > 0}
+              isToProductor={event.is_to_productor}
+              isToArtist={event.is_to_artist}
               isClosingSubscribe={isClosingSubscribe}
               diffDays={closingDiffDays}
               diffHours={closingDiffHours}

@@ -4,10 +4,7 @@ import Checkbox from '../../../../atoms/check-box/checkBox';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
 import { Fieldset, CheckboxWrapper, Title } from './conditionsFieldset.style';
 
-const renderConditions = ({
-  values,
-  handleMoneyPaidChange,
-}) =>
+const renderConditions = ({ values, handleMoneyPaidChange }) =>
   [
     // {
     //   text: 'Acomodação',
@@ -23,7 +20,7 @@ const renderConditions = ({
       text: 'Cachê',
       handle: handleMoneyPaidChange,
       checked: values.hasMoneyPaid
-    },
+    }
     // {
     //   text: 'Translado intermunicipal',
     //   handle: handleCityTransportationChange,
@@ -40,7 +37,7 @@ const renderConditions = ({
     //   checked: values.hasInternationalTransportation
     // }
   ].map(({ text, checked, handle }) => (
-    <CheckboxWrapper>
+    <CheckboxWrapper key={text}>
       <Checkbox
         multiple
         customStyle={`

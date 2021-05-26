@@ -11,6 +11,11 @@ export const createEventMutation = gql`
         thumbnail
         mimified
       }
+      is_to_productor
+      is_to_artist
+      is_online
+      is_physical
+      is_on_som
       photo {
         original
         thumbnail

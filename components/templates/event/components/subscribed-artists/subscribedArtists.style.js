@@ -40,6 +40,7 @@ export const ListWrapper = styled.div`
   overflow-x: auto;
   overflow-y: hidden;
   padding: 10px 0;
+  text-align: left;
 `;
 
 export const Title = styled.h3`

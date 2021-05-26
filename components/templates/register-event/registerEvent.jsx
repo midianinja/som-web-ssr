@@ -17,7 +17,9 @@ import {
   handleStateSelect,
   handleCreateEvent
 } from './registerEvent.controller';
-import { Form, FormWrapper, LoadingWrapper } from './registerEvent.style';
+import { ConditionsWrapper, Form, FormWrapper, LoadingWrapper } from './registerEvent.style';
+import WhoSubscribe from './components/who-subscribe/who-subscribe';
+import EventTypes from './components/event-type/event-type';
 
 const steps = [
   {
@@ -52,6 +54,29 @@ const renderCoverFieldset = ({ values, setCover, errors }) => (
     }
     values={values}
     eventErrors={errors}
+  />
+);
+
+const renderWhoSubscribe = ({ values, setIsToArtist, setIsToProductor }) => (
+  <WhoSubscribe values={values} setIsToArtist={setIsToArtist} setIsToProductor={setIsToProductor} />
+);
+
+const renderEventTypes = ({ values, setEventTypes, setStreamUrl }) => (
+  <EventTypes
+    values={values}
+    handleChangeSrc={({ target }) => setStreamUrl(target.value)}
+    handleSelectEventType={(type) => {
+      const newTypes = [...values.eventTypes];
+      const index = newTypes.indexOf(type);
+
+      if (index !== -1) {
+        newTypes.splice(index, 1);
+      } else {
+        newTypes.push(type);
+      }
+
+      setEventTypes(newTypes);
+    }}
   />
 );
 
@@ -175,6 +200,8 @@ const RegisterEvent = () => {
   const [hasInterstateTransportation, setHasInterstateTransportation] = useState(false);
   const [hasInternationalTransportation, setHasInternationalTransportation] = useState(false);
   const [hasMoneyPaid, setHasMoneyPaid] = useState(false);
+  const [isToProductor, setIsToProductor] = useState(false);
+  const [isToArtist, setIsToArtist] = useState(false);
   const [locationState, setState] = useState({});
   const [number, setNumber] = useState('');
   const [locationId, setLocationId] = useState('');
@@ -182,6 +209,8 @@ const RegisterEvent = () => {
   const [title, setTitle] = useState('');
   const [states, setStates] = useState([]);
   const [zipcode, setZipcode] = useState('');
+  const [streamUrl, setStreamUrl] = useState('');
+  const [eventTypes, setEventTypes] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -234,7 +263,11 @@ const RegisterEvent = () => {
     hasInternationalTransportation,
     number,
     locationId,
-    endEventDate
+    endEventDate,
+    isToArtist,
+    isToProductor,
+    streamUrl,
+    eventTypes
   };
 
   return (
@@ -253,17 +286,21 @@ const RegisterEvent = () => {
           errors,
           setEndEventDate
         })}
-        {renderConditionsFieldset({
-          values,
-          setHasAccomodation,
-          setHasFood,
-          setHasCityTransportation,
-          setHasLocalTransportation,
-          setHasInterstateTransportation,
-          setHasMoneyPaid,
-          setHasInternationalTransportation,
-          errors
-        })}
+        <ConditionsWrapper>
+          {renderEventTypes({ values, setEventTypes, setStreamUrl })}
+          {renderWhoSubscribe({ values, setIsToArtist, setIsToProductor })}
+          {renderConditionsFieldset({
+            values,
+            setHasAccomodation,
+            setHasFood,
+            setHasCityTransportation,
+            setHasLocalTransportation,
+            setHasInterstateTransportation,
+            setHasMoneyPaid,
+            setHasInternationalTransportation,
+            errors
+          })}
+        </ConditionsWrapper>
         {renderAddressFieldset({
           values,
           setState,

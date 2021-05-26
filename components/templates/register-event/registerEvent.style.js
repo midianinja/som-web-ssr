@@ -25,6 +25,11 @@ export const FormWrapper = styled.div`
   }
 `;
 
+export const ConditionsWrapper = styled.div`
+  grid-area: conditions;
+  padding: 30px 15px;
+`;
+
 export const LoadingWrapper = styled.div`
   display: flex;
   width: 100%;
