@@ -1,81 +1,48 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import IDASignupButton from '../../atoms/ida-signup-button/idaSignupButton';
 import IDASigninButton from '../../atoms/ida-login-button/idaLoginButton';
-import LinkButton from '../../atoms/link-button/LinkButton';
-import OportunitiesMap from '../../molecules/opotunities-map/oportunities-map';
-import OverlayM from '../../molecules/overlay-m/overlay-m';
 import {
-  HomeWrapper, Wrapper, Content, Logo,
-  Title, CTAWrapper, TextWrapper, SmallLogo,
-  Header, WrittenLogo, Description, MapWrapper,
-  OverlayMWrapper,
+  HomeWrapper,
+  Header,
+  HeaderWrapper,
+  SmallLogo,
+  BurgerIcon
 } from './homeApresentation.style';
-
-/**
- * function that loading image before render
- * @void
- * @param {string} src image source to be loading
- */
-const load = (src, callback) => {
-  const img = new Image();
-
-  img.onload = () => {
-    callback(src);
-  };
-
-  img.src = src;
-};
 
 /**
  * This contains the Home apresentation section
  * @returns {React.Component} productor form
  */
-const HomeApresentation = ({ signupClick, signinClick }) => {
-  const [bgSrc, setBgSrc] = useState('/images/colorful-logo.svg');
-
-  useEffect(() => {
-    const bg = '/images/colorful-logo.svg';
-    load(bg, setBgSrc);
-  }, []);
-
-  return (
-    <HomeWrapper id="apresentation">
-      <Header>
+const HomeApresentation = ({ signinClick, openNavigation }) => (
+  <HomeWrapper id="apresentation">
+    <Header>
+      <HeaderWrapper>
+        <BurgerIcon
+          onClick={openNavigation}
+          width="30"
+          height="21"
+          viewBox="0 0 30 21"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <rect width="30" height="3" fill="white" />
+          <rect y="8.46191" width="22" height="3" fill="white" />
+          <rect y="17.6934" width="30" height="3" fill="white" />
+        </BurgerIcon>
         <SmallLogo src="/images/logo.svg" alt="" />
-        <IDASigninButton onClick={signinClick} />
-      </Header>
-      <Wrapper>
-        <Content>
-          <TextWrapper>
-            <Logo src={bgSrc} alt="Som, Sistema Operacional da Música" />
-            <Title>
-              Sonha viver de música?
-            </Title>
-            <Description>
-              Participe de nossa comunidade musical e aproveite oportunidades exclusivas.
-            </Description>
-          </TextWrapper>
-          <CTAWrapper>
-            <IDASignupButton onClick={signupClick} />
-            <LinkButton color="white" onClick={signinClick}>Já tenho cadastro</LinkButton>
-          </CTAWrapper>
-        </Content>
-      </Wrapper>
-      <MapWrapper>
-        <OportunitiesMap />
-      </MapWrapper>
-      <OverlayMWrapper>
-        <OverlayM />
-      </OverlayMWrapper>
-      <WrittenLogo src="/icons/logo-written.svg" alt="" />
-    </HomeWrapper>
-  );
-};
+        <IDASigninButton
+          customStyle={`
+            z-index: 11;
+          `}
+          onClick={signinClick}
+        />
+      </HeaderWrapper>
+    </Header>
+  </HomeWrapper>
+);
 
 HomeApresentation.propTypes = {
   signinClick: PropTypes.func.isRequired,
-  signupClick: PropTypes.func.isRequired,
+  openNavigation: PropTypes.func.isRequired
 };
 
 export default HomeApresentation;

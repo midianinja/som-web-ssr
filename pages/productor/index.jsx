@@ -1,3 +1,4 @@
+import React from 'react';
 import ProductorTemplate from '../../components/templates/productor/productor';
 
 /**
