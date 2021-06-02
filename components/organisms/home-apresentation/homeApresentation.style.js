@@ -7,6 +7,7 @@ export const HomeWrapper = styled.section`
   width: 100%;
   align-items: center;
 
+
   height: 200vh;
   @media (min-width: 1024px) {
     background-size: cover;
