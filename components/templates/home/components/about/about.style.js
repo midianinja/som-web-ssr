@@ -54,7 +54,7 @@ export const Grid = styled.div`
   width: 72vw;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(26, 6vw);
+  grid-template-rows: repeat(20, 6vw);
   gap: 15px;
 
   margin-left: auto;
