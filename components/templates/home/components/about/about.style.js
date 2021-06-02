@@ -1,97 +1,290 @@
 import styled from 'styled-components';
-import { white, purple, black } from '../../../../../settings/colors';
-
-const zindex = 10;
+import { black, transparent, white } from '../../../../../settings/colors';
 
 export const AboutSection = styled.section`
-  position: relative;
-  background-color: ${purple};
-  padding: 30px;
-  padding-bottom: 75px;
-  padding-top: 75px;
+  background-color: ${white};
+  padding-bottom: 122px;
+  padding-top: 122px;
+  text-align: center;
 
   @media (min-width: 1024px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row-reverse;
-    padding-bottom: 188px;
   }
 `;
 
 export const Title = styled.h2`
   position: relative;
-  font-size: 60px;
-  color: ${white};
+
+  font-style: normal;
   font-weight: 400;
+  font-size: 56px;
   line-height: 1.1em;
-  text-align: right;
-  z-index: ${zindex + 2};
 
-  @media (min-width: 1024px) {
-    max-width: 280px;
-    margin-left: -80px;
-  }
-`;
-
-export const Iframe = styled.iframe`
-  width: 100%;
-  height: 100%;
+  margin-top: 16px;
 `;
 
 export const Subtitle = styled.h3`
   position: relative;
-  font-size: 26px;
-  color: ${white};
-  font-weight: 200;
+  max-width: 500px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
   line-height: 1.1em;
-  text-align: right;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  z-index: ${zindex + 2};
 
-  @media (min-width: 1024px) {
-    max-width: 280px;
-    margin-left: -80px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 122px;
+  margin-bottom: 8px;
+`;
+
+export const Text = styled.p`
+  max-width: 340px;
+
+  font-weight: 450;
+  font-size: 16px;
+  line-height: 1.1em;
+
+  color: #919191;
+
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+export const Grid = styled.div`
+  width: 72vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(26, 6vw);
+  gap: 15px;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+
+  > div {
+    position: relative;
+    text-align: left;
+
+    border-radius: 8px;
+    background-color: #f1f1f1;
+
+    &.__default {
+      display: flex;
+      align-items: flex-end;
+
+      padding: 51px 40px 80px 40px;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        display: block;
+
+        width: 100%;
+        height: 100%;
+      }
+
+      > h3 {
+        max-width: 420px;
+
+        font-weight: 900;
+        font-size: 36px;
+        line-height: 1.1em;
+        color: #ffffff;
+      }
+    }
+
+    &:nth-child(1) {
+      grid-column-start: 1;
+      grid-column-end: 3;
+
+      grid-row-start: 1;
+      grid-row-end: 5;
+
+      background: linear-gradient(149.62deg, #5451db 14.66%, #52bbb5 50.49%, #51dba9 86.31%);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      gap: 20px;
+
+      padding-left: 6vw;
+
+      > h3 {
+        font-weight: 900;
+        font-size: 48px;
+        color: ${white};
+
+        max-width: 397px;
+
+        > svg {
+          height: 36px;
+          margin-left: 12px;
+        }
+      }
+
+      > img {
+        position: absolute;
+        width: 32%;
+        right: 6vw;
+        bottom: 0;
+      }
+
+      > p {
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 1.2em;
+        color: ${white};
+
+        max-width: 50%;
+      }
+
+      > button {
+        width: 167px;
+        height: 40px;
+
+        border-radius: 32px;
+
+        font-weight: 400;
+        font-size: 16px;
+
+        cursor: pointer;
+
+        background-color: ${white};
+        color: #51bcb4;
+      }
+    }
+
+    &:nth-child(2) {
+      grid-column-start: 1;
+      grid-column-end: 2;
+
+      grid-row-start: 5;
+      grid-row-end: 9;
+
+      background-color: #ffcb16;
+
+      > h3 {
+        color: ${black};
+      }
+    }
+
+    &:nth-child(3) {
+      grid-column-start: 2;
+      grid-column-end: 3;
+
+      grid-row-start: 5;
+      grid-row-end: 11;
+
+      background-color: #f95025;
+
+      align-items: flex-start;
+    }
+
+    &:nth-child(4) {
+      grid-column-start: 2;
+      grid-column-end: 3;
+
+      grid-row-start: 11;
+      grid-row-end: 15;
+
+      background-color: #7735e5;
+    }
+
+    &:nth-child(5) {
+      grid-column-start: 1;
+      grid-column-end: 2;
+
+      grid-row-start: 9;
+      grid-row-end: 15;
+
+      background-color: #ff2d76;
+    }
+
+    &:nth-child(6) {
+      grid-column-start: 1;
+      grid-column-end: 3;
+
+      grid-row-start: 15;
+      grid-row-end: 20;
+
+      background-color: ${transparent};
+      border: solid 1px ${black};
+
+      padding-right: 6vw;
+
+      display: flex;
+      justify-content: flex-end;
+
+      > div {
+        max-width: 40%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        gap: 20px;
+      }
+
+      > div > h3 {
+        font-weight: 900;
+        font-size: 40px;
+        line-height: 1.1em;
+        color: ${black};
+
+        max-width: 367px;
+      }
+
+      > img {
+        position: absolute;
+
+        width: 36%;
+        left: 6vw;
+        bottom: -64px;
+
+        box-shadow: 0px 40px 50px rgba(0, 0, 0, 0.3);
+      }
+
+      > div > p {
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 1.2em;
+        color: ${black};
+      }
+
+      > div > button {
+        width: 167px;
+        height: 40px;
+
+        border-radius: 32px;
+
+        font-weight: 400;
+        font-size: 16px;
+        color: ${white};
+
+        cursor: pointer;
+
+        background-color: ${black};
+      }
+    }
   }
 `;
 
-export const VideoWrapper = styled.div`
-  position: relative;
-  right: -50px;
-  background-color: ${black};
-  background-image: url("/images/lp-video-cover.png");
-  background-size: cover;
-  width: 100%;
-  max-width: 709px;
-  height: calc(65vw - 60px);
-  max-height: 394px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 16px;
-  box-shadow: 0px 50px 80px rgba(0, 0, 0, 0.6);
-  z-index: ${zindex + 1};
-  cursor: pointer;
-  user-select: none;
-`;
-
-export const PlayIcon = styled.img`
-  z-index: ${zindex + 2};
-`;
-
-export const MIcon = styled.img`
-  height: 200vw;
-  max-height: 1018px;
+export const ToggleButton = styled.svg`
   position: absolute;
-  z-index: ${zindex};
-  top: -30px;
-  left: calc(-50% - 37vw);
+  width: 70px;
+  bottom: 31px;
+  right: 45px;
 
-  @media (min-width: 1024px) {
-    left: inherit;
-    top: -10vh;
-    right: -17vw;
+  z-index: 2;
+  transition-duration: 0.5s;
+
+  cursor: pointer;
+
+  &:hover {
+    transform: rotate(45deg);
   }
 `;
-
