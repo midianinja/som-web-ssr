@@ -26,22 +26,21 @@ export const Subtitle = styled.h3`
   position: relative;
   max-width: 500px;
 
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
+  font-weight: 900;
+  font-size: 36px;
   line-height: 1.1em;
 
   margin-left: auto;
   margin-right: auto;
-  margin-top: 122px;
+  margin-top: 170px;
   margin-bottom: 8px;
 `;
 
 export const Text = styled.p`
-  max-width: 340px;
+  max-width: 420px;
 
   font-weight: 450;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.1em;
 
   color: #919191;
@@ -59,7 +58,7 @@ export const Grid = styled.div`
 
   margin-left: auto;
   margin-right: auto;
-  margin-top: 150px;
+  margin-top: 170px;
 
   > div {
     position: relative;
