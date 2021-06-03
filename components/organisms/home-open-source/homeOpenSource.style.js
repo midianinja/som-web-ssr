@@ -2,35 +2,43 @@ import styled from 'styled-components';
 import { white, white50, secondaryBlack } from '../../../settings/colors';
 
 export const Container = styled.section`
+  display: flex;
   background-color: ${secondaryBlack};
-  padding-top: 30px;
-  padding-bottom: 45px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 50px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.45); 
+  box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.45);
 `;
 
 export const Header = styled.header`
-  width: 100%;
+  width: 30%;
   max-width: 420px;
   margin-left: auto;
   margin-right: auto;
-  display: flex;
+`;
+
+export const HeaderText = styled.header`
+  width: 70%;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
   align-items: center;
 `;
 
 export const Figure = styled.img`
   width: 140px;
-  margin-right: 15px;
+  margin-right: 25px;
 `;
 
-export const TextWrapper = styled.div``;
+export const TextWrapper = styled.div`
+  padding: 20px;
+`;
 
 export const Title = styled.h3`
-  font-size: 1.875em;
+  font-size: 26px;
   line-height: 1.2em;
   color: ${white};
   font-weight: 400;
-  text-align: left;
 `;
 
 export const Span = styled.span`
@@ -50,7 +58,6 @@ export const GitHubIcon = styled.img`
 `;
 
 export const buttonStyle = `
-  display: block;
   width: 100%;
   max-width: 420px;
   margin-left: auto;

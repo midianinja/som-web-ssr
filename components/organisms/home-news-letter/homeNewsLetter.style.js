@@ -7,13 +7,29 @@ export const Footer = styled.footer`
 `;
 
 export const Content = styled.div`
+  display: flex;
   width: 100%;
-  max-width: 768px;
+  // max-width: 768px;
   margin-left: auto;
   margin-right: auto;
+  justify-content: space-around;
 `;
 
-export const SocialList = styled.div``;
+export const LogoContainer = styled.div`
+  width: 30%;
+  width: 60px;
+  height: 18px;
+  padding-left: 30px;
+`;
+
+export const ContentOpenSource = styled.div`
+  padding: 50px;
+
+`;
+
+export const SocialList = styled.div`
+  padding: 30px;
+`;
 
 export const Social = styled.a`
   & + & {
@@ -26,10 +42,9 @@ export const SocialIcon = styled.img`
   height: 35px;
 `;
 
-export const FormWrapper = styled.form`
+export const FormWrapper = styled.div`
   display: grid;
   gap: 20px;
-  margin-bottom: 30px;
 `;
 
 export const Logo = styled.img`

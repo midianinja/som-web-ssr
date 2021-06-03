@@ -1,9 +1,10 @@
 import React from 'react';
 import NewsletterInput from '../../atoms/newsletter-input/NewsletterInput';
+import HomeOpenSource from '../home-open-source/homeOpenSource';
 import {
   Footer, Content, SocialList, Social,
   SocialIcon, FormWrapper, Title, Text,
-  Logo,
+  Logo, ContentOpenSource, LogoContainer
 } from './homeNewsLetter.style';
 
 /**
@@ -13,9 +14,15 @@ import {
  */
 const NewsLetter = () => (
   <Footer>
+     <ContentOpenSource>
+        <HomeOpenSource />
+      </ContentOpenSource>
     <Content>
-      <FormWrapper>
+      <LogoContainer>
         <Logo src="/images/logo-black.svg" alt="" />
+      </LogoContainer>
+
+      <FormWrapper>
         <Title>
           Não paramos por aqui 🔥
         </Title>
@@ -25,7 +32,6 @@ const NewsLetter = () => (
         <NewsletterInput
           placeholder="Insira seu e-mail"
         />
-      </FormWrapper>
       <SocialList>
         <Social href="https://www.facebook.com/sompontovc">
           <SocialIcon
@@ -46,6 +52,8 @@ const NewsLetter = () => (
           />
         </Social>
       </SocialList>
+      </FormWrapper>
+
     </Content>
   </Footer>
 );
