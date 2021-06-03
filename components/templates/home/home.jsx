@@ -54,10 +54,10 @@ const Home = () => {
           });
         }}
       />
-      <DashBoard/>
+      <DashBoard />
       <About communityUsers={communityUsers} />
       <HowItWorks />
-      <NewsLetter/>
+      <NewsLetter />
     </Page>
   );
 };

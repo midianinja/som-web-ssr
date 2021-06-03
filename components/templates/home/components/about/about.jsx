@@ -88,7 +88,7 @@ const About = () => (
         </h3>
         <p>{aboutCard[0].description}</p>
         <button>{aboutCard[0].action}</button>
-        <img alt="" src="/images/som-example.png " />
+        <img alt="" src="/images/home/som-example.png" />
       </div>
       <div className="__default">
         <h3>{aboutCard[1].title}</h3>
@@ -160,7 +160,7 @@ const About = () => (
           <p>{aboutCard[5].description}</p>
           <button>{aboutCard[5].action}</button>
         </div>
-        <img alt="" src="/images/ajude-a-cena.png " />
+        <img alt="" src="/images/home/ajude-a-cena.png " />
       </div>
     </Grid>
   </AboutSection>

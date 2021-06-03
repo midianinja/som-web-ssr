@@ -1,5 +1,6 @@
 import React from 'react';
-import { Section, Grid, Title } from './howItWorks.style';
+import HowItsWorkCard from '../../../../molecules/how-it-works/howItWorks';
+import { Section, Grid, Title, IDAContent } from './howItWorks.style';
 
 const HowItWorks = () => (
   <Section id="how-it-works">
@@ -43,14 +44,35 @@ const HowItWorks = () => (
     </header>
     <Grid>
       <div></div>
-      <div></div>
-      <div></div>
+      <div>
+        <img alt="" src="/images/home/how-it-works-1-1.png" />
+      </div>
+      <div>
+        <img alt="" src="/images/home/how-it-works-2-1.png" />
+      </div>
       <div></div>
       <div></div>
       <div></div>
       <div></div>
       <div></div>
     </Grid>
+
+    <IDAContent>
+      <HowItsWorkCard
+        title="Conta IDA"
+        description="Com o login IDA você tem acesso ao SOM e a todo universo NINJA"
+      />
+      <HowItsWorkCard
+        iconNumber={1}
+        title="Tenha personalidade"
+        description="Customize seu perfil, suba suas músicas, conte sua história!"
+      />
+      <HowItsWorkCard
+        iconNumber={2}
+        title="Oportunidades"
+        description="Vagas em shows e festivais, aulas e oficinas, editais e muito mais"
+      />
+    </IDAContent>
   </Section>
 );
 

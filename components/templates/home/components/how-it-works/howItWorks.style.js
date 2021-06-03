@@ -34,6 +34,47 @@ export const Grid = styled.div`
   > div:nth-child(3),
   > div:nth-child(6),
   > div:nth-child(7) {
+    position: relative;
     background-color: #692fcc;
+    background-size: cover;
   }
+
+  > div:nth-child(2) {
+    background-image: url('/images/home/how-it-works-1.png');
+
+    > img {
+      width: 130%;
+      position: absolute;
+
+      top: 4vw;
+      right: 0;
+    }
+  }
+
+  > div:nth-child(3) {
+    background-image: url('/images/home/how-it-works-2.png');
+
+    > img {
+      height: 100%;
+      position: absolute;
+
+      top: 0;
+      right: 0;
+    }
+  }
+
+  > div:nth-child(6) {
+    background-image: url('/images/home/how-it-works-3.png');
+  }
+
+  > div:nth-child(7) {
+    background-image: url('/images/home/how-it-works-4.png');
+  }
+`;
+
+export const IDAContent = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 144px;
+  gap: 13px;
 `;

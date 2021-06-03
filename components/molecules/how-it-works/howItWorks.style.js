@@ -1,69 +1,36 @@
 import styled from 'styled-components';
-import { black15, white } from '../../../settings/colors';
+import { black, white } from '../../../settings/colors';
 
 export const Card = styled.div`
-  display: inline-block;
-  width: 250px;
-  border-radius: 20px;
-  overflow: hidden;
-  vertical-align: top;
-
-  & + & {
-    margin-left: 15px;
-  }
-`;
-
-export const IconWrapper = styled.div`
-  position: relative;
-  display: flex;
+  display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 150px;
+  justify-content: space-between;
+  width: 311px;
+  border-radius: 20px;
+  padding: 40px 30px;
+  background-color: ${black};
+  text-align: center;
 
-  :before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: rgba(79, 79, 79, 0.7);
-    filter: blur(65px);
+  svg.fit {
+    position: relative;
+    top: 23px;
+    left: 12px;
   }
-`;
-
-export const Icon = styled.img`
-  width: 75px;
-  z-index: 11;
 `;
 
 export const Content = styled.div`
   position: relative;
-  background-color: ${white};
-  height: 150px;
-  padding: 20px;
-  padding-top: 30px;
   text-align: center;
 
-  @media (min-width: 1024px) {
-    height: 165px;
-  }
+  margin-top: 20px;
 `;
 
 export const Title = styled.h3`
   font-weight: 400;
   font-size: 1.2857142857em;
   margin-bottom: 15px;
-`;
-
-export const Number = styled.span`
-  position: absolute;
-  font-size: 1.875em;
-  font-weight: 700;
-  color: ${black15};
-  top: 15px;
-  right: 15px;
+  color: ${white};
 `;
 
 export const Description = styled.p`
@@ -71,4 +38,5 @@ export const Description = styled.p`
   font-weight: 300;
   line-height: 1.5384615385em;
   white-space: normal;
+  color: #909090;
 `;

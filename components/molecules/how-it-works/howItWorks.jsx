@@ -1,18 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, IconWrapper, Icon, Content, Title, Number, Description } from './howItWorks.style';
+import { Card, Content, Title, Description } from './howItWorks.style';
+import { icons } from './howItWorks.collection';
 
 /**
  * function that render How Its Work Card Card React Component
  * @param {object} props component props
  * @returns contains HowItsWorkCard Component
  */
-const HowItsWorkCard = ({ icon, title, number, description }) => {
+const HowItsWorkCard = ({ iconNumber, title, description }) => {
   return (
     <Card>
-      <IconWrapper>
-        <Icon src={icon} alt={title} />
-      </IconWrapper>
+      {icons[iconNumber]}
       <Content>
         <Title>{title}</Title>
         <Description>{description}</Description>
@@ -22,10 +21,13 @@ const HowItsWorkCard = ({ icon, title, number, description }) => {
 };
 
 HowItsWorkCard.propTypes = {
-  icon: PropTypes.string.isRequired,
+  iconNumber: PropTypes.number,
   title: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired
+};
+
+HowItsWorkCard.defaultProps = {
+  iconNumber: 0
 };
 
 export default HowItsWorkCard;
