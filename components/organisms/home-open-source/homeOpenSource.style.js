@@ -2,31 +2,34 @@ import styled from 'styled-components';
 import { white, white50, secondaryBlack } from '../../../settings/colors';
 
 export const Container = styled.section`
+  position: center;
   display: flex;
   background-color: ${secondaryBlack};
-  padding: 50px;
+  padding: 60px;
   border-radius: 8px;
   -webkit-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.45); 
   box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.45);
+  justify-content: center;
+  width: 960px;
+  height: 346px;
+  flex-wrap: wrap;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const Header = styled.header`
-  width: 30%;
-  max-width: 420px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 768px;
 `;
 
 export const HeaderText = styled.header`
-  width: 70%;
-  max-width: 420px;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
+  max-width: 768px;
+
 `;
 
 export const Figure = styled.img`
   width: 140px;
+  height: 180px;
   margin-right: 25px;
 `;
 
@@ -35,7 +38,7 @@ export const TextWrapper = styled.div`
 `;
 
 export const Title = styled.h3`
-  font-size: 26px;
+  font-size: 36px;
   line-height: 1.2em;
   color: ${white};
   font-weight: 400;

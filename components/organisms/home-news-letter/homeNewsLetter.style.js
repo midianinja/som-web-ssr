@@ -9,7 +9,7 @@ export const Footer = styled.footer`
 export const Content = styled.div`
   display: flex;
   width: 100%;
-  // max-width: 768px;
+  max-width: 768px;
   margin-left: auto;
   margin-right: auto;
   justify-content: space-around;
