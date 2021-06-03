@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Store from '../../../store/Store';
 import Apresentation from '../../organisms/home-apresentation/homeApresentation';
+import NewsLetter from '../../organisms/home-news-letter/homeNewsLetter';
 import About from './components/about/about';
 import HowItWorks from './components/how-it-works/howItWorks';
 import { init } from './home.controller';
@@ -53,6 +54,7 @@ const Home = () => {
       />
       <About communityUsers={communityUsers} />
       <HowItWorks />
+      <NewsLetter/>
     </Page>
   );
 };

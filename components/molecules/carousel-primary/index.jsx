@@ -7,6 +7,14 @@ import 'react-awesome-slider/dist/styles.css';
 import 'react-alice-carousel/lib/alice-carousel.css';
 
 
+import {
+  AwesomeSliderContent, AwesomeSliderContent1,
+  AwesomeSliderContent3, AwesomeSliderContentPai,
+  AwesomeSliderContent4, AwesomeSliderContent5, awesomeSLiderStyle,
+  AliceCarouselStyle, TextOportunidades, AliceCarouselBtn, Thumb
+} from './styles'
+
+
 const handleDragStart = (e) => e.preventDefault();
 
 const items = [
@@ -30,53 +38,12 @@ const items = [
 
   </div>,
 ];
-// <img src='/images/djonga2.png' onDragStart={handleDragStart} />,
-// <img src='/images/lp-video-cover.png' onDragStart={handleDragStart} />,
-// <img src='/images/20years-cover.png' onDragStart={handleDragStart} />,
 
 const responsive = {
   0: { items: 1 },
   568: { items: 2 },
   1024: { items: 3 },
 };
-
-const onInitialized = (e) => {
-  console.debug(`Start position(activeIndex) on init: ${e.item}. Event:`, e);
-};
-
-const onSlideChange = (e) => {
-  console.debug(`Item's position before a change: ${e.item}. Event:`, e);
-};
-
-const onSlideChanged = (e) => {
-  console.debug(`Item's position after changes: ${e.item}. Event:`, e);
-};
-
-const onResized = (e) => {
-  console.debug(`Item's position after resize: ${e.item}. Event:`, e);
-};
-
-const slideNext = () => {
-  if (!thumbAnimation && thumbIndex < thumbs.length - 1) {
-    setThumbAnimation(true);
-    setThumbIndex(thumbIndex + 1);
-  }
-};
-
-const slidePrev = () => {
-  if (!thumbAnimation && thumbIndex > 0) {
-    setThumbAnimation(true);
-    setThumbIndex(thumbIndex - 1);
-  }
-};
-
-
-import {
-  AwesomeSliderContent, AwesomeSliderContent1,
-  AwesomeSliderContent3, AwesomeSliderContentPai,
-  AwesomeSliderContent4, AwesomeSliderContent5, awesomeSLiderStyle,
-  AliceCarouselStyle, TextOportunidades, AliceCarouselBtn, Thumb
-} from './styles'
 
 const thumbItems = (items, [setThumbIndex, setThumbAnimation]) => {
   return items.map((item, i) => (
@@ -122,14 +89,6 @@ export const Slider = () => {
     }
   };
 
-  const syncThumbs = (e) => {
-    setThumbIndex(e.item);
-    setThumbAnimation(false);
-
-    if (!mainAnimation) {
-      setMainIndex(e.item);
-    }
-  };
   return (
     <>
       <AwesomeSliderContentPai>
@@ -154,7 +113,6 @@ export const Slider = () => {
         <AwesomeSliderContent1>
           <TextOportunidades> Ultimas oportunidades adicionadas </TextOportunidades>
           <Thumb>
-
             <AliceCarousel
               activeIndex={mainIndex}
               items={items}
