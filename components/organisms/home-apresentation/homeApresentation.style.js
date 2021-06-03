@@ -6,10 +6,6 @@ export const HomeWrapper = styled.section`
   position: relative;
   width: 100%;
   align-items: center;
-
-  @media (min-width: 1024px) {
-    background-size: cover;
-  }
 `;
 
 export const BurgerIcon = styled.svg`

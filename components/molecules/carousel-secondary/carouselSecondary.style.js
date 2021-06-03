@@ -10,6 +10,8 @@ export const AwesomeSliderContentPai = styled.div `
   flex-direction: column;
   justify-content: space-around;
   height: 200%;
+  padding: 20px;
+  margin-bottom: 30px;
 
 
 `
@@ -55,11 +57,7 @@ export const AwesomeSliderContent5 = styled.div `
 
 `
 
-export const awesomeSLiderStyle = `
-  width: 961px;
-  height: 576.12px;
 
-  `;
 
 export const AliceCarouselStyle = `
       position: center;

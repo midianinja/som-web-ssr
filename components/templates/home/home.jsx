@@ -4,8 +4,10 @@ import Apresentation from '../../organisms/home-apresentation/homeApresentation'
 import NewsLetter from '../../organisms/home-news-letter/homeNewsLetter';
 import About from './components/about/about';
 import HowItWorks from './components/how-it-works/howItWorks';
+
 import { init } from './home.controller';
 import { Page } from './home.style';
+import DashBoard from './components/dashboard/dashboard';
 
 /**
  * This contains the Home Page
@@ -52,6 +54,7 @@ const Home = () => {
           });
         }}
       />
+      <DashBoard/>
       <About communityUsers={communityUsers} />
       <HowItWorks />
       <NewsLetter/>

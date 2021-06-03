@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-
-import AwesomeSlider from 'react-awesome-slider';
 import AliceCarousel from 'react-alice-carousel';
 
-import 'react-awesome-slider/dist/styles.css';
 import 'react-alice-carousel/lib/alice-carousel.css';
+
 
 
 import {
@@ -12,7 +10,7 @@ import {
   AwesomeSliderContent3, AwesomeSliderContentPai,
   AwesomeSliderContent4, AwesomeSliderContent5, awesomeSLiderStyle,
   AliceCarouselStyle, TextOportunidades, AliceCarouselBtn, Thumb
-} from './styles'
+} from './carouselSecondary.style'
 
 
 const handleDragStart = (e) => e.preventDefault();
@@ -53,7 +51,7 @@ const thumbItems = (items, [setThumbIndex, setThumbAnimation]) => {
   ));
 };
 
-export const Slider = () => {
+export const CarouselSecondary = () => {
   const [mainIndex, setMainIndex] = useState(0);
   const [mainAnimation, setMainAnimation] = useState(false);
   const [thumbIndex, setThumbIndex] = useState(0);
@@ -91,26 +89,8 @@ export const Slider = () => {
 
   return (
     <>
-      <AwesomeSliderContentPai>
+
         <AwesomeSliderContent>
-          <AwesomeSlider
-            customStyle={awesomeSLiderStyle}
-            media={[
-              {
-                source: '/images/Group 461.svg',
-              },
-              {
-                source: '/images/Rectangle 137.svg',
-              },
-              {
-                source: '/images/mapa 1.png',
-              },
-            ]}
-
-          />
-        </AwesomeSliderContent>
-
-        <AwesomeSliderContent1>
           <TextOportunidades> Ultimas oportunidades adicionadas </TextOportunidades>
           <Thumb>
             <AliceCarousel
@@ -126,40 +106,8 @@ export const Slider = () => {
             />
             <AliceCarouselBtn className="btn-prev" onClick={slidePrev}></AliceCarouselBtn>
             <AliceCarouselBtn className="btn-next" onClick={slideNext}></AliceCarouselBtn>
-          </Thumb>
-
-        </AwesomeSliderContent1>
-        <AwesomeSliderContent3>
-          <AliceCarousel
-            items={items}
-            responsive={responsive}
-            controlsStrategy="alternate"
-            style={AliceCarouselStyle}
-
-
-          />
-        </AwesomeSliderContent3>
-        <AwesomeSliderContent4>
-          <AliceCarousel
-            items={items}
-            responsive={responsive}
-            controlsStrategy="alternate"
-            style={AliceCarouselStyle}
-          />
-        </AwesomeSliderContent4>
-
-        <AwesomeSliderContent5>
-          <AliceCarousel
-            items={items}
-            responsive={responsive}
-            controlsStrategy="alternate"
-            style={AliceCarouselStyle}
-
-
-          />
-        </AwesomeSliderContent5>
-
-      </AwesomeSliderContentPai>
+          </Thumb>       
+      </AwesomeSliderContent>
 
     </>
   )

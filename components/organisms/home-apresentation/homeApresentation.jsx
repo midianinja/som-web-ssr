@@ -8,7 +8,6 @@ import {
   SmallLogo,
   BurgerIcon
 } from './homeApresentation.style';
-import { Slider } from '../../molecules/carousel-primary/index'
 
 /**
  * This contains the Home apresentation section
@@ -38,7 +37,6 @@ const HomeApresentation = ({ signinClick, openNavigation }) => (
         />
       </HeaderWrapper>
     </Header>
-    <Slider/>
   </HomeWrapper>
 );
 
