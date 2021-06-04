@@ -33,7 +33,6 @@
     "prettier": "^2.2.1",
     "react": "17.0.1",
     "react-alice-carousel": "^2.5.1",
-    "react-awesome-slider": "^4.1.0",
     "react-dom": "17.0.1",
     "styled-components": "^5.2.1",
     "vanilla-masker": "^1.2.0"
