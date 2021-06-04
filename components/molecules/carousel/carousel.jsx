@@ -3,24 +3,21 @@ import AliceCarousel from 'react-alice-carousel';
 
 import {
   AwesomeSliderContent,
-} from './carouselSecondary.style'
+} from './carousel.style'
 
 const items = [
   <div className="item" data-value="1">
-    <img style={{width: 360, height: 360}} src='/images/Group 473.svg'  />
+    <img style={{width: 360, height: 360}} src='/images/Group 467.svg'  />
   </div>,
   <div className="item" data-value="2">
-    <img style={{width: 360, height: 360}} src='/images/Group 504.svg'  />
+    <img style={{width: 360, height: 360}} src='/images/Group 498.svg'  />
   </div>,
   <div className="item" data-value="3">
-    <img style={{width: 360, height: 360}} src='/images/Group 503.svg'  />
+    <img style={{width: 360, height: 360}} src='/images/Group 499.svg'  />
   </div>,
-  // <div className="item" data-value="4">
-  //   <img style={{width: 360, height: 360}} src='/images/Group 467.svg'  />
-  // </div>,
-  // <div className="item" data-value="5">
-  //   <img style={{width: 360, height: 360}} src='/images/Group 498.svg'  />
-  // </div>,
+  <div className="item" data-value="4">
+    <img style={{width: 360, height: 360}} src='/images/Group 500.svg'  />
+  </div>,
 ];
 
 const responsive = {
@@ -31,8 +28,7 @@ const responsive = {
   // 2160: { items: 5},
 };
 
-export const CarouselSecondary = () => {
-  
+export const Carousel = () => {
   return (
     <>
         <AwesomeSliderContent>

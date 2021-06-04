@@ -1,24 +1,29 @@
-import AwesomeSlider from 'react-awesome-slider';
-import 'react-awesome-slider/dist/styles.css';
+import React from 'react';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+import { CarouselContent } from './carouselPrimary.style';
 
-import {awesomeSLiderStyle} from './carouselPrimary.style'
-
-export const CarouselPrimary = () => {
-    return (
-        <AwesomeSlider
-            customStyle={awesomeSLiderStyle}
-            media={[
-                {
-                    source: '/images/Group 461.svg',
-                },
-                {
-                    source: '/images/Rectangle 137.svg',
-                },
-                {
-                    source: '/images/mapa 1.png',
-                },
-            ]}
-
-        />
-    )
-}
+const items = [
+    <div className="item" data-value="1">
+        <img src='/images/Group 461.svg'></img>
+    </div>,
+    <div className="item" data-value="2">
+        <img src='/images/Group 461.svg'></img>
+    </div>,
+    <div className="item" data-value="2">
+        <img src='/images/Group 461.svg'></img>
+</div>,
+];
+export const CarouselPrimary = () => (
+    <CarouselContent>
+        <AliceCarousel
+        // disableDotsControls
+        paddingLeft
+        paddingRight
+        disableButtonsControls
+            mouseTracking
+            items={items}
+            />
+    </CarouselContent>
+    
+);
