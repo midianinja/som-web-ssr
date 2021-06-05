@@ -69,7 +69,9 @@ export const Grid = styled.div`
 
     &.__default {
       display: flex;
-      align-items: flex-end;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
 
       padding: 51px 40px 80px 40px;
 
@@ -169,18 +171,80 @@ export const Grid = styled.div`
       > h3 {
         color: ${black};
       }
+
+      > p {
+        z-index: 1;
+
+        font-weight: 450;
+        font-size: 20px;
+        line-height: 1.1em;
+
+        margin-top: 16px;
+        margin-bottom: 8px;
+        max-width: 480px;
+        color: ${black};
+
+        overflow-y: hidden;
+
+        transition-duration: 0.2s;
+
+        max-height: ${({ open }) => (open === 'yellow' ? '100vh' : '0px')};
+      }
     }
 
     &:nth-child(3) {
+      justify-content: flex-start;
+
+      overflow-y: hidden;
+
       grid-column-start: 2;
       grid-column-end: 3;
 
       grid-row-start: 5;
       grid-row-end: 11;
 
-      background-color: #f95025;
 
-      align-items: flex-start;
+      background-image: url('/images/home/about-1.png');
+      background-position: top center;
+      background-size: cover;
+
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        display: block;
+        width: 100%;
+        height: 200%;
+
+        transition-duration: 0.3s;
+        background: linear-gradient(180deg, #f95025 50%, rgba(249, 80, 37, 0) 100%);
+        transform: translateY(${({ open }) => (open === 'orange' ? '50%' : 0)});
+      }
+
+      > h3 {
+        z-index: 1;
+      }
+
+      > p {
+        z-index: 1;
+
+        font-weight: 450;
+        font-size: 20px;
+        line-height: 1.1em;
+
+        margin-top: 16px;
+        margin-bottom: 8px;
+        max-width: 480px;
+
+        color: ${white};
+        overflow-y: hidden;
+
+        transition-duration: 0.2s;
+
+        max-height: ${({ open }) => (open === 'orange' ? '100vh' : '0px')};
+      }
     }
 
     &:nth-child(4) {
@@ -191,16 +255,82 @@ export const Grid = styled.div`
       grid-row-end: 15;
 
       background-color: #7735e5;
+
+      > p {
+        z-index: 1;
+
+        font-weight: 450;
+        font-size: 20px;
+        line-height: 1.1em;
+
+        margin-top: 16px;
+        margin-bottom: 8px;
+        max-width: 480px;
+
+        color: ${white};
+        overflow-y: hidden;
+
+        transition-duration: 0.2s;
+
+        max-height: ${({ open }) => (open === 'purple' ? '100vh' : '0px')};
+      }
     }
 
     &:nth-child(5) {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+
+      overflow-y: hidden;
+
       grid-column-start: 1;
       grid-column-end: 2;
 
       grid-row-start: 9;
       grid-row-end: 15;
 
-      background-color: #ff2d76;
+      background-image: url('/images/home/about-2.png');
+      background-position: top center;
+      background-size: cover;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        display: block;
+        width: 100%;
+        height: 200%;
+
+        transition-duration: 0.2s;
+        background: linear-gradient(180deg, rgba(255, 45, 118, 0) 0%, #ff2d76 34%);
+
+        transform: translateY(${({ open }) => (open === 'pink' ? '-40%' : 0)});
+      }
+
+      > h3 {
+        z-index: 1;
+      }
+
+      > p {
+        z-index: 1;
+
+        font-weight: 450;
+        font-size: 20px;
+        line-height: 1.1em;
+
+        margin-top: 16px;
+        margin-bottom: 8px;
+        max-width: 480px;
+
+        color: ${white};
+        overflow-y: hidden;
+
+        transition-duration: 0.2s;
+
+        max-height: ${({ open }) => (open === 'pink' ? '100vh' : '0px')};
+      }
     }
 
     &:nth-child(6) {
@@ -242,7 +372,7 @@ export const Grid = styled.div`
 
         width: 36%;
         left: 6vw;
-        bottom: -64px;
+        bottom: -6vw;
 
         box-shadow: 0px 40px 50px rgba(0, 0, 0, 0.3);
       }
@@ -279,11 +409,15 @@ export const ToggleButton = styled.svg`
   right: 45px;
 
   z-index: 2;
-  transition-duration: 0.5s;
+  transition-duration: 0.4s;
 
   cursor: pointer;
 
-  &:hover {
-    transform: rotate(45deg);
-  }
+  ${({ open }) => {
+    if (open) {
+      return `
+        transform: rotate(45deg);
+      `;
+    }
+  }}
 `;
