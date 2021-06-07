@@ -203,7 +203,6 @@ export const Grid = styled.div`
       grid-row-start: 5;
       grid-row-end: 11;
 
-
       background-image: url('/images/home/about-1.png');
       background-position: top center;
       background-size: cover;

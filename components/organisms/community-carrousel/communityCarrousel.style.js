@@ -23,18 +23,20 @@ export const Row = styled.div`
 
 export const CommunityUser = styled.div``;
 
-export const Avatar = styled.img`
+export const Avatar = styled.div`
   display: inline-block;
 
   width: 147px;
   height: 147px;
 
   background-color: #f1f1f1;
-  background-image: url('${({ src }) => src}');
   background-size: cover;
   background-position: center;
 
   border-radius: 50%;
+
+  overflow: hidden;
+  border: solid 1px #f1f1f1;
 `;
 
 export const PlaceholderAvatar = styled.div`

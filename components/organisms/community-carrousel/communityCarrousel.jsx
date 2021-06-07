@@ -19,11 +19,11 @@ import {
  * @param {*} users
  * @returns
  */
-const renderRowUsers = (users, columnNumber) =>
-  users.map(({ id }, index) => (
+const renderRowUsers = (users) =>
+  users.map(({ id }) => (
     <CommunityUser key={id}>
       <LazyLoad placeholder={<PlaceholderAvatar></PlaceholderAvatar>} height={147} offset={500}>
-        <Avatar alt="" src={`https://picsum.photos/id/${columnNumber * 100 + index}/200`} />
+        <Avatar alt="" />
       </LazyLoad>
       <Info>
         <Name>Nome exemplo</Name>
