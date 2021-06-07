@@ -1,39 +1,39 @@
 import React from 'react';
-import { CarouselPrimary } from '../../../../molecules/carousel-primary/carouselPrimary';
-import { CarouselSecondary } from '../../../../molecules/carousel-secondary/carouselSecondary';
-import { Carousel } from '../../../../molecules/carousel/carousel';
+import { CarouselHighlight } from '../../../../molecules/carousel-highlight/carousel-highlight';
+import { CarouselLatest } from '../../../../molecules/carousel-latest/carousel-latest';
+import { CarouselProducers } from '../../../../molecules/carousel-producers/carousel-producers';
+import { CarouselArtists } from '../../../../molecules/carousel-artists/carousel-artists';
+import { CarouselNews } from '../../../../molecules/carousel-news/carousel-news';
+
 import { DashboardContent, CarouselPrimarySection, TextOportunidades, Section } from './dashboard.style';
 
 const DashBoard = () => (
     <DashboardContent>
 
         <CarouselPrimarySection>
-            <CarouselPrimary />
+            <CarouselHighlight />
         </CarouselPrimarySection>
 
 
         <TextOportunidades> Últimas oportunidades adicionadas 🚀 </TextOportunidades>
 
         <Section>
-            <CarouselSecondary />
+            <CarouselLatest />
         </Section>
 
         <TextOportunidades> Oportunidades para artistas 🎸 </TextOportunidades>
         <Section>
-            <Carousel />
-
+            <CarouselArtists />
         </Section>
 
         <TextOportunidades> Oportunidades para produtores 💻 </TextOportunidades>
         <Section>
-            <Carousel />
-
+            <CarouselProducers />
         </Section>
 
         <TextOportunidades> Notícias ✨ </TextOportunidades>
         <Section>
-            <Carousel />
-
+            <CarouselNews />
         </Section>
 
 

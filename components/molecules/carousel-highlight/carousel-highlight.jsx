@@ -1,7 +1,7 @@
 import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import { CarouselContent } from './carouselPrimary.style';
+import { CarouselContent } from './carouselHighlight.style';
 
 const items = [
     <div className="item" data-value="1">
@@ -14,7 +14,7 @@ const items = [
         <img src='/images/Group 461.svg'></img>
 </div>,
 ];
-export const CarouselPrimary = () => (
+export const CarouselHighlight = () => (
     <CarouselContent>
         <AliceCarousel
         // disableDotsControls

@@ -3,7 +3,7 @@ import AliceCarousel from 'react-alice-carousel';
 
 import {
   AwesomeSliderContent,
-} from './carousel.style'
+} from './carousel-producers.style'
 
 const items = [
   <div className="item" data-value="1">
@@ -28,7 +28,7 @@ const responsive = {
   // 2160: { items: 5},
 };
 
-export const Carousel = () => {
+export const CarouselProducers = () => {
   return (
     <>
         <AwesomeSliderContent>
