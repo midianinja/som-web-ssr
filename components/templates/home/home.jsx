@@ -19,6 +19,10 @@ const Home = () => {
   const [communityUsersLoading, setCommunityUsersLoading] = useState([]);
   const [highlightedOportunities, setHighlightedOportunities] = useState([]);
   const [highlightedOportunitiesLoading, setHighlightedOportunitiesLoading] = useState([]);
+  const [productorOportunities, setProductorOportunities] = useState([]);
+  const [productorOportunitiesLoading, setProductorOportunitiesLoading] = useState([]);
+  const [artistOportunities, setArtistOportunities] = useState([]);
+  const [artistOportunitiesLoading, setArtistOportunitiesLoading] = useState([]);
   const [news, setNews] = useState([]);
   const [newsLoading, setNewsLoading] = useState([]);
 
@@ -29,7 +33,11 @@ const Home = () => {
       setHighlightedOportunities,
       setHighlightedOportunitiesLoading,
       setNews,
-      setNewsLoading
+      setNewsLoading,
+      setProductorOportunitiesLoading,
+      setArtistOportunitiesLoading,
+      setProductorOportunities,
+      setArtistOportunities
     });
   }, []);
 
@@ -38,6 +46,10 @@ const Home = () => {
   console.log('highlightedOportunitiesLoading', highlightedOportunitiesLoading);
   console.log('news', news);
   console.log('newsLoading', newsLoading);
+  console.log('productorOportunities', productorOportunities);
+  console.log('productorOportunitiesLoading', productorOportunitiesLoading);
+  console.log('artistOportunities', artistOportunities);
+  console.log('artistOportunitiesLoading', artistOportunitiesLoading);
 
   return (
     <Page>

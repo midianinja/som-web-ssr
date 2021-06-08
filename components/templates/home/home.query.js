@@ -23,3 +23,31 @@ export const ALL_NEWS_QUERY = gql`
     }
   }
 `;
+
+export const LAST_OPORTUNITIES_TO_ARTIST = gql`
+  query allEventsToArtist {
+    allEventsToArtist {
+      id
+      name
+      about
+      photo {
+        mimified
+        original
+      }
+    }
+  }
+`;
+
+export const LAST_OPORTUNITIES_TO_PRODUTOR = gql`
+  query allEventsToProductor {
+    allEventsToProductor {
+      id
+      name
+      about
+      photo {
+        mimified
+        original
+      }
+    }
+  }
+`;

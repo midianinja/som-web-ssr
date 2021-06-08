@@ -24,6 +24,26 @@ const getAllHighlightedOportunities = async ({ setLoading, setHighlightedOportun
  *
  * @param {*} param0
  */
+const getOportunitiesToArtist = async ({ setLoading, setArtistOportunities }) => {
+  const response = await repository.getOportunitiesToArtist();
+  setArtistOportunities(response.data.allEventsToArtist);
+  setLoading(false);
+};
+
+/**
+ *
+ * @param {*} param0
+ */
+const getOportunitiesToProductor = async ({ setLoading, setProductorOportunities }) => {
+  const response = await repository.getOportunitiesToProductor();
+  setProductorOportunities(response.data.allEventsToProductor);
+  setLoading(false);
+};
+
+/**
+ *
+ * @param {*} param0
+ */
 const getNews = async ({ setLoading, setNews }) => {
   const response = await repository.getAllNews();
   setNews(response.data.allNews);
@@ -40,7 +60,11 @@ export const init = ({
   setNewsLoading,
   setCommunityUsers,
   setHighlightedOportunities,
-  setNews
+  setNews,
+  setProductorOportunitiesLoading,
+  setArtistOportunitiesLoading,
+  setProductorOportunities,
+  setArtistOportunities
 }) => {
   getAllCommunityUsers({ setLoading: setHighlightedOportunitiesLoading, setCommunityUsers });
   getAllHighlightedOportunities({
@@ -48,4 +72,9 @@ export const init = ({
     setHighlightedOportunities
   });
   getNews({ setLoading: setNewsLoading, setNews });
+  getOportunitiesToArtist({
+    setLoading: setProductorOportunitiesLoading,
+    setProductorOportunities
+  });
+  getOportunitiesToProductor({ setLoading: setArtistOportunitiesLoading, setArtistOportunities });
 };
