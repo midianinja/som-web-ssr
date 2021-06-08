@@ -43,19 +43,47 @@ const HowItWorks = () => (
       <Title>Como funciona</Title>
     </header>
     <Grid>
-      <div></div>
+      <div className="content">
+        <div>
+          <span className="number">1</span>
+          <h3>Crie sua conta IDA</h3>
+        </div>
+      </div>
       <div>
         <img alt="" src="/images/home/how-it-works-1-1.png" />
       </div>
       <div>
         <img alt="" src="/images/home/how-it-works-2-1.png" />
       </div>
+      <div className="content">
+        <div>
+          <span className="number">2</span>
+          <h3>Preencha seu perfil</h3>
+        </div>
+      </div>
+      <div className="content">
+        <div>
+          <span className="number">3</span>
+          <h3>Aproveite oportunidades</h3>
+        </div>
+      </div>
       <div></div>
       <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      <div className="content">
+        <div>
+          <span className="number">4</span>
+          <h3>Participe da comunidade da Música</h3>
+        </div>
+      </div>
     </Grid>
+
+    <svg viewBox="0 0 1441 3192" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1441 25H539C373.315 25 239 159.315 239 325V480.041C239 559.426 270.464 635.574 326.5 691.804L726 1092.7C782.036 1148.93 813.5 1225.07 813.5 1304.46V1569V1569C813.5 1688.29 716.793 1785 597.5 1785H301C221.471 1785 157 1849.47 157 1929V1929V2137C157 2302.69 291.315 2437 457 2437H719H759C831.902 2437 891 2496.1 891 2569V2569V2867C891 3032.69 756.685 3167 591 3167H0"
+        stroke="white"
+        strokeWidth="50"
+      />
+    </svg>
 
     <IDAContent>
       <HowItsWorkCard

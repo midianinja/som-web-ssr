@@ -2,13 +2,21 @@ import styled from 'styled-components';
 import { white } from '../../../../../settings/colors';
 
 export const Section = styled.section`
+  position: relative;
   background-color: #7735e5;
   padding-top: 143px;
   padding-bottom: 143px;
 
   > header {
     text-align: center;
-    margin-bottom: 143px;
+    margin-bottom: 286px;
+  }
+
+  > svg {
+    position: absolute;
+    z-index: 1;
+    top: 320px;
+    width: 100%;
   }
 `;
 
@@ -30,11 +38,61 @@ export const Grid = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(4, 50vw);
 
+  > div {
+    position: relative;
+    z-index: 2;
+  }
+
+  > div.content {
+    color: ${white};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > div > span {
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 1.2em;
+      letter-spacing: 0.16px;
+    }
+
+    > div > h3 {
+      margin-top: 16px;
+      font-weight: 700;
+      font-size: 48px;
+      line-height: 1.2em;
+      letter-spacing: 0.16px;
+      max-width: 319px;
+    }
+  }
+
+  > div:nth-child(1) > div {
+    position: relative;
+    left: 9%;
+  }
+
+  > div:nth-child(4) > div {
+    position: relative;
+    left: -12%;
+    top: -2%;
+  }
+
+  > div:nth-child(5) > div {
+    position: relative;
+    left: -2%;
+    top: 1%;
+  }
+
+  > div:nth-child(8) > div {
+    position: relative;
+    top: -18%;
+  }
+
   > div:nth-child(2),
   > div:nth-child(3),
   > div:nth-child(6),
   > div:nth-child(7) {
-    position: relative;
     background-color: #692fcc;
     background-size: cover;
   }
@@ -73,8 +131,12 @@ export const Grid = styled.div`
 `;
 
 export const IDAContent = styled.div`
+  position: relative;
+  z-index: 2;
+
   display: flex;
   justify-content: center;
-  margin-top: 144px;
   gap: 13px;
+
+  margin-top: 144px;
 `;
