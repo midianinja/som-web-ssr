@@ -3,11 +3,12 @@ import { black, transparent, white } from '../../../../../settings/colors';
 
 export const AboutSection = styled.section`
   background-color: ${white};
-  padding-bottom: 122px;
-  padding-top: 122px;
+  padding-bottom: 48px;
+  padding-top: 48px;
   text-align: center;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
+    padding-top: 122px;
   }
 `;
 
@@ -16,10 +17,14 @@ export const Title = styled.h2`
 
   font-style: normal;
   font-weight: 400;
-  font-size: 56px;
+  font-size: 30px;
   line-height: 1.1em;
 
   margin-top: 16px;
+
+  @media (min-width: 768px) {
+    font-size: 56px;
+  }
 `;
 
 export const Subtitle = styled.h3`
@@ -27,38 +32,61 @@ export const Subtitle = styled.h3`
   max-width: 500px;
 
   font-weight: 900;
-  font-size: 36px;
+  font-size: 24px;
   line-height: 1.1em;
 
   margin-left: auto;
   margin-right: auto;
-  margin-top: 170px;
+  margin-top: 35px;
   margin-bottom: 8px;
+
+  @media (min-width: 768px) {
+    font-size: 36px;
+    margin-top: 170px;
+  }
 `;
 
 export const Text = styled.p`
   max-width: 420px;
 
   font-weight: 450;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.1em;
 
   color: #919191;
 
   margin-left: auto;
   margin-right: auto;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 export const Grid = styled.div`
-  width: 72vw;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(20, 6vw);
+  display: flex;
+  flex-direction: column;
   gap: 15px;
+
+  padding-left: 16px;
+  padding-right: 16px;
 
   margin-left: auto;
   margin-right: auto;
-  margin-top: 170px;
+  margin-top: 35px;
+
+  @media (min-width: 768px) {
+    display: grid;
+    width: 72vw;
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(20, 6vw);
+
+    margin-top: 170px;
+
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   > div {
     position: relative;
@@ -73,7 +101,24 @@ export const Grid = styled.div`
       align-items: flex-start;
       justify-content: flex-end;
 
-      padding: 51px 40px 80px 40px;
+      padding: 16px;
+      padding-bottom: 80px;
+
+      @media (max-width: 768px) {
+        width: calc(100vw - 32px);
+        min-height: calc(100vw - 32px);
+
+        &.__big {
+          min-height: calc(100vw + 30vw - 32px);
+        }
+      }
+
+      @media (min-width: 768px) {
+        width: auto;
+        max-height: auto;
+
+        padding: 51px 40px 80px 40px;
+      }
 
       &:after {
         content: '';
@@ -88,22 +133,19 @@ export const Grid = styled.div`
       }
 
       > h3 {
-        max-width: 420px;
-
+        max-width: 280px;
         font-weight: 900;
         font-size: 36px;
         line-height: 1.1em;
         color: #ffffff;
+
+        @media (min-width: 768px) {
+          max-width: 420px;
+        }
       }
     }
 
     &:nth-child(1) {
-      grid-column-start: 1;
-      grid-column-end: 3;
-
-      grid-row-start: 1;
-      grid-row-end: 5;
-
       background: linear-gradient(149.62deg, #5451db 14.66%, #52bbb5 50.49%, #51dba9 86.31%);
 
       display: flex;
@@ -113,13 +155,32 @@ export const Grid = styled.div`
       gap: 20px;
 
       padding-left: 6vw;
+      padding-top: 170px;
+      padding-bottom: 30px;
+
+      @media (min-width: 768px) {
+        grid-column-start: 1;
+        grid-column-end: 3;
+
+        grid-row-start: 1;
+        grid-row-end: 5;
+
+        padding-top: 0px;
+        padding-bottom: 0px;
+        width: auto;
+      }
 
       > h3 {
         font-weight: 900;
         font-size: 48px;
+        line-height: 1.2em;
         color: ${white};
 
-        max-width: 397px;
+        max-width: 200px;
+
+        @media (min-width: 767px) {
+          max-width: 397px;
+        }
 
         > svg {
           height: 36px;
@@ -129,9 +190,21 @@ export const Grid = styled.div`
 
       > img {
         position: absolute;
+
         width: 32%;
-        right: 6vw;
-        bottom: 0;
+        min-width: 191px;
+
+        @media (max-width: 767px) {
+          display: none;
+          top: 0;
+        }
+
+        @media (min-width: 768px) {
+          display: block;
+
+          bottom: 0;
+          right: 6vw;
+        }
       }
 
       > p {
@@ -140,7 +213,9 @@ export const Grid = styled.div`
         line-height: 1.2em;
         color: ${white};
 
-        max-width: 50%;
+        @media (min-width: 768px) {
+          max-width: 50%;
+        }
       }
 
       > button {
@@ -160,12 +235,6 @@ export const Grid = styled.div`
     }
 
     &:nth-child(2) {
-      grid-column-start: 1;
-      grid-column-end: 2;
-
-      grid-row-start: 5;
-      grid-row-end: 9;
-
       background-color: #ffcb16;
 
       > h3 {
@@ -190,18 +259,20 @@ export const Grid = styled.div`
 
         max-height: ${({ open }) => (open === 'yellow' ? '100vh' : '0px')};
       }
+
+      @media (min-width: 768px) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+
+        grid-row-start: 5;
+        grid-row-end: 9;
+      }
     }
 
     &:nth-child(3) {
       justify-content: flex-start;
 
       overflow-y: hidden;
-
-      grid-column-start: 2;
-      grid-column-end: 3;
-
-      grid-row-start: 5;
-      grid-row-end: 11;
 
       background-image: url('/images/home/about-1.png');
       background-position: top center;
@@ -244,15 +315,17 @@ export const Grid = styled.div`
 
         max-height: ${({ open }) => (open === 'orange' ? '100vh' : '0px')};
       }
+
+      @media (min-width: 768px) {
+        grid-column-start: 2;
+        grid-column-end: 3;
+
+        grid-row-start: 5;
+        grid-row-end: 11;
+      }
     }
 
     &:nth-child(4) {
-      grid-column-start: 2;
-      grid-column-end: 3;
-
-      grid-row-start: 11;
-      grid-row-end: 15;
-
       background-color: #7735e5;
 
       > p {
@@ -273,6 +346,14 @@ export const Grid = styled.div`
 
         max-height: ${({ open }) => (open === 'purple' ? '100vh' : '0px')};
       }
+
+      @media (min-width: 768px) {
+        grid-column-start: 2;
+        grid-column-end: 3;
+
+        grid-row-start: 11;
+        grid-row-end: 15;
+      }
     }
 
     &:nth-child(5) {
@@ -281,12 +362,6 @@ export const Grid = styled.div`
       justify-content: flex-end;
 
       overflow-y: hidden;
-
-      grid-column-start: 1;
-      grid-column-end: 2;
-
-      grid-row-start: 9;
-      grid-row-end: 15;
 
       background-image: url('/images/home/about-2.png');
       background-position: top center;
@@ -330,31 +405,51 @@ export const Grid = styled.div`
 
         max-height: ${({ open }) => (open === 'pink' ? '100vh' : '0px')};
       }
+
+      @media (min-width: 768px) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+
+        grid-row-start: 9;
+        grid-row-end: 15;
+      }
     }
 
     &:nth-child(6) {
-      grid-column-start: 1;
-      grid-column-end: 3;
-
-      grid-row-start: 15;
-      grid-row-end: 20;
-
       background-color: ${transparent};
       border: solid 1px ${black};
-
-      padding-right: 6vw;
 
       display: flex;
       justify-content: flex-end;
 
-      > div {
-        max-width: 40%;
+      @media (max-width: 768px) {
+        flex-direction: column;
+        margin-top: 90px;
+        padding: 30px;
+      }
 
+      @media (min-width: 768px) {
+        grid-column-start: 1;
+        grid-column-end: 3;
+
+        grid-row-start: 15;
+        grid-row-end: 20;
+
+        padding-right: 6vw;
+      }
+
+      > div {
         display: flex;
         flex-direction: column;
         justify-content: center;
-
+        padding-top: 300px;
         gap: 20px;
+
+        @media (min-width: 768px) {
+          padding-top: 0px;
+          max-width: 40%;
+          flex-direction: column;
+        }
       }
 
       > div > h3 {
@@ -368,12 +463,17 @@ export const Grid = styled.div`
 
       > img {
         position: absolute;
-
-        width: 36%;
-        left: 6vw;
-        bottom: -6vw;
+        width: calc(100% - 60px);
+        top: -80px;
 
         box-shadow: 0px 40px 50px rgba(0, 0, 0, 0.3);
+
+        @media (min-width: 768px) {
+          width: 36%;
+          top: auto;
+          left: 6vw;
+          bottom: -6vw;
+        }
       }
 
       > div > p {

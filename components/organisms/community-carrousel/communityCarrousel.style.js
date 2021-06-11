@@ -2,9 +2,13 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   position: relative;
+  margin-top: 37px;
+  margin-bottom: 37px;
 
-  margin-top: 52px;
-  margin-bottom: 52px;
+  @media (min-width: 768px) {
+    margin-top: 52px;
+    margin-bottom: 52px;
+  }
 `;
 
 export const RowsWrapper = styled.div`
@@ -14,10 +18,18 @@ export const RowsWrapper = styled.div`
 
 export const Row = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 8px;
 
   &:nth-child(even) {
-    transform: translateX(72px);
+    transform: translateX(30px);
+  }
+
+  @media (min-width: 768px) {
+    gap: 16px;
+
+    &:nth-child(even) {
+      transform: translateX(72px);
+    }
   }
 `;
 
@@ -26,8 +38,8 @@ export const CommunityUser = styled.div``;
 export const Avatar = styled.div`
   display: inline-block;
 
-  width: 147px;
-  height: 147px;
+  width: 71px;
+  height: 71px;
 
   background-color: #f1f1f1;
   background-size: cover;
@@ -37,19 +49,29 @@ export const Avatar = styled.div`
 
   overflow: hidden;
   border: solid 1px #f1f1f1;
+
+  @media (min-width: 768px) {
+    width: 147px;
+    height: 147px;
+  }
 `;
 
 export const PlaceholderAvatar = styled.div`
   display: inline-block;
 
-  width: 147px;
-  height: 147px;
+  width: 71px;
+  height: 71px;
 
   background-color: #f1f1f1;
   background-size: cover;
   background-position: center;
 
   border-radius: 50%;
+
+  @media (min-width: 768px) {
+    width: 147px;
+    height: 147px;
+  }
 `;
 
 export const Info = styled.div`
@@ -70,20 +92,28 @@ export const IconWrapper = styled.div`
     display: flex;
     align-items: center;
 
-    left: 122px;
+    left: 16px;
     top: 0;
 
     height: 100%;
+
+    @media (min-width: 768px) {
+      left: 122px;
+    }
   }
 
   &:last-child {
     display: flex;
     align-items: center;
 
-    right: 122px;
+    right: 16px;
     top: 0;
 
     height: 100%;
+
+    @media (min-width: 768px) {
+      right: 122px;
+    }
   }
 
   > svg {

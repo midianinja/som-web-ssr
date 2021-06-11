@@ -2,29 +2,60 @@ import styled from 'styled-components';
 import { white, white50, secondaryBlack } from '../../../settings/colors';
 
 export const Container = styled.section`
-  position: center;
   display: flex;
   background-color: ${secondaryBlack};
-  padding: 60px;
-  border-radius: 8px;
-  -webkit-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.45); 
-  box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.45);
-  justify-content: center;
-  width: 960px;
-  height: 346px;
+  -webkit-box-shadow: 0px 10px 21px -3px rgba(0, 0, 0, 0.45);
+  box-shadow: 0px 10px 21px -3px rgba(0, 0, 0, 0.45);
+  width: 100%;
+  max-width: 960px;
   flex-wrap: wrap;
-  align-content: center;
   margin-left: auto;
   margin-right: auto;
+  padding: 30px 15px;
+
+  @media (min-width: 768px) {
+    justify-content: center;
+    padding: 60px;
+    border-radius: 8px;
+    height: 346px;
+  }
 `;
 
 export const Header = styled.header`
   max-width: 768px;
+
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 24px;
+  align-items: center;
+
+  margin-bottom: 24px;
+
+  @media (min-width: 768px) {
+    gap: 40px;
+    margin-bottom: 0px;
+  }
 `;
 
-export const HeaderText = styled.header`
+export const CTA = styled.div`
+  display: none;
   max-width: 768px;
+  margin-top: 11px;
 
+  @media (min-width: 768px) {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    display: block;
+    font-size: 1em; // base 16px
+  }
+`;
+
+export const CTAMobile = styled.div`
+  width: 100%;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
 
 export const Figure = styled.img`
@@ -33,25 +64,28 @@ export const Figure = styled.img`
   margin-right: 25px;
 `;
 
-export const TextWrapper = styled.div`
-  padding: 20px;
-`;
+export const TextWrapper = styled.div``;
 
 export const Title = styled.h3`
   font-size: 36px;
   line-height: 1.2em;
   color: ${white};
-  font-weight: 400;
+  font-weight: 700;
+  margin-top: 11px;
 `;
 
 export const Span = styled.span`
-  font-size: 0.75em;
   font-weight: 300;
+  font-size: 0.857rem; // base 14px
   letter-spacing: 0.16px;
   line-height: 1.5384615385em;
   text-align: left;
   color: ${white50};
   margin-bottom: 5px;
+
+  @media (min-width: 768px) {
+    font-size: 1em; // base 16px
+  }
 `;
 
 export const GitHubIcon = styled.img`
@@ -62,11 +96,13 @@ export const GitHubIcon = styled.img`
 
 export const buttonStyle = `
   width: 100%;
-  max-width: 420px;
   margin-left: auto;
   margin-right: auto;
   height: 38px;
   font-weight: 400;
   font-size: 1em;
-  margin-top: 30px;
+
+  @media (min-width: 768px) {
+    width: 311px;
+  }
 `;

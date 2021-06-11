@@ -9,7 +9,8 @@ import {
   Span,
   GitHubIcon,
   buttonStyle,
-  HeaderText
+  CTA,
+  CTAMobile
 } from './homeOpenSource.style';
 
 /**
@@ -24,12 +25,23 @@ const HomeOpenSource = () => (
         src="/icons/open-source.svg"
         alt="Diminuir as distâncias e democratizar as oportunidades"
       />
-    </Header>
-    <HeaderText>
       <TextWrapper>
         <Span>Além de tudo isso</Span>
         <Title>O Som é Software Livre</Title>
+        <CTA>
+          <PrimaryButton
+            onClick={() => {
+              window.open('https://github.com/midianinja/som-web', '_blank');
+            }}
+            customStyle={buttonStyle}
+            color="darkGray">
+            Contribua no Github
+            <GitHubIcon src="/icons/github.svg" />
+          </PrimaryButton>
+        </CTA>
       </TextWrapper>
+    </Header>
+    <CTAMobile>
       <PrimaryButton
         onClick={() => {
           window.open('https://github.com/midianinja/som-web', '_blank');
@@ -37,10 +49,9 @@ const HomeOpenSource = () => (
         customStyle={buttonStyle}
         color="darkGray">
         Contribua no Github
-          <GitHubIcon src="/icons/github.svg" />
+        <GitHubIcon src="/icons/github.svg" />
       </PrimaryButton>
-    </HeaderText>
-
+    </CTAMobile>
   </Container>
 );
 

@@ -114,7 +114,7 @@ const About = () => {
             />
           </ToggleButton>
         </div>
-        <div className="__default">
+        <div className="__default __big">
           <h3>{aboutCard[2].title}</h3>
           <p>{aboutCard[2].description}</p>
           <ToggleButton
@@ -158,7 +158,7 @@ const About = () => {
             />
           </ToggleButton>
         </div>
-        <div className="__default">
+        <div className="__default __big">
           <h3>{aboutCard[4].title}</h3>
           <p>{aboutCard[4].description}</p>
           <ToggleButton
