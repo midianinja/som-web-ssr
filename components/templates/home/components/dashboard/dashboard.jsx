@@ -8,13 +8,15 @@ import { init } from '../../home.controller';
 
 
 import { DashboardContent, CarouselPrimarySection, TextOportunidades, Section } from './dashboard.style';
+import { getNews } from '../../home.controller';
+import { getAllHighlightedOportunities } from '../../home.controller';
 
 
 const DashBoard = () => {
    
-    const [highlightedOportunities, setHighlightedOportunities] = useState([]);
+    const [highlightedOportunities, setHighlightedOportunities] = useState({});
     // const [highlightedOportunitiesLoading, setHighlightedOportunitiesLoading] = useState([]);
-    // const [news, setNews] = useState([]);
+    const [news, setNews] = useState([]);
     // const [newsLoading, setNewsLoading] = useState([]);
 
 
@@ -23,10 +25,14 @@ const DashBoard = () => {
             // setCommunityUsers,
             // setCommunityUsersLoading,
             setHighlightedOportunities,
-            // setHighlightedOportunitiesLoading,
-            // setNews,
             // setNewsLoading
-        });
+        }),
+        getNews({
+            setNews
+        }),
+        getAllHighlightedOportunities({
+            setHighlightedOportunities
+        })
     }, []);
 
     console.log(highlightedOportunities)
@@ -44,7 +50,7 @@ const DashBoard = () => {
             <TextOportunidades> Últimas oportunidades adicionadas 🚀 </TextOportunidades>
 
             <Section>
-                <CarouselLatest />
+                <CarouselLatest opportunity={news}/>
             </Section>
 
             <TextOportunidades> Oportunidades para artistas 🎸 </TextOportunidades>
@@ -59,7 +65,7 @@ const DashBoard = () => {
 
             <TextOportunidades> Notícias ✨ </TextOportunidades>
             <Section>
-                <CarouselNews />
+                <CarouselNews news={news}/>
             </Section>
 
 
