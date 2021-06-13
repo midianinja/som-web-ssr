@@ -16,7 +16,6 @@ const getAllCommunityUsers = async ({ setLoading, setCommunityUsers }) => {
  */
 export const getAllHighlightedOportunities = async ({ setLoading, setHighlightedOportunities }) => {
   const response = await repository.getAllHighlightedOportunities();
-  console.log("response + ", response);
 
   setHighlightedOportunities(response.data.allHighlightedOportunities);
   setLoading(false);
