@@ -50,7 +50,7 @@ const DashBoard = () => {
             <TextOportunidades> Últimas oportunidades adicionadas 🚀 </TextOportunidades>
 
             <Section>
-                <CarouselLatest opportunity={news}/>
+                <CarouselLatest />
             </Section>
 
             <TextOportunidades> Oportunidades para artistas 🎸 </TextOportunidades>
