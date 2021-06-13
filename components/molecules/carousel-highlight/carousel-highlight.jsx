@@ -30,7 +30,7 @@ export const CarouselHighlight = () => {
     return (
         <CarouselContent>
             {
-                CarouselHighlightItems({allHighlightedOportunities})
+                CarouselHighlightItems({ allHighlightedOportunities })
             }
         </CarouselContent>
 
@@ -39,18 +39,33 @@ export const CarouselHighlight = () => {
 }
 const CarouselHighlightItems = ({ allHighlightedOportunities }) => {
     let itemsToRender;
-    if(allHighlightedOportunities){
+    if (allHighlightedOportunities) {
+        console.log('cai no if', allHighlightedOportunities)
+
         itemsToRender = allHighlightedOportunities.map(item => {
             return (
-                        <AliceCarousel
-                            // disableDotsControls
-                            paddingLeft
-                            paddingRight
-                            disableButtonsControls
-                            mouseTracking
-                            items={item[0].image}
-                        />
-                    )
+                <AliceCarousel
+                    // disableDotsControls
+                    paddingLeft
+                    paddingRight
+                    disableButtonsControls
+                    mouseTracking
+                    items={item[0].image}
+                />
+            )
         });
+    }
+    else {
+        console.log('cai no else')
+        return (
+            <AliceCarousel
+                // disableDotsControls
+                paddingLeft
+                paddingRight
+                disableButtonsControls
+                mouseTracking
+                items={items}
+            />
+        )
     }
 }
