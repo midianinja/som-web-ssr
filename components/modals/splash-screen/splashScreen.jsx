@@ -41,6 +41,7 @@ const SplashScreen = ({ opened, openSOM }) => {
 };
 
 SplashScreen.propTypes = {
+  opened: PropTypes.bool.isRequired,
   openSOM: PropTypes.func.isRequired
 };
 
