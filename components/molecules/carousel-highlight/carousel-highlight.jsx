@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import { getAllHighlightedOportunities } from '../../templates/home/home.controller';
 import { CarouselContent } from './carouselHighlight.style';
+
 
 const items = [
     <div className="item" data-value="1">
@@ -14,12 +16,48 @@ const items = [
         <img src='/images/Group 461.svg'></img>
     </div>,
 ];
+
 export const CarouselHighlight = () => {
-    const [ opportunity ] = useState(null);
-    console.log(opportunity);
+    const [allHighlightedOportunities, setAllHighlightedOportunities] = useState([]);
+    console.log(allHighlightedOportunities);
+
+    useEffect(() => {
+        getAllHighlightedOportunities({
+            setAllHighlightedOportunities
+        })
+    }, []);
 
     return (
-        <CarouselContent id="opportunity">
+        <CarouselContent>
+            {
+                CarouselHighlightItems({ allHighlightedOportunities })
+            }
+        </CarouselContent>
+
+    )
+
+}
+const CarouselHighlightItems = ({ allHighlightedOportunities }) => {
+    let itemsToRender;
+    if (allHighlightedOportunities) {
+        console.log('cai no if', allHighlightedOportunities)
+
+        itemsToRender = allHighlightedOportunities.map(item => {
+            return (
+                <AliceCarousel
+                    // disableDotsControls
+                    paddingLeft
+                    paddingRight
+                    disableButtonsControls
+                    mouseTracking
+                    items={item[0].image}
+                />
+            )
+        });
+    }
+    else {
+        console.log('cai no else')
+        return (
             <AliceCarousel
                 // disableDotsControls
                 paddingLeft
@@ -28,7 +66,6 @@ export const CarouselHighlight = () => {
                 mouseTracking
                 items={items}
             />
-        </CarouselContent>
-
-    );
+        )
+    }
 }

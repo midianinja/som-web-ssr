@@ -4,15 +4,11 @@ export const ALL_HIGHLIGHTED_OPORTUNITIES_QUERY = gql`
   query allHighlightedOportunities {
     allHighlightedOportunities {
       id,
+      image,
       opportunity {
         id,
         name,
-        about,
-        photo {
-          mimified,
-          original,
-          thumbnail
-        }
+        about
       }
     }
   }

@@ -14,8 +14,9 @@ const getAllCommunityUsers = async ({ setLoading, setCommunityUsers }) => {
  *
  * @param {*} param0
  */
-const getAllHighlightedOportunities = async ({ setLoading, setHighlightedOportunities }) => {
+export const getAllHighlightedOportunities = async ({ setLoading, setHighlightedOportunities }) => {
   const response = await repository.getAllHighlightedOportunities();
+
   setHighlightedOportunities(response.data.allHighlightedOportunities);
   setLoading(false);
 };
@@ -44,7 +45,7 @@ const getOportunitiesToProductor = async ({ setLoading, setProductorOportunities
  *
  * @param {*} param0
  */
-const getNews = async ({ setLoading, setNews }) => {
+export const getNews = async ({ setLoading, setNews }) => {
   const response = await repository.getAllNews();
   setNews(response.data.allNews);
   setLoading(false);

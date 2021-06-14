@@ -6,7 +6,7 @@ export const CarouselContent = styled.div`
   margin-top: 50px;
   -webkit-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.45); 
   box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.45);
-  width: 961px;
+  width: 1061px;
   height: 576.12px;
   
 `;
