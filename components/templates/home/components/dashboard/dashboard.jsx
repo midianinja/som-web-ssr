@@ -1,77 +1,65 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { CarouselHighlight } from '../../../../molecules/carousel-highlight/carousel-highlight';
-import { CarouselLatest } from '../../../../molecules/carousel-latest/carousel-latest';
-import { CarouselProducers } from '../../../../molecules/carousel-producers/carousel-producers';
-import { CarouselArtists } from '../../../../molecules/carousel-artists/carousel-artists';
-import { CarouselNews } from '../../../../molecules/carousel-news/carousel-news';
-import { init } from '../../home.controller';
+import React from 'react';
+import CarouselHighlight from '../../../../molecules/carousel-highlight/carousel-highlight';
+import CarouselLatest from '../../../../molecules/carousel-latest/carousel-latest';
+import CarouselProducers from '../../../../molecules/carousel-producers/carousel-producers';
+import CarouselArtists from '../../../../molecules/carousel-artists/carousel-artists';
+import CarouselNews from '../../../../molecules/carousel-news/carousel-news';
 
+import {
+  DashboardContent,
+  CarouselPrimarySection,
+  TextOportunidades,
+  Section
+} from './dashboard.style';
+import { dummyHighlights, dummyOpportunities } from './dummys';
 
-import { DashboardContent, CarouselPrimarySection, TextOportunidades, Section } from './dashboard.style';
-import { getNews } from '../../home.controller';
-import { getAllHighlightedOportunities } from '../../home.controller';
+const DashBoard = () => (
+  <DashboardContent>
+    <CarouselPrimarySection>
+      <CarouselHighlight opportunities={dummyHighlights} />
+    </CarouselPrimarySection>
 
+    <TextOportunidades big>
+      Últimas oportunidades adicionadas{' '}
+      <span role="img" aria-label="ícone de um foquete">
+        🚀
+      </span>
+    </TextOportunidades>
 
-const DashBoard = () => {
-   
-    const [highlightedOportunities, setHighlightedOportunities] = useState({});
-    // const [highlightedOportunitiesLoading, setHighlightedOportunitiesLoading] = useState([]);
-    const [news, setNews] = useState([]);
-    // const [newsLoading, setNewsLoading] = useState([]);
+    <Section>
+      <CarouselLatest opportunities={dummyOpportunities} />
+    </Section>
 
+    <TextOportunidades>
+      Oportunidades para artistas{' '}
+      <span role="img" aria-label="ícone de uma guitarra">
+        🎸
+      </span>
+    </TextOportunidades>
+    <Section>
+      <CarouselArtists opportunities={dummyOpportunities} />
+    </Section>
 
-    useEffect(() => {
-        init({
-            // setCommunityUsers,
-            // setCommunityUsersLoading,
-            setHighlightedOportunities,
-            // setNewsLoading
-        }),
-        getNews({
-            setNews
-        }),
-        getAllHighlightedOportunities({
-            setHighlightedOportunities
-        })
-    }, []);
+    <TextOportunidades>
+      Oportunidades para produtores{' '}
+      <span role="img" aria-label="ícone de um computador">
+        💻
+      </span>
+    </TextOportunidades>
+    <Section>
+      <CarouselProducers opportunities={dummyOpportunities} />
+    </Section>
 
-    console.log(highlightedOportunities)
-
-
-    return (
-        <DashboardContent>
-
-            <CarouselPrimarySection>
-                <CarouselHighlight highlightedOportunities={highlightedOportunities}
-                />
-            </CarouselPrimarySection>
-
-
-            <TextOportunidades> Últimas oportunidades adicionadas 🚀 </TextOportunidades>
-
-            <Section>
-                <CarouselLatest />
-            </Section>
-
-            <TextOportunidades> Oportunidades para artistas 🎸 </TextOportunidades>
-            <Section>
-                <CarouselArtists />
-            </Section>
-
-            <TextOportunidades> Oportunidades para produtores 💻 </TextOportunidades>
-            <Section>
-                <CarouselProducers />
-            </Section>
-
-            <TextOportunidades> Notícias ✨ </TextOportunidades>
-            <Section>
-                <CarouselNews news={news}/>
-            </Section>
-
-
-
-        </DashboardContent>
-    );
-}
+    <TextOportunidades>
+      Notícias{' '}
+      <span role="img" aria-label="ícone de 3 estrelas">
+        ✨
+      </span>
+    </TextOportunidades>
+    <Section>
+      <CarouselNews opportunities={dummyOpportunities} />
+    </Section>
+  </DashboardContent>
+);
 
 export default DashBoard;

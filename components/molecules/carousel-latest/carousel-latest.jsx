@@ -1,24 +1,29 @@
 import React from 'react';
-// import AliceCarousel from 'react-alice-carousel';
-import { AwesomeSliderContent } from './carouselLatest.style';
-import { allHighlightedOpportunities } from './carousel-latest.collection';
+import PropTypes from 'prop-types';
+import { CarouselContent, CarouselItem } from './carousel-latest.style';
 
-const responsive = {
-  0: { items: 1 },
-  568: { items: 2 },
-  1024: { items: 3 },
-  1592: { items: 4 }
-  // 2160: { items: 5},
+/**
+ *
+ * @param {*} items
+ * @returns
+ */
+const renderItems = (items) =>
+  items.map((item) => (
+    <CarouselItem key={item.id}>
+      <span />
+    </CarouselItem>
+  ));
+
+/**
+ *
+ * @returns
+ */
+const CarouselLatest = ({ opportunities }) => (
+  <CarouselContent quantity={opportunities.length}>{renderItems(opportunities)}</CarouselContent>
+);
+
+CarouselLatest.propTypes = {
+  opportunities: PropTypes.array.isRequired
 };
 
-export const CarouselLatest = () =>
-  allHighlightedOpportunities.map((e) => (
-    <AwesomeSliderContent key={e.image}>
-      {/* <AliceCarousel
-        disableButtonsControls
-        disableDotsControls
-        items={e.image}
-        responsive={responsive}
-      /> */}
-    </AwesomeSliderContent>
-  ));
+export default CarouselLatest;
