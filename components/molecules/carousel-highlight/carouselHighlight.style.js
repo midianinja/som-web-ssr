@@ -1,12 +1,84 @@
 import styled from 'styled-components';
+import { white } from '../../../settings/colors';
 
-export const CarouselContent = styled.div`
+export const CarouselContent = styled.ul`
+  list-style: none;
+
+  display: grid;
+  grid-template-columns: repeat(${({ quantity }) => quantity}, 90vw);
+  grid-template-rows: minmax(calc(90vw / 1.2), 1fr);
+  gap: 12px;
+`;
+
+export const CarouselItem = styled.li`
   display: flex;
-  border-radius: 8px;
-  margin-top: 50px;
-  -webkit-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.45); 
-  box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.45);
-  width: 1061px;
-  height: 576.12px;
-  
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 100%;
+`;
+
+export const ItemImageWrapper = styled.figure`
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: calc(90vw / 1.2);
+`;
+
+export const ItemImage = styled.img`
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+`;
+
+export const ItemContent = styled.div`
+  display: grid;
+  gap: 12px;
+
+  width: 77vw;
+
+  justify-content: end;
+
+  padding-top: 24px;
+  padding-bottom: 24px;
+`;
+
+export const ItemTitle = styled.h3`
+  font-weight: 700;
+  font-size: 24px;
+
+  max-width: 80%;
+
+  line-height: 1.1em;
+  color: ${white};
+`;
+
+export const ItemDescription = styled.p`
+  max-width: 80%;
+
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 1.1em;
+  color: ${white};
+`;
+
+export const Tag = styled.span`
+  display: inline-block;
+  width: auto;
+  color: ${white};
+
+  background: rgba(130, 130, 130, 0.3);
+  backdrop-filter: blur(20px);
+  border-radius: 15px;
+
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.1em;
+  padding: 6px 10px;
+
+  text-transform: uppercase;
 `;

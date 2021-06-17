@@ -28,18 +28,18 @@ const Home = () => {
   const [splashScreen, setSplashScreen] = useState(true);
 
   useEffect(() => {
-    init({
-      setCommunityUsers,
-      setCommunityUsersLoading,
-      setHighlightedOportunities,
-      setHighlightedOportunitiesLoading,
-      setNews,
-      setNewsLoading,
-      setProductorOportunitiesLoading,
-      setArtistOportunitiesLoading,
-      setProductorOportunities,
-      setArtistOportunities
-    });
+    // init({
+    //   setCommunityUsers,
+    //   setCommunityUsersLoading,
+    //   setHighlightedOportunities,
+    //   setHighlightedOportunitiesLoading,
+    //   setNews,
+    //   setNewsLoading,
+    //   setProductorOportunitiesLoading,
+    //   setArtistOportunitiesLoading,
+    //   setProductorOportunities,
+    //   setArtistOportunities
+    // });
   }, []);
 
   console.log('communityUsersLoading', communityUsersLoading);

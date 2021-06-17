@@ -1,44 +1,29 @@
-import React, { useState } from 'react';
-import AliceCarousel from 'react-alice-carousel';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { CarouselContent, CarouselItem } from './carousel-news.style';
 
-import {
-  AwesomeSliderContent,
-} from './carousel-news.style'
+/**
+ *
+ * @param {*} items
+ * @returns
+ */
+const renderItems = (items) =>
+  items.map((item) => (
+    <CarouselItem key={item.id}>
+      <span />
+    </CarouselItem>
+  ));
 
-const items = [
-  <div className="item" data-value="1">
-    <img style={{width: 360, height: 360}} src='/images/Group 467.svg'  />
-  </div>,
-  <div className="item" data-value="2">
-    <img style={{width: 360, height: 360}} src='/images/Group 498.svg'  />
-  </div>,
-  <div className="item" data-value="3">
-    <img style={{width: 360, height: 360}} src='/images/Group 499.svg'  />
-  </div>,
-  <div className="item" data-value="4">
-    <img style={{width: 360, height: 360}} src='/images/Group 500.svg'  />
-  </div>,
-];
+/**
+ *
+ * @returns
+ */
+const CarouselNews = ({ opportunities }) => (
+  <CarouselContent quantity={opportunities.length}>{renderItems(opportunities)}</CarouselContent>
+);
 
-const responsive = {
-  0: { items: 1 },
-  568: { items: 2 },
-  1024: { items: 3 },
-  1592: { items: 4 },
-  // 2160: { items: 5},
+CarouselNews.propTypes = {
+  opportunities: PropTypes.array.isRequired
 };
 
-export const CarouselNews = () => {
-  return (
-    <>
-        <AwesomeSliderContent>
-            <AliceCarousel
-              disableButtonsControls
-              disableDotsControls
-              items={items}
-              responsive={responsive}
-            />
-        </AwesomeSliderContent>
-    </>
-  )
-}
+export default CarouselNews;

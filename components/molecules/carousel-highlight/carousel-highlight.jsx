@@ -1,71 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
-import { getAllHighlightedOportunities } from '../../templates/home/home.controller';
-import { CarouselContent } from './carouselHighlight.style';
+import React from 'react';
+import PropTypes from 'prop-types';
+import {
+  CarouselContent,
+  CarouselItem,
+  ItemImageWrapper,
+  ItemImage,
+  ItemContent,
+  ItemTitle,
+  ItemDescription,
+  Tag
+} from './carouselHighlight.style';
 
+/**
+ *
+ * @param {*} items
+ * @returns
+ */
+const renderItems = (items) =>
+  items.map((item) => (
+    <CarouselItem key={item.id}>
+      <ItemImageWrapper>
+        <ItemImage src={item.image} alt="" />
+      </ItemImageWrapper>
+      <ItemContent>
+        <div>
+          <Tag>Oportunidade</Tag>
+        </div>
+        <ItemTitle>{item.title}</ItemTitle>
+        <ItemDescription>{item.description}</ItemDescription>
+      </ItemContent>
+    </CarouselItem>
+  ));
 
-const items = [
-    <div className="item" data-value="1">
-        <img src='/images/Group 461.svg'></img>
-    </div>,
-    <div className="item" data-value="2">
-        <img src='/images/Group 461.svg'></img>
-    </div>,
-    <div className="item" data-value="2">
-        <img src='/images/Group 461.svg'></img>
-    </div>,
-];
+/**
+ *
+ * @returns
+ */
+const CarouselHighlight = ({ opportunities }) => (
+  <CarouselContent quantity={opportunities.length}>{renderItems(opportunities)}</CarouselContent>
+);
 
-export const CarouselHighlight = () => {
-    const [allHighlightedOportunities, setAllHighlightedOportunities] = useState([]);
-    console.log(allHighlightedOportunities);
+CarouselHighlight.propTypes = {
+  opportunities: PropTypes.array.isRequired
+};
 
-    useEffect(() => {
-        getAllHighlightedOportunities({
-            setAllHighlightedOportunities
-        })
-    }, []);
-
-    return (
-        <CarouselContent>
-            {
-                CarouselHighlightItems({ allHighlightedOportunities })
-            }
-        </CarouselContent>
-
-    )
-
-}
-const CarouselHighlightItems = ({ allHighlightedOportunities }) => {
-    let itemsToRender;
-    if (allHighlightedOportunities) {
-        console.log('cai no if', allHighlightedOportunities)
-
-        itemsToRender = allHighlightedOportunities.map(item => {
-            return (
-                <AliceCarousel
-                    // disableDotsControls
-                    paddingLeft
-                    paddingRight
-                    disableButtonsControls
-                    mouseTracking
-                    items={item[0].image}
-                />
-            )
-        });
-    }
-    else {
-        console.log('cai no else')
-        return (
-            <AliceCarousel
-                // disableDotsControls
-                paddingLeft
-                paddingRight
-                disableButtonsControls
-                mouseTracking
-                items={items}
-            />
-        )
-    }
-}
+export default CarouselHighlight;
