@@ -82,3 +82,32 @@ export const Tag = styled.span`
 
   text-transform: uppercase;
 `;
+
+export const Indicators = styled.ul`
+  display: flex;
+  justify-content: center;
+
+  gap: 20px;
+
+  margin-top: 32px;
+`;
+
+export const IndicatorBall = styled.li`
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+
+  background: ${white};
+  opacity: 0.3;
+
+  transition-duration: 0.4s;
+
+  ${({ actived }) => {
+    if (actived) {
+      return `
+        opacity: 1;
+        transform: scale(1.8);
+      `;
+    }
+  }}
+`;

@@ -6,6 +6,7 @@ export const DashboardContent = styled.div`
   flex-direction: column;
   background: linear-gradient(180deg, rgba(119, 53, 229), rgba(31, 24, 41, 0.5));
 
+  padding-top: 55px;
   padding-bottom: 87px;
 `;
 

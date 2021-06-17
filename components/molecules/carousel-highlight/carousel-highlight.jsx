@@ -8,7 +8,9 @@ import {
   ItemContent,
   ItemTitle,
   ItemDescription,
-  Tag
+  Tag,
+  Indicators,
+  IndicatorBall
 } from './carouselHighlight.style';
 
 /**
@@ -34,10 +36,29 @@ const renderItems = (items) =>
 
 /**
  *
+ * @param {number} quantity
+ * @param {number} activeIndex
+ * @returns
+ */
+const renderIndicators = (quantity, activeIndex) => {
+  const indicators = [];
+
+  for (let count = 1; count <= quantity; count += 1) {
+    indicators.push(<IndicatorBall key={`#${count}`} actived={activeIndex === count} />);
+  }
+
+  return indicators;
+};
+
+/**
+ *
  * @returns
  */
 const CarouselHighlight = ({ opportunities }) => (
-  <CarouselContent quantity={opportunities.length}>{renderItems(opportunities)}</CarouselContent>
+  <>
+    <CarouselContent quantity={opportunities.length}>{renderItems(opportunities)}</CarouselContent>
+    <Indicators>{renderIndicators(opportunities.length, 1)}</Indicators>
+  </>
 );
 
 CarouselHighlight.propTypes = {
