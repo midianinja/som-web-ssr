@@ -1,21 +1,33 @@
 export const dummyOpportunities = [
   {
-    id: '#1'
+    id: '#1',
+    title: 'Nome da oportunidade bem legal',
+    image: '/images/home/dummy-opportunity-3.png'
   },
   {
-    id: '#2'
+    id: '#2',
+    title: 'Nome da oportunidade bem legal',
+    image: '/images/home/dummy-opportunity-3.png'
   },
   {
-    id: '#3'
+    id: '#3',
+    title: 'Nome da oportunidade bem legal',
+    image: '/images/home/dummy-opportunity-3.png'
   },
   {
-    id: '#4'
+    id: '#4',
+    title: 'Nome da oportunidade bem legal',
+    image: '/images/home/dummy-opportunity-3.png'
   },
   {
-    id: '#5'
+    id: '#5',
+    title: 'Nome da oportunidade bem legal',
+    image: '/images/home/dummy-opportunity-3.png'
   },
   {
-    id: '#6'
+    id: '#6',
+    title: 'Nome da oportunidade bem legal',
+    image: '/images/home/dummy-opportunity-3.png'
   }
 ];
 
