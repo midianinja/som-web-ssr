@@ -1,6 +1,21 @@
 import styled from 'styled-components';
 import { white } from '../../../settings/colors';
 
+export const Wrapper = styled.div`
+  position: relative;
+`;
+
+export const CarouselWrapper = styled.div`
+  width: 100%;
+
+  @media (min-width: 1024px) {
+    width: 70vw;
+    overflow-x: hidden;
+    margin-left: auto;
+    margin-right: auto;
+  }
+`;
+
 export const CarouselContent = styled.ul`
   display: grid;
   list-style: none;
@@ -9,24 +24,25 @@ export const CarouselContent = styled.ul`
   grid-template-rows: minmax(calc(77vw / 1.2), 1fr);
   gap: 12px;
 
-  transform: translateX(calc(-144vw - 16px));
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.51, 0.58, 0.55, 0.95);
+  transform: translateX(calc(${({ card }) => card} * -77vw + 11vw - ${({ card }) => card} * 12px));
 
   @media (min-width: 1024px) {
-    width: 70vw;
+    width: 100%;
 
-    margin-left: auto;
-    margin-right: auto;
-    overflow-x: hidden;
     grid-template-columns: repeat(${({ quantity }) => quantity}, 23vw);
     grid-template-rows: auto;
-    transform: translateX(0);
-    /* grid-template-rows: auto; */
+
+    transform: translateX(
+      ${({ card }) => {
+        return `calc((${card} * -70vw - ${card} * 12px))`;
+      }}
+    );
   }
 `;
 
 export const CarouselItem = styled.li`
-  background-color: rgba(255, 255, 255, 0.1);
-
   border-radius: 4px;
   overflow: hidden;
 `;
@@ -47,6 +63,8 @@ export const ItemImage = styled.img`
 export const ItemContent = styled.div`
   display: grid;
   gap: 12px;
+
+  margin-top: -4px;
 
   background: rgba(146, 128, 169, 0.3);
   backdrop-filter: blur(20px);
@@ -83,4 +101,40 @@ export const Tag = styled.span`
   padding: 6px 10px;
 
   text-transform: uppercase;
+`;
+
+export const Controls = styled.div`
+  display: none;
+
+  position: absolute;
+  top: 9vw;
+  left: 15.1vw;
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 70vw;
+  justify-content: space-between;
+
+  z-index: 1;
+
+  @media (min-width: 1024px) {
+    display: flex;
+  }
+`;
+
+export const IconWrapper = styled.div`
+  position: relative;
+
+  &:first-child {
+    left: -5vw;
+  }
+
+  &:last-child {
+    right: -5vw;
+  }
+
+  > svg {
+    border-radius: 50%;
+    cursor: pointer;
+  }
 `;

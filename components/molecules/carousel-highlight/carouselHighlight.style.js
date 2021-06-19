@@ -9,13 +9,25 @@ export const CarouselContent = styled.ul`
   grid-template-rows: minmax(calc(90vw / 1.2), 1fr);
   gap: 12px;
 
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.51, 0.58, 0.55, 0.95);
+  transform: translateX(
+    ${({ card }) => {
+      return `calc(${card} * -90vw - ${card} * 13px)`;
+    }}
+  );
+
   @media (min-width: 1024px) {
     grid-template-columns: repeat(${({ quantity }) => quantity}, 70vw);
     grid-template-rows: calc(70vw * 0.559);
 
     gap: 7.6vw;
 
-    transform: translateX(calc(-70vw + 7.6vw));
+    transform: translateX(
+      ${({ card }) => {
+        return `calc((${card} * -70vw) + (${card - 2} * -7.6vw))`;
+      }}
+    );
   }
 
   margin-top: 56px;
@@ -149,4 +161,40 @@ export const IndicatorBall = styled.li`
       `;
     }
   }}
+`;
+
+export const Controls = styled.div`
+  display: none;
+
+  position: absolute;
+  top: 25.5vw;
+  left: 15.1vw;
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 70vw;
+  justify-content: space-between;
+
+  z-index: 1;
+
+  @media (min-width: 1024px) {
+    display: flex;
+  }
+`;
+
+export const IconWrapper = styled.div`
+  position: relative;
+
+  &:first-child {
+    left: -5vw;
+  }
+
+  &:last-child {
+    right: -5vw;
+  }
+
+  > svg {
+    border-radius: 50%;
+    cursor: pointer;
+  }
 `;

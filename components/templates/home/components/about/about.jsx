@@ -49,7 +49,7 @@ const About = () => {
       <CommunityCarrousel />
 
       <div>
-        <Subtitle>Movimente a cena e ajude a contruir circuitos musicais!</Subtitle>
+        <Subtitle>Movimente a cena e construa circuitos musicais!</Subtitle>
         <Text>
           Participe de uma rede de trocas e conexões com artistas e produtores de todo o Brasil.
           Pense sua carreira coletivamente!

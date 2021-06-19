@@ -67,15 +67,15 @@ export const init = ({
   setProductorOportunities,
   setArtistOportunities
 }) => {
-  getAllCommunityUsers({ setLoading: setHighlightedOportunitiesLoading, setCommunityUsers });
-  getAllHighlightedOportunities({
-    setLoading: setCommunityUsersLoading,
-    setHighlightedOportunities
-  });
+  // getAllCommunityUsers({ setLoading: setHighlightedOportunitiesLoading, setCommunityUsers });
+  // getAllHighlightedOportunities({
+  //   setLoading: setCommunityUsersLoading,
+  //   setHighlightedOportunities
+  // });
   getNews({ setLoading: setNewsLoading, setNews });
-  getOportunitiesToArtist({
-    setLoading: setProductorOportunitiesLoading,
-    setProductorOportunities
-  });
-  getOportunitiesToProductor({ setLoading: setArtistOportunitiesLoading, setArtistOportunities });
+  // getOportunitiesToArtist({
+  //   setLoading: setProductorOportunitiesLoading,
+  //   setProductorOportunities
+  // });
+  // getOportunitiesToProductor({ setLoading: setArtistOportunitiesLoading, setArtistOportunities });
 };

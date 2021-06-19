@@ -28,25 +28,24 @@ const Home = () => {
   const [splashScreen, setSplashScreen] = useState(true);
 
   useEffect(() => {
-    // init({
-    //   setCommunityUsers,
-    //   setCommunityUsersLoading,
-    //   setHighlightedOportunities,
-    //   setHighlightedOportunitiesLoading,
-    //   setNews,
-    //   setNewsLoading,
-    //   setProductorOportunitiesLoading,
-    //   setArtistOportunitiesLoading,
-    //   setProductorOportunities,
-    //   setArtistOportunities
-    // });
+    init({
+      setCommunityUsers,
+      setCommunityUsersLoading,
+      setHighlightedOportunities,
+      setHighlightedOportunitiesLoading,
+      setNews,
+      setNewsLoading,
+      setProductorOportunitiesLoading,
+      setArtistOportunitiesLoading,
+      setProductorOportunities,
+      setArtistOportunities
+    });
   }, []);
 
   console.log('communityUsersLoading', communityUsersLoading);
   console.log('highlightedOportunities', highlightedOportunities);
   console.log('highlightedOportunitiesLoading', highlightedOportunitiesLoading);
   console.log('news', news);
-  console.log('newsLoading', newsLoading);
   console.log('productorOportunities', productorOportunities);
   console.log('productorOportunitiesLoading', productorOportunitiesLoading);
   console.log('artistOportunities', artistOportunities);
@@ -68,7 +67,7 @@ const Home = () => {
           });
         }}
       />
-      <DashBoard />
+      <DashBoard news={news} />
       <About communityUsers={communityUsers} />
       <HowItWorks />
       <NewsLetter />

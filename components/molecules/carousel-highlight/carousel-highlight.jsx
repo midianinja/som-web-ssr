@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   CarouselContent,
@@ -10,7 +10,9 @@ import {
   ItemDescription,
   Tag,
   Indicators,
-  IndicatorBall
+  IndicatorBall,
+  Controls,
+  IconWrapper
 } from './carouselHighlight.style';
 
 /**
@@ -52,14 +54,123 @@ const renderIndicators = (quantity, activeIndex) => {
 
 /**
  *
+ * @param {*} param0
+ */
+const initListeners = async ({
+  layoutManager,
+  opportunities,
+  mainCard,
+  carouselRef,
+  setLayoutManager,
+  setMainCard
+}) => {
+  let mc = layoutManager;
+  if (!mc) {
+    const Hammer = (await import('hammerjs')).default;
+
+    mc = new Hammer.Manager(carouselRef.current);
+    const Swipe = new Hammer.Swipe({});
+
+    mc.add(Swipe);
+
+    setLayoutManager(mc);
+  } else {
+    layoutManager.off('swipeleft');
+    layoutManager.off('swiperight');
+  }
+
+  mc.on('swipeleft', () => {
+    if (mainCard < opportunities.length - 1) {
+      const newMainCard = mainCard + 1;
+      setMainCard(newMainCard);
+    }
+  });
+
+  mc.on('swiperight', () => {
+    if (mainCard > 0) {
+      setMainCard(mainCard - 1);
+    }
+  });
+};
+
+/**
+ *
  * @returns
  */
-const CarouselHighlight = ({ opportunities }) => (
-  <>
-    <CarouselContent quantity={opportunities.length}>{renderItems(opportunities)}</CarouselContent>
-    <Indicators>{renderIndicators(opportunities.length, 1)}</Indicators>
-  </>
-);
+const CarouselHighlight = ({ opportunities }) => {
+  const [layoutManager, setLayoutManager] = useState(null);
+  const [mainCard, setMainCard] = useState(0);
+  const carouselRef = useRef();
+
+  useLayoutEffect(() => {
+    initListeners({
+      layoutManager,
+      opportunities,
+      mainCard,
+      carouselRef,
+      setLayoutManager,
+      setMainCard
+    });
+
+    return () => {
+      if (layoutManager) {
+        layoutManager.off('swipeleft');
+        layoutManager.off('swiperight');
+      }
+    };
+  }, [mainCard]);
+
+  return (
+    <>
+      <CarouselContent ref={carouselRef} card={mainCard} quantity={opportunities.length}>
+        {renderItems(opportunities)}
+      </CarouselContent>
+      <Controls>
+        <IconWrapper
+          onClick={() => {
+            if (mainCard > 0) {
+              setMainCard(mainCard - 1);
+            }
+          }}>
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="24" fill="#C1C1C1" fillOpacity="0.4" />
+            <path d="M27.0004 14.0006L17 24.001L27.0004 34.0013" stroke="white" strokeWidth="3" />
+          </svg>
+        </IconWrapper>
+        <IconWrapper
+          onClick={() => {
+            if (mainCard < opportunities.length - 1) {
+              const newMainCard = mainCard + 1;
+              setMainCard(newMainCard);
+            }
+          }}>
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <circle
+              cx="24"
+              cy="24"
+              r="24"
+              transform="rotate(-180 24 24)"
+              fill="#C1C1C1"
+              fillOpacity="0.4"
+            />
+            <path d="M20.9996 33.9994L31 23.999L20.9996 13.9987" stroke="white" strokeWidth="3" />
+          </svg>
+        </IconWrapper>
+      </Controls>
+      <Indicators>{renderIndicators(opportunities.length, mainCard + 1)}</Indicators>
+    </>
+  );
+};
 
 CarouselHighlight.propTypes = {
   opportunities: PropTypes.array.isRequired

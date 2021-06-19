@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CarouselHighlight from '../../../../molecules/carousel-highlight/carousel-highlight';
 import CarouselLatest from '../../../../molecules/carousel-latest/carousel-latest';
 import CarouselProducers from '../../../../molecules/carousel-producers/carousel-producers';
@@ -13,14 +14,14 @@ import {
 } from './dashboard.style';
 import { dummyHighlights, dummyOpportunities } from './dummys';
 
-const DashBoard = () => (
+const DashBoard = ({ news }) => (
   <DashboardContent>
     <CarouselPrimarySection>
       <CarouselHighlight opportunities={dummyHighlights} />
     </CarouselPrimarySection>
 
     <TextOportunidades big>
-      Últimas oportunidades adicionadas{' '}
+      Oportunidades em destaque{' '}
       <span role="img" aria-label="ícone de um foquete">
         🚀
       </span>
@@ -57,9 +58,13 @@ const DashBoard = () => (
       </span>
     </TextOportunidades>
     <Section>
-      <CarouselNews opportunities={dummyOpportunities} />
+      <CarouselNews opportunities={news} />
     </Section>
   </DashboardContent>
 );
+
+DashBoard.propTypes = {
+  news: PropTypes.array.isRequired
+};
 
 export default DashBoard;

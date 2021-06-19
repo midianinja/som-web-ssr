@@ -5,11 +5,11 @@ export const DashboardContent = styled.div`
   display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, rgba(119, 53, 229), rgba(31, 24, 41, 0.5));
-
-  padding-top: 55px;
+  padding-bottom: 87px;
 
   @media (min-width: 1024px) {
     padding-bottom: 192px;
+    padding-top: 30px;
   }
 `;
 
