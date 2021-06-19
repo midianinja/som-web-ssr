@@ -3,10 +3,10 @@ import { gql } from 'apollo-boost';
 export const ALL_HIGHLIGHTED_OPORTUNITIES_QUERY = gql`
   query allHighlightedOportunities {
     allHighlightedOportunities {
-      id,
-      image,
+      id
+      image
       opportunity {
-        id,
+        id
         name,
         about
       }
@@ -28,7 +28,7 @@ export const ALL_NEWS_QUERY = gql`
       id
       title
       description
-      image_url
+      image_uri
     }
   }
 `;

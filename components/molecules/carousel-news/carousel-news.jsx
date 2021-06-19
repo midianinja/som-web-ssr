@@ -18,7 +18,7 @@ import {
 const renderItems = (items) =>
   items.map((item) => (
     <CarouselItem key={item.id}>
-      <ItemImage src={item.image_url} alt="" />
+      <ItemImage src={item.image_uri} alt="" />
       <ItemContent>
         <div>
           <Tag>Notícias</Tag>
