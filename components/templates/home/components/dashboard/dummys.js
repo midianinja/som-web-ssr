@@ -36,18 +36,19 @@ export const dummyHighlights = [
     id: '#1',
     title: 'Prêmio S.O.M de Apoio à Música Independete',
     description: 'Tá na hora de dar aquele gás no seu próximo lançamento!',
-    image: '/images/home/dummy-opportunity.svg'
+    image: '/images/home/dummy-opportunity-4.png'
   },
   {
     id: '#2',
     title: 'Prêmio S.O.M de Apoio à Música Independete',
     description: 'Tá na hora de dar aquele gás no seu próximo lançamento!',
-    image: '/images/home/dummy-opportunity-2.svg'
+    image: '/images/home/dummy-opportunity.svg'
   },
   {
     id: '#3',
     title: 'Prêmio S.O.M de Apoio à Música Independete',
-    description: 'Tá na hora de dar aquele gás no seu próximo lançamento!'
+    description: 'Tá na hora de dar aquele gás no seu próximo lançamento!',
+    image: '/images/home/dummy-opportunity-2.svg'
   },
   {
     id: '#4',

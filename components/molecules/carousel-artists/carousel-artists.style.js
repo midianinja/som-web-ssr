@@ -10,6 +10,18 @@ export const CarouselContent = styled.ul`
   gap: 12px;
 
   transform: translateX(calc(-144vw - 16px));
+
+  @media (min-width: 1024px) {
+    width: 70vw;
+
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: hidden;
+    grid-template-columns: repeat(${({ quantity }) => quantity}, 16.7vw);
+    grid-template-rows: auto;
+    transform: translateX(0);
+    /* grid-template-rows: auto; */
+  }
 `;
 
 export const CarouselItem = styled.li`
@@ -17,6 +29,10 @@ export const CarouselItem = styled.li`
 
   border-radius: 4px;
   overflow: hidden;
+
+  @media (min-width: 1024px) {
+    border-radius: 8px;
+  }
 `;
 
 export const ItemImage = styled.img`
@@ -26,6 +42,10 @@ export const ItemImage = styled.img`
   object-fit: cover;
 
   background-color: rgba(255, 255, 255, 0.1);
+
+  @media (min-width: 1024px) {
+    height: calc(16.7vw * 0.55);
+  }
 `;
 
 export const ItemContent = styled.div`
@@ -40,7 +60,7 @@ export const ItemContent = styled.div`
 
 export const ItemTitle = styled.h3`
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
 
   line-height: 1.1em;
   color: ${white};

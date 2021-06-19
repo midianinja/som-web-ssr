@@ -7,7 +7,10 @@ export const DashboardContent = styled.div`
   background: linear-gradient(180deg, rgba(119, 53, 229), rgba(31, 24, 41, 0.5));
 
   padding-top: 55px;
-  padding-bottom: 87px;
+
+  @media (min-width: 1024px) {
+    padding-bottom: 192px;
+  }
 `;
 
 export const CarouselPrimarySection = styled.div`
@@ -28,6 +31,14 @@ export const TextOportunidades = styled.h2`
 
   color: ${white};
   padding-right: 15vw;
+
+  @media (min-width: 1024px) {
+    max-width: 70vw;
+    font-size: ${({ big }) => (big ? '30px' : '20px')};
+    text-align: center;
+    padding-right: 0;
+    padding-bottom: 25px;
+  }
 `;
 
 export const Section = styled.div`

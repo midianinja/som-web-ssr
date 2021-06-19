@@ -8,9 +8,22 @@ export const CarouselContent = styled.ul`
   grid-template-columns: repeat(${({ quantity }) => quantity}, 90vw);
   grid-template-rows: minmax(calc(90vw / 1.2), 1fr);
   gap: 12px;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(${({ quantity }) => quantity}, 70vw);
+    grid-template-rows: calc(70vw * 0.559);
+
+    gap: 7.6vw;
+
+    transform: translateX(calc(-70vw + 7.6vw));
+  }
+
+  margin-top: 56px;
 `;
 
 export const CarouselItem = styled.li`
+  position: relative;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -23,6 +36,10 @@ export const ItemImageWrapper = styled.figure`
 
   width: 100%;
   height: calc(90vw / 1.2);
+
+  @media (min-width: 1024px) {
+    height: calc(70vw * 0.559);
+  }
 `;
 
 export const ItemImage = styled.img`
@@ -33,6 +50,10 @@ export const ItemImage = styled.img`
 
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.1);
+
+  @media (min-width: 1024px) {
+    border-radius: 6px;
+  }
 `;
 
 export const ItemContent = styled.div`
@@ -45,6 +66,19 @@ export const ItemContent = styled.div`
 
   padding-top: 24px;
   padding-bottom: 24px;
+
+  @media (min-width: 1024px) {
+    position: absolute;
+    width: 245px;
+    height: 100%;
+
+    gap: 24px;
+
+    left: calc(7.6vw / 2);
+
+    justify-content: start;
+    align-content: center;
+  }
 `;
 
 export const ItemTitle = styled.h3`
@@ -90,6 +124,11 @@ export const Indicators = styled.ul`
   gap: 20px;
 
   margin-top: 32px;
+
+  @media (min-width: 1024px) {
+    margin-top: 59px;
+    margin-bottom: 59px;
+  }
 `;
 
 export const IndicatorBall = styled.li`
