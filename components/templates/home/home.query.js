@@ -26,6 +26,9 @@ export const ALL_NEWS_QUERY = gql`
   query allNews {
     allNews {
       id
+      title
+      description
+      image_url
     }
   }
 `;
