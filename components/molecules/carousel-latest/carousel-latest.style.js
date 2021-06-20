@@ -45,6 +45,8 @@ export const CarouselContent = styled.ul`
 export const CarouselItem = styled.li`
   border-radius: 6px;
   overflow: hidden;
+
+  cursor: pointer;
 `;
 
 export const ItemImage = styled.img`

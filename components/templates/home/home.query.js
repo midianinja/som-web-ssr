@@ -29,6 +29,7 @@ export const ALL_NEWS_QUERY = gql`
       title
       description
       image_uri
+      uri
     }
   }
 `;

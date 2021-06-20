@@ -23,7 +23,7 @@ const SplashScreen = ({ opened, openSOM }) => {
         mobBackground="/images/home/mob-splash-bg-2.png"
         open={currentStep === 1}
         onClick={() => setCurrentStep(currentStep + 1)}>
-        <Text>Faça parte de comunidade</Text>
+        <Text>Faça parte da comunidade</Text>
       </StepContainer>
       <StepContainer
         background="/images/home/splash-bg-3.png"

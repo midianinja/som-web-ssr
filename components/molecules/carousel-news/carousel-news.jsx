@@ -18,9 +18,9 @@ import {
  * @param {*} items
  * @returns
  */
-const renderItems = (items) =>
+const renderItems = (items, onClick) =>
   items.map((item) => (
-    <CarouselItem key={item.id}>
+    <CarouselItem key={item.id} onClick={() => onClick(item.uri)}>
       <ItemImage src={item.image_uri} alt="" />
       <ItemContent>
         <div>
@@ -81,6 +81,10 @@ const CarouselNews = ({ opportunities }) => {
   const [page, setPage] = useState(0);
   const carouselRef = useRef();
 
+  const handleCardClick = (href) => {
+    window.location.href = href;
+  };
+
   useLayoutEffect(() => {
     initListeners({
       layoutManager,
@@ -103,7 +107,7 @@ const CarouselNews = ({ opportunities }) => {
     <Wrapper>
       <CarouselWrapper>
         <CarouselContent ref={carouselRef} card={page} quantity={opportunities.length}>
-          {renderItems(opportunities)}
+          {renderItems(opportunities, handleCardClick)}
         </CarouselContent>
       </CarouselWrapper>
       <Controls>

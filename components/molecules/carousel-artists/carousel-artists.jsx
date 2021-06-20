@@ -12,15 +12,16 @@ import {
   IconWrapper,
   Wrapper
 } from './carousel-artists.style';
+import { useRouter } from 'next/dist/client/router';
 
 /**
  *
  * @param {*} items
  * @returns
  */
-const renderItems = (items) =>
+const renderItems = (items, onClick) =>
   items.map((item) => (
-    <CarouselItem key={item.id}>
+    <CarouselItem key={item.id} onClick={() => onClick(item.id)}>
       <ItemImage src={item.photo?.mimified} alt="" />
       <ItemContent>
         <div>
@@ -77,9 +78,14 @@ const initListeners = async ({
  * @returns
  */
 const CarouselArtists = ({ opportunities }) => {
+  const router = useRouter();
   const [layoutManager, setLayoutManager] = useState(null);
   const [page, setPage] = useState(0);
   const carouselRef = useRef();
+
+  const handleCardClick = (id) => {
+    router.push(`/event/${id}`);
+  };
 
   useLayoutEffect(() => {
     initListeners({
@@ -103,7 +109,7 @@ const CarouselArtists = ({ opportunities }) => {
     <Wrapper>
       <CarouselWrapper>
         <CarouselContent ref={carouselRef} card={page} quantity={opportunities.length}>
-          {renderItems(opportunities)}
+          {renderItems(opportunities, handleCardClick)}
         </CarouselContent>
       </CarouselWrapper>
       <Controls>
@@ -135,7 +141,9 @@ const CarouselArtists = ({ opportunities }) => {
             height="48"
             viewBox="0 0 48 48"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg">
+            xmlNews
+            News
+            Newsns="http://www.w3.org/2000/svg">
             <circle
               cx="24"
               cy="24"

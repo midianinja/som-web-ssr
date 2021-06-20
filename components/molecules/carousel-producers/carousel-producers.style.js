@@ -48,6 +48,8 @@ export const CarouselItem = styled.li`
   border-radius: 6px;
   overflow: hidden;
 
+  cursor: pointer;
+
   @media (min-width: 1024px) {
     border-radius: 8px;
   }

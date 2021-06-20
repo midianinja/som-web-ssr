@@ -14,15 +14,16 @@ import {
   Controls,
   IconWrapper
 } from './carouselHighlight.style';
+import { useRouter } from 'next/dist/client/router';
 
 /**
  *
  * @param {*} items
  * @returns
  */
-const renderItems = (items) =>
+const renderItems = (items, onClick) =>
   items.map((item) => (
-    <CarouselItem key={item.id}>
+    <CarouselItem key={item.id} onClick={() => onClick(item.oportunity.id)}>
       <ItemImageWrapper>
         <ItemImage src={item.image} alt="" />
       </ItemImageWrapper>
@@ -100,9 +101,14 @@ const initListeners = async ({
  * @returns
  */
 const CarouselHighlight = ({ opportunities }) => {
+  const router = useRouter();
   const [layoutManager, setLayoutManager] = useState(null);
   const [mainCard, setMainCard] = useState(0);
   const carouselRef = useRef();
+
+  const handleCardClick = (id) => {
+    router.push(`/event/${id}`);
+  };
 
   useLayoutEffect(() => {
     initListeners({
@@ -125,7 +131,7 @@ const CarouselHighlight = ({ opportunities }) => {
   return (
     <>
       <CarouselContent ref={carouselRef} card={mainCard} quantity={opportunities.length}>
-        {renderItems(opportunities)}
+        {renderItems(opportunities, handleCardClick)}
       </CarouselContent>
       <Controls>
         <IconWrapper

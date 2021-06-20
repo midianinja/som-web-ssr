@@ -46,13 +46,12 @@ const Home = () => {
     });
   }, []);
 
-  // console.log('latestOpportunitiesLoading', latestOpportunitiesLoading);
-  // console.log('communityUsersLoading', communityUsersLoading);
-  console.log('highlightedOportunities', highlightedOportunities);
-  // console.log('highlightedOportunitiesLoading', highlightedOportunitiesLoading);
-  // console.log('productorOportunitiesLoading', productorOportunitiesLoading);
-  // console.log('artistOportunitiesLoading', artistOportunitiesLoading);
-  // console.log('newsLoading', newsLoading);
+  console.log('latestOpportunitiesLoading', latestOpportunitiesLoading);
+  console.log('communityUsersLoading', communityUsersLoading);
+  console.log('highlightedOportunitiesLoading', highlightedOportunitiesLoading);
+  console.log('productorOportunitiesLoading', productorOportunitiesLoading);
+  console.log('artistOportunitiesLoading', artistOportunitiesLoading);
+  console.log('newsLoading', newsLoading);
 
   return (
     <Page>

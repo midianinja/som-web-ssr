@@ -371,18 +371,22 @@ export const Grid = styled.div`
 
       overflow-y: hidden;
 
-      background-image: url('/images/home/about-2.png');
-      background-position: top center;
-      background-size: cover;
-
       &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '';
+
         display: block;
         width: 100%;
         height: 200%;
         background: linear-gradient(180deg, rgba(255, 45, 118, 0) 0%, #ff2d76 34%);
-
         transform: translateY(${({ open }) => (open === 'pink' ? '-40%' : 0)});
       }
+
+      background-image: url('/images/home/about-2.png');
+      background-position: top center;
+      background-size: cover;
 
       > h3 {
         z-index: 1;
