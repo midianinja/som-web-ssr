@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { green, wrapperModal, white } from '../../../../../settings/colors';
 
 export const Wrapper = styled.div`
-  display: inline-block;
+  display: flex;
   ${(props) => props.customStyle}
 `;
 
@@ -19,7 +19,10 @@ export const Container = styled.div`
   }
 `;
 
-export const View = styled.div``;
+export const View = styled.div`
+${(props) => props.customStyle}
+
+`;
 
 export const ImageContainer = styled.div`
   position: relative;
@@ -45,8 +48,8 @@ export const Image = styled.img`
     background-image: url('${props.image}');
     height: ${IMAGE_SIZE.mobile.height};
     width: ${IMAGE_SIZE.mobile.width};
-    background-repeat: no-repeat
-    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
   `}
 `;
 
