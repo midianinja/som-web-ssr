@@ -8,25 +8,35 @@ export const HomeWrapper = styled.section`
   align-items: center;
 `;
 
+export const BurgerWrapper = styled.div`
+  display: none;
+  width: 150px;
+
+  @media (min-width: 1024px) {
+    display: block;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  width: 150px;
+  display: flex;
+  justify-content: flex-end;
+`;
+
 export const BurgerIcon = styled.svg`
   position: relative;
   cursor: pointer;
 `;
 
 export const Header = styled.header`
-  display: none;
+  position: fixed;
 
-  @media (min-width: 1024px) {
-    position: fixed;
-    display: block;
+  width: 100%;
+  height: 50px;
 
-    width: 100%;
-    height: 50px;
-
-    top: 0;
-    left: 0;
-    z-index: ${zIndex};
-  }
+  top: 0;
+  left: 0;
+  z-index: ${zIndex};
 `;
 
 export const HeaderWrapper = styled.div`
@@ -48,7 +58,12 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  padding: 20px 30px;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media (min-width: 1024px) {
+    padding: 20px 30px;
+  }
 `;
 
 export const SmallLogo = styled.img`

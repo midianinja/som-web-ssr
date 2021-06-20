@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CarouselHighlight from '../../../../molecules/carousel-highlight/carousel-highlight';
 import CarouselLatest from '../../../../molecules/carousel-latest/carousel-latest';
 import CarouselProducers from '../../../../molecules/carousel-producers/carousel-producers';
@@ -11,23 +12,28 @@ import {
   TextOportunidades,
   Section
 } from './dashboard.style';
-import { dummyHighlights, dummyOpportunities } from './dummys';
 
-const DashBoard = () => (
+const DashBoard = ({
+  highlightedOportunities,
+  news,
+  artistOportunities,
+  productorOportunities,
+  latestOpportunities
+}) => (
   <DashboardContent>
     <CarouselPrimarySection>
-      <CarouselHighlight opportunities={dummyHighlights} />
+      <CarouselHighlight opportunities={highlightedOportunities} />
     </CarouselPrimarySection>
 
     <TextOportunidades big>
-      Últimas oportunidades adicionadas{' '}
+      Oportunidades em destaque{' '}
       <span role="img" aria-label="ícone de um foquete">
         🚀
       </span>
     </TextOportunidades>
 
     <Section>
-      <CarouselLatest opportunities={dummyOpportunities} />
+      <CarouselLatest opportunities={latestOpportunities} />
     </Section>
 
     <TextOportunidades>
@@ -37,7 +43,7 @@ const DashBoard = () => (
       </span>
     </TextOportunidades>
     <Section>
-      <CarouselArtists opportunities={dummyOpportunities} />
+      <CarouselArtists opportunities={artistOportunities} />
     </Section>
 
     <TextOportunidades>
@@ -47,7 +53,7 @@ const DashBoard = () => (
       </span>
     </TextOportunidades>
     <Section>
-      <CarouselProducers opportunities={dummyOpportunities} />
+      <CarouselProducers opportunities={productorOportunities} />
     </Section>
 
     <TextOportunidades>
@@ -57,9 +63,17 @@ const DashBoard = () => (
       </span>
     </TextOportunidades>
     <Section>
-      <CarouselNews opportunities={dummyOpportunities} />
+      <CarouselNews opportunities={news} />
     </Section>
   </DashboardContent>
 );
+
+DashBoard.propTypes = {
+  highlightedOportunities: PropTypes.array.isRequired,
+  news: PropTypes.array.isRequired,
+  artistOportunities: PropTypes.array.isRequired,
+  productorOportunities: PropTypes.array.isRequired,
+  latestOpportunities: PropTypes.array.isRequired
+};
 
 export default DashBoard;

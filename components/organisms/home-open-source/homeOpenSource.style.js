@@ -12,11 +12,14 @@ export const Container = styled.section`
   margin-left: auto;
   margin-right: auto;
   padding: 30px 15px;
+  padding: 16px;
+  padding-bottom: 32px;
+  border-radius: 8px;
+  margin-bottom: 16px;
 
   @media (min-width: 768px) {
     justify-content: center;
     padding: 60px;
-    border-radius: 8px;
     height: 346px;
   }
 `;
@@ -26,10 +29,8 @@ export const Header = styled.header`
 
   display: grid;
   grid-template-columns: 140px 1fr;
-  gap: 24px;
+  gap: 16px;
   align-items: center;
-
-  margin-bottom: 24px;
 
   @media (min-width: 768px) {
     gap: 40px;
@@ -67,18 +68,22 @@ export const Figure = styled.img`
 export const TextWrapper = styled.div``;
 
 export const Title = styled.h3`
-  font-size: 36px;
+  font-size: 30px;
   line-height: 1.2em;
   color: ${white};
   font-weight: 700;
   margin-top: 11px;
+
+  @media (min-width: 768px) {
+    font-size: 36px;
+  }
 `;
 
 export const Span = styled.span`
   font-weight: 300;
   font-size: 0.857rem; // base 14px
   letter-spacing: 0.16px;
-  line-height: 1.5384615385em;
+  line-height: 1.2em;
   text-align: left;
   color: ${white50};
   margin-bottom: 5px;
@@ -99,6 +104,7 @@ export const buttonStyle = `
   margin-left: auto;
   margin-right: auto;
   height: 38px;
+  font-family: CircularStd;
   font-weight: 400;
   font-size: 1em;
 

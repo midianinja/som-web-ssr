@@ -2,33 +2,33 @@ export const aboutCard = [
   {
     title: 'Conheça o',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non proin maecenas morbi sapien. Massa viverra a condimentum scelerisque. Sed vel orci augue urna cursus urna, eget.',
+      'Há 20 anos criando soluções e desenvolvendo tecnologias para artistas, produtores e trabalhadores da música. Ferramenta essencial para encarar os novos tempos.',
     action: 'Assista o video'
   },
   {
-    title: 'Participe de uma redes de festivais e casas de shows',
+    title: 'Participe da rede Brasil de festivais',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non proin maecenas morbi sapien. Massa viverra a condimentum scelerisque. Sed vel orci augue urna cursus urna, eget.'
+      'A circulação é o pilar na vida de artistas e os festivais são espaços para ganhar visibilidade e dar solidez às carreiras musicais. Valorize a cena e participe de sua construção.'
   },
   {
-    title: 'Tenha acesso a um espaço para criação e gerenciamento de turnês',
+    title: 'Explore ferramentas para gerenciar sua carreira',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non proin maecenas morbi sapien. Massa viverra a condimentum scelerisque. Sed vel orci augue urna cursus urna, eget.'
+      'Abra novas rotas, crie turnês e  leve seu som para mais longe. Organize agenda, contatos e potencialize sua divulgação.'
+  },
+  {
+    title: 'Conheça e fortaleça casas de shows e palcos pelo Brasil',
+    description:
+      'Como base dos circuitos musicais as casas, pubs, bares e palcos permanentes são o que há de  mais importante para a vida cultural de uma cidade.'
   },
   {
     title: 'Invista na sua formação com a universidade da música',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non proin maecenas morbi sapien. Massa viverra a condimentum scelerisque. Sed vel orci augue urna cursus urna, eget.'
+      'Prepare-se para o futuro da música com mentorias, aulas, oficinas e todo um processo de formação exclusivo. Aprenda na prática sobre mercado, indústria, arte e tecnologia.'
   },
   {
-    title: 'Invista na sua formação com a universidade da música   ',
+    title: 'Coloque sua cidade no novo mapa da música brasileira!',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non proin maecenas morbi sapien. Massa viverra a condimentum scelerisque. Sed vel orci augue urna cursus urna, eget.'
-  },
-  {
-    title: 'Movimente a cena e ajude a construir circuitos musicais!',
-    description:
-      'Uma rede de trocas e conexões com artistas e produtores de todo o Brasil. Pense sua carreira coletivamente!',
+      'Conectando diferentes pontos do continente e valorizando a diversidade, articule artistas, produtores e trabalhadores e promova trocas entre culturas e cenas plurais no seu território.',
     action: 'Leia mais'
   }
 ];

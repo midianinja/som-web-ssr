@@ -4,7 +4,8 @@ import {
   ALL_HIGHLIGHTED_OPORTUNITIES_QUERY,
   ALL_NEWS_QUERY,
   LAST_OPORTUNITIES_TO_ARTIST,
-  LAST_OPORTUNITIES_TO_PRODUTOR
+  LAST_OPORTUNITIES_TO_PRODUTOR,
+  LASTEST_OPPORTUNITIES
 } from './home.query';
 
 /**
@@ -50,4 +51,21 @@ export const getOportunitiesToArtist = () =>
 export const getOportunitiesToProductor = () =>
   client().query({
     query: LAST_OPORTUNITIES_TO_PRODUTOR
+  });
+
+/**
+ * request to graph api the latest opportunities posted in general
+ * @returns {Promise} promise if resolve, contains array of oportunities
+ */
+export const getLastestOpportunities = () =>
+  client().query({
+    query: LASTEST_OPPORTUNITIES,
+    variables: {
+      paginator: {
+        limit: 12,
+        sort: {
+          created_at: -1
+        }
+      }
+    }
   });

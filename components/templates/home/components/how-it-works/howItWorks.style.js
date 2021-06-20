@@ -14,6 +14,10 @@ export const Section = styled.section`
     @media (min-width: 768px) {
       margin-bottom: 286px;
     }
+
+    > svg {
+      opacity: 0.3;
+    }
   }
 
   > svg {
@@ -39,7 +43,7 @@ export const Title = styled.h2`
   position: relative;
 
   font-style: normal;
-  font-weight: 400;
+  font-weight: 450;
   font-size: 30px;
   line-height: 1.1em;
 
@@ -70,7 +74,7 @@ export const Grid = styled.div`
     justify-content: center;
 
     > div {
-      padding: 16px;
+      padding: 32px;
     }
 
     > div > span {
@@ -81,9 +85,9 @@ export const Grid = styled.div`
     }
 
     > div > h3 {
-      margin-top: 16px;
+      margin-top: 8px;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 18px;
       line-height: 1.2em;
       letter-spacing: 0.16px;
       max-width: calc(100% - 16px);

@@ -49,7 +49,7 @@ const About = () => {
       <CommunityCarrousel />
 
       <div>
-        <Subtitle>Movimente a cena e ajude a contruir circuitos musicais!</Subtitle>
+        <Subtitle>Movimente a cena e construa circuitos musicais!</Subtitle>
         <Text>
           Participe de uma rede de trocas e conexões com artistas e produtores de todo o Brasil.
           Pense sua carreira coletivamente!
@@ -184,7 +184,12 @@ const About = () => {
           <div>
             <h3>{aboutCard[5].title}</h3>
             <p>{aboutCard[5].description}</p>
-            <button>{aboutCard[5].action}</button>
+            <button
+              onClick={() => {
+                window.location.href = 'http://conteudo.som.vc';
+              }}>
+              {aboutCard[5].action}
+            </button>
           </div>
           <img alt="" src="/images/home/ajude-a-cena.png " />
         </div>

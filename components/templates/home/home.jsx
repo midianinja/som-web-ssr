@@ -19,6 +19,8 @@ const Home = () => {
   const [communityUsersLoading, setCommunityUsersLoading] = useState([]);
   const [highlightedOportunities, setHighlightedOportunities] = useState([]);
   const [highlightedOportunitiesLoading, setHighlightedOportunitiesLoading] = useState([]);
+  const [latestOpportunities, setLatestOpportunities] = useState([]);
+  const [latestOpportunitiesLoading, setLatestOpportunitiesLoading] = useState([]);
   const [productorOportunities, setProductorOportunities] = useState([]);
   const [productorOportunitiesLoading, setProductorOportunitiesLoading] = useState([]);
   const [artistOportunities, setArtistOportunities] = useState([]);
@@ -28,29 +30,28 @@ const Home = () => {
   const [splashScreen, setSplashScreen] = useState(true);
 
   useEffect(() => {
-    // init({
-    //   setCommunityUsers,
-    //   setCommunityUsersLoading,
-    //   setHighlightedOportunities,
-    //   setHighlightedOportunitiesLoading,
-    //   setNews,
-    //   setNewsLoading,
-    //   setProductorOportunitiesLoading,
-    //   setArtistOportunitiesLoading,
-    //   setProductorOportunities,
-    //   setArtistOportunities
-    // });
+    init({
+      setCommunityUsers,
+      setCommunityUsersLoading,
+      setHighlightedOportunities,
+      setHighlightedOportunitiesLoading,
+      setNews,
+      setNewsLoading,
+      setProductorOportunitiesLoading,
+      setArtistOportunitiesLoading,
+      setProductorOportunities,
+      setArtistOportunities,
+      setLatestOpportunities,
+      setLatestOpportunitiesLoading
+    });
   }, []);
 
+  console.log('latestOpportunitiesLoading', latestOpportunitiesLoading);
   console.log('communityUsersLoading', communityUsersLoading);
-  console.log('highlightedOportunities', highlightedOportunities);
   console.log('highlightedOportunitiesLoading', highlightedOportunitiesLoading);
-  console.log('news', news);
-  console.log('newsLoading', newsLoading);
-  console.log('productorOportunities', productorOportunities);
   console.log('productorOportunitiesLoading', productorOportunitiesLoading);
-  console.log('artistOportunities', artistOportunities);
   console.log('artistOportunitiesLoading', artistOportunitiesLoading);
+  console.log('newsLoading', newsLoading);
 
   return (
     <Page>
@@ -68,7 +69,13 @@ const Home = () => {
           });
         }}
       />
-      <DashBoard />
+      <DashBoard
+        highlightedOportunities={highlightedOportunities}
+        news={news}
+        latestOpportunities={latestOpportunities}
+        artistOportunities={artistOportunities}
+        productorOportunities={productorOportunities}
+      />
       <About communityUsers={communityUsers} />
       <HowItWorks />
       <NewsLetter />

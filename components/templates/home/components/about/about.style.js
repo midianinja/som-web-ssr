@@ -28,8 +28,8 @@ export const Title = styled.h2`
 `;
 
 export const Subtitle = styled.h3`
+  width: 77vw;
   position: relative;
-  max-width: 500px;
 
   font-weight: 900;
   font-size: 24px;
@@ -41,17 +41,19 @@ export const Subtitle = styled.h3`
   margin-bottom: 8px;
 
   @media (min-width: 768px) {
-    font-size: 36px;
+    font-size: 48px;
+    width: calc(77vw * 0.6);
+    margin-bottom: 16px;
     margin-top: 170px;
   }
 `;
 
 export const Text = styled.p`
-  max-width: 420px;
+  width: 77vw;
 
-  font-weight: 450;
+  font-weight: 300;
   font-size: 16px;
-  line-height: 1.1em;
+  line-height: 1.2em;
 
   color: #919191;
 
@@ -59,6 +61,7 @@ export const Text = styled.p`
   margin-right: auto;
 
   @media (min-width: 768px) {
+    width: calc(77vw * 0.5);
     font-size: 20px;
   }
 `;
@@ -86,6 +89,15 @@ export const Grid = styled.div`
 
     padding-left: 0;
     padding-right: 0;
+  }
+
+  svg {
+    user-select: none;
+  }
+
+  h3 {
+    margin-top: 16px;
+    letter-spacing: -1px;
   }
 
   > div {
@@ -224,11 +236,12 @@ export const Grid = styled.div`
 
         border-radius: 32px;
 
-        font-weight: 400;
+        font-weight: 300;
         font-size: 16px;
 
         cursor: pointer;
 
+        font-family: CircularStd;
         background-color: ${white};
         color: #51bcb4;
       }
@@ -244,9 +257,9 @@ export const Grid = styled.div`
       > p {
         z-index: 1;
 
-        font-weight: 450;
+        font-weight: 300;
         font-size: 20px;
-        line-height: 1.1em;
+        line-height: 1.2em;
 
         margin-top: 16px;
         margin-bottom: 8px;
@@ -254,8 +267,6 @@ export const Grid = styled.div`
         color: ${black};
 
         overflow-y: hidden;
-
-        transition-duration: 0.2s;
 
         max-height: ${({ open }) => (open === 'yellow' ? '100vh' : '0px')};
       }
@@ -288,21 +299,22 @@ export const Grid = styled.div`
         width: 100%;
         height: 200%;
 
-        transition-duration: 0.3s;
+        transition-duration: 0.8s;
         background: linear-gradient(180deg, #f95025 50%, rgba(249, 80, 37, 0) 100%);
         transform: translateY(${({ open }) => (open === 'orange' ? '50%' : 0)});
       }
 
       > h3 {
+        margin-top: 16px;
         z-index: 1;
       }
 
       > p {
         z-index: 1;
 
-        font-weight: 450;
+        font-weight: 300;
         font-size: 20px;
-        line-height: 1.1em;
+        line-height: 1.2em;
 
         margin-top: 16px;
         margin-bottom: 8px;
@@ -310,8 +322,6 @@ export const Grid = styled.div`
 
         color: ${white};
         overflow-y: hidden;
-
-        transition-duration: 0.2s;
 
         max-height: ${({ open }) => (open === 'orange' ? '100vh' : '0px')};
       }
@@ -331,9 +341,9 @@ export const Grid = styled.div`
       > p {
         z-index: 1;
 
-        font-weight: 450;
+        font-weight: 300;
         font-size: 20px;
-        line-height: 1.1em;
+        line-height: 1.2em;
 
         margin-top: 16px;
         margin-bottom: 8px;
@@ -341,8 +351,6 @@ export const Grid = styled.div`
 
         color: ${white};
         overflow-y: hidden;
-
-        transition-duration: 0.2s;
 
         max-height: ${({ open }) => (open === 'purple' ? '100vh' : '0px')};
       }
@@ -363,25 +371,22 @@ export const Grid = styled.div`
 
       overflow-y: hidden;
 
-      background-image: url('/images/home/about-2.png');
-      background-position: top center;
-      background-size: cover;
-
       &:before {
-        content: '';
         position: absolute;
         top: 0;
         left: 0;
+        content: '';
 
         display: block;
         width: 100%;
         height: 200%;
-
-        transition-duration: 0.2s;
         background: linear-gradient(180deg, rgba(255, 45, 118, 0) 0%, #ff2d76 34%);
-
         transform: translateY(${({ open }) => (open === 'pink' ? '-40%' : 0)});
       }
+
+      background-image: url('/images/home/about-2.png');
+      background-position: top center;
+      background-size: cover;
 
       > h3 {
         z-index: 1;
@@ -390,9 +395,9 @@ export const Grid = styled.div`
       > p {
         z-index: 1;
 
-        font-weight: 450;
+        font-weight: 300;
         font-size: 20px;
-        line-height: 1.1em;
+        line-height: 1.2em;
 
         margin-top: 16px;
         margin-bottom: 8px;
@@ -400,8 +405,6 @@ export const Grid = styled.div`
 
         color: ${white};
         overflow-y: hidden;
-
-        transition-duration: 0.2s;
 
         max-height: ${({ open }) => (open === 'pink' ? '100vh' : '0px')};
       }
@@ -489,7 +492,8 @@ export const Grid = styled.div`
 
         border-radius: 32px;
 
-        font-weight: 400;
+        font-family: CircularStd;
+        font-weight: 300;
         font-size: 16px;
         color: ${white};
 
@@ -508,8 +512,6 @@ export const ToggleButton = styled.svg`
   right: 45px;
 
   z-index: 2;
-  transition-duration: 0.4s;
-
   cursor: pointer;
 
   ${({ open }) => {
