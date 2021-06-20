@@ -19,6 +19,8 @@ const Home = () => {
   const [communityUsersLoading, setCommunityUsersLoading] = useState([]);
   const [highlightedOportunities, setHighlightedOportunities] = useState([]);
   const [highlightedOportunitiesLoading, setHighlightedOportunitiesLoading] = useState([]);
+  const [latestOpportunities, setLatestOpportunities] = useState([]);
+  const [latestOpportunitiesLoading, setLatestOpportunitiesLoading] = useState([]);
   const [productorOportunities, setProductorOportunities] = useState([]);
   const [productorOportunitiesLoading, setProductorOportunitiesLoading] = useState([]);
   const [artistOportunities, setArtistOportunities] = useState([]);
@@ -38,18 +40,19 @@ const Home = () => {
       setProductorOportunitiesLoading,
       setArtistOportunitiesLoading,
       setProductorOportunities,
-      setArtistOportunities
+      setArtistOportunities,
+      setLatestOpportunities,
+      setLatestOpportunitiesLoading
     });
   }, []);
 
-  console.log('communityUsersLoading', communityUsersLoading);
-  console.log('highlightedOportunities', highlightedOportunities);
-  console.log('highlightedOportunitiesLoading', highlightedOportunitiesLoading);
-  console.log('news', news);
-  console.log('productorOportunities', productorOportunities);
-  console.log('productorOportunitiesLoading', productorOportunitiesLoading);
-  console.log('artistOportunities', artistOportunities);
-  console.log('artistOportunitiesLoading', artistOportunitiesLoading);
+  // console.log('latestOpportunitiesLoading', latestOpportunitiesLoading);
+  // console.log('communityUsersLoading', communityUsersLoading);
+  // console.log('highlightedOportunities', highlightedOportunities);
+  // console.log('highlightedOportunitiesLoading', highlightedOportunitiesLoading);
+  // console.log('productorOportunitiesLoading', productorOportunitiesLoading);
+  // console.log('artistOportunitiesLoading', artistOportunitiesLoading);
+  // console.log('newsLoading', newsLoading);
 
   return (
     <Page>
@@ -67,7 +70,12 @@ const Home = () => {
           });
         }}
       />
-      <DashBoard news={news} />
+      <DashBoard
+        news={news}
+        latestOpportunities={latestOpportunities}
+        artistOportunities={artistOportunities}
+        productorOportunities={productorOportunities}
+      />
       <About communityUsers={communityUsers} />
       <HowItWorks />
       <NewsLetter />

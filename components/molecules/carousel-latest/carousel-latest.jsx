@@ -7,7 +7,6 @@ import {
   ItemImage,
   ItemContent,
   ItemTitle,
-  ItemDescription,
   Tag,
   Controls,
   IconWrapper,
@@ -22,13 +21,12 @@ import {
 const renderItems = (items) =>
   items.map((item) => (
     <CarouselItem key={item.id}>
-      <ItemImage src={item.image} alt="" />
+      <ItemImage src={item.photo?.mimified} alt="" />
       <ItemContent>
         <div>
           <Tag>Oportunidade</Tag>
         </div>
-        <ItemTitle>{item.title}</ItemTitle>
-        <ItemDescription>{item.description}</ItemDescription>
+        <ItemTitle>{item.name}</ItemTitle>
       </ItemContent>
     </CarouselItem>
   ));
@@ -99,7 +97,7 @@ const CarouselLatest = ({ opportunities }) => {
         layoutManager.off('swiperight');
       }
     };
-  }, [page]);
+  }, [page, opportunities]);
 
   return (
     <Wrapper>

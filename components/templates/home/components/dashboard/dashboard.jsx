@@ -12,9 +12,9 @@ import {
   TextOportunidades,
   Section
 } from './dashboard.style';
-import { dummyHighlights, dummyOpportunities } from './dummys';
+import { dummyHighlights } from './dummys';
 
-const DashBoard = ({ news }) => (
+const DashBoard = ({ news, artistOportunities, productorOportunities, latestOpportunities }) => (
   <DashboardContent>
     <CarouselPrimarySection>
       <CarouselHighlight opportunities={dummyHighlights} />
@@ -28,7 +28,7 @@ const DashBoard = ({ news }) => (
     </TextOportunidades>
 
     <Section>
-      <CarouselLatest opportunities={dummyOpportunities} />
+      <CarouselLatest opportunities={latestOpportunities} />
     </Section>
 
     <TextOportunidades>
@@ -38,7 +38,7 @@ const DashBoard = ({ news }) => (
       </span>
     </TextOportunidades>
     <Section>
-      <CarouselArtists opportunities={dummyOpportunities} />
+      <CarouselArtists opportunities={artistOportunities} />
     </Section>
 
     <TextOportunidades>
@@ -48,7 +48,7 @@ const DashBoard = ({ news }) => (
       </span>
     </TextOportunidades>
     <Section>
-      <CarouselProducers opportunities={dummyOpportunities} />
+      <CarouselProducers opportunities={productorOportunities} />
     </Section>
 
     <TextOportunidades>
@@ -64,7 +64,10 @@ const DashBoard = ({ news }) => (
 );
 
 DashBoard.propTypes = {
-  news: PropTypes.array.isRequired
+  news: PropTypes.array.isRequired,
+  artistOportunities: PropTypes.array.isRequired,
+  productorOportunities: PropTypes.array.isRequired,
+  latestOpportunities: PropTypes.array.isRequired
 };
 
 export default DashBoard;

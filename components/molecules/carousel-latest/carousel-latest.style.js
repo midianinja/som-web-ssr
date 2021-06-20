@@ -31,7 +31,7 @@ export const CarouselContent = styled.ul`
   @media (min-width: 1024px) {
     width: 100%;
 
-    grid-template-columns: repeat(${({ quantity }) => quantity}, 23vw);
+    grid-template-columns: repeat(${({ quantity }) => quantity}, 22.9vw);
     grid-template-rows: auto;
 
     transform: translateX(

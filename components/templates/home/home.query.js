@@ -5,9 +5,9 @@ export const ALL_HIGHLIGHTED_OPORTUNITIES_QUERY = gql`
     allHighlightedOportunities {
       id
       image
-      opportunity {
+      oportunity {
         id
-        name,
+        name
         about
       }
     }
@@ -33,9 +33,23 @@ export const ALL_NEWS_QUERY = gql`
   }
 `;
 
+export const LASTEST_OPPORTUNITIES = gql`
+  query allEvents($paginator: PaginatorInput) {
+    allEvents(paginator: $paginator) {
+      id
+      name
+      about
+      photo {
+        mimified
+        original
+      }
+    }
+  }
+`;
+
 export const LAST_OPORTUNITIES_TO_ARTIST = gql`
-  query allEventsToArtist {
-    allEventsToArtist {
+  query allEventToArtist {
+    allEventToArtist {
       id
       name
       about
@@ -48,8 +62,8 @@ export const LAST_OPORTUNITIES_TO_ARTIST = gql`
 `;
 
 export const LAST_OPORTUNITIES_TO_PRODUTOR = gql`
-  query allEventsToProductor {
-    allEventsToProductor {
+  query allEventToProductor {
+    allEventToProductor {
       id
       name
       about

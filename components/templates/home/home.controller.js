@@ -27,7 +27,7 @@ export const getAllHighlightedOportunities = async ({ setLoading, setHighlighted
  */
 const getOportunitiesToArtist = async ({ setLoading, setArtistOportunities }) => {
   const response = await repository.getOportunitiesToArtist();
-  setArtistOportunities(response.data.allEventsToArtist);
+  setArtistOportunities(response.data.allEventToArtist);
   setLoading(false);
 };
 
@@ -37,7 +37,17 @@ const getOportunitiesToArtist = async ({ setLoading, setArtistOportunities }) =>
  */
 const getOportunitiesToProductor = async ({ setLoading, setProductorOportunities }) => {
   const response = await repository.getOportunitiesToProductor();
-  setProductorOportunities(response.data.allEventsToProductor);
+  setProductorOportunities(response.data.allEventToProductor);
+  setLoading(false);
+};
+
+/**
+ *
+ * @param {*} param0
+ */
+const getLastestOpportunities = async ({ setLoading, setLatestOpportunities }) => {
+  const response = await repository.getLastestOpportunities();
+  setLatestOpportunities(response.data.allEvents);
   setLoading(false);
 };
 
@@ -65,17 +75,20 @@ export const init = ({
   setProductorOportunitiesLoading,
   setArtistOportunitiesLoading,
   setProductorOportunities,
-  setArtistOportunities
+  setArtistOportunities,
+  setLatestOpportunitiesLoading,
+  setLatestOpportunities
 }) => {
-  // getAllCommunityUsers({ setLoading: setHighlightedOportunitiesLoading, setCommunityUsers });
-  // getAllHighlightedOportunities({
-  //   setLoading: setCommunityUsersLoading,
-  //   setHighlightedOportunities
-  // });
+  getLastestOpportunities({ setLoading: setLatestOpportunitiesLoading, setLatestOpportunities });
+  getAllCommunityUsers({ setLoading: setHighlightedOportunitiesLoading, setCommunityUsers });
+  getAllHighlightedOportunities({
+    setLoading: setCommunityUsersLoading,
+    setHighlightedOportunities
+  });
   getNews({ setLoading: setNewsLoading, setNews });
-  // getOportunitiesToArtist({
-  //   setLoading: setProductorOportunitiesLoading,
-  //   setProductorOportunities
-  // });
-  // getOportunitiesToProductor({ setLoading: setArtistOportunitiesLoading, setArtistOportunities });
+  getOportunitiesToProductor({
+    setLoading: setProductorOportunitiesLoading,
+    setProductorOportunities
+  });
+  getOportunitiesToArtist({ setLoading: setArtistOportunitiesLoading, setArtistOportunities });
 };
