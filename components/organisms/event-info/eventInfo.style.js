@@ -34,7 +34,7 @@ export const Title = styled.h1`
 export const ClosingDateTimer = styled.div`
   display: block;
   margin-bottom: 20px;
-  font-size: 0.8125em;
+  font-size: 16px;
   font-weight: 300;
   line-height: 1em;
   text-align: left;

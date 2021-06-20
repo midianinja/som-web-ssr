@@ -24,14 +24,12 @@ export const ProductorTitle = styled.span`
   font-size: 0.8571428571em;
   width: 100%;
   color: ${black};
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 300;
 `;
 
 export const ProfileWrapper = styled.div`
   height: 100%;
-  
-
 
 `;
 

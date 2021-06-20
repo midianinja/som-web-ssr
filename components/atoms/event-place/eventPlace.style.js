@@ -17,7 +17,7 @@ export const Icon = styled.img`
 export const Adress = styled.span`
   margin-left: 5px;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   line-height: 1.5em;
 `;
