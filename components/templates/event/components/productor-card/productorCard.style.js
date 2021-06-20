@@ -30,12 +30,17 @@ export const ProductorTitle = styled.span`
 
 export const ProfileWrapper = styled.div`
   height: 100%;
+  display: flex;
+  flex-direction: column;
+
+
 `;
 
 export const ProductorName = styled.h3`
   font-size: 1.2857142857em;
   line-height: 1.2em;
   font-weight: 400;
+
 `;
 
 export const ProductorCity = styled.h4`
