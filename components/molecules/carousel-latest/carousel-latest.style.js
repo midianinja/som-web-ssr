@@ -43,7 +43,7 @@ export const CarouselContent = styled.ul`
 `;
 
 export const CarouselItem = styled.li`
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
 `;
 

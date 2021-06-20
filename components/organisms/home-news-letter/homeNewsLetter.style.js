@@ -3,23 +3,20 @@ import { black } from '../../../settings/colors';
 
 export const Footer = styled.footer`
   background-color: #f1f1f1;
-
-  @media (min-width: 768px) {
-    padding: 30px 20px;
-  }
+  padding: 30px 16px;
 `;
 
 export const Content = styled.div`
   display: flex;
   justify-content: space-around;
 
-  width: 100%;
+  width: 77vw;
   max-width: 768px;
 
   margin-left: auto;
   margin-right: auto;
 
-  padding: 30px;
+  padding: 30px 0px;
 
   @media (min-width: 768px) {
     padding: 0;
@@ -44,8 +41,9 @@ export const ContentOpenSource = styled.div`
 `;
 
 export const SocialList = styled.div`
+  margin-top: 12px;
+
   @media (min-width: 768px) {
-    padding: 30px;
   }
 `;
 
@@ -62,11 +60,11 @@ export const SocialIcon = styled.img`
 
 export const FormWrapper = styled.div`
   display: grid;
-  gap: 20px;
+  gap: 8px;
 `;
 
 export const Logo = styled.img`
-  opacity: 0.1;
+  opacity: 0.2;
 `;
 
 export const Title = styled.h2`
@@ -83,4 +81,6 @@ export const Text = styled.p`
   font-size: 16px;
   line-height: 1.1em;
   color: ${black};
+
+  margin-bottom: 12px;
 `;

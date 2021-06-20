@@ -45,7 +45,7 @@ export const CarouselContent = styled.ul`
 export const CarouselItem = styled.li`
   background-color: rgba(255, 255, 255, 0.1);
 
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
 
   @media (min-width: 1024px) {

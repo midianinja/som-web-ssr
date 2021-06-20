@@ -28,7 +28,9 @@ const renderItems = (items) =>
       </ItemImageWrapper>
       <ItemContent>
         <div>
-          <Tag>Oportunidade</Tag>
+          <Tag>
+            <span>Oportunidade</span>
+          </Tag>
         </div>
         <ItemTitle>{item.oportunity.name}</ItemTitle>
         <ItemDescription>{item.oportunity.about.slice(0, 110)}...</ItemDescription>

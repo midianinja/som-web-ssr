@@ -184,7 +184,12 @@ const About = () => {
           <div>
             <h3>{aboutCard[5].title}</h3>
             <p>{aboutCard[5].description}</p>
-            <button>{aboutCard[5].action}</button>
+            <button
+              onClick={() => {
+                window.location.href = 'http://conteudo.som.vc';
+              }}>
+              {aboutCard[5].action}
+            </button>
           </div>
           <img alt="" src="/images/home/ajude-a-cena.png " />
         </div>

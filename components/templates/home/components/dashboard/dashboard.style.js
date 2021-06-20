@@ -22,7 +22,7 @@ export const TextOportunidades = styled.h2`
 
   margin-left: auto;
   margin-right: auto;
-  margin-top: 54px;
+  margin-top: 100px;
   margin-bottom: 16px;
 
   font-size: ${({ big }) => (big ? '20px' : '18px')};
@@ -34,7 +34,7 @@ export const TextOportunidades = styled.h2`
 
   @media (min-width: 1024px) {
     max-width: 70vw;
-    font-size: ${({ big }) => (big ? '30px' : '20px')};
+    font-size: ${({ big }) => (big ? '32px' : '24px')};
     text-align: center;
     padding-right: 0;
     padding-bottom: 25px;
