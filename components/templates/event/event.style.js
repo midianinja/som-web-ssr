@@ -13,6 +13,7 @@ export const ProductorCardWrapper = styled.div`
   padding-right: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
+  
 
   @media (min-width: 1024px) {
     padding-bottom: 40px;
@@ -23,6 +24,7 @@ export const CoverWrapper = styled.div`
   width: 100%;
   z-index: 0;
   margin-top: 51px;
+  opacity: 40%;
 
   @media (min-width: 1024px) {
     top: 51px;

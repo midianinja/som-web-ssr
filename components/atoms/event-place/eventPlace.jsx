@@ -9,16 +9,18 @@ import { Container, IconWrapper, Icon, Adress } from './eventPlace.style';
  * @returns contains EventPlace Component
  */
 const EventPlace = ({ address, district, city, state, complement, placeMarkIcon }) => (
-  <Container>
-    <IconWrapper>
-      <Icon src={placeMarkIcon} />
-    </IconWrapper>
-    <Adress>
-      {`${address ? `${address} ${complement ? `(${complement})` : ''} / ` : ''} ${district},
-      ${city}, ${state}`}
-    </Adress>
-  </Container>
-);
+    <Container>
+            <IconWrapper>
+              <Icon src={placeMarkIcon} />
+            </IconWrapper>
+            <Adress>
+              {
+                `${address ? `${address} ${complement ? `(${complement})` : ''} / ` : ''} ${district},
+              ${city}, ${state}`}
+            </Adress>
+          </Container>
+)
+  
 
 EventPlace.propTypes = {
   address: PropTypes.string.isRequired,
@@ -31,5 +33,6 @@ EventPlace.propTypes = {
 EventPlace.defaultProps = {
   placeMarkIcon: '/icons/place_mark.svg'
 };
+  
 
 export default EventPlace;
