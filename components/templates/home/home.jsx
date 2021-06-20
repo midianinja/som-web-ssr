@@ -48,7 +48,7 @@ const Home = () => {
 
   // console.log('latestOpportunitiesLoading', latestOpportunitiesLoading);
   // console.log('communityUsersLoading', communityUsersLoading);
-  // console.log('highlightedOportunities', highlightedOportunities);
+  console.log('highlightedOportunities', highlightedOportunities);
   // console.log('highlightedOportunitiesLoading', highlightedOportunitiesLoading);
   // console.log('productorOportunitiesLoading', productorOportunitiesLoading);
   // console.log('artistOportunitiesLoading', artistOportunitiesLoading);
@@ -71,6 +71,7 @@ const Home = () => {
         }}
       />
       <DashBoard
+        highlightedOportunities={highlightedOportunities}
         news={news}
         latestOpportunities={latestOpportunities}
         artistOportunities={artistOportunities}

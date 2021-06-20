@@ -12,12 +12,17 @@ import {
   TextOportunidades,
   Section
 } from './dashboard.style';
-import { dummyHighlights } from './dummys';
 
-const DashBoard = ({ news, artistOportunities, productorOportunities, latestOpportunities }) => (
+const DashBoard = ({
+  highlightedOportunities,
+  news,
+  artistOportunities,
+  productorOportunities,
+  latestOpportunities
+}) => (
   <DashboardContent>
     <CarouselPrimarySection>
-      <CarouselHighlight opportunities={dummyHighlights} />
+      <CarouselHighlight opportunities={highlightedOportunities} />
     </CarouselPrimarySection>
 
     <TextOportunidades big>
@@ -64,6 +69,7 @@ const DashBoard = ({ news, artistOportunities, productorOportunities, latestOppo
 );
 
 DashBoard.propTypes = {
+  highlightedOportunities: PropTypes.array.isRequired,
   news: PropTypes.array.isRequired,
   artistOportunities: PropTypes.array.isRequired,
   productorOportunities: PropTypes.array.isRequired,

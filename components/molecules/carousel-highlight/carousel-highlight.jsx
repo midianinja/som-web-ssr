@@ -30,8 +30,8 @@ const renderItems = (items) =>
         <div>
           <Tag>Oportunidade</Tag>
         </div>
-        <ItemTitle>{item.title}</ItemTitle>
-        <ItemDescription>{item.description}</ItemDescription>
+        <ItemTitle>{item.oportunity.name}</ItemTitle>
+        <ItemDescription>{item.oportunity.about.slice(0, 110)}...</ItemDescription>
       </ItemContent>
     </CarouselItem>
   ));
