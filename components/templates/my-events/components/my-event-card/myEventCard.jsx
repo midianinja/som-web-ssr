@@ -35,8 +35,6 @@ const EventCard = ({ event, customStyle, onClick }) => {
       onMouseEnter={() => setCardHover(!cardHover)}
       onMouseLeave={() => setCardHover(!cardHover)}>
       <Container>
-        <View>
-          <View>
             <ImageContainer>
               <Image image={event.photo.mimified} />
               {cardHover ? (
@@ -47,7 +45,6 @@ const EventCard = ({ event, customStyle, onClick }) => {
               ) : null}
             </ImageContainer>
             <TagList data={musicalStyles} customStyle={tagListStyl} />
-          </View>
           <View customStyle={eventDetailsStyl}>
             <Title>{event.name}</Title>
             <EventDate
@@ -62,7 +59,6 @@ const EventCard = ({ event, customStyle, onClick }) => {
               district={event.location.district}
             />
           </View>
-        </View>
         <FakeButton>
           {+event.subscribe_closing_date < new Date().getTime()
             ? 'Inscrições encerradas'

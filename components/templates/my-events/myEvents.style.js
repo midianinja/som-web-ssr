@@ -47,8 +47,13 @@ export const EventsContainer = styled.section`
   margin-top: 50px;
   padding: 10px 0;
   max-width: 1024px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  @media(min-width: 1024px){
+    grid-template-columns: repeat(4, 1fr);
+  }
+ 
+
 `;
 
 export const searchStyle = `

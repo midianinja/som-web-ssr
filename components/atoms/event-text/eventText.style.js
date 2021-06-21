@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { white50, white } from '../../../settings/colors';
+import { white50, white, black } from '../../../settings/colors';
 
 export const Container = styled.section`
   width: 100%;
@@ -14,7 +14,7 @@ export const Container = styled.section`
 `;
 
 export const Title = styled.h3`
-  font-size: 1em;
+  font-size: 18px;
   color: ${white};
   text-align: left;
   margin-bottom: 10px;
@@ -22,7 +22,7 @@ export const Title = styled.h3`
 `;
 
 export const Text = styled.p`
-  font-size: 12px;
+  font-size: 14px;
   color: ${white};
   text-align: left;
   line-height: 1.6em;
