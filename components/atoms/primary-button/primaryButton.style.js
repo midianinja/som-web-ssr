@@ -11,7 +11,7 @@ import {
   darkGray,
   secondaryOrange,
   secondaryMagenta,
-  black,
+  black
 } from '../../../settings/colors';
 
 const sizes = {
@@ -52,11 +52,11 @@ function getColor(key) {
 }
 
 const hoverColors = {
-  purple,
+  purple: secondaryPurple,
   magenta,
   orange,
   secondaryOrange,
-  white,
+  white
 };
 
 /**

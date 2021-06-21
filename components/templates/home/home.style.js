@@ -5,6 +5,19 @@ export const Page = styled.div`
   width: 100%;
   position: relative;
   overflow-x: hidden;
+
+  animation-name: fadein;
+  animation-duration: 1s;
+
+  @keyframes fadein {
+    from {
+      opacity: 0.5;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 export const LoginButtonContainer = styled.div`

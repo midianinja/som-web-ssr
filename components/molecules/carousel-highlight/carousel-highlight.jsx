@@ -120,11 +120,21 @@ const CarouselHighlight = ({ opportunities }) => {
       setMainCard
     });
 
+    const interval = setInterval(() => {
+      if (mainCard >= 0 && mainCard < opportunities.length - 1) {
+        setMainCard(mainCard + 1);
+      } else {
+        setMainCard(0);
+      }
+    }, 5000);
+
     return () => {
       if (layoutManager) {
         layoutManager.off('swipeleft');
         layoutManager.off('swiperight');
       }
+
+      clearInterval(interval);
     };
   }, [mainCard]);
 

@@ -21,6 +21,7 @@ export const StepContainer = styled.div`
   flex-direction: column;
   gap: 16px;
 
+  background-color: ${({ light }) => (light ? white : black)};
   justify-content: center;
   align-items: center;
 
@@ -31,9 +32,22 @@ export const StepContainer = styled.div`
 
   background-image: url('${({ mobBackground }) => mobBackground}');
   background-position: center;
-  background-size: cover;
+  background-size: 100%;
+  transition-duration: 2s;
+  animation-name: fadein;
+  animation-duration: 1s;
 
   color: ${white};
+
+  @keyframes fadein {
+    from {
+      opacity: 0.5;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
 
   &:nth-child(3) > p,
   &:nth-child(4) > p {
@@ -43,9 +57,20 @@ export const StepContainer = styled.div`
   &:not(:last-child) {
     cursor: pointer;
   }
+
   @media (min-width: 768px) {
     background-image: url('${({ background }) => background}');
   }
+
+  ${({ animation3 }) => {
+    if (animation3) {
+      return `
+        background-size: 800%;
+      `;
+    }
+
+    return ``;
+  }}
 `;
 
 export const Text = styled.p`

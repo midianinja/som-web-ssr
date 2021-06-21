@@ -8,6 +8,7 @@ import HowItWorks from './components/how-it-works/howItWorks';
 import { init } from './home.controller';
 import { Page } from './home.style';
 import DashBoard from './components/dashboard/dashboard';
+import GlobalLoading from '../../molecules/global-loading/global-loading';
 
 /**
  * This contains the Home Page
@@ -15,6 +16,7 @@ import DashBoard from './components/dashboard/dashboard';
  */
 const Home = () => {
   const { state, dispatch } = useContext(Store);
+  const [lastConnection, setLastConnection] = useState(null);
   const [communityUsers, setCommunityUsers] = useState([]);
   const [communityUsersLoading, setCommunityUsersLoading] = useState([]);
   const [highlightedOportunities, setHighlightedOportunities] = useState([]);
@@ -44,18 +46,30 @@ const Home = () => {
       setLatestOpportunities,
       setLatestOpportunitiesLoading
     });
+
+    const storageLastConnection = localStorage.getItem('som@last-connection');
+    setLastConnection(storageLastConnection);
   }, []);
 
-  console.log('latestOpportunitiesLoading', latestOpportunitiesLoading);
-  console.log('communityUsersLoading', communityUsersLoading);
-  console.log('highlightedOportunitiesLoading', highlightedOportunitiesLoading);
-  console.log('productorOportunitiesLoading', productorOportunitiesLoading);
-  console.log('artistOportunitiesLoading', artistOportunitiesLoading);
-  console.log('newsLoading', newsLoading);
+  if (
+    latestOpportunitiesLoading ||
+    communityUsersLoading ||
+    highlightedOportunitiesLoading ||
+    artistOportunitiesLoading ||
+    newsLoading
+  ) {
+    return <GlobalLoading />;
+  }
 
   return (
     <Page>
-      <SplashScreen opened={splashScreen} openSOM={() => setSplashScreen(false)} />
+      <SplashScreen
+        opened={splashScreen && !lastConnection}
+        openSOM={() => {
+          setSplashScreen(false);
+          window.localStorage.setItem('som@last-connection', Date.now());
+        }}
+      />
       <Apresentation
         signinClick={() => {
           if (state.idaSDK) state.idaSDK.signinWithPopup();

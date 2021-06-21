@@ -7,6 +7,7 @@ import { OverlayContainer, StepContainer, Text } from './splashScreen.style';
  *
  */
 const SplashScreen = ({ opened, openSOM }) => {
+  const [endAnimation3, setEndAnimation3] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
 
   return (
@@ -26,13 +27,21 @@ const SplashScreen = ({ opened, openSOM }) => {
         <Text>Faça parte da comunidade</Text>
       </StepContainer>
       <StepContainer
+        light
+        animation3={endAnimation3}
         background="/images/home/splash-bg-3.png"
         mobBackground="/images/home/mob-splash-bg-3.png"
         open={currentStep === 2}
-        onClick={() => setCurrentStep(currentStep + 1)}>
+        onClick={() => {
+          setEndAnimation3(true);
+
+          setTimeout(() => {
+            setCurrentStep(currentStep + 1);
+          }, 500);
+        }}>
         <Text>Construa a história da nova música brasileira</Text>
       </StepContainer>
-      <StepContainer open={currentStep === 3}>
+      <StepContainer open={currentStep === 3} light>
         <Text>Aproveite as oportunidades</Text>
         <PrimaryButton onClick={openSOM}>Entrar no SOM</PrimaryButton>
       </StepContainer>
