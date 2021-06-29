@@ -20,6 +20,7 @@ import {
 import { ConditionsWrapper, Form, FormWrapper, LoadingWrapper } from './registerEvent.style';
 import WhoSubscribe from './components/who-subscribe/who-subscribe';
 import EventTypes from './components/event-type/event-type';
+import { handleEditEvent } from './editRegister.controller';
 
 const steps = [
   {
@@ -213,6 +214,34 @@ const RegisterEvent = () => {
   const [eventTypes, setEventTypes] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const mapContextToState = (event) => {
+    setI(productor.id || '');
+    setName(productor.name || '');
+    setAbout(productor.description || '');
+    setAvatar({ url: productor.photo || '' });
+    setCNPJ(productor.cnpj || '');
+    setCPF(productor.cpf || '');
+    setMusicalStyles(mapMusicalStyles(productor.musical_styles || []));
+    setOccupations(mapOccupations(productor.occupations || []));
+    setMainPhone(productor.main_phone || '');
+    setSecondaryPhone(productor.secondary_phone || '');
+    setWhatsapp(productor.whatsapp || '');
+    setTelegram(productor.telegram || '');
+    setContactEmail(productor.contact_email || '');
+    setFacebook(productor.facebook || 'https://www.facebook.com/');
+    setInstagram(productor.instagram || 'https://www.instagram.com/');
+    setTwitter(productor.twitter || 'https://twitter.com/');
+    setYoutube(productor.youtube || 'https://www.youtube.com/');
+
+    if (productor.location && productor.location.id) {
+      setLocationId(productor.location.id);
+      setCity(productor.location.city);
+      setZipcode(productor.location.zipcode);
+      setAddress(productor.location.address);
+      setNumber(productor.location.number);
+    }
+  };
+
   useEffect(() => {
     fetchCountries({
       setCountries,
@@ -220,6 +249,8 @@ const RegisterEvent = () => {
       setState
     });
   }, []);
+
+  
 
   if (!state.user) {
     return (
@@ -236,6 +267,7 @@ const RegisterEvent = () => {
   ) {
     router.push('/register-productor');
   }
+   
 
   const values = {
     avatar,
@@ -318,21 +350,35 @@ const RegisterEvent = () => {
         })}
       </FormWrapper>
       <StepEventFormFooter
-        saveAction={() =>
-          handleCreateEvent(
-            values,
-            state.user.id,
-            setLoading,
-            setErrors,
-            setLocationId,
-            dispatch,
-            state.user,
-            router
-          )
+        saveAction={() => {
+          if (!id) {
+            handleCreateEvent(
+              values,
+              state.user.id,
+              setLoading,
+              setErrors,
+              setLocationId,
+              dispatch,
+              state.user,
+              router
+            )
+          } else {
+            handleEditEvent(
+              values,
+              state.user.id,
+              setLoading,
+              setErrors,
+              dispatch,
+              state.user,
+              router
+            )
+          }
+        }
         }
         actionLabel="Criar evento"
         loading={loading}
         cancelAction={() => null}
+
       />
     </Form>
   );
