@@ -89,7 +89,7 @@ const Header = ({ customStyle }) => {
           onClick={() => router.push('/oportunities')}
           alt="Som, Sistema Operacional da Música"
         />
-        <RightGroup hide={!state.auth || !state.auth.ida}>
+        <RightGroup hide={!state.auth || !state.auth._id}>
           <ProfileWrapper onClick={() => setDropdown(!dropdown)}>
             <Type dark={state.connectionType === 'public'}>{types[state.connectionType]}</Type>
             <Name dark={state.connectionType === 'public'}>{getName()}</Name>
@@ -151,7 +151,7 @@ const Header = ({ customStyle }) => {
             }}
           />
         </RightGroup>
-        <RightGroup hide={state.auth && state.auth.ida}>
+        <RightGroup hide={state.auth && state.auth._id}>
           <IDALoginButton
             dark
             onClick={() => {

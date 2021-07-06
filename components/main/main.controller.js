@@ -9,6 +9,7 @@ import { getUser, createUserSOM } from './main.repository';
  */
 export const fetchLoggedUser = async (ida, dispatch, router) => {
   let response = await getUser(ida);
+
   let user = response.data.oneUser;
 
   if (user && router.pathname === '/') {
@@ -28,7 +29,7 @@ export const fetchLoggedUser = async (ida, dispatch, router) => {
   // seta o usuário S.O.M na context API
   dispatch({
     type: 'SET_USER',
-    user,
+    user
   });
 
   let typeConnection = 'public';
@@ -71,7 +72,7 @@ export const initIDA = async (dispatch, router) => {
     sdk = await init({
       onAuthChange: (auth) => {
         if (auth) {
-          fetchLoggedUser(auth.ida, dispatch, router);
+          fetchLoggedUser(auth._id, dispatch, router);
         } else {
           dispatch({ type: 'STOP_AUTH_LOADING' });
           dispatch({ type: 'STOP_VERIFY_LOADING' });
