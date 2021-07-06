@@ -5,6 +5,7 @@ import { validation } from './registerEvent.validate';
 import { allCountriesQuery, allStateQuery } from './registerEvent.queries';
 import { getBase64, uploadImageToStorage } from '../../../utils/file.utils';
 
+
 export const deleteTag = ({ id, tags, setTag }) => {
   const myTags = tags.filter((tag) => tag.id !== id);
   setTag(myTags);
