@@ -21,6 +21,7 @@ import { ConditionsWrapper, Form, FormWrapper, LoadingWrapper } from './register
 import WhoSubscribe from './components/who-subscribe/who-subscribe';
 import EventTypes from './components/event-type/event-type';
 import { handleEditEvent } from './editRegister.controller';
+import { fetchEventData } from '../event/event.controller';
 
 const steps = [
   {
@@ -215,7 +216,7 @@ const RegisterEvent = () => {
   const [loading, setLoading] = useState(false);
 
   const mapContextToState = (event) => {
-    setI(productor.id || '');
+    setId(productor.id || '');
     setName(productor.name || '');
     setAbout(productor.description || '');
     setAvatar({ url: productor.photo || '' });
@@ -250,7 +251,14 @@ const RegisterEvent = () => {
     });
   }, []);
 
-  
+  useEffect(() => {
+    if (state.user && state.user.productor) {
+      mapContextToState(state.user.productor.id);
+    }
+    fetchEventData(state.user.productor.events.findIndex(event => (event.id)),
+      setEvent()
+    );
+  }, []);
 
   if (!state.user) {
     return (
@@ -267,6 +275,8 @@ const RegisterEvent = () => {
   ) {
     router.push('/register-productor');
   }
+
+  
    
 
   const values = {
