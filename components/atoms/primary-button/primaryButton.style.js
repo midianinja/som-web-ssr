@@ -70,8 +70,6 @@ function getHoverColor(key) {
 
 export const PrimaryButtonStyle = styled.button`
   height: ${(props) => getSize(props.size)};
-  padding-left: 30px;
-  padding-right: 30px;
   border-radius: ${(props) => getSize(props.size)};
   background-color: ${(props) => getColor(props.color)};
   color: ${(props) => {
@@ -80,7 +78,7 @@ export const PrimaryButtonStyle = styled.button`
   }};
   cursor: pointer;
   transition-duration: 0.3s;
-  font-size: 0.8571428571em;
+  font-size: 14px;
   font-weight: 700;
 
   :active,
