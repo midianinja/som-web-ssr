@@ -17,7 +17,7 @@ import {
 const getLinks = (user, connectionType) => {
   const links = [
     {
-      href: '/oportunities',
+      href: '/opportunities',
       label: 'Oportunidades'
     },
     {
@@ -29,8 +29,8 @@ const getLinks = (user, connectionType) => {
     {
       href:
         user && user.productor && user.productor.id
-          ? `/productor/${user.productor.id}`
-          : '/register-productor',
+          ? `/producer/${user.productor.id}`
+          : '/register-producer',
       label: 'Meu perfil',
       hide: !user || connectionType !== 'productor'
     },

@@ -18,7 +18,7 @@ const Welcome = () => {
         <PrimaryButton
           customStyle="margin-top: 30px;"
           onClick={() => {
-            router.push('/oportunities');
+            router.push('/opportunities');
           }}
           color="secondaryOrange">
           Ver mural

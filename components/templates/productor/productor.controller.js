@@ -282,7 +282,7 @@ export const nextCallback = ({ visibles, setVisibles, router, id }) => {
     setVisibles(newVisibles);
   } else {
     setVisibles(newVisibles);
-    router.push(`/productor/${id}`);
+    router.push(`/producer/${id}`);
   }
 };
 

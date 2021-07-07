@@ -162,7 +162,7 @@ const EventPage = () => {
                 approveds={event.approved_artists}
               />
               <SubscribedProductors
-                productorClick={(productorId) => router.push(`/productor/${productorId}`)}
+                productorClick={(productorId) => router.push(`/producer/${productorId}`)}
                 productors={event.subscribed_productors}
                 approveds={event.approved_productors}
               />

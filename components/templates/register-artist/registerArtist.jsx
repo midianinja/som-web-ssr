@@ -360,7 +360,7 @@ const RegisterArtistTemplate = () => {
 
   useEffect(() => {
     if (state.connectionType === 'productor') {
-      router.push('/productor');
+      router.push('/producer');
     }
   }, [state.connectionType]);
 

@@ -130,7 +130,7 @@ export const subscribeAction = async (
     disagreeText: 'Explore mais oportunidades',
     disagreeAction: () => {
       allowBodyScroll();
-      router.push('/oportunities');
+      router.push('/opportunities');
       setDialog({});
     }
   });

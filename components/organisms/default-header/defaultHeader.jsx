@@ -86,7 +86,7 @@ const Header = ({ customStyle }) => {
         </Group>
         <Logo
           src={getSOMBrand()}
-          onClick={() => router.push('/oportunities')}
+          onClick={() => router.push('/opportunities')}
           alt="Som, Sistema Operacional da Música"
         />
         <RightGroup hide={!state.auth || !state.auth._id}>
@@ -108,7 +108,7 @@ const Header = ({ customStyle }) => {
               }
 
               if (type === 'productor' && !state.user.productor) {
-                router.push('/productor');
+                router.push('/producer');
               }
               window.localStorage.setItem('som@type', type);
               dispatch({ type: 'SET_LOGIN_TYPE', data: type });
@@ -142,11 +142,11 @@ const Header = ({ customStyle }) => {
             }}
             toProductor={() => {
               if (state.user.productor && state.user.productor.status === 'INCOMPLETE') {
-                router.push('/productor');
+                router.push('/producer');
                 return;
               }
               if (state.user.productor) {
-                router.push(`/productor/${state.user.productor.id}`);
+                router.push(`/producer/${state.user.productor.id}`);
               }
             }}
           />

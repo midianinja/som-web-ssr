@@ -45,8 +45,8 @@ const ProductorBasicInfo = ({
         id,
         text: label,
         color: colors[Math.floor(Math.random() * colors.length)]
-      })
-    ));
+      }))
+    );
   }, []);
 
   return (
@@ -90,7 +90,7 @@ const ProductorBasicInfo = ({
       <PrimaryButton
         onClick={() => {
           if (!isMyProductor) return window.open(`mailto:${email}`, '_blank');
-          return history.push('/productor');
+          return history.push('/producer');
         }}>
         {isMyProductor ? 'Editar Perfil' : 'Enviar e-mail'}
       </PrimaryButton>

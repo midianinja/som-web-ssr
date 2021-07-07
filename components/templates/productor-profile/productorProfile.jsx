@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import PrimaryButton from '../../atoms/primary-button/primaryButton';
 import Cover from '../../atoms/cover/cover';
@@ -30,10 +29,7 @@ import {
  * in the event in the list
  * @returns contains React.Component
  */
-const renderEvents = (
-  events, more, setMore, onSuccess,
-  loggedAs, router,
-) => {
+const renderEvents = (events, more, setMore, onSuccess, loggedAs, router) => {
   let sortedEvents = events.sort((a, b) =>
     new Date(+a.event_date) > new Date(+b.event_date) ? 1 : -1
   );
@@ -80,7 +76,7 @@ const ProductorPage = () => {
   const [update, setUpdate] = useState(false);
   const [more, setMore] = useState(false);
   const [productor, setProductor] = useState(null);
-  const [instagramPhotos, setInstagramPhotos] = useState([]);
+  const [instagramPhotos] = useState([]);
   const [alertModal, setAlertModal] = useState({
     title: '',
     icon: '',
@@ -124,8 +120,6 @@ const ProductorPage = () => {
     );
   }
 
-  console.log(productor.events);
-  
   const isMyProductor =
     state.user && state.user.productor && state.user.productor.id === productor.id;
 
@@ -161,7 +155,7 @@ const ProductorPage = () => {
               setMore,
               () => setUpdate(!update),
               state.connectionType,
-              router,
+              router
             )
           ) : (
             <NotEvents>Nenhum evento cadastrado</NotEvents>
