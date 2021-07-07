@@ -73,9 +73,9 @@ const mapEventToApi = (event, productor, location) => ({
   stream_url: event.streamUrl,
   is_to_productor: event.isToProductor,
   is_to_artist: event.isToArtist,
-  is_online: event.eventTypes.find((type) => type === 'ONLINE'),
-  is_physical: event.eventTypes.find((type) => type === 'PHYSICAL'),
-  is_on_som: event.eventTypes.find((type) => type === 'SOM'),
+  is_online: !!event.eventTypes.find((type) => type === 'ONLINE'),
+  is_physical: !!event.eventTypes.find((type) => type === 'PHYSICAL'),
+  is_on_som: !!event.eventTypes.find((type) => type === 'SOM'),
   has_interstate_transportation: event.hasInterstateTransportation,
   has_international_transportation: event.hasInternationalTransportation
 });
