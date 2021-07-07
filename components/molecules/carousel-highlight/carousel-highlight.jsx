@@ -23,7 +23,7 @@ import { useRouter } from 'next/dist/client/router';
  */
 const renderItems = (items, onClick) =>
   items.map((item) => (
-    <CarouselItem key={item.id} onClick={() => onClick(item.oportunity.id)}>
+    <CarouselItem key={item.id} onClick={() => onClick(item.oportunity.id, item.link)}>
       <ItemImageWrapper>
         <ItemImage src={item.image} alt="" />
       </ItemImageWrapper>
@@ -106,8 +106,9 @@ const CarouselHighlight = ({ opportunities }) => {
   const [mainCard, setMainCard] = useState(0);
   const carouselRef = useRef();
 
-  const handleCardClick = (id) => {
-    router.push(`/event/${id}`);
+  const handleCardClick = (id, link) => {
+    if (link) window.location.href = link;
+    else router.push(`/event/${id}`);
   };
 
   useLayoutEffect(() => {

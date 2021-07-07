@@ -5,6 +5,7 @@ export const ALL_HIGHLIGHTED_OPORTUNITIES_QUERY = gql`
     allHighlightedOportunities {
       id
       image
+      link
       oportunity {
         id
         name
