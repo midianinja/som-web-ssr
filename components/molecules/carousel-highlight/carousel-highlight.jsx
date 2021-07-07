@@ -27,15 +27,6 @@ const renderItems = (items, onClick) =>
       <ItemImageWrapper>
         <ItemImage src={item.image} alt="" />
       </ItemImageWrapper>
-      <ItemContent>
-        <div>
-          <Tag>
-            <span>Oportunidade</span>
-          </Tag>
-        </div>
-        <ItemTitle>{item.oportunity.name}</ItemTitle>
-        <ItemDescription>{item.oportunity.about.slice(0, 110)}...</ItemDescription>
-      </ItemContent>
     </CarouselItem>
   ));
 

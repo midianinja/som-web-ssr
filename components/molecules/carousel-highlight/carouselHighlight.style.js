@@ -80,17 +80,7 @@ export const ItemContent = styled.div`
   padding-bottom: 24px;
 
   @media (min-width: 1024px) {
-    position: absolute;
-    width: 18vw;
-    max-width: 320px;
-    height: 100%;
-
-    gap: 16px;
-
-    left: calc(6vw);
-
-    justify-content: start;
-    align-content: center;
+    display: none;
   }
 
   @media (min-width: 1400px) {
