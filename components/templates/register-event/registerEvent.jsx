@@ -216,31 +216,14 @@ const RegisterEvent = () => {
   const [loading, setLoading] = useState(false);
 
   const mapContextToState = (event) => {
-    setId(productor.id || '');
-    setName(productor.name || '');
-    setAbout(productor.description || '');
-    setAvatar({ url: productor.photo || '' });
-    setCNPJ(productor.cnpj || '');
-    setCPF(productor.cpf || '');
-    setMusicalStyles(mapMusicalStyles(productor.musical_styles || []));
-    setOccupations(mapOccupations(productor.occupations || []));
-    setMainPhone(productor.main_phone || '');
-    setSecondaryPhone(productor.secondary_phone || '');
-    setWhatsapp(productor.whatsapp || '');
-    setTelegram(productor.telegram || '');
-    setContactEmail(productor.contact_email || '');
-    setFacebook(productor.facebook || 'https://www.facebook.com/');
-    setInstagram(productor.instagram || 'https://www.instagram.com/');
-    setTwitter(productor.twitter || 'https://twitter.com/');
-    setYoutube(productor.youtube || 'https://www.youtube.com/');
-
-    if (productor.location && productor.location.id) {
-      setLocationId(productor.location.id);
-      setCity(productor.location.city);
-      setZipcode(productor.location.zipcode);
-      setAddress(productor.location.address);
-      setNumber(productor.location.number);
-    }
+    console.log("aloo", event)
+    setAddress(event.location)
+    setName(event.name || '');
+    setDescription(event.about || '');
+    setStreamUrl({ url: event.site || '' });
+    setCover(event.cover || '');
+    setAvatar(event.photo || '');
+ 
   };
 
   useEffect(() => {
@@ -253,11 +236,9 @@ const RegisterEvent = () => {
 
   useEffect(() => {
     if (state.user && state.user.productor) {
-      mapContextToState(state.user.productor.id);
+      mapContextToState(state);
     }
-    fetchEventData(state.user.productor.events.findIndex(event => (event.id)),
-      setEvent()
-    );
+    fetchEventData(state.user.productor.events.findIndex(event => (event.id)));
   }, []);
 
   if (!state.user) {
