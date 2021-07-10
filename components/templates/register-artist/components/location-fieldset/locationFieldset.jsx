@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import VMasker from 'vanilla-masker';
 import Input from '../../../../atoms/input/input';
 import InputIcon from '../../../../atoms/input-icon/InputIcon';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
@@ -34,9 +35,10 @@ const LocationFieldset = ({
           icon="location"
           id="zipcode"
           placeholder="CEP *"
-          value={values.zipcode}
+          value={VMasker.toPattern(values.zipcode, '99999999')}
           onChange={handleZipcodeChange}
         />
+        <small class="JhijG">*somente números</small>
       </InputGroup>
 
       <InputGroup

@@ -70,12 +70,12 @@ const ContactFieldset = ({
     </Row>
     <Row>
       <InputGroup
-        label={values.contactEmail ? 'Email de contato' : ''}
+        label={values.contactEmail ? 'Email de contato *' : ''}
         error={productorStepErrors.contactEmail}
         customStyle={inputGroup50CustomStyle}>
         <Input
           id="contactEmail"
-          placeholder="Email de contato"
+          placeholder="Email de contato *"
           value={values.contactEmail}
           type="text"
           onChange={handleContactEmailChange}
