@@ -29,7 +29,7 @@ const renderEvents = (events, eventClick) => {
 
 const ApprovedEvents = ({ events, eventClick }) => (
   <Wrapper>
-    <Title>Participou dos eventos</Title>
+    <Title>Participou das oportunidades</Title>
     <ListWrapper>{renderEvents(events, eventClick)}</ListWrapper>
   </Wrapper>
 );

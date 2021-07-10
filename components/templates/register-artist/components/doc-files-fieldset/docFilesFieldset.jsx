@@ -40,7 +40,7 @@ const DocFilesFieldset = ({
     <Content>
 
       <Title>Arquivos técnicos</Title>
-      <FirstLegend>Documentos básicos para inscrição em qualquer evento do SOM</FirstLegend>
+      <FirstLegend>Documentos básicos para inscrição em qualquer oportunidade do SOM</FirstLegend>
       <SecondLegend>
         Formatos de arquivo suportados: .pdf, .jpg, e .png, com no máximo 10 mb.
       </SecondLegend>

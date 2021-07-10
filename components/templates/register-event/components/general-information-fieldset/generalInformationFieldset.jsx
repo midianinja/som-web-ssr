@@ -30,13 +30,13 @@ const GeneralInformationFieldset = ({
     </InputGroup>
     <Row2Column>
       <InputGroup
-        label={values.eventDate ? 'Data do evento' : ''}
+        label={values.eventDate ? 'Data da oportunidade' : ''}
         error={eventErrors.eventDate}
         info="Exemplo: 20/04/2020">
         <Input
           id="eventDate"
           type="tel"
-          placeholder="Data do evento"
+          placeholder="Data da oportunidade"
           value={VMasker.toPattern(values.eventDate, '99/99/9999')}
           onChange={handleEventDateChange}
         />
@@ -67,24 +67,24 @@ const GeneralInformationFieldset = ({
       />
     </InputGroup>
     <InputGroup
-      label={values.openingsNumber ? 'Quantidade de vagas no evento' : ''}
+      label={values.openingsNumber ? 'Quantidade de vagas na oportunidade' : ''}
       error={eventErrors.openingsNumber}>
       <Input
         id="openingsNumber"
         type="tel"
-        placeholder="Quantidade de vagas no evento"
+        placeholder="Quantidade de vagas na oportunidade"
         value={VMasker.toPattern(values.openingsNumber, '99999')}
         onChange={handleOpeningsNumberChange}
       />
     </InputGroup>
     <InputGroup
-      label={values.description ? 'Descrição do evento' : ''}
+      label={values.description ? 'Descrição da oportunidade' : ''}
       error={eventErrors.description}
       info="Informe todas as condições oferecidas."
     >
       <TextArea
         id="description"
-        placeholder="Descrição do evento"
+        placeholder="Descrição da oportunidade"
         value={values.description}
         onChange={handleDescriptionChange}
         maxLength={descriptionMaxLength}

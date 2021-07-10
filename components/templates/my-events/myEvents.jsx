@@ -106,7 +106,7 @@ const MyEventsPage = () => {
       </EventsContainer>
       <AddButton onClick={() => router.push('/register-event')}>
         <Icon src="/icons/plus.svg" />
-        Adicionar evento
+        Adicionar oportunidade
       </AddButton>
       <Container>
         {dialog.title ? (

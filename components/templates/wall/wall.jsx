@@ -101,7 +101,7 @@ const Wall = () => {
   return (
     <Container>
       <DefaultHeader />
-      <Title>Eventos e Oportunidades</Title>
+      <Title>Oportunidades</Title>
       <Form>
         <InputGroup customStyle={filterGroupsStyle}>
           <ListInput

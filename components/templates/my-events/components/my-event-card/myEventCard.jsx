@@ -40,7 +40,7 @@ const EventCard = ({ event, customStyle, onClick }) => {
               {cardHover ? (
                 <ImageHover>
                   <Icon src="/icons/tool.svg" />
-                  <Label>Administrar evento</Label>
+                  <Label>Administrar oportunidade</Label>
                 </ImageHover>
               ) : null}
             </ImageContainer>

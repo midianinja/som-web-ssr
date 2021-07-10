@@ -14,7 +14,7 @@ const CoverFieldset = ({ values, onChange, eventErrors }) => (
       <UploadAvatar
         id="cover-uploader"
         alt="botão para subir imagem"
-        title="Foto de capa do evento"
+        title="Foto de capa da oportunidade"
         handleChange={onChange}
         customStyle={avatarCustomStyle}
         src={values.cover.url && values.cover.url.url ? values.cover.url : values.cover}

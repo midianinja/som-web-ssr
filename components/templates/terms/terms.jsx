@@ -49,7 +49,7 @@ const Terms = () => (
       <Paragraph>
         (i) Cadastro de Perfil e Páginas de artistas no S.O.M.;
         <br />
-        (ii) Cadastro de eventos no S.O.M.;
+        (ii) Cadastro de oportunidades no S.O.M.;
         <br />
         (iii) Qualquer outro recurso, conteúdo ou aplicativos oferecidos pelo S.O.M.
       </Paragraph>

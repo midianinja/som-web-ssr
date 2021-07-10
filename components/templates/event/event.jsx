@@ -117,7 +117,7 @@ const EventPage = () => {
           <Header logged={!!state.user} />
           <CoverWrapper>
             <Cover cover={event.cover.mimified}>
-              <EventImage src={event.cover.mimified} alt="Cover do Evento" />
+              <EventImage src={event.cover.mimified} alt="Cover da Oportunidade" />
               <HeaderWrapper />
             </Cover>
           </CoverWrapper>
