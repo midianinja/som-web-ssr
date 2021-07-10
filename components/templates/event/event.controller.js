@@ -55,9 +55,9 @@ export const fetchEventData = async (id, setEvent, loading, setLoading, setDialo
 
   if (!eventData.data.oneEvent) {
     setDialog({
-      title: 'Evento não encontrado',
+      title: 'Oportunidade não encontrada',
       icon: '/icons/guita-error.svg',
-      description: 'Logo teremos mais eventos, fique ligado para se inscrever.',
+      description: 'Logo teremos mais oportunidades, fique ligado para se inscrever.',
       disagreeText: 'Ir para home',
       disagreeAction: () => router.push('/')
     });

@@ -55,7 +55,7 @@ const renderEvents = (events, more, setMore, onSuccess, loggedAs, router) => {
               width: 200px;
             `}
           onClick={() => setMore(!more)}>
-          {more ? 'Carregar menos eventos' : 'Carregar mais eventos'}
+          {more ? 'Carregar menos oportunidades' : 'Carregar mais oportunidades'}
         </PrimaryButton>
       ) : null}
     </EventsContainer>
@@ -158,7 +158,7 @@ const ProductorPage = () => {
               router
             )
           ) : (
-            <NotEvents>Nenhum evento cadastrado</NotEvents>
+            <NotEvents>Nenhuma oportunidade cadastrada</NotEvents>
           )}
           {instagramPhotos.length ? (
             <InstagramMedia

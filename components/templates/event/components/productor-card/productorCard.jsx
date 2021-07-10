@@ -31,7 +31,7 @@ const ProductorCard = ({ productor, router }) => (
         />
         <ButtonsWrapper>
         <PrimaryButton color='green'>seguir</PrimaryButton>
-        <LinkButton customStyle="margin-left: 10px" color="black">ver mais eventos</LinkButton>
+        <LinkButton customStyle="margin-left: 10px" color="black">ver mais oportunidades</LinkButton>
         </ButtonsWrapper>
       */}
     </ProfileWrapper>
