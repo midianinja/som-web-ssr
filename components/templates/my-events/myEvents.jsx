@@ -81,7 +81,7 @@ const MyEventsPage = () => {
       <GlobalForm>
         <LocationContainer />
         <InputGroup customStyle={searchStyle}>
-          <InputIconWrapper>
+          {/* <InputIconWrapper>
             <SearchIcon src="/icons/search.svg" />
             <Input
               id="keyword"
@@ -90,8 +90,8 @@ const MyEventsPage = () => {
               customStyle={searchInputStyle}
               onBlur={() => console.log('onBlur')}
               onChange={(e) => setSearchText(e.target.value)}
-            />
-          </InputIconWrapper>
+            /> */}
+          {/* </InputIconWrapper> */}
         </InputGroup>
       </GlobalForm>
       <EventsContainer>
