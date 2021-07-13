@@ -74,9 +74,6 @@ const Home = () => {
         signinClick={() => {
           if (state.idaSDK) state.idaSDK.signinWithPopup();
         }}
-        signupClick={() => {
-          if (state.idaSDK) state.idaSDK.signupWithPopup();
-        }}
         openNavigation={() => {
           dispatch({
             type: 'SHOW_NAVIGATION_MODAL'
