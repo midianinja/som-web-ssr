@@ -17,6 +17,9 @@ import {
   unsubscribeAction
 } from './event.controller';
 import {
+  handleEditEvent
+} from './../register-event/editRegister.controller'
+import {
   Container,
   ProductorCardWrapper,
   CoverWrapper,
@@ -61,7 +64,7 @@ const EventPage = () => {
   }
 
   const eventPlace = {
-    city: event.location.city,
+    city: event.location?.city,
     state: event.location.state,
     district: event.location.district,
     address: `${event.location.address} ${event.location.number}`,
@@ -121,6 +124,7 @@ console.log(event)
           <Content>
             <EventInfo
               subscribed={isSubscribed(state.user, event, myState.connectionType)}
+              id={event.id}
               name={event.name}
               date={event.event_date}
               place={eventPlace}
@@ -150,6 +154,9 @@ console.log(event)
                 )
               }
               unsubscribeAction={() => unsubscribeAction(state.user, event, setEvent)}
+              isOwner={!!state.user && !!state.user.productor && state.user.productor.events.findIndex(event => (event.id === label)) != -1 }
+              handleEditEvent ={() => handleEditEvent(state.user.id, event, setEvent)}
+
             />
             <ColumnWrapper>
               <EventText text={event.about} />
