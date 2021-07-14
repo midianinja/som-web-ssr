@@ -62,7 +62,7 @@ const Header = ({ customStyle }) => {
       return state.user.productor.name;
     }
 
-    return 'Não nomeado';
+    return state.auth.first_name;
   };
 
   const types = {
