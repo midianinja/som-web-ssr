@@ -13,21 +13,21 @@ import {
 } from './productorCard.style';
 
 const ProductorCard = ({ productor, router }) => (
-  <Container onClick={() => router.push(`/producer/${productor.id}`)}>
+  <Container onClick={() => router.push(`/producer/${productor?.id}`)}>
     <ImageWrapper>
-      <Avatar customStyle={avatarStyle} src={productor.photo} />
+      <Avatar customStyle={avatarStyle} src={productor?.photo} />
       <ProductorTitle>Produtor</ProductorTitle>
     </ImageWrapper>
     <ProfileWrapper>
-      <ProductorName>{productor.name}</ProductorName>
-      {productor.location ? (
-        <ProductorCity>{`${productor.location.city}, ${productor.location.state}`}</ProductorCity>
+      <ProductorName>{productor?.name}</ProductorName>
+      {productor?.location ? (
+        <ProductorCity>{`${productor?.location?.city}, ${productor?.location?.state}`}</ProductorCity>
       ) : null}
-      <ProductorText>{productor.description}</ProductorText>
+      <ProductorText>{productor?.description}</ProductorText>
       {/*
         <FollowersAndFollowing
-          nFollowers={productor.followers.length}
-          nFollowing={productor.following.length}
+          nFollowers={productor?.followers.length}
+          nFollowing={productor?.following.length}
         />
         <ButtonsWrapper>
         <PrimaryButton color='green'>seguir</PrimaryButton>
