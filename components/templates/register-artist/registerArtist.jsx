@@ -367,6 +367,8 @@ const RegisterArtistTemplate = () => {
   useEffect(() => {
     if (state.user && state.user.artist) {
       mapContextToState(state.user.artist);
+    } else {
+      setName(`${state.auth.first_name} ${state.auth.last_name}`);
     }
     fetchMusicalStyleOptions(setMusicalStylesOptions);
   }, []);

@@ -228,9 +228,9 @@ const Productor = () => {
   const [whatsapp, setWhatsapp] = useState('');
   const [youtube, setYoutube] = useState('https://www.youtube.com/');
 
-  const mapContextToState = (productor) => {
+  const mapContextToState = (productor, auth) => {
     setId(productor.id || '');
-    setName(productor.name || '');
+    setName(productor.name || auth?.first_name || '');
     setAbout(productor.description || '');
     setAvatar({ url: productor.photo || '' });
     setCNPJ(productor.cnpj || '');
@@ -269,6 +269,8 @@ const Productor = () => {
   useEffect(() => {
     if (state.user && state.user.productor) {
       mapContextToState(state.user.productor);
+    } else {
+      setName(`${state.auth.first_name} ${state.auth.last_name}`);
     }
 
     fetchOccupationsOptions(setOccupationOptions);
