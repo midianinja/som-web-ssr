@@ -115,8 +115,7 @@ const Header = ({ customStyle }) => {
               setDropdown(false);
             }}
             onLogout={() => {
-              window.localStorage.setItem('som@ida', '');
-              window.localStorage.setItem('som@token', '');
+              state.idaSDK.logout();
 
               dispatch({
                 type: 'SET_USER',
