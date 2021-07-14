@@ -109,7 +109,7 @@ const EventPage = () => {
 
     return subscribed;
   };
-
+console.log(event)
   return (
     <Store.Consumer>
       {({ state, dispatch }) => (
@@ -137,6 +137,7 @@ const EventPage = () => {
               diffDays={closingDiffDays}
               diffHours={closingDiffHours}
               loggedAs={myState.connectionType}
+
               subscribedArtists={event.subscribers.length}
               subscribedProductors={event.subscribed_productors.length}
               subscribeAction={() =>
@@ -163,16 +164,20 @@ const EventPage = () => {
               <ProductorCardWrapper>
                 <ProductorCard productor={event.productor} router={router} />
               </ProductorCardWrapper>
-              <SubscribedArtists
-                artistClick={(artistId) => router.push(`/artist/${artistId}`)}
-                artists={event.subscribers}
-                approveds={event.approved_artists}
-              />
-              <SubscribedProductors
-                productorClick={(productorId) => router.push(`/producer/${productorId}`)}
-                productors={event.subscribed_productors}
-                approveds={event.approved_productors}
-              />
+              {event.approved_artists.length ? (
+                <SubscribedArtists
+                  artistClick={(artistId) => router.push(`/artist/${artistId}`)}
+                  artists={event.subscribers}
+                  approveds={event.approved_artists}
+                />
+              ) : null}
+              {event.approved_productors.length ? (
+                <SubscribedProductors
+                  productorClick={(productorId) => router.push(`/producer/${productorId}`)}
+                  productors={event.subscribed_productors}
+                  approveds={event.approved_productors}
+                />
+              ) : null}
             </ColumnWrapper>
           </Content>
           {dialog.title ? (

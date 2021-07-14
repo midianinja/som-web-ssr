@@ -176,7 +176,7 @@ export const mapOccupations = (occupations) => {
 
   if (!occupations) return [];
 
-  console.log('hereeee', occupations);
+  console.log('hereeee:', occupations);
   return occupations.map(({ id, label }) => ({
     id,
     text: label,
