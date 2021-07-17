@@ -171,14 +171,13 @@ export const Terms = styled.a`
 
 export const Community = styled.a`
   width: 100%;
-  font-size: 1em;
+  font-size: 1.5em;
   line-height: 1em;
   font-weight: 300;
   text-decoration: none;
   display: block;
-  margin-top: 40px;
+  margin-bottom: 20px;
   color: ${black};
-  cursor: pointer;
 
   ${(props) => {
     if (props.type === 'artist') {
@@ -202,6 +201,11 @@ export const Community = styled.a`
         color: ${orange}; 
       }
     `;
+  }}
+
+  ${(props) => {
+    if (props.hide) return 'display: none;';
+    return '';
   }}
 `;
 
