@@ -34,7 +34,7 @@ const getFileName = (data) => {
  */
 const DocFilesFieldset = ({
   handleRiderChange, handleMapChange, handleReleaseChange,
-  tecRider, tecMap, tecRelease,
+  tecRider, tecMap, tecRelease, linkPdf
 }) => (
   <Fieldset>
     <Content>
@@ -51,11 +51,15 @@ const DocFilesFieldset = ({
             Com esse desenho fica mais fácil saber a posição de todos equipamentos no palco
           </CardDescription>
           <Actions>
-            <SeeExempleButton
+            {/* <SeeExempleButton
               onClick={() => window.open(tecMap ? tecMap.url : '')}
               name={tecMap}
             >
               {getFileName(tecMap)}
+            </SeeExempleButton> */}
+            <SeeExempleButton
+              onClick={() => window.open('/files/som-site-docsreferencia-mapadepalco.pdf')}>
+              Ver Exemplo
             </SeeExempleButton>
             <UploadDoc
               id="map-doc-uploader"
@@ -71,10 +75,8 @@ const DocFilesFieldset = ({
           </CardDescription>
           <Actions>
             <SeeExempleButton
-              onClick={() => window.open(tecRider ? tecRider.url : '')}
-              name={tecRider}
-            >
-              {getFileName(tecRider)}
+              onClick={() => window.open('/files/som-site-docsreferencia-ridertecnico.pdf')}>
+              Ver Exemplo
             </SeeExempleButton>
             <UploadDoc
               id="rider-doc-uploader"
@@ -90,10 +92,8 @@ const DocFilesFieldset = ({
           </CardDescription>
           <Actions>
             <SeeExempleButton
-              onClick={() => window.open(tecRelease ? tecRelease.url : '')}
-              name={tecRelease}
-            >
-              {getFileName(tecRelease)}
+              onClick={() => window.open('/files/som-site-docsreferencia-presskit.pdf')}>
+              Ver Exemplo
             </SeeExempleButton>
             <UploadDoc
               id="release-doc-uploader"
