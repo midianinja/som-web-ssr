@@ -126,9 +126,9 @@ export const fetchEventsData = async ({
     });
     if (!eventData.data.searchEvents.length) {
       setDialog({
-        title: 'Nenhum evento encontrado',
+        title: 'Nenhuma oportunidade encontrado',
         icon: '/icons/guita-error.svg',
-        description: 'Logo teremos mais eventos, fique ligado para se inscrever.',
+        description: 'Logo teremos mais oportunidades, fique ligado para se inscrever.',
         disagreeText: 'Fechar',
         disagreeAction: () => setDialog({})
       });
@@ -167,7 +167,7 @@ export const subscribeAction = async (
     setDialog({
       title: 'Cadastro incompleto',
       icon: '/icons/guita-error.svg',
-      description: 'Para se escrever em eventos, você precisa preencher os dados obrigatórios.',
+      description: 'Para se escrever em oportunidades, você precisa preencher os dados obrigatórios.',
       agreeText: 'Cadastrar',
       disagreeText: 'Voltar',
       confirmAction: () => {
