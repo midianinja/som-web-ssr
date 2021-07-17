@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import Store from '../../../store/Store';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import EventDate from '../../atoms/event-date/eventDate';
@@ -41,18 +42,17 @@ const EventInfo = ({
   handleEditEvent,
   isOwner
 }) => {
+  const { state } = useContext(Store);
+
   const newDate = new Date(unixTime(date));
   const dateInstance = moment(newDate);
   const dayLabel = diffDays === 1 ? 'dia' : 'dias';
   const hourLabel = diffHours === 1 ? 'hora' : 'horas';
   const router = useRouter();
 
-  console.log(isOwner);
-
   let label = 'Inscrições encerradas';
   if (diffHours > 0) label = `${diffHours} ${hourLabel} para o fim das inscrições`;
   if (diffDays > 0) label = `${diffDays} ${dayLabel} para o fim das inscrições`;
-
 
   const targetList = [];
   const exclusiveLabels = { artist: 'productores', productor: 'artistas', public: 'membros' };
@@ -89,7 +89,7 @@ const EventInfo = ({
         subscribedProductors={subscribedProductors}
       />
       <Space />
-      <ButtonWrapper>
+      <ButtonWrapper hide={!state.auth || !state.auth._id}>
         {isClosingSubscribe && !isOwner? (
           <PrimaryButton onFocus={() => null} onBlur={() => null} onClick={() => null} disabled>
             Inscrições encerradas
