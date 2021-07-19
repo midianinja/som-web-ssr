@@ -86,7 +86,7 @@ const Header = ({ customStyle }) => {
         </Group>
         <Logo
           src={getSOMBrand()}
-          onClick={() => router.push('/opportunities')}
+          onClick={() => router.push('/')}
           alt="Som, Sistema Operacional da Música"
         />
         <RightGroup hide={!state.auth || !state.auth._id}>

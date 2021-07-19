@@ -45,20 +45,20 @@ const BasicInformationFieldset = ({
         />
       </InputGroup>
       <TextInpustWrapper>
-        <InputGroup label={values.name ? 'Nome completo' : ''} error={productorStepErrors.name}>
+        <InputGroup label={values.name ? 'Nome completo *' : ''} error={productorStepErrors.name}>
           <Input
             id="name"
             type="text"
-            placeholder="Nome completo"
+            placeholder="Nome completo *"
             value={values.name}
             onChange={handleNameChange}
           />
         </InputGroup>
         <InputGroup
-          label={values.occupations.length ? 'Área de Atuação' : ''}
+          label={values.occupations.length ? 'Área de Atuação *' : ''}
           error={productorStepErrors.occupations}>
           <AutocompleteInput
-            placeholder={values.occupations.length ? '' : 'Área de Atuação'}
+            placeholder={values.occupations.length ? '' : 'Área de Atuação *'}
             predict={values.occupationPredict}
             value={values.occupation}
             handleChange={handleMusicalStyleChange}
@@ -72,10 +72,10 @@ const BasicInformationFieldset = ({
         </InputGroup>
       </TextInpustWrapper>
     </MainInformationWrapper>
-    <InputGroup label={values.about ? 'Sobre você' : ''} error={productorStepErrors.about}>
+    <InputGroup label={values.about ? 'Sobre você *' : ''} error={productorStepErrors.about}>
       <TextArea
         id="about"
-        placeholder="Conte sobre você :)"
+        placeholder="Conte sobre você :) *"
         value={values.about}
         onChange={handleAboutChange}
         maxLength={descriptionMaxLength}
