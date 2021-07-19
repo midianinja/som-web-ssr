@@ -48,9 +48,9 @@ export const fetchEventsData = async ({ setEvents, loading, setLoading, setDialo
     });
     if (!eventData.data.allEvents.length) {
       setDialog({
-        title: 'Nenhum evento encontrado',
+        title: 'Nenhuma oportunidade encontrado',
         icon: '/icons/guita-error.svg',
-        description: 'Logo teremos mais eventos, fique ligado para se inscrever.',
+        description: 'Logo teremos mais oportunidades, fique ligado para se inscrever.',
         disagreeText: 'Fechar',
         disagreeAction: () => setDialog({})
       });
