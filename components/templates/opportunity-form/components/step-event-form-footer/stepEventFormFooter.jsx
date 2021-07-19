@@ -25,7 +25,7 @@ const StepEventFormFooter = ({ saveAction, cancelAction, customStyle, loading, a
           onClick={() => console.log('heree')}
           color="transparent"
           customStyle={`padding: 20px 0; height: auto; color: ${white}; background-color: #121212; width: 100%; grid-column-start: 1; grid-column-end: 3; &:hover{ background-color: #121212; }`}>
-          Exlcuir oportunidade
+          Excluir oportunidade
         </PrimaryButton>
       </Footer>
     ) : (

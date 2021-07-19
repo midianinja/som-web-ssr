@@ -141,10 +141,10 @@ export const handleEditEvent = async (
 
   const data = mapEventToApi(event, user.productor.id, locationId);
   try {
-    await updateEvent(router.query.id, data);
+    const response = await updateEvent(router.query.id, data);
+    console.log(response, router.query.id);
   } catch (err) {
     setLoading(false);
-    console.log([err])
     throw err;
   }
 
