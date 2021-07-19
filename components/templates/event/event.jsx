@@ -17,9 +17,6 @@ import {
   unsubscribeAction
 } from './event.controller';
 import {
-  handleEditEvent
-} from './../register-event/editRegister.controller'
-import {
   Container,
   ProductorCardWrapper,
   CoverWrapper,
@@ -109,7 +106,6 @@ const EventPage = () => {
 
     return subscribed;
   };
-console.log(event)
   return (
     <Store.Consumer>
       {({ state, dispatch }) => (
@@ -137,7 +133,6 @@ console.log(event)
               diffDays={closingDiffDays}
               diffHours={closingDiffHours}
               loggedAs={myState.connectionType}
-
               subscribedArtists={event.subscribers.length}
               subscribedProductors={event.subscribed_productors.length}
               subscribeAction={() =>
@@ -154,9 +149,11 @@ console.log(event)
                 )
               }
               unsubscribeAction={() => unsubscribeAction(state.user, event, setEvent)}
-              isOwner={!!state.user && !!state.user.productor && state.user.productor.events.findIndex(event => (event.id === label)) != -1 }
-              handleEditEvent ={() => handleEditEvent(state.user.id, event, setEvent)}
-
+              isOwner={
+                !!state.user &&
+                !!state.user.productor &&
+                state.user.productor.events.findIndex((event) => event.id === label) != -1
+              }
             />
             <ColumnWrapper>
               <EventText text={event.about} />
