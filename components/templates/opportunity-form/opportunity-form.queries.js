@@ -40,6 +40,7 @@ export const getOneEventQuery = gql`
       about
       event_date
       end_event_date
+      subscribe_closing_date
       stream_url
       has_food
       has_money_paid
@@ -51,6 +52,7 @@ export const getOneEventQuery = gql`
       is_online
       is_physical
       is_on_som
+      oportunities
       approved_productors {
         id
         name
@@ -70,18 +72,21 @@ export const getOneEventQuery = gql`
         description
       }
       location {
+        id
         number
         address
         district
         city
         state
         complement
+        zipcode
       }
       subscribers {
         id
         avatar_image {
           mimified
           thumbnail
+          original
         }
         name
       }
@@ -90,6 +95,7 @@ export const getOneEventQuery = gql`
         avatar_image {
           mimified
           thumbnail
+          original
         }
         name
       }

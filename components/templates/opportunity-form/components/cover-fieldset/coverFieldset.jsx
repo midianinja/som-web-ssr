@@ -17,7 +17,7 @@ const CoverFieldset = ({ values, onChange, eventErrors }) => (
         title="Foto de capa do evento"
         handleChange={onChange}
         customStyle={avatarCustomStyle}
-        src={values.cover.url && values.cover.url.url ? values.cover.url : values.cover}
+        src={values.cover.file ? values.cover : { url: values.cover.mimified }}
       />
     </InputGroup>
   </Fieldset>

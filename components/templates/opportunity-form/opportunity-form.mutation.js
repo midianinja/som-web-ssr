@@ -80,8 +80,8 @@ export const createLocationMutation = gql`
 `;
 
 export const updateEventMutation = gql`
-  mutation ($id: ID!, $event: EventInput!) {
-    updateEvent(id: $event_id, event: $event) {
+  mutation updateEvent($id: String!, $event: EventInput!) {
+    updateEvent(id: $id, event: $event) {
       id
       name
       about

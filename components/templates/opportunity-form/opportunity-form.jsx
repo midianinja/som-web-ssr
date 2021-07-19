@@ -17,14 +17,20 @@ import {
   handleStateSelect,
   handleCreateEvent
 } from './opportunity-form.controller';
+import { handleEditEvent, loadOpportunity } from './edit-opportunity-form.controller';
 import { ConditionsWrapper, Form, FormWrapper, LoadingWrapper } from './opportunity-form.style';
 import WhoSubscribe from './components/who-subscribe/who-subscribe';
 import EventTypes from './components/event-type/event-type';
-import { loadOpportunity } from './edit-opportunity-form.controller';
+import moment from 'moment';
 
 const steps = [
   {
     title: 'Cadastre uma nova oportunidade',
+    description: 'Preencha os campos abaixo com as informações da sua oportunidade',
+    small: false
+  },
+  {
+    title: 'Edite sua oportunidade',
     description: 'Preencha os campos abaixo com as informações da sua oportunidade',
     small: false
   }
@@ -214,33 +220,34 @@ const OpportunityForm = () => {
   const [eventTypes, setEventTypes] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // const mapContextToState = (event) => {
-  //   setId(productor.id || '');
-  //   setName(productor.name || '');
-  //   setAbout(productor.description || '');
-  //   setAvatar({ url: productor.photo || '' });
-  //   setCNPJ(productor.cnpj || '');
-  //   setCPF(productor.cpf || '');
-  //   setMusicalStyles(mapMusicalStyles(productor.musical_styles || []));
-  //   setOccupations(mapOccupations(productor.occupations || []));
-  //   setMainPhone(productor.main_phone || '');
-  //   setSecondaryPhone(productor.secondary_phone || '');
-  //   setWhatsapp(productor.whatsapp || '');
-  //   setTelegram(productor.telegram || '');
-  //   setContactEmail(productor.contact_email || '');
-  //   setFacebook(productor.facebook || 'https://www.facebook.com/');
-  //   setInstagram(productor.instagram || 'https://www.instagram.com/');
-  //   setTwitter(productor.twitter || 'https://twitter.com/');
-  //   setYoutube(productor.youtube || 'https://www.youtube.com/');
+  const mapApiToState = (opportunity) => {
+    setAvatar(opportunity?.photo);
+    setCover(opportunity?.cover);
+    setDescription(opportunity?.about);
+    setTitle(opportunity?.name);
+    setHasMoneyPaid(opportunity?.has_money_paid);
+    setIsToArtist(opportunity?.is_to_artist);
+    setIsToProductor(opportunity?.is_to_productor);
+    setOpeningsNumber(opportunity?.oportunities || '');
 
-  //   if (productor.location && productor.location.id) {
-  //     setLocationId(productor.location.id);
-  //     setCity(productor.location.city);
-  //     setZipcode(productor.location.zipcode);
-  //     setAddress(productor.location.address);
-  //     setNumber(productor.location.number);
-  //   }
-  // };
+    setLocationId(opportunity?.location?.id || '');
+    setCity(opportunity?.location?.city || '');
+    setZipcode(opportunity?.location?.zipcode || '');
+    setAddress(opportunity?.location?.address || '');
+    setNumber(opportunity?.location?.number || '');
+    setDistrict(opportunity?.location?.district || '');
+    setComplement(opportunity?.location?.complement || '');
+
+    setEndEventDate(moment(parseInt(opportunity?.end_event_date, 10)).format('DD/MM/yyyy'));
+    setEventDate(moment(parseInt(opportunity?.event_date, 10)).format('DD/MM/yyyy'));
+    setClosingDate(moment(parseInt(opportunity?.subscribe_closing_date, 10)).format('DD/MM/yyyy'));
+
+    const types = [];
+    if (opportunity?.is_online) types.push('ONLINE');
+    if (opportunity?.is_physical) types.push('PHYSICAL');
+
+    setEventTypes(types);
+  };
 
   useEffect(() => {
     fetchCountries({
@@ -250,7 +257,7 @@ const OpportunityForm = () => {
     });
 
     if (router?.query?.id) {
-      loadOpportunity(router?.query?.id, setLoading, router, () => null);
+      loadOpportunity(router?.query?.id, setLoading, router, mapApiToState);
     }
   }, []);
 
@@ -305,7 +312,7 @@ const OpportunityForm = () => {
 
   return (
     <Form onSubmit={(e) => e.preventDefault()}>
-      <StepFormHeader color={orange} items={steps} index={0} />
+      <StepFormHeader color={orange} items={steps} index={router?.query?.id ? 1 : 0} />
       <FormWrapper>
         {renderAvatarFieldset({ values, setAvatar, errors })}
         {renderCoverFieldset({ values, setCover, errors })}
@@ -352,18 +359,31 @@ const OpportunityForm = () => {
       </FormWrapper>
       <StepEventFormFooter
         saveAction={() => {
-          handleCreateEvent(
-            values,
-            state.user.id,
-            setLoading,
-            setErrors,
-            setLocationId,
-            dispatch,
-            state.user,
-            router
-          );
+          if (router?.query?.id) {
+            handleEditEvent(
+              values,
+              state.user.id,
+              setLoading,
+              setErrors,
+              setLocationId,
+              dispatch,
+              state.user,
+              router
+            );
+          } else {
+            handleCreateEvent(
+              values,
+              state.user.id,
+              setLoading,
+              setErrors,
+              setLocationId,
+              dispatch,
+              state.user,
+              router
+            );
+          }
         }}
-        actionLabel="Criar oportunidade"
+        actionLabel={router?.query?.id ? 'Edite a oportunidade' : 'Criar oportunidade'}
         loading={loading}
         cancelAction={() => null}
       />

@@ -58,12 +58,12 @@ export const validation = ({
     errors.description = 'Descreva seu evento.';
   }
 
-  if (!avatar.file) {
+  if (!avatar.file && !avatar.mimified) {
     validated = false;
     errors.avatar = 'Selecione uma foto de avatar.';
   }
 
-  if (!cover.file) {
+  if (!cover.file && !cover.mimified) {
     validated = false;
     errors.cover = 'Selecione uma foto de capa.';
   }

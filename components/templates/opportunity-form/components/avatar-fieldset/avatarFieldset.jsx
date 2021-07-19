@@ -11,16 +11,14 @@ const AvatarFieldset = ({ values, onChange, eventErrors }) => {
         Avatar&nbsp;
         <Span>Tamanho sugerido: 500x500px</Span>
       </Title>
-      <InputGroup
-        error={eventErrors.avatar}
-      >
+      <InputGroup error={eventErrors.avatar}>
         <UploadAvatar
           id="avatar-uploader"
           alt="botão para subir imagem"
           title="avatar image"
           handleChange={onChange}
           customStyle={avatarCustomStyle}
-          src={values.avatar.url && values.avatar.url.url ? values.avatar.url : values.avatar}
+          src={values?.avatar?.file ? values.avatar : { url: values.avatar.mimified }}
         />
       </InputGroup>
     </Fieldset>
