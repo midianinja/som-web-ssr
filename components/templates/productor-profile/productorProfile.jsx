@@ -42,7 +42,6 @@ const renderEvents = (events, more, setMore, onSuccess, loggedAs, router) => {
         <Eventcard
           loggedAs={loggedAs}
           key={event.id}
-          customStyle="margin: 40px 0;"
           event={event}
           onClick={() => router.push(`/event/${event.id}`)}
           onSubscribe={onSuccess}
@@ -53,9 +52,10 @@ const renderEvents = (events, more, setMore, onSuccess, loggedAs, router) => {
           customStyle={`
               background-color: #191919;
               width: 200px;
+              margin-top: 10px;
             `}
           onClick={() => setMore(!more)}>
-          {more ? 'Carregar menos eventos' : 'Carregar mais eventos'}
+          {more ? 'Carregar menos oportunidades' : 'Carregar mais oportunidades'}
         </PrimaryButton>
       ) : null}
     </EventsContainer>
@@ -158,7 +158,7 @@ const ProductorPage = () => {
               router
             )
           ) : (
-            <NotEvents>Nenhum evento cadastrado</NotEvents>
+            <NotEvents>Nenhuma oportunidade cadastrada</NotEvents>
           )}
           {instagramPhotos.length ? (
             <InstagramMedia

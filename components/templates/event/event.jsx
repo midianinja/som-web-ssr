@@ -61,7 +61,7 @@ const EventPage = () => {
   }
 
   const eventPlace = {
-    city: event.location.city,
+    city: event.location?.city,
     state: event.location.state,
     district: event.location.district,
     address: `${event.location.address} ${event.location.number}`,
@@ -106,7 +106,6 @@ const EventPage = () => {
 
     return subscribed;
   };
-
   return (
     <Store.Consumer>
       {({ state, dispatch }) => (
@@ -121,6 +120,7 @@ const EventPage = () => {
           <Content>
             <EventInfo
               subscribed={isSubscribed(state.user, event, myState.connectionType)}
+              id={event.id}
               name={event.name}
               date={event.event_date}
               place={eventPlace}
@@ -149,6 +149,11 @@ const EventPage = () => {
                 )
               }
               unsubscribeAction={() => unsubscribeAction(state.user, event, setEvent)}
+              isOwner={
+                !!state.user &&
+                !!state.user.productor &&
+                state.user.productor.events.findIndex((event) => event.id === label) != -1
+              }
             />
             <ColumnWrapper>
               <EventText text={event.about} />
@@ -156,16 +161,20 @@ const EventPage = () => {
               <ProductorCardWrapper>
                 <ProductorCard productor={event.productor} router={router} />
               </ProductorCardWrapper>
-              <SubscribedArtists
-                artistClick={(artistId) => router.push(`/artist/${artistId}`)}
-                artists={event.subscribers}
-                approveds={event.approved_artists}
-              />
-              <SubscribedProductors
-                productorClick={(productorId) => router.push(`/producer/${productorId}`)}
-                productors={event.subscribed_productors}
-                approveds={event.approved_productors}
-              />
+              {event.approved_artists.length ? (
+                <SubscribedArtists
+                  artistClick={(artistId) => router.push(`/artist/${artistId}`)}
+                  artists={event.subscribers}
+                  approveds={event.approved_artists}
+                />
+              ) : null}
+              {event.approved_productors.length ? (
+                <SubscribedProductors
+                  productorClick={(productorId) => router.push(`/producer/${productorId}`)}
+                  productors={event.subscribed_productors}
+                  approveds={event.approved_productors}
+                />
+              ) : null}
             </ColumnWrapper>
           </Content>
           {dialog.title ? (

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../../../atoms/input/input';
+import VMasker from 'vanilla-masker';
 import InputIcon from '../../../../atoms/input-icon/InputIcon';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
 import ListInput from '../../../../molecules/list-input/listInput';
@@ -28,15 +29,16 @@ const LocationFieldset = ({
           grid-column-start: 1;
           grid-column-end: 2;
         `}
-        label="CEP"
+        label="CEP *"
         error={productorStepErrors.zipcode}>
         <InputIcon
           icon="location"
           id="zipcode"
-          placeholder="CEP"
-          value={values.zipcode}
+          placeholder="CEP *"
+          value={VMasker.toPattern(values.zipcode, '99999999')}
           onChange={handleZipcodeChange}
         />
+        <small class="iRgiNB">*somente números</small>
       </InputGroup>
 
       <InputGroup
@@ -44,11 +46,11 @@ const LocationFieldset = ({
           grid-column-start: 1;
           grid-column-end: 3;
         `}
-        label="Endereço"
+        label="Endereço *"
         error={productorStepErrors.address}>
         <Input
           id="address"
-          placeholder="Endereço"
+          placeholder="Endereço *"
           value={values.address}
           onChange={handleAddressChange}
         />
@@ -58,37 +60,37 @@ const LocationFieldset = ({
           grid-column-start: 3;
           grid-column-end: 4;
         `}
-        label="Número"
+        label="Número *"
         error={productorStepErrors.number}>
         <Input
           id="number"
-          placeholder="Número"
+          placeholder="Número *"
           value={values.number}
           onChange={handleNumberChange}
         />
       </InputGroup>
-      <InputGroup label="País" error={productorStepErrors.country}>
+      <InputGroup label="País *" error={productorStepErrors.country}>
         <ListInput
           id="country"
-          placeholder="País"
+          placeholder="País *"
           options={countries}
           selected={values.country}
           value={country}
           onSelect={handleCountrySelect}
         />
       </InputGroup>
-      <InputGroup label="Estado" error={productorStepErrors.state}>
+      <InputGroup label="Estado *" error={productorStepErrors.state}>
         <ListInput
           id="state"
-          placeholder="Estado"
+          placeholder="Estado *"
           value={values.state}
           selected={state}
           options={states}
           onSelect={handleStateSelect}
         />
       </InputGroup>
-      <InputGroup label="Cidade" error={productorStepErrors.city}>
-        <Input id="city" placeholder="Cidade" value={values.city} onChange={handleCityChange} />
+      <InputGroup label="Cidade *" error={productorStepErrors.city}>
+        <Input id="city" placeholder="Cidade *" value={values.city} onChange={handleCityChange} />
       </InputGroup>
     </LocationWrapper>
   </Fieldset>

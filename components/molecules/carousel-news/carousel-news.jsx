@@ -24,7 +24,7 @@ const renderItems = (items, onClick) =>
       <ItemImage src={item.image_uri} alt="" />
       <ItemContent>
         <div>
-          <Tag>Oportunidade</Tag>
+          <Tag>Notícias</Tag>
         </div>
         <ItemTitle>{item.title}</ItemTitle>
       </ItemContent>

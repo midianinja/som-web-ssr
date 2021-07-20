@@ -61,6 +61,9 @@ export const oneUserQuery = gql`
         id
         name
         photo
+        events {
+          id
+        }
         musical_styles {
           id
           name

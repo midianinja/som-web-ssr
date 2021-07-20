@@ -7,7 +7,7 @@ import BaseHead from '../../components/baseHead';
  */
 const RegisterEvent = () => (
   <>
-    <BaseHead title="Cadastre um novo evento" />
+    <BaseHead title="Cadastre uma nova oportunidade" />
     <RegisterEventTemplate />
   </>
 );

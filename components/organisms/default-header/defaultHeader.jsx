@@ -62,7 +62,7 @@ const Header = ({ customStyle }) => {
       return state.user.productor.name;
     }
 
-    return 'Não nomeado';
+    return state.auth?.first_name || 'Não nomeado';
   };
 
   const types = {
@@ -86,7 +86,7 @@ const Header = ({ customStyle }) => {
         </Group>
         <Logo
           src={getSOMBrand()}
-          onClick={() => router.push('/opportunities')}
+          onClick={() => router.push('/')}
           alt="Som, Sistema Operacional da Música"
         />
         <RightGroup hide={!state.auth || !state.auth._id}>
@@ -115,8 +115,7 @@ const Header = ({ customStyle }) => {
               setDropdown(false);
             }}
             onLogout={() => {
-              window.localStorage.setItem('som@ida', '');
-              window.localStorage.setItem('som@token', '');
+              state.idaSDK.logout();
 
               dispatch({
                 type: 'SET_USER',

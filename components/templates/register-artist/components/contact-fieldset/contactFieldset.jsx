@@ -38,8 +38,7 @@ const ContactFieldset = ({
         label={values.whatsapp ? 'Whatsapp' : ''}
         error={productorStepErrors.whatsapp}
         marginLeft="14px"
-        customStyle={inputGroup50CustomStyle}
-      >
+        customStyle={inputGroup50CustomStyle}>
         <Input
           id="whatsapp"
           placeholder="Whatsapp"
@@ -63,14 +62,13 @@ const ContactFieldset = ({
         />
       </InputGroup>
       <InputGroup
-        label={values.contactEmail ? 'Email de contato' : ''}
+        label={values.contactEmail ? 'Email de contato *' : ''}
         error={productorStepErrors.contactEmail}
         marginLeft="14px"
-        customStyle={inputGroup50CustomStyle}
-      >
+        customStyle={inputGroup50CustomStyle}>
         <Input
           id="contactEmail"
-          placeholder="Email de contato"
+          placeholder="Email de contato *"
           value={values.contactEmail}
           type="text"
           onChange={handleContactEmailChange}

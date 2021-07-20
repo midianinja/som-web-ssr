@@ -102,24 +102,144 @@ export const Grid = styled.div`
   @media (min-width: 768px) {
     > div:nth-child(1) > div {
       position: relative;
-      left: 9%;
+      top: -33%;
+      left: 25%;
+      width: 70%;
+    }
+
+    > div:nth-child(1) > div > h3 {
+      font-size: 30px;
     }
 
     > div:nth-child(4) > div {
       position: relative;
-      left: -12%;
-      top: -2%;
+      left: 5%;
+      top: 5%;
+    }
+
+    > div:nth-child(4) > div > h3 {
+      font-size: 30px;
     }
 
     > div:nth-child(5) > div {
       position: relative;
-      left: -2%;
+      left: 30%;
+      top: -5%;
+    }
+
+    > div:nth-child(5) > div > h3 {
+      font-size: 30px;
+    }
+
+    > div:nth-child(8) > div {
+      position: relative;
+      left: 25%;
+    }
+
+    > div:nth-child(8) > div > h3 {
+      font-size: 30px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    > div:nth-child(1) > div {
+      position: relative;
+      top: -25%;
+      left: 22%;
+      width: 60%;
+    }
+
+    > div:nth-child(1) > div > h3 {
+      font-size: 42px;
+    }
+
+    > div:nth-child(4) > div > h3 {
+      font-size: 48px;
+    }
+
+    > div:nth-child(5) > div > h3 {
+      font-size: 48px;
+    }
+
+    > div:nth-child(8) > div > h3 {
+      font-size: 48px;
+    }
+
+    > div:nth-child(5) > div {
+      position: relative;
+      left: 10%;
       top: 1%;
     }
 
     > div:nth-child(8) > div {
       position: relative;
+      left: 12%;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    > div:nth-child(1) > div {
+      position: relative;
+      top: -15%;
+      left: 15%;
+    }
+
+    > div:nth-child(5) > div {
+      position: relative;
+      left: 2%;
+      top: 1%;
+    }
+
+    > div:nth-child(8) > div {
+      position: relative;
+      left: -2%;
+      left: 4%;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    > div:nth-child(1) > div {
+      position: relative;
+      top: -15%;
+      left: 12%;
+    }
+
+    > div:nth-child(4) > div {
+      position: relative;
+      top: -2%;
+      left: -10%;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    > div:nth-child(1) > div {
+      position: relative;
+      left: 20%;
+    }
+
+    > div:nth-child(4) > div {
+      position: relative;
+      left: -8%;
+      top: -2%;
+    }
+
+    > div:nth-child(5) > div {
+      position: relative;
+      top: -2%;
+    }
+
+    > div:nth-child(8) > div {
+      position: relative;
+      left: 5%;
       top: -18%;
+    }
+  }
+
+  @media (min-width: 1680px) {
+    > div:nth-child(1) > div {
+      position: relative;
+      left: 20%;
+      width: 65%;
     }
   }
 
