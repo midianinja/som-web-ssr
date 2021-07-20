@@ -16,7 +16,9 @@ import {
   handleMusicalStyleSelect,
   removeTagAction,
   subscribeAction,
-  unsubscribeAction
+  unsubscribeAction,
+  fetchCountries,
+  fetchStates
 } from './wall.controller';
 import {
   Container,
@@ -70,6 +72,7 @@ const Wall = () => {
   const [dialog, setDialog] = useState({});
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
   const [musicalStylesOptions, setMusicalStylesOptions] = useState([]);
   const [musicStyles, setMusicStyles] = useState([]);
   const [years, setYears] = useState([
@@ -80,6 +83,26 @@ const Wall = () => {
     }
   ]);
   const [months, setMonths] = useState([]);
+  const [selectedCountries, setSelectedCountries] = useState({});
+  const [selectedStates, setSelectedStates] = useState({});
+
+
+  useEffect(() => {
+    fetchCountries({
+      setCountries
+    })
+  }, [])
+
+  useEffect(() => {
+    if(selectedCountries){
+      fetchStates({
+        setStates,
+        country: selectedCountries.id
+      })
+    }
+   
+  }, [selectedCountries])
+
 
   useEffect(() => {
     fetchEventsData({
@@ -92,10 +115,12 @@ const Wall = () => {
       years,
       months
     });
-    if (!countries.length && !states.length) {
-      fetchLocations({ setCountries, setStates });
+    // if (!countries.length && !states.length &&!cities.length) {
+    //   // fetchLocations({ setCountries, setStates, setCities});
+    //   console.log("fetchLocation" + cities)
+
       fetchMusicalStyleOptions(setMusicalStylesOptions);
-    }
+    // }
   }, [musicStyles, years, months]);
 
   return (
@@ -103,6 +128,27 @@ const Wall = () => {
       <DefaultHeader />
       <Title>Eventos e Oportunidades</Title>
       <Form>
+      <InputGroup customStyle={filterGroupsStyle}>
+          <ListInput
+            selected={selectedCountries}
+            id="countries"
+            placeholder="País"
+            options={countries}
+            onSelect={setSelectedCountries}
+            
+          />
+        </InputGroup>
+      
+        <InputGroup customStyle={filterGroupsStyle}>
+          <ListInput
+            selected={selectedStates}
+            id="states"
+            placeholder="Estado"
+            options={states}
+            onSelect={setSelectedStates}
+          />
+        </InputGroup>
+        
         <InputGroup customStyle={filterGroupsStyle}>
           <ListInput
             id="musical_style"
@@ -168,9 +214,13 @@ const Wall = () => {
                 musicStyles,
                 years,
                 months,
+                selectedStates,
+                selectedCountries,
                 setMusicStyles,
                 setYears,
-                setMonths
+                setMonths,
+                setCountries,
+                setStates,
               })
             }
             data={musicStyles.concat(years).concat(months)}
