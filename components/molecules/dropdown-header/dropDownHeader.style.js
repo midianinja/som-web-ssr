@@ -61,12 +61,14 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
-export const Name = styled.h4`
+export const Name = styled.p`
   font-size: 1.5rem;
   line-height: 1.2em;
   font-weight: 400;
   color: ${black};
   cursor: pointer;
+  padding-left: 15px;
+  padding-right: 15px;
   margin-top: 15px;
   margin-bottom: 10px;
 `;

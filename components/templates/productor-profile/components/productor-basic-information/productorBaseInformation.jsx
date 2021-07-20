@@ -88,6 +88,9 @@ const ProductorBasicInfo = ({
         `}
       />
       <PrimaryButton
+        customStyle={`
+        width: 200px;
+        `}        
         onClick={() => {
           if (!isMyProductor) return window.open(`mailto:${email}`, '_blank');
           return history.push('/producer');

@@ -5,6 +5,8 @@ import EventDate from '../../atoms/event-date/eventDate';
 import EventPlace from '../../atoms/event-place/eventPlace';
 import Subscribers from '../../molecules/subscribers/subscribers';
 import PrimaryButton from '../../atoms/primary-button/primaryButton';
+import { useRouter } from 'next/router';
+
 import {
   Container,
   ClockIcon,
@@ -18,6 +20,7 @@ import EventOnline from '../../atoms/event-online/event-online';
 const unixTime = (unixtime) => new Date(+unixtime).toISOString().slice(0, 19);
 
 const EventInfo = ({
+  id,
   name,
   date,
   place,
@@ -34,12 +37,14 @@ const EventInfo = ({
   diffHours,
   happeningNow,
   isOnline,
-  streamUrl
+  streamUrl,
+  isOwner
 }) => {
   const newDate = new Date(unixTime(date));
   const dateInstance = moment(newDate);
   const dayLabel = diffDays === 1 ? 'dia' : 'dias';
   const hourLabel = diffHours === 1 ? 'hora' : 'horas';
+  const router = useRouter();
 
   let label = 'Inscrições encerradas';
   if (diffHours > 0) label = `${diffHours} ${hourLabel} para o fim das inscrições`;
@@ -81,13 +86,13 @@ const EventInfo = ({
       />
       <Space />
       <ButtonWrapper>
-        {isClosingSubscribe ? (
+        {isClosingSubscribe && !isOwner ? (
           <PrimaryButton onFocus={() => null} onBlur={() => null} onClick={() => null} disabled>
             Inscrições encerradas
           </PrimaryButton>
         ) : null}
 
-        {!subscribed && !isClosingSubscribe ? (
+        {!subscribed && !isClosingSubscribe && !isOwner ? (
           <PrimaryButton onClick={subscribeAction} disabled={targetList.indexOf(loggedAs) === -1}>
             {targetList.indexOf(loggedAs) !== -1
               ? 'Inscrever-se'
@@ -95,13 +100,26 @@ const EventInfo = ({
           </PrimaryButton>
         ) : null}
 
-        {subscribed && !isClosingSubscribe ? (
+        {subscribed && !isClosingSubscribe && !isOwner ? (
           <PrimaryButton
             customStyle={`
               background-color: #44178F;
             `}
             onClick={unsubscribeAction}>
             Inscrito
+          </PrimaryButton>
+        ) : null}
+        {isOwner ? (
+          <PrimaryButton
+            customStyle={`
+              background-color: #FF4B4B;
+              
+              &:hover {
+                background-color: #FF4B4B;
+              }
+            `}
+            onClick={() => router.push(`/opportunity/${id}`)}>
+            Editar meu evento
           </PrimaryButton>
         ) : null}
       </ButtonWrapper>
@@ -117,6 +135,7 @@ const placeShape = {
 };
 
 EventInfo.propTypes = {
+  id: PropTypes.string,
   name: PropTypes.string,
   date: PropTypes.string,
   loggedAs: PropTypes.string,
@@ -133,7 +152,8 @@ EventInfo.propTypes = {
   isClosingSubscribe: PropTypes.bool,
   place: PropTypes.shape(placeShape),
   subscribeAction: PropTypes.func.isRequired,
-  unsubscribeAction: PropTypes.func.isRequired
+  unsubscribeAction: PropTypes.func.isRequired,
+  handleEditEvent: PropTypes.func.isRequired
 };
 
 EventInfo.defaultProps = {

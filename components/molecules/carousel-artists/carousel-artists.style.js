@@ -78,14 +78,20 @@ export const ItemContent = styled.div`
   backdrop-filter: blur(20px);
 
   padding: 15px 12px;
+  min-height: 104px;
 `;
 
-export const ItemTitle = styled.h3`
+export const ItemTitle = styled.p`
   font-weight: 400;
   font-size: 18px;
 
   line-height: 1.1em;
   color: ${white};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
 `;
 
 export const ItemDescription = styled.p`

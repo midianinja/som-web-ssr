@@ -10,7 +10,7 @@ const Welcome = () => {
 
   return (
     <Wrapper>
-      <Name>Oi, {state.auth.username}</Name>
+      <Name>Oi, {state.auth.first_name}</Name>
       <Title>Seja bem vinde ao S.O.M!</Title>
       <Footer>
         <Text>Acesse ou crie oportunidades.</Text>

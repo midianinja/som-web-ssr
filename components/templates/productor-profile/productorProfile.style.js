@@ -74,7 +74,7 @@ export const EventsContainer = styled.div`
   padding: 15px 30px;
 
   @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr 1fr;\
+    grid-template-columns:  1fr 1fr 1fr;
     grid-gap: 30px;
   }
 `;
