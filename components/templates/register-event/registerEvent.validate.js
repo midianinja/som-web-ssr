@@ -20,42 +20,42 @@ export const validation = ({
 
   if (!title) {
     validated = false;
-    errors.title = 'Informe o título do evento.';
+    errors.title = 'Informe o título da oportunidade.';
   }
 
   if (!address) {
     validated = false;
-    errors.address = 'Informe o endereço do evento.';
+    errors.address = 'Informe o endereço da oportunidade.';
   }
 
   if (!openingsNumber) {
     validated = false;
-    errors.openingsNumber = 'Informe o número de vagas para o evento.';
+    errors.openingsNumber = 'Informe o número de vagas para a oportunidade.';
   }
 
   if (!city) {
     validated = false;
-    errors.city = 'Informe a cidade do evento.';
+    errors.city = 'Informe a cidade da oportunidade.';
   }
 
   if (!zipcode) {
     validated = false;
-    errors.zipcode = 'Informe a CEP do evento.';
+    errors.zipcode = 'Informe a CEP da oportunidade.';
   }
 
   if (!number) {
     validated = false;
-    errors.number = 'Informe o número do local do evento.';
+    errors.number = 'Informe o número do local da oportunidade.';
   }
 
   if (!district) {
     validated = false;
-    errors.district = 'Informe o bairro do evento.';
+    errors.district = 'Informe o bairro da oportunidade.';
   }
 
   if (!description) {
     validated = false;
-    errors.description = 'Descreva seu evento.';
+    errors.description = 'Descreva sua oportunidade.';
   }
 
   if (!avatar.file) {
@@ -95,7 +95,7 @@ export const validation = ({
   const splitedEventDate = eventDate.split('/');
   if (!eventDate) {
     validated = false;
-    errors.eventDate = 'Informe a data do evento.';
+    errors.eventDate = 'Informe a data da oportunidade.';
   } else if (
     parseInt(splitedEventDate[0], 10) > 31 ||
     splitedEventDate[0].length !== 2 ||

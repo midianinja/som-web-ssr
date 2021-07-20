@@ -169,6 +169,46 @@ export const Terms = styled.a`
   }}
 `;
 
+export const Community = styled.a`
+  width: 100%;
+  font-size: 1.5em;
+  line-height: 1em;
+  font-weight: 300;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 20px;
+  color: ${black};
+
+  ${(props) => {
+    if (props.type === 'artist') {
+      return `
+        &:hover {
+          color: ${magenta}; 
+        }
+      `;
+    }
+
+    if (props.type === 'productor') {
+      return `
+        &:hover {
+          color: ${purple}; 
+        }
+      `;
+    }
+
+    return `
+      &:hover {
+        color: ${orange}; 
+      }
+    `;
+  }}
+
+  ${(props) => {
+    if (props.hide) return 'display: none;';
+    return '';
+  }}
+`;
+
 export const ExitButton = styled.img`
   position: absolute;
   width: 18px;

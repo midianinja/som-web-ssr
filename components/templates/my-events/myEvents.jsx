@@ -81,7 +81,7 @@ const MyEventsPage = () => {
       <GlobalForm>
         <LocationContainer />
         <InputGroup customStyle={searchStyle}>
-          <InputIconWrapper>
+          {/* <InputIconWrapper>
             <SearchIcon src="/icons/search.svg" />
             <Input
               id="keyword"
@@ -90,8 +90,8 @@ const MyEventsPage = () => {
               customStyle={searchInputStyle}
               onBlur={() => console.log('onBlur')}
               onChange={(e) => setSearchText(e.target.value)}
-            />
-          </InputIconWrapper>
+            /> */}
+          {/* </InputIconWrapper> */}
         </InputGroup>
       </GlobalForm>
       <EventsContainer>
@@ -106,7 +106,7 @@ const MyEventsPage = () => {
       </EventsContainer>
       <AddButton onClick={() => router.push('/register-event')}>
         <Icon src="/icons/plus.svg" />
-        Adicionar evento
+        Adicionar oportunidade
       </AddButton>
       <Container>
         {dialog.title ? (

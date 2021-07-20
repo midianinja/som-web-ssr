@@ -1,8 +1,22 @@
-import { client } from '../../../libs/apollo.lib';
-import { allMusicalStyleOptionsQuery } from '../../../queries/musicalGenres.query';
-import { allowBodyScroll } from '../../../utils/scroll.utils';
-import { getAllEventsQuery, allCountriesQuery } from './wall.queries';
-import { subscribeEvent, unsubscribeEvent } from './wall.repository';
+import {
+  client
+} from '../../../libs/apollo.lib';
+import {
+  allMusicalStyleOptionsQuery
+} from '../../../queries/musicalGenres.query';
+import {
+  allowBodyScroll
+} from '../../../utils/scroll.utils';
+import {
+  getAllEventsQuery,
+  allCountriesQuery,
+  allCitiesQuery,
+  allStateQuery
+} from './wall.queries';
+import {
+  subscribeEvent,
+  unsubscribeEvent
+} from './wall.repository';
 
 export const loadingStatus = {
   LOADDED: 0,
@@ -45,11 +59,19 @@ export const removeTagAction = ({
   months,
   setMusicStyles,
   setYears,
-  setMonths
+  setMonths,
+  states,
+  setStates,
+  countries,
+  setCountries,
 }) => {
   const month = MONTH_MODEL.find((m) => m.id === data);
   const year = YEARS_MODEL.find((m) => m.id === data);
   const style = musicalStylesOptions.find((m) => m.id === data);
+  // const city = cities.find((m) => m.id === data);
+  const state = states.find((m) => m.id === data);
+  const country = countries.find((m) => m.id === data);
+
 
   if (month) {
     const myMonths = months.filter((m) => m.id !== month.id);
@@ -65,6 +87,14 @@ export const removeTagAction = ({
     const myStyles = musicStyles.filter((m) => m.id !== style.id);
     setMusicStyles(myStyles);
   }
+  if (country) {
+    const myCountries = countries.filter((m) => m.id !== country.id);
+    setCountries(myCountries);
+  }
+  if (state) {
+    const myStates = states.filter((m) => m.id !== state.id);
+    setStates(myStates);
+  }
 };
 
 export const handleMusicalStyleSelect = ({
@@ -77,13 +107,11 @@ export const handleMusicalStyleSelect = ({
   const style = musicalStylesOptions.find((o) => o.id === data.id);
   const newMusicalStyles = musicStyles
     .filter((o) => o.id !== data.id)
-    .concat([
-      {
-        id: style.id,
-        text: style.name,
-        color: colors[Math.floor(Math.random() * 5)]
-      }
-    ]);
+    .concat([{
+      id: style.id,
+      text: style.name,
+      color: colors[Math.floor(Math.random() * 5)]
+    }]);
 
   let cont = 0;
 
@@ -109,7 +137,10 @@ export const fetchEventsData = async ({
   years,
   months
 }) => {
-  setLoading({ ...loading, event: loadingStatus.LOADING });
+  setLoading({
+    ...loading,
+    event: loadingStatus.LOADING
+  });
   let eventData;
 
   try {
@@ -120,15 +151,15 @@ export const fetchEventsData = async ({
         years: years.map((y) => +y.id),
         months: months.map((m) => +m.id + 1),
         paginator: {
-          limit: 20
+          limit: 100
         }
       }
     });
     if (!eventData.data.searchEvents.length) {
       setDialog({
-        title: 'Nenhum evento encontrado',
+        title: 'Nenhuma oportunidade encontrado',
         icon: '/icons/guita-error.svg',
-        description: 'Logo teremos mais eventos, fique ligado para se inscrever.',
+        description: 'Logo teremos mais oportunidades, fique ligado para se inscrever.',
         disagreeText: 'Fechar',
         disagreeAction: () => setDialog({})
       });
@@ -142,7 +173,10 @@ export const fetchEventsData = async ({
     });
   } catch (err) {
     // tratar esse erro
-    setLoading({ ...loading, event: loadingStatus.ERROR });
+    setLoading({
+      ...loading,
+      event: loadingStatus.ERROR
+    });
     console.error([err]);
     throw err;
   }
@@ -159,7 +193,9 @@ export const subscribeAction = async (
   events
 ) => {
   if (!auth) {
-    dispatch({ type: 'SHOW_LOGIN_MODAL' });
+    dispatch({
+      type: 'SHOW_LOGIN_MODAL'
+    });
     return;
   }
 
@@ -167,7 +203,7 @@ export const subscribeAction = async (
     setDialog({
       title: 'Cadastro incompleto',
       icon: '/icons/guita-error.svg',
-      description: 'Para se escrever em eventos, você precisa preencher os dados obrigatórios.',
+      description: 'Para se escrever em oportunidades, você precisa preencher os dados obrigatórios.',
       agreeText: 'Cadastrar',
       disagreeText: 'Voltar',
       confirmAction: () => {
@@ -224,14 +260,54 @@ export const fetchMusicalStyleOptions = (setMusicalStylesOptions) => {
     .then((resp) => setMusicalStylesOptions(resp.data.allMusicalStyleOptions));
 };
 
-export const fetchLocations = async ({ setCountries }) => {
+export const fetchCountries = async ({
+  setCountries
+}) => {
   const countries = await client().query({
     query: allCountriesQuery,
     variables: {}
   });
-  const myCountrires = countries.data.allCountries.map((c) => ({
+  const myCountries = countries.data.allCountries.map((c) => ({
     label: c.name,
     id: c.id
   }));
-  setCountries(myCountrires);
+  console.log('aqui fetch')
+  setCountries(myCountries);
+
+}
+
+export const fetchStates = async ({
+  setStates, country
+}) => {
+  const states = await client().query({
+    query: allStateQuery,
+    variables: {
+      state: {
+        country,
+
+      }
+    }
+  });
+  const myStates = states.data.allStates.map((s) => ({
+    label: s.name,
+    id: s.id
+  }));
+  setStates(myStates);
+
+}
+
+export const fetchCities = async ({
+  setCities
+}) => {
+
+  const cities = await client().query({
+    query: allCitiesQuery,
+    variables: {}
+  });
+  const myCities = cities.data.allCities.map((c) => ({
+    label: c.name,
+    id: c.id
+  }));
+  setCities(myCities);
+
 };

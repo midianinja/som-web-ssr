@@ -25,8 +25,8 @@ import { fetchEventData } from '../event/event.controller';
 
 const steps = [
   {
-    title: 'Criar evento',
-    description: 'Preencha os campos abaixo com as informações do seu evento',
+    title: 'Criar oportunidade',
+    description: 'Preencha os campos abaixo com as informações da sua oportunidade',
     small: false
   }
 ];
@@ -366,7 +366,7 @@ const RegisterEvent = () => {
           }
         }
         }
-        actionLabel="Criar evento"
+        actionLabel="Criar oportunidade"
         loading={loading}
         cancelAction={() => null}
 

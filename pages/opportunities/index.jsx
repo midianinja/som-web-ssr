@@ -9,8 +9,8 @@ import BaseHead from '../../components/baseHead';
 const Wall = () => (
   <>
     <BaseHead
-      title="Mural de eventos"
-      description="Conheça bandas, artistas, produtores e eventos pertinho de você"
+      title="Mural de oportunidades"
+      description="Conheça bandas, artistas, produtores e oportunidades pertinho de você"
     />
     <WallTemplate />
   </>
