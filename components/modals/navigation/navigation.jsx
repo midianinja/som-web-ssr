@@ -11,7 +11,8 @@ import {
   Link,
   Logout,
   Terms,
-  ExitButton
+  ExitButton,
+  Community
 } from './navigation.style';
 
 const getLinks = (user, connectionType) => {
@@ -77,6 +78,13 @@ const Navigation = () => {
       <Nav>
         <ExitButton src="/icons/close.svg" onClick={() => closeAction(dispatch)} />
         {renderLinks(state.user, state.connectionType, router)}
+        <Community
+          type={state.connectionType}
+          onClick={() => {
+            window.open('https://t.me/joinchat/9AXAPAjgew9jOGEx', '_blank');
+          }}>
+          Comunidade
+        </Community>
         <Terms
           type={state.connectionType}
           onClick={() => {
