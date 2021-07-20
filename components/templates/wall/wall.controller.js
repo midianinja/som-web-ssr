@@ -120,7 +120,7 @@ export const fetchEventsData = async ({
         years: years.map((y) => +y.id),
         months: months.map((m) => +m.id + 1),
         paginator: {
-          limit: 20
+          limit: 100
         }
       }
     });
