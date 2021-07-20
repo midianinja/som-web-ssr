@@ -91,6 +91,15 @@ const MyEventsPage = () => {
               onBlur={() => console.log('onBlur')}
               onChange={(e) => setSearchText(e.target.value)}
             />
+            <SearchIcon src="/icons/search.svg" />
+            <Input
+              id="keyword"
+              placeholder="Buscar"
+              value={searchText}
+              customStyle={searchInputStyle}
+              onBlur={() => console.log('onBlur')}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
           </InputIconWrapper>
         </InputGroup>
       </GlobalForm>
