@@ -22,33 +22,33 @@ import {
   searchInputStyle
 } from './myEvents.style';
 
-const renderEvents = ({
-  router, events, searchText, user,
-}) => events
-  .filter((event) => {
-    let matched = false;
-    const text = accentFold(searchText);
-    const searchExpression =  new RegExp(`${text}`, 'gi');
+const renderEvents = ({ router, events, searchText, user }) =>
+  events
+    .filter((event) => {
+      let matched = false;
+      const text = accentFold(searchText);
+      const searchExpression = new RegExp(`${text}`, 'gi');
 
-    if (searchExpression.test(accentFold(event.name))) matched = true;
-    if (searchExpression.test(accentFold(event.location.address))) matched = true;
-    if (searchExpression.test(accentFold(event.location.city))) matched = true;
-    if (searchExpression.test(accentFold(event.location.state))) matched = true;
-    if (searchExpression.test(accentFold(event.location.district))) matched = true;
+      if (searchExpression.test(accentFold(event.name))) matched = true;
+      if (searchExpression.test(accentFold(event.location.address))) matched = true;
+      if (searchExpression.test(accentFold(event.location.city))) matched = true;
+      if (searchExpression.test(accentFold(event.location.state))) matched = true;
+      if (searchExpression.test(accentFold(event.location.district))) matched = true;
 
-    return matched;
-  })
-  .map((event) => (
-    <EventCard
-      customStyle={`
+      return matched;
+    })
+    .map((event) => (
+      <EventCard
+        key={event.name}
+        customStyle={`
           margin: 0 5px 90px;
           max-width: 220px;
         `}
-      user={user}
-      event={event}
-      onClick={() => router.push('/events-curatorship')}
-    />
-  ));
+        user={user}
+        event={event}
+        onClick={() => router.push('/events-curatorship')}
+      />
+    ));
 
 /**
  * This render the my events components. The my events component, render events created by
@@ -95,16 +95,14 @@ const MyEventsPage = () => {
         </InputGroup>
       </GlobalForm>
       <EventsContainer>
-        { 
-          renderEvents({
-            router,
-            events,
-            user: state.user,
-            searchText,
-          })
-        }
+        {renderEvents({
+          router,
+          events,
+          user: state.user,
+          searchText
+        })}
       </EventsContainer>
-      <AddButton onClick={() => router.push('/register-event')}>
+      <AddButton onClick={() => router.push('/opportunity')}>
         <Icon src="/icons/plus.svg" />
         Adicionar oportunidade
       </AddButton>
