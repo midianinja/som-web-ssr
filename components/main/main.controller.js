@@ -8,56 +8,59 @@ import { getUser, createUserSOM } from './main.repository';
  * @param {object} router this is the a manager app router
  */
 export const fetchLoggedUser = async (ida, dispatch, router) => {
-  let response = await getUser(ida);
+  try {
+    let response = await getUser(ida);
+    let user = response.data.oneUser;
 
-  let user = response.data.oneUser;
-
-  if (user && router.pathname === '/') {
-    router.push('/opportunities');
-  }
-
-  // cria um novo usuário S.O.M caso não seja encontrado
-  if (!user) {
-    response = await createUserSOM(ida);
-    user = response.data.createUser;
-
-    if (router.pathname === '/') {
-      router.push('/welcome');
+    if (user && router.pathname === '/') {
+      router.push('/opportunities');
     }
-  }
 
-  // seta o usuário S.O.M na context API
-  dispatch({
-    type: 'SET_USER',
-    user
-  });
+    // cria um novo usuário S.O.M caso não seja encontrado
+    if (!user) {
+      response = await createUserSOM(ida);
+      user = response.data.createUser;
 
-  let typeConnection = 'public';
-  // crefica o tipo de login do usuário S.O.M
-  if (response.data.oneUser && response.data.oneUser.productor) {
-    typeConnection = 'productor';
-
-    // verifica se pode ser artista e usa o cache
-    if (response.data.oneUser.artist && window.localStorage.getItem('som@type')) {
-      typeConnection = window.localStorage.getItem('som@type');
+      if (router.pathname === '/') {
+        router.push('/welcome');
+      }
     }
-  } else if (response.data.oneUser && response.data.oneUser.artist) {
-    typeConnection = 'artist';
 
-    // verifica se pode ser produtor e usa o cache
-    if (response.data.oneUser.productor && window.localStorage.getItem('som@type')) {
-      typeConnection = window.localStorage.getItem('som@type');
+    // seta o usuário S.O.M na context API
+    dispatch({
+      type: 'SET_USER',
+      user
+    });
+
+    let typeConnection = 'public';
+    // crefica o tipo de login do usuário S.O.M
+    if (response.data.oneUser && response.data.oneUser.productor) {
+      typeConnection = 'productor';
+
+      // verifica se pode ser artista e usa o cache
+      if (response.data.oneUser.artist && window.localStorage.getItem('som@type')) {
+        typeConnection = window.localStorage.getItem('som@type');
+      }
+    } else if (response.data.oneUser && response.data.oneUser.artist) {
+      typeConnection = 'artist';
+
+      // verifica se pode ser produtor e usa o cache
+      if (response.data.oneUser.productor && window.localStorage.getItem('som@type')) {
+        typeConnection = window.localStorage.getItem('som@type');
+      }
     }
+
+    // seta o tipo de login do usuário S.O.M na context API
+    dispatch({
+      type: 'SET_LOGIN_TYPE',
+      data: typeConnection
+    });
+
+    dispatch({ type: 'STOP_AUTH_LOADING' });
+    dispatch({ type: 'STOP_VERIFY_LOADING' });
+  } catch (err) {
+    console.log([err]);
   }
-
-  // seta o tipo de login do usuário S.O.M na context API
-  dispatch({
-    type: 'SET_LOGIN_TYPE',
-    data: typeConnection
-  });
-
-  dispatch({ type: 'STOP_AUTH_LOADING' });
-  dispatch({ type: 'STOP_VERIFY_LOADING' });
 };
 
 /**

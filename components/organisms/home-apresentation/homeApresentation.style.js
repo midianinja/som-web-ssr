@@ -21,6 +21,16 @@ export const ButtonWrapper = styled.div`
   width: 150px;
   display: flex;
   justify-content: flex-end;
+
+  ${(props) => {
+    if (props.hide) {
+      return `
+        display: none;
+      `;
+    }
+
+    return '';
+  }}
 `;
 
 export const BurgerIcon = styled.svg`

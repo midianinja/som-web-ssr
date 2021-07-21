@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import EventDate from '../../atoms/event-date/eventDate';
@@ -38,7 +38,6 @@ const EventInfo = ({
   happeningNow,
   isOnline,
   streamUrl,
-  handleEditEvent,
   isOwner
 }) => {
   const newDate = new Date(unixTime(date));
@@ -47,12 +46,9 @@ const EventInfo = ({
   const hourLabel = diffHours === 1 ? 'hora' : 'horas';
   const router = useRouter();
 
-  console.log(isOwner);
-
   let label = 'Inscrições encerradas';
   if (diffHours > 0) label = `${diffHours} ${hourLabel} para o fim das inscrições`;
   if (diffDays > 0) label = `${diffDays} ${dayLabel} para o fim das inscrições`;
-
 
   const targetList = [];
   const exclusiveLabels = { artist: 'productores', productor: 'artistas', public: 'membros' };
@@ -90,13 +86,13 @@ const EventInfo = ({
       />
       <Space />
       <ButtonWrapper>
-        {isClosingSubscribe && !isOwner? (
+        {isClosingSubscribe && !isOwner ? (
           <PrimaryButton onFocus={() => null} onBlur={() => null} onClick={() => null} disabled>
             Inscrições encerradas
           </PrimaryButton>
         ) : null}
 
-        {!subscribed && !isClosingSubscribe && !isOwner? (
+        {!subscribed && !isClosingSubscribe && !isOwner ? (
           <PrimaryButton onClick={subscribeAction} disabled={targetList.indexOf(loggedAs) === -1}>
             {targetList.indexOf(loggedAs) !== -1
               ? 'Inscrever-se'
@@ -104,7 +100,7 @@ const EventInfo = ({
           </PrimaryButton>
         ) : null}
 
-        {subscribed && !isClosingSubscribe && !isOwner? (
+        {subscribed && !isClosingSubscribe && !isOwner ? (
           <PrimaryButton
             customStyle={`
               background-color: #44178F;
@@ -113,12 +109,16 @@ const EventInfo = ({
             Inscrito
           </PrimaryButton>
         ) : null}
-         {isOwner ? (
+        {isOwner ? (
           <PrimaryButton
             customStyle={`
               background-color: #FF4B4B;
+              
+              &:hover {
+                background-color: #FF4B4B;
+              }
             `}
-            onClick={router.push(`/register-event/${id}`)}>
+            onClick={() => router.push(`/opportunity/${id}`)}>
             Editar meu evento
           </PrimaryButton>
         ) : null}
@@ -153,7 +153,7 @@ EventInfo.propTypes = {
   place: PropTypes.shape(placeShape),
   subscribeAction: PropTypes.func.isRequired,
   unsubscribeAction: PropTypes.func.isRequired,
-  handleEditEvent: PropTypes.func.isRequired,
+  handleEditEvent: PropTypes.func.isRequired
 };
 
 EventInfo.defaultProps = {

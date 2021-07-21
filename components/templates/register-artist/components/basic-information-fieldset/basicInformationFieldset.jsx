@@ -38,8 +38,7 @@ const BasicInformationFieldset = ({
       <InputGroup
         error={productorStepErrors.avatar}
         customStyle={avatarInputGroupStyle}
-        info="Tamanho sugerido: 500x500px"
-      >
+        info="Tamanho sugerido: 500x500px">
         <UploadAvatar
           alt="botão para subir imagem"
           title="avatar image"
@@ -49,12 +48,12 @@ const BasicInformationFieldset = ({
       </InputGroup>
       <TextInpustWrapper>
         <InputGroup
-          label={values.name ? 'Nome da banda/artista' : ''}
+          label={values.name ? 'Nome da banda/artista *' : ''}
           error={productorStepErrors.name}>
           <Input
             id="name"
             type="text"
-            placeholder="Nome da banda/artista"
+            placeholder="Nome da banda/artista *"
             value={values.name}
             onChange={handleNameChange}
           />
@@ -71,10 +70,10 @@ const BasicInformationFieldset = ({
           />
         </InputGroup>
         <InputGroup
-          label={values.musicalStyles.length ? 'Estilos de música' : ''}
+          label={values.musicalStyles.length ? 'Estilos de música *' : ''}
           error={productorStepErrors.musicalStyles}>
           <AutocompleteInput
-            placeholder={values.musicalStyles.length ? '' : 'Estilos de música'}
+            placeholder={values.musicalStyles.length ? '' : 'Estilos de música *'}
             predict={values.musicalStylePredict}
             value={values.musicalStyle}
             handleChange={handleMusicalStyleChange}
@@ -88,10 +87,10 @@ const BasicInformationFieldset = ({
         </InputGroup>
       </TextInpustWrapper>
     </MainInformationWrapper>
-    <InputGroup label={values.about ? 'Sobre você' : ''} error={productorStepErrors.about}>
+    <InputGroup label={values.about ? 'Sobre você *' : ''} error={productorStepErrors.about}>
       <TextArea
         id="about"
-        placeholder="Conte sobre você :)"
+        placeholder="Conte sobre você :) *"
         value={values.about}
         onChange={handleAboutChange}
         maxLength={descriptionMaxLength}
