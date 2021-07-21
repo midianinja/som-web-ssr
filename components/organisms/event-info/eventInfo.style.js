@@ -54,4 +54,14 @@ export const ButtonWrapper = styled.div`
   width: 100%;
   margin-top: 30px;
   text-align: left;
+
+  ${(props) => {
+    if (props.hide) {
+      return `
+        display: none;
+      `;
+    }
+
+    return '';
+  }}
 `;
