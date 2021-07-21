@@ -80,6 +80,8 @@ export const PrimaryButtonStyle = styled.button`
   transition-duration: 0.3s;
   font-size: 14px;
   font-weight: 700;
+  padding-left: 18px;
+  padding-right: 18px;
 
   :active,
   :hover {

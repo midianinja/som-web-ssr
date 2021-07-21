@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   display: flex;
   text-align: start;
-  width: 100%;
+  width: 200px;
   flex-direction: column;
   min-height: 290px;
   justify-content: space-between;

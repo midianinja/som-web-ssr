@@ -80,6 +80,11 @@ export const ItemTitle = styled.h3`
 
   line-height: 1.1em;
   color: ${white};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
 `;
 
 export const ItemDescription = styled.p`

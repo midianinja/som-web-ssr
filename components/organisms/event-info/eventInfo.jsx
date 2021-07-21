@@ -39,7 +39,6 @@ const EventInfo = ({
   happeningNow,
   isOnline,
   streamUrl,
-  handleEditEvent,
   isOwner
 }) => {
   const { state } = useContext(Store);
@@ -96,7 +95,7 @@ const EventInfo = ({
           </PrimaryButton>
         ) : null}
 
-        {!subscribed && !isClosingSubscribe && !isOwner? (
+        {!subscribed && !isClosingSubscribe && !isOwner ? (
           <PrimaryButton onClick={subscribeAction} disabled={targetList.indexOf(loggedAs) === -1}>
             {targetList.indexOf(loggedAs) !== -1
               ? 'Inscrever-se'
@@ -104,7 +103,7 @@ const EventInfo = ({
           </PrimaryButton>
         ) : null}
 
-        {subscribed && !isClosingSubscribe && !isOwner? (
+        {subscribed && !isClosingSubscribe && !isOwner ? (
           <PrimaryButton
             customStyle={`
               background-color: #44178F;
@@ -113,12 +112,16 @@ const EventInfo = ({
             Inscrito
           </PrimaryButton>
         ) : null}
-         {isOwner ? (
+        {isOwner ? (
           <PrimaryButton
             customStyle={`
               background-color: #FF4B4B;
+              
+              &:hover {
+                background-color: #FF4B4B;
+              }
             `}
-            onClick={router.push(`/register-event/${id}`)}>
+            onClick={() => router.push(`/opportunity/${id}`)}>
             Editar meu evento
           </PrimaryButton>
         ) : null}
@@ -153,7 +156,7 @@ EventInfo.propTypes = {
   place: PropTypes.shape(placeShape),
   subscribeAction: PropTypes.func.isRequired,
   unsubscribeAction: PropTypes.func.isRequired,
-  handleEditEvent: PropTypes.func.isRequired,
+  handleEditEvent: PropTypes.func.isRequired
 };
 
 EventInfo.defaultProps = {

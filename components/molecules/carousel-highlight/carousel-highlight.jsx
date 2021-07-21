@@ -1,14 +1,10 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   CarouselContent,
   CarouselItem,
   ItemImageWrapper,
   ItemImage,
-  ItemContent,
-  ItemTitle,
-  ItemDescription,
-  Tag,
   Indicators,
   IndicatorBall,
   Controls,
@@ -18,17 +14,38 @@ import { useRouter } from 'next/dist/client/router';
 
 /**
  *
+ * @param {*} param0
+ */
+const CarouselItemComponent = ({ item, onClick }) => {
+  const [src, setSrc] = useState('');
+
+  useEffect(() => {
+    const image = new Image();
+    image.onload = () => setSrc(item.image);
+    image.src = item.image;
+  }, []);
+
+  return (
+    <CarouselItem onClick={() => onClick(item.oportunity.id, item.link)}>
+      <ItemImageWrapper>
+        <ItemImage src={src} alt="" />
+      </ItemImageWrapper>
+    </CarouselItem>
+  );
+};
+
+CarouselItemComponent.propTypes = {
+  item: PropTypes.object,
+  onClick: PropTypes.func
+};
+
+/**
+ *
  * @param {*} items
  * @returns
  */
 const renderItems = (items, onClick) =>
-  items.map((item) => (
-    <CarouselItem key={item.id} onClick={() => onClick(item.oportunity.id, item.link)}>
-      <ItemImageWrapper>
-        <ItemImage src={item.image} alt="" />
-      </ItemImageWrapper>
-    </CarouselItem>
-  ));
+  items.map((item) => <CarouselItemComponent key={item.id} item={item} onClick={onClick} />);
 
 /**
  *
