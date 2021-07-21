@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import Store from '../../../store/Store';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import EventDate from '../../atoms/event-date/eventDate';
@@ -40,6 +41,8 @@ const EventInfo = ({
   streamUrl,
   isOwner
 }) => {
+  const { state } = useContext(Store);
+
   const newDate = new Date(unixTime(date));
   const dateInstance = moment(newDate);
   const dayLabel = diffDays === 1 ? 'dia' : 'dias';
@@ -85,8 +88,8 @@ const EventInfo = ({
         subscribedProductors={subscribedProductors}
       />
       <Space />
-      <ButtonWrapper>
-        {isClosingSubscribe && !isOwner ? (
+      <ButtonWrapper hide={!state.auth || !state.auth._id}>
+        {isClosingSubscribe && !isOwner? (
           <PrimaryButton onFocus={() => null} onBlur={() => null} onClick={() => null} disabled>
             Inscrições encerradas
           </PrimaryButton>
