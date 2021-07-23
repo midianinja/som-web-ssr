@@ -31,7 +31,7 @@ const getLinks = (user, connectionType) => {
       href:
         user && user.productor && user.productor.id
           ? `/producer/${user.productor.id}`
-          : '/register-producer',
+          : '/producer',
       label: 'Meu perfil',
       hide: !user || connectionType !== 'productor'
     },
