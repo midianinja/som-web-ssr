@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import CommunityCarrousel from '../../../../organisms/community-carrousel/communityCarrousel';
 import { aboutCard } from './about.collection';
 import { AboutSection, Title, Subtitle, Text, Grid, ToggleButton } from './about.style';
 
-const About = () => {
+const About = ({ communityUsers }) => {
   const [aboutSelectedCard, setAboutSelectedCard] = useState(null);
   return (
     <AboutSection id="about">
@@ -46,7 +47,7 @@ const About = () => {
         <Title>Quem somos</Title>
       </header>
 
-      <CommunityCarrousel />
+      <CommunityCarrousel communityUsers={communityUsers} />
 
       <div>
         <Subtitle>Movimente a cena e construa circuitos musicais!</Subtitle>
@@ -196,6 +197,30 @@ const About = () => {
       </Grid>
     </AboutSection>
   );
+};
+
+const imageShape = {
+  mimified: PropTypes.string
+};
+
+const artistShape = {
+  avatar_image: PropTypes.shape(imageShape),
+  name: PropTypes.string
+};
+
+const productorShape = {
+  photo: PropTypes.string,
+  name: PropTypes.string
+};
+
+const communityUserShape = {
+  id: PropTypes.string,
+  artist: PropTypes.shape(artistShape),
+  productor: PropTypes.shape(productorShape)
+};
+
+About.propTypes = {
+  communityUsers: PropTypes.arrayOf(PropTypes.shape(communityUserShape))
 };
 
 export default About;
