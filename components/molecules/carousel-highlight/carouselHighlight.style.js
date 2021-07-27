@@ -59,6 +59,7 @@ export const ItemImage = styled.img`
   height: 100%;
 
   object-fit: cover;
+  object-position: bottom right;
 
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.1);
