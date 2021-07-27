@@ -69,8 +69,8 @@ export const removeTagAction = ({
   const year = YEARS_MODEL.find((m) => m.id === data);
   const style = musicalStylesOptions.find((m) => m.id === data);
   // const city = cities.find((m) => m.id === data);
-  const state = states.find((m) => m.id === data);
-  const country = countries.find((m) => m.id === data);
+  // const state = states.find((m) => m.id === data);
+  // const country = countries.find((m) => m.id === data);
 
 
   if (month) {
@@ -87,14 +87,14 @@ export const removeTagAction = ({
     const myStyles = musicStyles.filter((m) => m.id !== style.id);
     setMusicStyles(myStyles);
   }
-  if (country) {
-    const myCountries = countries.filter((m) => m.id !== country.id);
-    setCountries(myCountries);
-  }
-  if (state) {
-    const myStates = states.filter((m) => m.id !== state.id);
-    setStates(myStates);
-  }
+  // if (country) {
+  //   const myCountries = countries.filter((m) => m.id !== country.id);
+  //   setCountries(myCountries);
+  // }
+  // if (state) {
+  //   const myStates = states.filter((m) => m.id !== state.id);
+  //   setStates(myStates);
+  // }
 };
 
 export const handleMusicalStyleSelect = ({

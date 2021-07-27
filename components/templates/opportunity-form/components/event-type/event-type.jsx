@@ -38,7 +38,7 @@ const renderTypes = ({ values, handleSelectEventType }) =>
 
 const EventTypes = ({ values, handleSelectEventType, handleChangeSrc }) => (
   <Fieldset>
-    <Title>Quem pode se inscrever</Title>
+    <Title>Tipo de Oportunidade</Title>
     <InputGroup label="" error="">
       {renderTypes({
         values,
