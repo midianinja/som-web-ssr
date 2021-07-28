@@ -5,7 +5,15 @@ import Loading from '../../../../atoms/loading/loading';
 import { white } from '../../../../../settings/colors';
 import { Footer, Wrapper, LoadingWrapper } from './stepEventFormFooter.style';
 
-const StepEventFormFooter = ({ saveAction, cancelAction, customStyle, loading, actionLabel }) => (
+const StepEventFormFooter = ({
+  saveAction,
+  cancelAction,
+  customStyle,
+  loading,
+  actionLabel,
+  deleteAction,
+  hideDeleteAction
+}) => (
   <Wrapper customStyle={customStyle}>
     {!loading ? (
       <Footer customStyle={customStyle}>
@@ -21,12 +29,14 @@ const StepEventFormFooter = ({ saveAction, cancelAction, customStyle, loading, a
           customStyle={`padding: 20px 0; height: auto; color: ${white}`}>
           Descartar alterações
         </PrimaryButton>
-        <PrimaryButton
-          onClick={() => console.log('heree')}
-          color="transparent"
-          customStyle={`padding: 20px 0; height: auto; color: ${white}; background-color: #121212; width: 100%; grid-column-start: 1; grid-column-end: 3; &:hover{ background-color: #121212; }`}>
-          Excluir oportunidade
-        </PrimaryButton>
+        {!hideDeleteAction ? (
+          <PrimaryButton
+            onClick={deleteAction}
+            color="transparent"
+            customStyle={`padding: 20px 0; height: auto; color: ${white}; background-color: #121212; width: 100%; grid-column-start: 1; grid-column-end: 3; &:hover{ background-color: #121212; }`}>
+            Excluir oportunidade
+          </PrimaryButton>
+        ) : null}
       </Footer>
     ) : (
       <LoadingWrapper>
@@ -39,7 +49,9 @@ const StepEventFormFooter = ({ saveAction, cancelAction, customStyle, loading, a
 StepEventFormFooter.propTypes = {
   saveAction: PropTypes.func.isRequired,
   cancelAction: PropTypes.func.isRequired,
+  deleteAction: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  hideDeleteAction: PropTypes.bool.isRequired,
   customStyle: PropTypes.string,
   actionLabel: PropTypes.string
 };

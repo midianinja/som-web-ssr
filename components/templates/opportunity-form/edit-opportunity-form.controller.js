@@ -3,6 +3,7 @@ import { getBase64, uploadImageToStorage } from '../../../utils/file.utils';
 import {
   createLocation,
   getEvent,
+  remove,
   updateEvent,
   updateLocation
 } from './opportunity-form.repository';
@@ -150,4 +151,15 @@ export const handleEditEvent = async (
 
   router.push('/my-events');
   setLoading(false);
+};
+
+/**
+ *
+ */
+export const removeOpportunity = async ({ setDialog, setLoading, id, router }) => {
+  setDialog(null);
+  setLoading(true);
+
+  await remove(id);
+  router.push('/my-events');
 };

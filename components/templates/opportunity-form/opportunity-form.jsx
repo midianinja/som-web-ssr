@@ -2,6 +2,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Loading from '../../atoms/loading/loading';
+import DialogModal from '../../modals/dialog/dialog';
 import StepFormHeader from '../../organisms/step-form-header/stepFormHeader';
 import AvatarFieldset from './components/avatar-fieldset/avatarFieldset';
 import CoverFieldset from './components/cover-fieldset/coverFieldset';
@@ -17,11 +18,12 @@ import {
   handleStateSelect,
   handleCreateEvent
 } from './opportunity-form.controller';
-import { handleEditEvent, loadOpportunity } from './edit-opportunity-form.controller';
+import { handleEditEvent, loadOpportunity, removeOpportunity } from './edit-opportunity-form.controller';
 import { ConditionsWrapper, Form, FormWrapper, LoadingWrapper } from './opportunity-form.style';
 import WhoSubscribe from './components/who-subscribe/who-subscribe';
 import EventTypes from './components/event-type/event-type';
 import moment from 'moment';
+import { route } from 'next/dist/next-server/server/router';
 
 const steps = [
   {
@@ -219,6 +221,7 @@ const OpportunityForm = () => {
   const [streamUrl, setStreamUrl] = useState('');
   const [eventTypes, setEventTypes] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [dialog, setDialog] = useState(null);
 
   const mapApiToState = (opportunity) => {
     setAvatar(opportunity?.photo);
@@ -358,6 +361,7 @@ const OpportunityForm = () => {
         })}
       </FormWrapper>
       <StepEventFormFooter
+        hideDeleteAction={!router?.query?.id}
         saveAction={() => {
           if (router?.query?.id) {
             handleEditEvent(
@@ -385,7 +389,29 @@ const OpportunityForm = () => {
         }}
         actionLabel={router?.query?.id ? 'Edite a oportunidade' : 'Criar oportunidade'}
         loading={loading}
-        cancelAction={() => null}
+        cancelAction={() => router.push('/my-events')}
+        deleteAction={() =>
+          setDialog({
+            title: 'Tem certeza que deseja excluir esta oportunidade?',
+            description: 'Você não vai poder reverter esta ação depois de confirmada',
+            agreeText: 'Excluir',
+            disagreeText: 'Voltar',
+            confirmAction: () => {
+              removeOpportunity({ setDialog, setLoading, id: router.query.id, router });
+            },
+            disagreeAction: () => setDialog(null)
+          })
+        }
+      />
+      <DialogModal
+        icon="/icons/trash-ilu.png"
+        title={dialog?.title}
+        description={dialog?.description}
+        agreeText={dialog?.agreeText}
+        disagreeText={dialog?.disagreeText}
+        confirmAction={dialog?.confirmAction}
+        disagreeAction={dialog?.disagreeAction}
+        isOpen={dialog}
       />
     </Form>
   );

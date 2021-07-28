@@ -55,7 +55,7 @@ export const Message = styled.h3`
   font-size: 1em;
   font-weight: 300;
   line-height: 1.625em;
-  margin-top: 25px;
+  margin-top: 8px;
   margin-bottom: 25px;
 `;
 
@@ -64,10 +64,10 @@ export const Actions = styled.div`
   justify-content: flex-start;
   align-items: center;
   cursor: pointer;
+  gap: 16px;
 `;
 
 export const BackButton = styled.a`
-  margin-right: 15px;
   color: ${purple};
 `;
 

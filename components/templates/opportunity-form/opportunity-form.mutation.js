@@ -157,3 +157,11 @@ export const updateLocationMutation = gql`
     }
   }
 `;
+
+export const removeOpportunityMutation = gql`
+  mutation($id: ID!) {
+    removeOpportunity(id: $id) {
+      id
+    }
+  }
+`;

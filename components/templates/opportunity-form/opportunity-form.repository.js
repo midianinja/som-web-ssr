@@ -2,6 +2,7 @@ import { client } from '../../../libs/apollo.lib';
 import {
   createEventMutation,
   createLocationMutation,
+  removeOpportunityMutation,
   updateEventMutation,
   updateLocationMutation
 } from './opportunity-form.mutation';
@@ -44,5 +45,11 @@ export const updateLocation = (id, location) =>
 export const getEvent = (id) =>
   client().query({
     query: getOneEventQuery,
+    variables: { id }
+  });
+
+export const remove = (id) =>
+  client().mutate({
+    mutation: removeOpportunityMutation,
     variables: { id }
   });
