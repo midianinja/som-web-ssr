@@ -49,6 +49,7 @@ const renderBasicInfos = ({
 }) => (
   <BasicInformationFieldset
     descriptionMaxLength={2000}
+    occupationOptions={occupationOptions}
     deleteTag={(id) =>
       deleteTag({
         id,
@@ -67,7 +68,7 @@ const renderBasicInfos = ({
     handleCNPJChange={({ target }) => setCNPJ(target.value)}
     handleCPFChange={({ target }) => setCPF(target.value)}
     handleNameChange={({ target }) => setName(target.value)}
-    handleMusicalStyleChange={({ target }) =>
+    handleOccupationChange={({ target }) =>
       handleACOccupation({
         value: target.value,
         occupationOptions,
@@ -77,7 +78,7 @@ const renderBasicInfos = ({
         occupation
       })
     }
-    handleMusicalStyleSelect={(value) =>
+    handleOccupationSelect={(value) =>
       handleOccupationSelect({
         value,
         occupationOptions,
