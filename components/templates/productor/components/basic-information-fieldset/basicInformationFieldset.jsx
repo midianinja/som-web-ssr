@@ -4,6 +4,8 @@ import VMasker from 'vanilla-masker';
 import styled from 'styled-components';
 import Input from '../../../../atoms/input/input';
 import UploadAvatar from '../../../../atoms/upload-avatar/uploadAvatar';
+import ListInput from '../../../../molecules/list-input/listInput';
+
 import TextArea from '../../../../atoms/text-area/TextArea';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
 import TagList from '../../../../molecules/tag-list/tagList';
@@ -23,11 +25,12 @@ const BasicInformationFieldset = ({
   handleCPFChange,
   deleteTag,
   handleAvatarChange,
-  handleMusicalStyleChange,
-  handleMusicalStyleSelect,
+  handleOccupationChange,
+  handleOccupationSelect,
   productorStepErrors,
   values,
-  descriptionMaxLength
+  descriptionMaxLength,
+  occupationOptions,
 }) => (
   <Fieldset>
     <Title>Informações do Produtor</Title>
@@ -57,18 +60,33 @@ const BasicInformationFieldset = ({
         <InputGroup
           label={values.occupations.length ? 'Área de Atuação *' : ''}
           error={productorStepErrors.occupations}>
-          <AutocompleteInput
+          {
+            console.log(occupationOptions)
+          }
+          <ListInput
+            // selected={values.occupations}
+            id="occupation"
+            placeholder={values.occupations.length ? '' : 'Área de Atuação *'}
+            options={occupationOptions}
+            onSelect={handleOccupationSelect}
+            onChange={handleOccupationChange}
+            
+          >
+          {/* <AutocompleteInput
             placeholder={values.occupations.length ? '' : 'Área de Atuação *'}
             predict={values.occupationPredict}
             value={values.occupation}
             handleChange={handleMusicalStyleChange}
             handleSelect={handleMusicalStyleSelect}
           />
+          */}
+          </ListInput>
+
           <TagList
             handleClose={deleteTag}
             data={values.occupations}
             customStyle={musicalGenresCustomStyle}
-          />
+          /> 
         </InputGroup>
       </TextInpustWrapper>
     </MainInformationWrapper>

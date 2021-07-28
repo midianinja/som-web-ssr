@@ -232,11 +232,12 @@ export const handleOccupationSelect = ({
   setOccupationPredict,
   setOccupations
 }) => {
-  setOccupation(value);
+  console.log(value)
+  setOccupation(value.label);
   const colors = ['purple', 'green', 'orange', 'magenta', 'yellow'];
-  const style = occupationOptions.filter((o) => o.label.toLowerCase() === value)[0];
+  const style = occupationOptions.filter((o) => o.label.toLowerCase() === value.label.toLowerCase())[0];
   const newOccupations = occupations
-    .filter((o) => o.text.toLowerCase() !== value)
+    .filter((o) => o.text.toLowerCase() !== value.label.toLowerCase())
     .concat([
       {
         id: style.id,
@@ -441,6 +442,7 @@ export const handleEditProductor = async (
     promise = await updateProductor(productorId, data);
   } catch (err) {
     setLoading({ show: false });
+    console.log([err])
     throw err;
   }
 
