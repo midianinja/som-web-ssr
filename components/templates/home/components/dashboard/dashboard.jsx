@@ -35,7 +35,7 @@ const DashBoard = ({
     <Section>
       <CarouselLatest opportunities={latestOpportunities} />
     </Section>
-
+{/* 
     <TextOportunidades>
       Oportunidades para artistas{' '}
       <span role="img" aria-label="ícone de uma guitarra">
@@ -54,7 +54,7 @@ const DashBoard = ({
     </TextOportunidades>
     <Section>
       <CarouselProducers opportunities={productorOportunities} />
-    </Section>
+    </Section> */}
 
     <TextOportunidades>
       Notícias{' '}
