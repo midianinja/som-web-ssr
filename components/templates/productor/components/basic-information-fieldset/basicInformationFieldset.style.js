@@ -39,3 +39,14 @@ export const avatarInputGroupStyle = `
     width: 200px
   }
 `;
+export const filterGroupsStyle = `
+  margin-right: 10px;
+  max-width: 240px;
+  display: inline-block;
+  vertical-align: top;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+  }
+`;
