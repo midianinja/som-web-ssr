@@ -31,8 +31,6 @@ const Home = () => {
   const [newsLoading, setNewsLoading] = useState([]);
   const [splashScreen, setSplashScreen] = useState(true);
 
-  console.log(communityUsers);
-
   useEffect(() => {
     init({
       setCommunityUsers,
@@ -89,7 +87,16 @@ const Home = () => {
         artistOportunities={artistOportunities}
         productorOportunities={productorOportunities}
       />
-      <About communityUsers={communityUsers} />
+      <About
+        communityUsers={communityUsers
+          .reverse()
+          .concat(communityUsers.reverse())
+          .concat(communityUsers.reverse())
+          .concat(communityUsers.reverse())
+          .concat(communityUsers.reverse())
+          .concat(communityUsers.reverse())
+          .concat(communityUsers.reverse())}
+      />
       <HowItWorks />
       <NewsLetter />
     </Page>
