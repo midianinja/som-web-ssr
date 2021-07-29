@@ -1,11 +1,14 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import CommunityCarrousel from '../../../../organisms/community-carrousel/communityCarrousel';
 import { aboutCard } from './about.collection';
-import { AboutSection, Title, Subtitle, Text, Grid, ToggleButton } from './about.style';
+import { AboutSection, Title, Subtitle, Text, Grid, ToggleButton, VideoModal } from './about.style';
 
 const About = ({ communityUsers }) => {
   const [aboutSelectedCard, setAboutSelectedCard] = useState(null);
+  const [videoOpened, setVideoOpened] = useState(false);
+
   return (
     <AboutSection id="about">
       <header>
@@ -90,7 +93,7 @@ const About = ({ communityUsers }) => {
             </svg>
           </h3>
           <p>{aboutCard[0].description}</p>
-          <button>{aboutCard[0].action}</button>
+          <button onClick={() => setVideoOpened(true)}>{aboutCard[0].action}</button>
           <img alt="" src="/images/home/som-example.png" />
         </div>
         <div className="__default">
@@ -195,6 +198,14 @@ const About = ({ communityUsers }) => {
           <img alt="" src="/images/home/ajude-a-cena.png " />
         </div>
       </Grid>
+      <VideoModal hide={!videoOpened} onClick={() => setVideoOpened(false)}>
+        <video width="320" height="240" controls onClick={(e) => e.stopPropagation()}>
+          <source
+            src="https://som-assets.s3.us-west-2.amazonaws.com/Render+total+-+No+sound_3.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </VideoModal>
     </AboutSection>
   );
 };
