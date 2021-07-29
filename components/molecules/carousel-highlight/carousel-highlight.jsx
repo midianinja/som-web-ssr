@@ -26,11 +26,7 @@ const CarouselItemComponent = ({ item, onClick }) => {
   }, []);
 
   return (
-<<<<<<< HEAD
     <CarouselItem onClick={() => onClick(item.oportunity?.id, item.link)}>
-=======
-    <CarouselItem onClick={() => onClick(item?.opportunity?.id, item.link)}>
->>>>>>> main
       <ItemImageWrapper>
         <ItemImage src={src} alt="" />
       </ItemImageWrapper>
