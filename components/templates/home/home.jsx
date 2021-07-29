@@ -88,14 +88,14 @@ const Home = () => {
         productorOportunities={productorOportunities}
       />
       <About
-        communityUsers={{ ...communityUsers }
+        communityUsers={[...communityUsers]
           .reverse()
-          .concat({ ...communityUsers }.reverse())
-          .concat({ ...communityUsers }.reverse())
-          .concat({ ...communityUsers }.reverse())
-          .concat({ ...communityUsers }.reverse())
-          .concat({ ...communityUsers }.reverse())
-          .concat({ ...communityUsers }.reverse())}
+          .concat([...communityUsers].reverse())
+          .concat([...communityUsers].reverse())
+          .concat([...communityUsers].reverse())
+          .concat([...communityUsers].reverse())
+          .concat([...communityUsers].reverse())
+          .concat([...communityUsers].reverse())}
       />
       <HowItWorks />
       <NewsLetter />
