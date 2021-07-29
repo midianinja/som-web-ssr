@@ -31,6 +31,8 @@ const Home = () => {
   const [newsLoading, setNewsLoading] = useState([]);
   const [splashScreen, setSplashScreen] = useState(true);
 
+  console.log(communityUsers);
+
   useEffect(() => {
     init({
       setCommunityUsers,

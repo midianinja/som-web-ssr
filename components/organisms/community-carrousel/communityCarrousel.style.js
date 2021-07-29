@@ -35,7 +35,7 @@ export const Row = styled.div`
 
 export const CommunityUser = styled.div``;
 
-export const Avatar = styled.div`
+export const Avatar = styled.img`
   display: inline-block;
 
   width: 71px;
