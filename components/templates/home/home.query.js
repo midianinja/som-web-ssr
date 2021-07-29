@@ -19,6 +19,19 @@ export const ALL_COMMUNITY_USERS_QUERY = gql`
   query allCommunityUsers {
     allCommunityUsers {
       id
+      user {
+        id
+        productor {
+          name
+          photo
+        }
+        artist {
+          name
+          avatar_image {
+            mimified
+          }
+        }
+      }
     }
   }
 `;

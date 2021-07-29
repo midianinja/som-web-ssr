@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LazyLoad from 'react-lazyload';
+import PropTypes from 'prop-types';
 import {
   Container,
   Row,
@@ -20,13 +21,13 @@ import {
  * @returns
  */
 const renderRowUsers = (users) =>
-  users.map(({ id }) => (
+  users.map(({ id, user }) => (
     <CommunityUser key={id}>
       <LazyLoad placeholder={<PlaceholderAvatar></PlaceholderAvatar>} height={147} offset={500}>
-        <Avatar alt="" />
+        <Avatar src={user?.artist?.avatar_image?.mimified || user?.productor?.photo} alt="" />
       </LazyLoad>
       <Info>
-        <Name>Nome exemplo</Name>
+        <Name>{user?.name}</Name>
         <Label>Produtor Musical</Label>
         <Locale>Maceio, AL</Locale>
       </Info>
@@ -37,7 +38,7 @@ const renderRowUsers = (users) =>
  *
  * @returns
  */
-const CommunityCarrousel = () => {
+const CommunityCarrousel = ({ communityUsers }) => {
   const [scroll, setScroll] = useState(0);
   const variation = 147 * 8;
   const dummyUsers = [];
@@ -45,6 +46,13 @@ const CommunityCarrousel = () => {
   for (let count = 0; count < 100; count += 1) {
     dummyUsers.push({ id: `#${count + 1}` });
   }
+
+  const line1 = communityUsers.filter((communityUser, index) => index % 3 === 1);
+  const line2 = communityUsers.filter((communityUser, index) => index % 3 === 2);
+  const line3 = communityUsers.filter((communityUser, index) => index % 3 === 0);
+
+  console.log(line3);
+  console.log(communityUsers);
 
   return (
     <Container>
@@ -63,9 +71,24 @@ const CommunityCarrousel = () => {
         </svg>
       </IconWrapper>
       <RowsWrapper id="cr-wrapper" translate={scroll}>
-        <Row>{renderRowUsers(dummyUsers, 1)}</Row>
-        <Row>{renderRowUsers(dummyUsers, 2)}</Row>
-        <Row>{renderRowUsers(dummyUsers, 3)}</Row>
+        <Row>
+          {renderRowUsers(
+            line1.concat([...dummyUsers].splice(0, dummyUsers.length - line1.length)),
+            1
+          )}
+        </Row>
+        <Row>
+          {renderRowUsers(
+            line2.concat([...dummyUsers].splice(0, dummyUsers.length - line2.length)),
+            2
+          )}
+        </Row>
+        <Row>
+          {renderRowUsers(
+            line3.concat([...dummyUsers].splice(0, dummyUsers.length - line3.length)),
+            3
+          )}
+        </Row>
       </RowsWrapper>
       <IconWrapper
         onClick={() => {
@@ -96,7 +119,29 @@ const CommunityCarrousel = () => {
   );
 };
 
-CommunityCarrousel.propTypes = {};
+const imageShape = {
+  mimified: PropTypes.string
+};
+
+const artistShape = {
+  avatar_image: PropTypes.shape(imageShape),
+  name: PropTypes.string
+};
+
+const productorShape = {
+  photo: PropTypes.string,
+  name: PropTypes.string
+};
+
+const communityUserShape = {
+  id: PropTypes.string,
+  artist: PropTypes.shape(artistShape),
+  productor: PropTypes.shape(productorShape)
+};
+
+CommunityCarrousel.propTypes = {
+  communityUsers: PropTypes.arrayOf(PropTypes.shape(communityUserShape))
+};
 
 CommunityCarrousel.defaultProps = {};
 
