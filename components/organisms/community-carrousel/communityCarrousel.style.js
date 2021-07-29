@@ -37,6 +37,7 @@ export const CommunityUser = styled.div``;
 
 export const Avatar = styled.img`
   display: inline-block;
+  object-fit: cover;
 
   width: 71px;
   height: 71px;
