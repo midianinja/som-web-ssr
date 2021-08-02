@@ -157,7 +157,7 @@ export const fetchEventsData = async ({
     });
     if (!eventData.data.searchEvents.length) {
       setDialog({
-        title: 'Nenhuma oportunidade encontrado',
+        title: 'Nenhuma oportunidade encontrada',
         icon: '/icons/guita-error.svg',
         description: 'Logo teremos mais oportunidades, fique ligado para se inscrever.',
         disagreeText: 'Fechar',
