@@ -31,7 +31,7 @@ const HomeOpenSource = () => (
         <CTA>
           <PrimaryButton
             onClick={() => {
-              window.open('https://github.com/midianinja/som-web', '_blank');
+              window.open('https://github.com/midianinja/som', '_blank');
             }}
             customStyle={buttonStyle}
             color="darkGray">
@@ -44,7 +44,7 @@ const HomeOpenSource = () => (
     <CTAMobile>
       <PrimaryButton
         onClick={() => {
-          window.open('https://github.com/midianinja/som-web', '_blank');
+          window.open('https://github.com/midianinja/som', '_blank');
         }}
         customStyle={buttonStyle}
         color="darkGray">

@@ -26,7 +26,7 @@ const CarouselItemComponent = ({ item, onClick }) => {
   }, []);
 
   return (
-    <CarouselItem onClick={() => onClick(item.oportunity.id, item.link)}>
+    <CarouselItem onClick={() => onClick(item.oportunity?.id, item.link)}>
       <ItemImageWrapper>
         <ItemImage src={src} alt="" />
       </ItemImageWrapper>

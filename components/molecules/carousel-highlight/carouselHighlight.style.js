@@ -40,6 +40,8 @@ export const CarouselItem = styled.li`
   flex-wrap: wrap;
   justify-content: flex-end;
   width: 100%;
+
+  cursor: pointer;
 `;
 
 export const ItemImageWrapper = styled.figure`

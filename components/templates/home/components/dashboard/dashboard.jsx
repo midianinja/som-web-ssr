@@ -22,7 +22,7 @@ const DashBoard = ({
 }) => (
   <DashboardContent>
     <CarouselPrimarySection>
-      <CarouselHighlight opportunities={highlightedOportunities} />
+      <CarouselHighlight opportunities={highlightedOportunities.reverse()} />
     </CarouselPrimarySection>
 
     <TextOportunidades big>
