@@ -51,7 +51,7 @@ artifacts:
   files:
     - '**/*'
   secondary-artifacts:
-    som-web:
+    somweb:
       files:
         - '**/*'
       base-directory: som-web
