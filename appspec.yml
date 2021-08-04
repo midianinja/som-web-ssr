@@ -2,9 +2,6 @@ version: 0.0
 os: linux
 files:
   - source: ./dist/
-    destination: /home/ubuntu/som-web/dist/
-  
-  - source: ./dist/apps/accounts
     destination: /usr/share/nginx/som-web/
 
   - source: ./package.json
