@@ -51,7 +51,7 @@ artifacts:
   files:
     - '**/*'
   secondary-artifacts:
-    athentication:
+    som-web:
       files:
         - '**/*'
       base-directory: som-web
