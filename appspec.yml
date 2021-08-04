@@ -7,24 +7,24 @@ files:
   - source: ./dist/apps/accounts
     destination: /usr/share/nginx/som-web/
 
-  - source: ./som-web/package.json
+  - source: ./package.json
     destination: /home/ubuntu/som-web/
  
-  - source: ./som-web/server-files/default
+  - source: ./server-files/default
     destination: /etc/nginx/sites-enabled/
 
 hooks:
   BeforeInstall:
-    - location: ./som-web/scripts/before_install.sh
+    - location: ./scripts/before_install.sh
       timeout: 300
       runas: root
 
   ApplicationStop:
-    - location: ./som-web/scripts/application_stop.sh
+    - location: ./scripts/application_stop.sh
       timeout: 300
       runas: root 
 
   ApplicationStart:
-    - location: ./som-web/scripts/application_start.sh
+    - location: ./scripts/application_start.sh
       timeout: 300
       runas: root
