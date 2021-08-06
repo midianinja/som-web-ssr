@@ -1,7 +1,15 @@
-export const basicInformationIsValid = ({ email }) => {
-  let validated = true;
+import { getOneNewsLatter } from './homeNewsLetter.repository';
 
-  if (!email) validated = false;
+const mapNewLatterToApi = (values) => ({
+  email: values
+});
+
+export const basicInformationIsValid = ({ email }) => {
+  let validated = !email ? false : true;
+
+  const data = mapNewLatterToApi(email);
+
+  validated = getOneNewsLatter(data) ? false : true;
 
   return validated;
 };
