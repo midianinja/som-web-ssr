@@ -42,8 +42,12 @@ export const ConnectionsWrapper = styled.div``;
 
 export const buttonCustomStyled = `
   width: 180px;
-  margin-right: 15px;
   vertical-align: middle;
+  
+  @media (min-width: 1024px) {
+    margin-right: 15px;
+  }
+  
 `;
 
 export const EditIcon = styled.img`
@@ -105,6 +109,16 @@ export const About = styled.p`
 
 export const ActionWrapper = styled.div`
   text-align: center;
+
+  @media (min-width: 1024px) {
+    padding-right: 40px;
+    text-align: left;
+  }
+`;
+
+export const EmailWrapper = styled.div`
+  text-align: center;
+  margin-top: 1.5em;
 
   @media (min-width: 1024px) {
     padding-right: 40px;
