@@ -1,22 +1,13 @@
-import {
-  client
-} from '../../../libs/apollo.lib';
-import {
-  allMusicalStyleOptionsQuery
-} from '../../../queries/musicalGenres.query';
-import {
-  allowBodyScroll
-} from '../../../utils/scroll.utils';
+import { client } from '../../../libs/apollo.lib';
+import { allMusicalStyleOptionsQuery } from '../../../queries/musicalGenres.query';
+import { allowBodyScroll } from '../../../utils/scroll.utils';
 import {
   getAllEventsQuery,
   allCountriesQuery,
   allCitiesQuery,
   allStateQuery
 } from './wall.queries';
-import {
-  subscribeEvent,
-  unsubscribeEvent
-} from './wall.repository';
+import { subscribeEvent, unsubscribeEvent } from './wall.repository';
 
 export const loadingStatus = {
   LOADDED: 0,
@@ -63,7 +54,7 @@ export const removeTagAction = ({
   states,
   setStates,
   countries,
-  setCountries,
+  setCountries
 }) => {
   const month = MONTH_MODEL.find((m) => m.id === data);
   const year = YEARS_MODEL.find((m) => m.id === data);
@@ -71,7 +62,6 @@ export const removeTagAction = ({
   // const city = cities.find((m) => m.id === data);
   // const state = states.find((m) => m.id === data);
   // const country = countries.find((m) => m.id === data);
-
 
   if (month) {
     const myMonths = months.filter((m) => m.id !== month.id);
@@ -107,11 +97,13 @@ export const handleMusicalStyleSelect = ({
   const style = musicalStylesOptions.find((o) => o.id === data.id);
   const newMusicalStyles = musicStyles
     .filter((o) => o.id !== data.id)
-    .concat([{
-      id: style.id,
-      text: style.name,
-      color: colors[Math.floor(Math.random() * 5)]
-    }]);
+    .concat([
+      {
+        id: style.id,
+        text: style.name,
+        color: colors[Math.floor(Math.random() * 5)]
+      }
+    ]);
 
   let cont = 0;
 
@@ -203,7 +195,8 @@ export const subscribeAction = async (
     setDialog({
       title: 'Cadastro incompleto',
       icon: '/icons/guita-error.svg',
-      description: 'Para se escrever em oportunidades, você precisa preencher os dados obrigatórios.',
+      description:
+        'Para se escrever em oportunidades, você precisa preencher os dados obrigatórios.',
       agreeText: 'Cadastrar',
       disagreeText: 'Voltar',
       confirmAction: () => {
@@ -260,9 +253,7 @@ export const fetchMusicalStyleOptions = (setMusicalStylesOptions) => {
     .then((resp) => setMusicalStylesOptions(resp.data.allMusicalStyleOptions));
 };
 
-export const fetchCountries = async ({
-  setCountries
-}) => {
+export const fetchCountries = async ({ setCountries }) => {
   const countries = await client().query({
     query: allCountriesQuery,
     variables: {}
@@ -271,20 +262,16 @@ export const fetchCountries = async ({
     label: c.name,
     id: c.id
   }));
-  console.log('aqui fetch')
+  console.log('aqui fetch');
   setCountries(myCountries);
+};
 
-}
-
-export const fetchStates = async ({
-  setStates, country
-}) => {
+export const fetchStates = async ({ setStates, country }) => {
   const states = await client().query({
     query: allStateQuery,
     variables: {
       state: {
-        country,
-
+        country
       }
     }
   });
@@ -293,13 +280,9 @@ export const fetchStates = async ({
     id: s.id
   }));
   setStates(myStates);
+};
 
-}
-
-export const fetchCities = async ({
-  setCities
-}) => {
-
+export const fetchCities = async ({ setCities }) => {
   const cities = await client().query({
     query: allCitiesQuery,
     variables: {}
@@ -309,5 +292,4 @@ export const fetchCities = async ({
     id: c.id
   }));
   setCities(myCities);
-
 };

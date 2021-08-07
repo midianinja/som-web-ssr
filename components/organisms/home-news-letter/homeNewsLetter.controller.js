@@ -7,7 +7,7 @@ const mapNewLatterToApi = (values) => ({
   email: values.email
 });
 
-export const handleCreateNewsLatter = async ({ values, setLoading, setEmail }) => {
+export const handleCreateNewsLatter = async ({ values, setLoading, setEmail, setDialog }) => {
   const newsLatter = { ...values };
 
   const data = mapNewLatterToApi(newsLatter);
@@ -25,15 +25,28 @@ export const handleCreateNewsLatter = async ({ values, setLoading, setEmail }) =
     throw err;
   }
 
-  if (basicInformationIsValid(data, eventData)) {
+  if (basicInformationIsValid(data, eventData.data.oneNewsLatter)) {
     try {
       await createNewsLetter(data);
     } catch (err) {
       setLoading(false);
       throw err;
     }
+    setDialog({
+      title: '',
+      icon: '/icons/yeah.svg',
+      description: 'Seu e-mail foi cadastrado com sucesso! Aguarde novidades :)',
+      disagreeText: 'Fechar',
+      disagreeAction: () => setDialog({})
+    });
   } else {
-    console.log('Não validou');
+    setDialog({
+      title: '',
+      description:
+        'Opa, parece que você já cadastrou seu e-mail em nossa newsletter. Já pode aguardar por novidades.',
+      disagreeText: 'Fechar',
+      disagreeAction: () => setDialog({})
+    });
   }
 
   setTimeout(() => {

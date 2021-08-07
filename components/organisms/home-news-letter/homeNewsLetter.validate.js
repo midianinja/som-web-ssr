@@ -1,7 +1,7 @@
-export const basicInformationIsValid = ({ email, hasOne }) => {
+export const basicInformationIsValid = ({ email }, resp) => {
   let validated = !email ? false : true;
 
-  validated = hasOne ? false : true;
+  validated = resp ? false : true;
 
   return validated;
 };

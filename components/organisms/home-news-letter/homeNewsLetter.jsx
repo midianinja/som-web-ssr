@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import NewsletterInput from '../../atoms/newsletter-input/NewsletterInput';
 import HomeOpenSource from '../home-open-source/homeOpenSource';
+import Dialog from '../../modals/dialog/dialog';
 import { handleCreateNewsLatter } from './homeNewsLetter.controller';
 import {
   Footer,
   Content,
+  Container,
   SocialList,
   Social,
   SocialIcon,
@@ -24,6 +26,7 @@ import {
 const NewsLetter = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+  const [dialog, setDialog] = useState({});
   return (
     <Footer>
       <ContentOpenSource>
@@ -49,7 +52,8 @@ const NewsLetter = () => {
               handleCreateNewsLatter({
                 values: { email },
                 setLoading,
-                setEmail
+                setEmail,
+                setDialog
               })
             }
             onChange={(e) => setEmail(e.target.value)}
@@ -75,6 +79,20 @@ const NewsLetter = () => {
             </Social>
           </SocialList>
         </FormWrapper>
+        <Container>
+          {dialog.description ? (
+            <Dialog
+              isOpen
+              title={dialog.title}
+              icon={dialog.icon}
+              description={dialog.description}
+              agreeText={dialog.agreeText}
+              disagreeText={dialog.disagreeText}
+              confirmAction={dialog.confirmAction}
+              disagreeAction={dialog.disagreeAction}
+            />
+          ) : null}
+        </Container>
       </Content>
     </Footer>
   );
