@@ -79,20 +79,18 @@ const NewsLetter = () => {
             </Social>
           </SocialList>
         </FormWrapper>
-        <Container>
-          {dialog.description ? (
-            <Dialog
-              isOpen
-              title={dialog.title}
-              icon={dialog.icon}
-              description={dialog.description}
-              agreeText={dialog.agreeText}
-              disagreeText={dialog.disagreeText}
-              confirmAction={dialog.confirmAction}
-              disagreeAction={dialog.disagreeAction}
-            />
-          ) : null}
-        </Container>
+        {dialog.description ? (
+          <Dialog
+            isOpen
+            title={dialog.title}
+            icon={dialog.icon}
+            description={dialog.description}
+            agreeText={dialog.agreeText}
+            disagreeText={dialog.disagreeText}
+            confirmAction={dialog.confirmAction}
+            disagreeAction={dialog.disagreeAction}
+          />
+        ) : null}
       </Content>
     </Footer>
   );
