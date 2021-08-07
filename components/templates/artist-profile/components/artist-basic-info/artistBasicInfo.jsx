@@ -91,24 +91,22 @@ const ArtistBasicInfo = ({
           ? renderSubiscribeActions(isFollowing, followToggle)
           : renderEditAction(editAction)}
         {/* <LinkButton color="white">Ler release</LinkButton> */}
-      </ActionWrapper>
-
-      <EmailWrapper>
         {!isUserArtist ? (
           <PrimaryButton
+            color="transparent"
+            hoverColors="transparent"
             customStyle={`
         width: 200px;
         `}
             onClick={() => {
-              if (!isUserArtist) return window.open(`mailto:${email}`, '_blank');
-              return history.push('/producer');
+              window.open(`mailto:${email}`, '_blank');
             }}>
             Enviar e-mail
           </PrimaryButton>
         ) : (
           ''
         )}
-      </EmailWrapper>
+      </ActionWrapper>
 
       <Socials facebook={facebook} instagram={instagram} twitter={twitter} spotify={spotify} />
     </Wrapper>
