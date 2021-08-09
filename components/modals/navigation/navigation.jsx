@@ -44,6 +44,10 @@ const getLinks = (user, connectionType) => {
       href: 'http://conteudo.som.vc',
       label: 'Conteúdo',
     },
+    {
+      href: '/search',
+      label: 'Search',
+    },
   ];
 
   return links;

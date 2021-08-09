@@ -7,9 +7,9 @@ import { Input, Icon, InputIconWrapper, icons } from './inputIcon.style';
  * @param {object} props component props
  * @returns contains InputIcon Component
  */
-const InputIcon = ({ onChange, placeholder, value, width, type, icon, iconAlt }) => {
+const InputIcon = ({ onChange, placeholder, value, width, type, icon, iconAlt, customStyle }) => {
   return (
-    <InputIconWrapper width={width}>
+    <InputIconWrapper width={width} customStyle={customStyle}>
       <Input onChange={onChange} placeholder={placeholder} value={value} type={type} />
       <Icon src={icons[icon]} alt={iconAlt} />
     </InputIconWrapper>
@@ -23,7 +23,8 @@ InputIcon.propTypes = {
   width: PropTypes.string,
   type: PropTypes.string,
   icon: PropTypes.string,
-  iconAlt: PropTypes.string
+  iconAlt: PropTypes.string,
+  customStyle: PropTypes.string
 };
 
 InputIcon.defaultProps = {
@@ -31,7 +32,8 @@ InputIcon.defaultProps = {
   width: 'auto',
   type: 'text',
   icon: 'calendar',
-  iconAlt: ''
+  iconAlt: '',
+  customStyle: '',
 };
 
 export default InputIcon;
