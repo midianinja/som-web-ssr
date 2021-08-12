@@ -1,103 +1,64 @@
 /* eslint-disable react/jsx-key */
-import { TextOportunidades } from '../home/components/dashboard/dashboard.style';
-
-import React, { useState, useEffect, useContext } from 'react';
-import { useRouter } from 'next/router';
-import { accentFold } from '../../../utils/string.utils';
-
-import Header from '../../organisms/default-header/defaultHeader';
-import Dialog from '../../modals/dialog/dialog';
+import EventCard from '../../molecules/event-card/eventCard';
+import React, { useState, useContext, useEffect } from 'react';
 import Store from '../../../store/Store';
-// import { fetchEventsData, initialLoading } from './myEvents.controller';
-import EventCard from '../my-events/components/my-event-card/myEventCard';
-import { Container, GlobalForm, LocationContainer, EventsContainer } from './search.style';
+import { useRouter } from 'next/router';
+import { fetchEventsFromSearch } from './search.controller';
 
-// const Search = () => <TextOportunidades big>Busca</TextOportunidades>;
-
-const Search = ({ router, events, searchText, user }) =>
-  events
-    .filter((event) => {
-      let matched = false;
-      const text = accentFold(searchText);
-      const searchExpression = new RegExp(`${text}`, 'gi');
-
-      if (searchExpression.test(accentFold(event.name))) matched = true;
-      if (searchExpression.test(accentFold(event.location.address))) matched = true;
-      if (searchExpression.test(accentFold(event.location.city))) matched = true;
-      if (searchExpression.test(accentFold(event.location.state))) matched = true;
-      if (searchExpression.test(accentFold(event.location.district))) matched = true;
-
-      return matched;
-    })
-    .map((event) => (
-      <EventCard
-        customStyle={`
-          margin: 0 5px 90px;
-          max-width: 220px;
-        `}
-        user={user}
-        event={event}
-        onClick={() => router.push('/events-curatorship')}
-      />
-    ));
+import {
+  Title,
+  TextResult,
+  EventsContainer,
+  buttonStyl,
+  Linha,
+  ResultSection,
+  Container
+} from './search.style';
+import PrimaryButton from '../../atoms/primary-button/primaryButton';
 
 /**
- * This render the my events components. The my events component, render events created by
+ * This render the my search components. The my search component, render events, producers and artists created by
  * logged productor profile
  */
-const SearchPage = () => {
-  const router = useRouter();
-  const { state } = useContext(Store);
-  const [loading, setLoading] = useState({ ...initialLoading });
-  const [searchText, setSearchText] = useState('');
+const Search = () => {
   const [events, setEvents] = useState([]);
-  const [dialog, setDialog] = useState({});
+  const { state } = useContext(Store);
+  const { query, router } = useRouter();
+
+  console.log('value: ' + query.q);
+
+  const text = query.q;
 
   useEffect(() => {
-    if (state.user) {
-      console.log('oi');
-    //   fetchEventsData({
-    //     setEvents,
-    //     loading,
-    //     setLoading,
-    //     setDialog,
-    //     state,
-    //     user: state.user
-    //   });
+    if (!events.length) {
+      fetchEventsFromSearch(text);
     }
-  }, [state.user]);
+  }, [events]);
 
   return (
-    <Container>
-      <Header logged={!!state.user} />
-      <GlobalForm>
-        <LocationContainer />
-      </GlobalForm>
-      <TextOportunidades big>Busca</TextOportunidades>
-      <EventsContainer>
-        {Search({
-          router,
-          events,
-          user: state.user,
-          searchText
-        })}
-      </EventsContainer>
-
+    <>
       <Container>
-        {dialog.title ? (
-          <Dialog
-            isOpen
-            title={dialog.title}
-            icon={dialog.icon}
-            description={dialog.description}
-            agreeText={dialog.agreeText}
-            disagreeText={dialog.disagreeText}
-            confirmAction={dialog.confirmAction}
-            disagreeAction={dialog.disagreeAction}
-          />
-        ) : null}
+        <Title>Busca</Title>
+        <PrimaryButton customStyle={buttonStyl}>12 Oportunidades</PrimaryButton>
+        <PrimaryButton customStyle={buttonStyl}>0 Artistas</PrimaryButton>
+        <PrimaryButton customStyle={buttonStyl}>2 Produtores</PrimaryButton>
+        <Linha>
+          <ResultSection>
+            <TextResult big>0 Artistas</TextResult>
+
+            <EventsContainer>
+              {events.map((evt) => (
+                <EventCard
+                  customStyle="margin-bottom: 24px;"
+                  user={state.user}
+                  onClick={() => router.push(`/event/${evt.id}`)}
+                />
+              ))}
+            </EventsContainer>
+          </ResultSection>
+        </Linha>
       </Container>
-    </Container>
+    </>
   );
 };
 export default Search;

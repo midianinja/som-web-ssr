@@ -86,7 +86,7 @@ const Header = ({ customStyle }) => {
             dark={state.connectionType === 'public'}
           />
           <Input
-            placeholder='Buscar'
+            placeholder="Buscar"
             icon="search"
             customStyle={`
               margin-left:16px;
@@ -99,13 +99,13 @@ const Header = ({ customStyle }) => {
                 font-weight: 200;
               }
             `}
-            onChange={(e) => { 
-              if(searchTimeout){
-                clearTimeout(searchTimeout)
+            onChange={(e) => {
+              if (searchTimeout) {
+                clearTimeout(searchTimeout);
               }
-              searchTimeout = setTimeout(()=> {
-                router.push(`/search?q=${e.target.value}`)
-              }, 1000)
+              searchTimeout = setTimeout(() => {
+                router.push(`/search?q=${e.target.value}`);
+              }, 1000);
             }}
           />
         </Group>
