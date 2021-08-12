@@ -51,14 +51,14 @@ export const CarouselItem = styled.li`
 
 export const ItemImage = styled.img`
   width: 100%;
-  height: calc(77vw * 0.55);
+  height: calc(140vw * 0.55);
 
   object-fit: cover;
 
   background-color: rgba(255, 255, 255, 0.1);
 
   @media (min-width: 1024px) {
-    height: calc(23vw * 0.55);
+    height: calc(41.6vw * 0.55);
   }
 `;
 
@@ -72,6 +72,7 @@ export const ItemContent = styled.div`
   backdrop-filter: blur(20px);
 
   padding: 15px 12px;
+  min-height: 104px;
 `;
 
 export const ItemTitle = styled.h3`
@@ -83,7 +84,7 @@ export const ItemTitle = styled.h3`
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-line-clamp: 2; /* number of lines to show */
   -webkit-box-orient: vertical;
 `;
 
