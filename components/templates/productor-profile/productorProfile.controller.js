@@ -1,5 +1,6 @@
 import { client } from '../../../libs/apollo.lib';
 import { oneProductorQuery } from './productorProfile.queries';
+import { followMutation, unfollowMutation } from './productorProfile.mutations';
 
 /**
  * this function request on S.O.M api infomation about the productor.
@@ -56,4 +57,29 @@ export const fetchProductorInstaImages = async (instaUri, setInstaPics) => {
   const { data } = await promise.json();
 
   setInstaPics(data);
+};
+
+export const follow = async (productor, user, setFollows, follows) => {
+  const newFollows = [...follows];
+
+  newFollows.push(user);
+  setFollows(newFollows);
+
+  console.log(newFollows);
+
+  await client().mutate({
+    mutation: followMutation,
+    variables: { productor, user }
+  });
+};
+
+export const unfollow = async (productor, user, setFollows, follows) => {
+  const newFollows = [...follows];
+  newFollows.splice(follows.indexOf(user), 1);
+  setFollows(newFollows);
+
+  await client().mutate({
+    mutation: unfollowMutation,
+    variables: { productor, user }
+  });
 };

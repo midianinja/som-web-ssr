@@ -81,7 +81,7 @@ const Navigation = () => {
         <Community
           type={state.connectionType}
           onClick={() => {
-            window.open('https://t.me/joinchat/9AXAPAjgew9jOGEx', '_blank');
+            window.open('https://t.me/somnotelegram', '_blank');
           }}>
           Comunidade
         </Community>

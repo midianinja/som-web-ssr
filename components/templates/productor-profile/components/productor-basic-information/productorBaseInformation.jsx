@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '../../../../atoms/avatar/avatar';
 import PrimaryButton from '../../../../atoms/primary-button/primaryButton';
@@ -15,6 +15,28 @@ import {
   LocationText,
   LerMoreBio
 } from './productorBasicInformation.style';
+
+const renderSubiscribeActions = (isFollowing, followToggle) => (
+  <Fragment>
+    {isFollowing ? (
+      <PrimaryButton
+        onClick={followToggle}
+        customStyle={`
+  width: 200px;
+  `}>
+        Deixar de Seguir
+      </PrimaryButton>
+    ) : (
+      <PrimaryButton
+        onClick={followToggle}
+        customStyle={`
+        width: 200px;
+        `}>
+        Seguir
+      </PrimaryButton>
+    )}
+  </Fragment>
+);
 
 /**
  * This render the component that show basic information about
@@ -33,7 +55,9 @@ const ProductorBasicInfo = ({
   twitter,
   email,
   isMyProductor,
-  history
+  history,
+  isFollowing,
+  followToggle
 }) => {
   const [lerMoreBio, setLerMoreBio] = useState(false);
   const [stateOccupations, setStateOccupations] = useState([]);
@@ -87,16 +111,33 @@ const ProductorBasicInfo = ({
           }
         `}
       />
-      <PrimaryButton
-        customStyle={`
+
+      {isMyProductor ? (
+        <PrimaryButton
+          customStyle={`
         width: 200px;
-        `}        
-        onClick={() => {
-          if (!isMyProductor) return window.open(`mailto:${email}`, '_blank');
-          return history.push('/producer');
-        }}>
-        {isMyProductor ? 'Editar Perfil' : 'Enviar e-mail'}
-      </PrimaryButton>
+        `}
+          onClick={() => {
+            history.push('/producer');
+          }}>
+          Editar Perfil
+        </PrimaryButton>
+      ) : (
+        <div>
+          {renderSubiscribeActions(isFollowing, followToggle)}
+          <PrimaryButton
+            color="transparent"
+            hoverColors="transparent"
+            customStyle={`
+   width: 200px;
+   `}
+            onClick={() => {
+              window.open(`mailto:${email}`, '_blank');
+            }}>
+            Enviar e-mail
+          </PrimaryButton>
+        </div>
+      )}
       <Socials facebook={facebook} instagram={instagram} twitter={twitter} />
     </Wrapper>
   );
@@ -128,7 +169,9 @@ ProductorBasicInfo.propTypes = {
   facebook: PropTypes.string.isRequired,
   instagram: PropTypes.string.isRequired,
   twitter: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  followToggle: PropTypes.func.isRequired,
+  isFollowing: PropTypes.bool.isRequired
 };
 
 ProductorBasicInfo.defaultProps = {

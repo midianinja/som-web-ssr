@@ -45,6 +45,11 @@ export const oneProductorQuery = gql`
           thumbnail
         }
       }
+      follows {
+        user {
+          id
+        }
+      }
       contact_email
       instagram
       whatsapp

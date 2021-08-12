@@ -8,7 +8,7 @@ import Eventcard from '../../molecules/event-card/eventCard';
 import DialogModal from '../../modals/dialog/dialog';
 import ProductorBasicInfo from './components/productor-basic-information/productorBaseInformation';
 import Store from '../../../store/Store';
-import { fetchProductorData } from './productorProfile.controller';
+import { fetchProductorData, follow, unfollow } from './productorProfile.controller';
 import {
   ProductorWrapper,
   CoverWrapper,
@@ -77,6 +77,7 @@ const ProductorPage = () => {
   const [more, setMore] = useState(false);
   const [productor, setProductor] = useState(null);
   const [instagramPhotos] = useState([]);
+  const [follows, setFollows] = useState([]);
   const [alertModal, setAlertModal] = useState({
     title: '',
     icon: '',
@@ -103,6 +104,22 @@ const ProductorPage = () => {
   useEffect(() => {
     if (productor) fetchProductorData(productor.id, setProductor, () => '', setAlertModal);
   }, [update]);
+
+  useEffect(() => {
+    if (productor?.follows) {
+      setFollows(productor.follows.map(({ user }) => user.id));
+    }
+  }, [productor]);
+
+  const handleFollow = () => {
+    if (!state.user) {
+      state.idaSDK.signinWithPopup();
+    } else if (state.user && follows.indexOf(state.user.id) !== -1) {
+      unfollow(productor.id, state.user.id, setFollows, follows);
+    } else {
+      follow(productor.id, state.user.id, setFollows, follows);
+    }
+  };
 
   if (!productor || productorLoading) return null;
 
@@ -145,6 +162,10 @@ const ProductorPage = () => {
           email={productor.contact_email}
           isMyProductor={isMyProductor}
           history={router}
+          isFollowing={
+            state.user && productor.follows ? follows.indexOf(state.user.id) !== -1 : false
+          }
+          followToggle={handleFollow}
         />
         <ColumnWrapper>
           <EventsTitle>Oportunidades</EventsTitle>
