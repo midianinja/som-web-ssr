@@ -67,20 +67,7 @@ const ProducersCard = ({
       <ImageContainer>
         <Image onClick={onClick} src={producers.photo}></Image>
       </ImageContainer>
-      <TagList
-        data={stateOccupations}
-        customStyle={`
-          padding-left: 30px;
-          padding-right: 30px;
-          margin-bottom: 20px;
-          display: flex;
 
-          @media (min-width: 1024px) {
-            padding-left: 0;
-            padding-right: 0;
-          }
-        `}
-      />
       <Title>{producers.name} </Title>
 
       <FollowText>

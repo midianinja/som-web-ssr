@@ -42,12 +42,12 @@ const getLinks = (user, connectionType) => {
     },
     {
       href: 'http://conteudo.som.vc',
-      label: 'Conteúdo',
+      label: 'Conteúdo'
     },
     {
       href: '/search',
-      label: 'Search',
-    },
+      label: 'Busca'
+    }
   ];
 
   return links;
