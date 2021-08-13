@@ -61,11 +61,11 @@ const ProducersCard = ({
       }))
     );
   }, []);
-  console.log('oi');
+  console.log(producers);
   return (
     <Container>
       <ImageContainer>
-        <Image onClick={onClick} image={producers.photo}></Image>
+        <Image onClick={onClick} src={producers.photo}></Image>
       </ImageContainer>
       <TagList
         data={stateOccupations}

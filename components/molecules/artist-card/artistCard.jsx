@@ -60,25 +60,13 @@ const ArtistCard = ({
       }))
     );
   }, []);
+
   return (
     <Container>
       <ImageContainer>
-        <Image onClick={onClick} image={artists.avatar_image?.mimified}></Image>
+        <Image onClick={onClick} src={artists.photo}></Image>
       </ImageContainer>
-      <TagList
-        data={stateOccupations}
-        customStyle={`
-          padding-left: 30px;
-          padding-right: 30px;
-          margin-bottom: 20px;
-          display: flex;
 
-          @media (min-width: 1024px) {
-            padding-left: 0;
-            padding-right: 0;
-          }
-        `}
-      />
       <Title>{artists.name} </Title>
 
       <FollowText>
