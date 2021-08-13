@@ -120,20 +120,6 @@ const ProductorBasicInfo = ({
         </div>
       )}
 
-      {isMyProductor ? (
-        <PrimaryButton
-          customStyle={`
-        width: 200px;
-        `}
-          onClick={() => {
-            history.push('/producer');
-          }}>
-          Editar Perfil
-        </PrimaryButton>
-      ) : (
-        ''
-      )}
-
       <Socials facebook={facebook} instagram={instagram} twitter={twitter} />
     </Wrapper>
   );
