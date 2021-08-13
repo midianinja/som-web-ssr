@@ -80,14 +80,16 @@ const AddressFieldset = ({
           onChange={handleCityChange}
         />
       </InputGroup>
+      <InputGroup label={values.country ? 'País' : ''} error={eventErrors.country}>
         <ListInput
           id="country"
           placeholder="País"
           options={countries}
-          // selected={values.country}
+          selected={values.country}
           value={values.country}
           onSelect={handleCountrySelect}
         />
+      </InputGroup>
       <InputGroup label={values.country.id ? 'Estado' : ''} error={eventErrors.state}>
         <ListInput
           id="state"

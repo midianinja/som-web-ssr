@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { green, white10, white30, white } from '../../../settings/colors';
 
 export const SelectWrapper = styled.div`
+  position: relative;
   color: ${(props) => {
     const { focus, selected } = props;
     const isOpacity = !(focus || selected);
