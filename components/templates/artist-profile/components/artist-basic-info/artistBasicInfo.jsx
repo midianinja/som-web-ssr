@@ -16,7 +16,8 @@ import {
   About,
   followButtonCustomStyled,
   buttonCustomStyled,
-  avatarCustomStyled
+  avatarCustomStyled,
+  EmailWrapper
 } from './artistBasicInfo.style';
 
 const renderSubiscribeActions = (isFollowing, followToggle) => (
@@ -42,6 +43,7 @@ const renderEditAction = (onClick) => (
 
 const ArtistBasicInfo = ({
   name,
+  email,
   avatar,
   followers,
   following,
@@ -89,7 +91,23 @@ const ArtistBasicInfo = ({
           ? renderSubiscribeActions(isFollowing, followToggle)
           : renderEditAction(editAction)}
         {/* <LinkButton color="white">Ler release</LinkButton> */}
+        {!isUserArtist ? (
+          <PrimaryButton
+            color="transparent"
+            hoverColors="transparent"
+            customStyle={`
+        width: 200px;
+        `}
+            onClick={() => {
+              window.open(`mailto:${email}`, '_blank');
+            }}>
+            Enviar e-mail
+          </PrimaryButton>
+        ) : (
+          ''
+        )}
       </ActionWrapper>
+
       <Socials facebook={facebook} instagram={instagram} twitter={twitter} spotify={spotify} />
     </Wrapper>
   );
@@ -105,6 +123,7 @@ ArtistBasicInfo.propTypes = {
   followers: PropTypes.number.isRequired,
   following: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
   followToggle: PropTypes.func.isRequired,
   editAction: PropTypes.func.isRequired,
   isFollowing: PropTypes.bool.isRequired,

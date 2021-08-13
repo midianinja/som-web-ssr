@@ -5,7 +5,8 @@ const ida = async () => await import('@resystem/ida-js-sdk');
 // ida configurations, contains the app keys
 const idaConfiguration = {
   appId: process.env.IDA_API_ID,
-  appKey: process.env.IDA_API_KEY
+  appKey: process.env.IDA_API_KEY,
+  sandboxMode: process.env.DEV_MODE === '1',
 };
 
 /**
@@ -15,11 +16,14 @@ const idaConfiguration = {
  * @returns {Promise} contains new IDa user or error
  */
 export const init = ({ onAuthChange }) =>
-  new Promise(async (res) => {
+new Promise(async (res) => {
+  console.log('🚀 ~ process.env.DEV_MODE', process.env.DEV_MODE);
+    console.log('🚀 ~ idaConfiguration', idaConfiguration);
     const localIda = await ida();
     localIda.initializeApp({
       ...idaConfiguration,
       onAuthChange,
+      
       onLoad: (payload) => res(payload),
       onOpen: (data) => console.log('Initialized IDa!', data)
     });

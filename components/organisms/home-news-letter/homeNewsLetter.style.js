@@ -34,6 +34,19 @@ export const LogoContainer = styled.div`
   }
 `;
 
+export const Container = styled.div`
+  background-color: ${black};
+  width: 100%;
+  text-align: center;
+  margin-top: 78px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 20px;
+`;
+
 export const ContentOpenSource = styled.div`
   @media (min-width: 768px) {
     padding: 50px;

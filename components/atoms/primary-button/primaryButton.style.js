@@ -56,7 +56,8 @@ const hoverColors = {
   magenta,
   orange,
   secondaryOrange,
-  white
+  white,
+  transparent
 };
 
 /**

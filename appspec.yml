@@ -1,0 +1,27 @@
+version: 0.0
+os: linux
+files:
+  - source: ./dist/
+    destination: /usr/share/nginx/som-web/
+
+  - source: ./package.json
+    destination: /home/ubuntu/som-web/
+ 
+  - source: ./server-files/default
+    destination: /etc/nginx/sites-enabled/
+
+hooks:
+  BeforeInstall:
+    - location: ./scripts/before_install.sh
+      timeout: 300
+      runas: root
+
+  ApplicationStop:
+    - location: ./scripts/application_stop.sh
+      timeout: 300
+      runas: root 
+
+  ApplicationStart:
+    - location: ./scripts/application_start.sh
+      timeout: 300
+      runas: root

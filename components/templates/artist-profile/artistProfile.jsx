@@ -118,6 +118,7 @@ const ArtistPage = () => {
           avatar={artist.avatar_image ? artist.avatar_image.mimified : null}
           about={artist.about}
           name={artist.name}
+          email={artist.email}
           facebook={artist.facebook}
           twitter={artist.twitter}
           spotify={artist.spotify_artist_link}
