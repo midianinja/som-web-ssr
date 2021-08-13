@@ -74,7 +74,18 @@ const Search = () => {
           </NotFoundResults>
         ) : (
           <ListResults>
-            {artists.map((artist) => (console.log(artist), (<ArtistCard artists={artist} />)))}
+            {artists.map(
+              (artist) => (
+                console.log(artist),
+                (
+                  <ArtistCard
+                    artists={artist}
+                    followersAmount={artist?.follows.length}
+                    isUserArtist={true}
+                  />
+                )
+              )
+            )}
           </ListResults>
         )}
       </ResultSection>
@@ -92,7 +103,16 @@ const Search = () => {
         ) : (
           <ListResults>
             {producers.map(
-              (producer) => (console.log(producer), (<ProducerCard producers={producer} />))
+              (producer) => (
+                console.log(producer),
+                (
+                  <ProducerCard
+                    producers={producer}
+                    followersAmount={producer?.followers.length}
+                    isUserProducer={false}
+                  />
+                )
+              )
             )}
           </ListResults>
         )}

@@ -26,7 +26,11 @@ export const searchProducersQuery = gql`
       id
       name
       photo
+      followers {
+        id
+      }
       occupations {
+        id
         label
       }
       user {
@@ -45,10 +49,16 @@ export const searchArtistsQuery = gql`
         mimified
       }
       musical_styles {
+        id
         name
       }
       user {
         id
+      }
+      follows {
+        user {
+          id
+        }
       }
     }
   }
