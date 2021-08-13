@@ -15,6 +15,7 @@ import {
 } from './artistCard.style';
 import TagList from '../tag-list/tagList';
 import PrimaryButton from '../../atoms/primary-button/primaryButton';
+import { useRouter } from 'next/router';
 
 const ArtistCard = ({
   onClick,
@@ -29,6 +30,7 @@ const ArtistCard = ({
 }) => {
   const [stateOccupations, setStateOccupations] = useState([]);
   const colors = ['green', 'orange', 'magenta', 'yellow'];
+  const router = useRouter();
 
   const renderSubiscribeActions = (isFollowing, followToggle) => (
     <>
@@ -63,7 +65,9 @@ const ArtistCard = ({
   return (
     <Container>
       <ImageContainer>
-        <Image onClick={onClick} image={artists.avatar_image?.mimified}></Image>
+        <Image
+          onClick={() => router.push(`/artist/${artists.id}`)}
+          image={artists.avatar_image?.mimified}></Image>
       </ImageContainer>
       <TagList
         data={stateOccupations}
@@ -79,7 +83,7 @@ const ArtistCard = ({
           }
         `}
       />
-      <Title>{artists.name} </Title>
+      <Title onClick={() => router.push(`/artist/${artists.id}`)}>{artists.name} </Title>
 
       <FollowText>
         <FollowNumber>{followersAmount}</FollowNumber>
