@@ -43,7 +43,7 @@ const Search = () => {
     fetchOpportunitiesFromSearch(router.query.q, setOpportunities);
     fetchArtistFromSearch(router.query.q, setArtists);
     fetchProducersFromSearch(router.query.q, setProducers);
-  }, []);
+  }, [router.query.q]);
 
   return (
     <Container>

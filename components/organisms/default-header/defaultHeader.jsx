@@ -93,8 +93,13 @@ const Header = ({ customStyle }) => {
               margin-left:16px;
               background-color:rgba(0, 0, 0, 0.3);
               height: 30px;
-              width: 250px;
+              width: 130px;
+              margin-right: 10px;
               
+              @media (min-width: 1024px) {
+                width: 250px;
+              }
+
               input::placeholder{
                 color: rgba(255, 255, 255, 0.6);
                 font-weight: 200;

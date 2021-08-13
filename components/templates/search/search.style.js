@@ -12,8 +12,15 @@ export const Container = styled.div`
 export const HeaderWrapper = styled.div`
   display: flex;
   align-items: flex-end;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 120px;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media (min-width: 1024px) {
+    padding: 0;
+  }
 `;
 
 export const Title = styled.h3`
@@ -53,10 +60,20 @@ export const Subtitle = styled.h2`
   line-height: 1em;
   color: #ffffff;
   margin-bottom: 32px;
+  padding-left: 20px;
+
+  @media (min-width: 1024px) {
+    padding-left: 0;
+  }
 `;
 
 export const NotFoundResults = styled.output`
   display: block;
+  padding: 20px;
+
+  @media (min-width: 1024px) {
+    padding: 0;
+  }
 
   > button {
     border-color: rgba(255, 255, 255, 0.2);
@@ -77,8 +94,13 @@ export const NotFoundText = styled.p`
 `;
 
 export const ListResults = styled.ul`
-  padding: 14px 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  padding: 20px;
   row-gap: 48px;
+
+  @media (min-width: 1024px) {
+    padding: 14px 0;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 `;
