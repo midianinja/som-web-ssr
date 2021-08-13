@@ -5,6 +5,7 @@ export const oneArtistQuery = gql`
     oneArtist(id: $id) {
       id
       name
+      email
       about
       user {
         following_artists {

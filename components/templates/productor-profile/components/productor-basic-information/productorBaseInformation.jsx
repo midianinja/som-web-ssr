@@ -87,16 +87,53 @@ const ProductorBasicInfo = ({
           }
         `}
       />
-      <PrimaryButton
-        customStyle={`
+
+      {isMyProductor ? (
+        <PrimaryButton
+          customStyle={`
         width: 200px;
-        `}        
-        onClick={() => {
-          if (!isMyProductor) return window.open(`mailto:${email}`, '_blank');
-          return history.push('/producer');
-        }}>
-        {isMyProductor ? 'Editar Perfil' : 'Enviar e-mail'}
-      </PrimaryButton>
+        `}
+          onClick={() => {
+            history.push('/producer');
+          }}>
+          Editar Perfil
+        </PrimaryButton>
+      ) : (
+        <div>
+          <PrimaryButton
+            customStyle={`
+        width: 200px;
+        `}>
+            Seguir
+          </PrimaryButton>
+          <PrimaryButton
+            color="transparent"
+            hoverColors="transparent"
+            customStyle={`
+   width: 200px;
+   `}
+            onClick={() => {
+              window.open(`mailto:${email}`, '_blank');
+            }}>
+            Enviar e-mail
+          </PrimaryButton>
+        </div>
+      )}
+
+      {isMyProductor ? (
+        <PrimaryButton
+          customStyle={`
+        width: 200px;
+        `}
+          onClick={() => {
+            history.push('/producer');
+          }}>
+          Editar Perfil
+        </PrimaryButton>
+      ) : (
+        ''
+      )}
+
       <Socials facebook={facebook} instagram={instagram} twitter={twitter} />
     </Wrapper>
   );
