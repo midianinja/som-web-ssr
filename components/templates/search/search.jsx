@@ -1,18 +1,30 @@
 /* eslint-disable react/jsx-key */
 import EventCard from '../../molecules/event-card/eventCard';
+import ArtistCard from '../../molecules/artist-card/artistCard';
+import ProducerCard from '../../molecules/producer-card/producerCard';
+
 import React, { useState, useContext, useEffect } from 'react';
 import Store from '../../../store/Store';
 import { useRouter } from 'next/router';
-import { fetchEventsFromSearch } from './search.controller';
+import DefaultHeader from '../../organisms/default-header/defaultHeader';
+
+import {
+  fetchOpportunitiesFromSearch,
+  fetchArtistFromSearch,
+  fetchProducersFromSearch
+} from './search.controller';
 
 import {
   Title,
-  TextResult,
-  EventsContainer,
   buttonStyl,
-  Linha,
   ResultSection,
-  Container
+  Container,
+  HeaderWrapper,
+  ResultScope,
+  Subtitle,
+  NotFoundResults,
+  NotFoundText,
+  ListResults
 } from './search.style';
 import PrimaryButton from '../../atoms/primary-button/primaryButton';
 
@@ -21,44 +33,90 @@ import PrimaryButton from '../../atoms/primary-button/primaryButton';
  * logged productor profile
  */
 const Search = () => {
-  const [events, setEvents] = useState([]);
   const { state } = useContext(Store);
-  const { query, router } = useRouter();
+  const [opportunities, setOpportunities] = useState([]);
+  const [artists, setArtists] = useState([]);
+  const [producers, setProducers] = useState([]);
+  const router = useRouter();
 
-  console.log('value: ' + query.q);
-
-  const text = query.q;
+  const makeNewSearch = () => {
+    document.querySelector('#somSearch').focus();
+  };
 
   useEffect(() => {
-    if (!events.length) {
-      fetchEventsFromSearch(text);
-    }
-  }, [events]);
+    fetchOpportunitiesFromSearch(router.query.q, setOpportunities);
+    fetchArtistFromSearch(router.query.q, setArtists);
+    fetchProducersFromSearch(router.query.q, setProducers);
+  }, []);
 
   return (
-    <>
-      <Container>
-        <Title>Busca</Title>
-        <PrimaryButton customStyle={buttonStyl}>12 Oportunidades</PrimaryButton>
-        <PrimaryButton customStyle={buttonStyl}>0 Artistas</PrimaryButton>
-        <PrimaryButton customStyle={buttonStyl}>2 Produtores</PrimaryButton>
-        <Linha>
-          <ResultSection>
-            <TextResult big>0 Artistas</TextResult>
+    <Container>
+      <DefaultHeader />
 
-            <EventsContainer>
-              {events.map((evt) => (
-                <EventCard
-                  customStyle="margin-bottom: 24px;"
-                  user={state.user}
-                  onClick={() => router.push(`/event/${evt.id}`)}
-                />
-              ))}
-            </EventsContainer>
-          </ResultSection>
-        </Linha>
-      </Container>
-    </>
+      <HeaderWrapper>
+        <Title>Busca</Title>
+
+        <PrimaryButton customStyle={buttonStyl}>{opportunities.length} Oportunidades</PrimaryButton>
+        <PrimaryButton customStyle={buttonStyl}>{artists.length} Artistas</PrimaryButton>
+        <PrimaryButton customStyle={buttonStyl}>{producers.length} Produtores</PrimaryButton>
+      </HeaderWrapper>
+
+      <ResultSection>
+        <ResultScope>
+          <Subtitle>{artists.length} Artistas</Subtitle>
+        </ResultScope>
+        {!artists.length ? (
+          <NotFoundResults>
+            <NotFoundText>Nenhum resultado encontrado :(</NotFoundText>
+            <PrimaryButton onClick={makeNewSearch} customStyle={buttonStyl}>
+              Fazer outra busca
+            </PrimaryButton>
+          </NotFoundResults>
+        ) : (
+          <ListResults>
+            {artists.map((artist) => (console.log(artist), (<ArtistCard artists={artist} />)))}
+          </ListResults>
+        )}
+      </ResultSection>
+      <ResultSection>
+        <ResultScope>
+          <Subtitle>{producers.length} Produtores</Subtitle>
+        </ResultScope>
+        {!producers.length ? (
+          <NotFoundResults>
+            <NotFoundText>Nenhum resultado encontrado :(</NotFoundText>
+            <PrimaryButton onClick={makeNewSearch} customStyle={buttonStyl}>
+              Fazer outra busca
+            </PrimaryButton>
+          </NotFoundResults>
+        ) : (
+          <ListResults>
+            {producers.map(
+              (producer) => (console.log(producer), (<ProducerCard producers={producer} />))
+            )}
+          </ListResults>
+        )}
+      </ResultSection>
+      <ResultSection>
+        <ResultScope>
+          <Subtitle>{opportunities.length} Oportunidades</Subtitle>
+        </ResultScope>
+        {!opportunities.length ? (
+          <NotFoundResults>
+            <NotFoundText>Nenhum resultado encontrado :(</NotFoundText>
+            <PrimaryButton onClick={makeNewSearch} customStyle={buttonStyl}>
+              Fazer outra busca
+            </PrimaryButton>
+          </NotFoundResults>
+        ) : (
+          <ListResults>
+            {opportunities.map(
+              (opportunity) => (console.log(opportunity), (<EventCard event={opportunity} />))
+            )}
+          </ListResults>
+        )}
+      </ResultSection>
+    </Container>
   );
 };
 export default Search;

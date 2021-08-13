@@ -86,6 +86,7 @@ const Header = ({ customStyle }) => {
             dark={state.connectionType === 'public'}
           />
           <Input
+            id="somSearch"
             placeholder="Buscar"
             icon="search"
             customStyle={`

@@ -1,16 +1,19 @@
-import { client } from '../../../libs/apollo.lib';
-import { searchEventsQuery } from './search.query';
+import { searchArtists, searchOpportunities, searchProducers } from './search.repository';
 
-export const fetchEventsFromSearch = async (text) => {
-  console.log(text);
-  if (!text.length) return;
+export const fetchOpportunitiesFromSearch = async (text, setOpportunities) => {
+  const opportunitiesResponse = await searchOpportunities(text);
 
-  const events = await client().query({
-    query: searchEventsQuery,
-    variables: {
-      text
-    }
-  });
+  setOpportunities(opportunitiesResponse.data.searchEvents);
+};
 
-  console.log(events.data.searchEventsQuery);
+export const fetchArtistFromSearch = async (text, setArtists) => {
+  const artistsResponse = await searchArtists(text);
+
+  setArtists(artistsResponse.data.newSearchArtists);
+};
+
+export const fetchProducersFromSearch = async (text, setProducers) => {
+  const producersResponse = await searchProducers(text);
+
+  setProducers(producersResponse.data.searchProducers);
 };

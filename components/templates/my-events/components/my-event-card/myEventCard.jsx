@@ -35,30 +35,30 @@ const EventCard = ({ event, customStyle, onClick }) => {
       onMouseEnter={() => setCardHover(!cardHover)}
       onMouseLeave={() => setCardHover(!cardHover)}>
       <Container>
-            <ImageContainer>
-              <Image image={event.photo.mimified} />
-              {cardHover ? (
-                <ImageHover>
-                  <Icon src="/icons/tool.svg" />
-                  <Label>Administrar oportunidade</Label>
-                </ImageHover>
-              ) : null}
-            </ImageContainer>
-            <TagList data={musicalStyles} customStyle={tagListStyl} />
-          <View customStyle={eventDetailsStyl}>
-            <Title>{event.name}</Title>
-            <EventDate
-              day={new Date(+event.subscribe_closing_date).getDate()}
-              month={new Date(+event.subscribe_closing_date).getMonth() + 1}
-              year={new Date(+event.subscribe_closing_date).getFullYear()}
-            />
-            <EventPlace
-              address={event.location.address}
-              city={event.location.city}
-              state={event.location.state}
-              district={event.location.district}
-            />
-          </View>
+        <ImageContainer>
+          <Image image={event.photo.mimified} />
+          {cardHover ? (
+            <ImageHover>
+              <Icon src="/icons/tool.svg" />
+              <Label>Administrar oportunidade</Label>
+            </ImageHover>
+          ) : null}
+        </ImageContainer>
+        <TagList data={musicalStyles} customStyle={tagListStyl} />
+        <View customStyle={eventDetailsStyl}>
+          <Title>{event.name}</Title>
+          <EventDate
+            day={new Date(+event.subscribe_closing_date).getDate()}
+            month={new Date(+event.subscribe_closing_date).getMonth() + 1}
+            year={new Date(+event.subscribe_closing_date).getFullYear()}
+          />
+          <EventPlace
+            address={event.location.address}
+            city={event.location.city}
+            state={event.location.state}
+            district={event.location.district}
+          />
+        </View>
         <FakeButton>
           {+event.subscribe_closing_date < new Date().getTime()
             ? 'Inscrições encerradas'

@@ -2,84 +2,82 @@ import styled from 'styled-components';
 import { white10, black, white, tertiaryBlack } from '../../../settings/colors';
 
 export const Container = styled.div`
-  display: flex;
   width: 100%;
-  padding: 50px;
-  // justify-content: center;
-  // align-items: center;
-  flex-direction: row;
- 
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
-export const EventsContainer = styled.section`
-  background-color: ${black};
-  width: 50%;
-  text-align: center;
-  margin-top: 50px;
-  padding: 10px 0;
-  max-width: 1024px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
+export const HeaderWrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-top: 80px;
 `;
 
 export const Title = styled.h3`
-  /* Busca */
-
-  position: relative;
-  width: 165px;
-  height: 22px;
-  left: 122px;
-  top: 129px;
-
   font-style: normal;
-  font-weight: 700;
-  font-size: 60px;
-  line-height: 22px;
-
-  color: #FFFFFF;
-`;
-
-export const TextResult = styled.h3`
-  /* 0 Artistas */
-
-  position: absolute;
-  width: 189px;
-  height: 22px;
-  left: 120px;
-  top: 230px;
-
-  font-style: normal;
-  font-weight: bold;
-  font-size: 42px;
-  line-height: 22px;
-  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 48px;
+  color: #ffffff;
+  line-height: 40px;
+  margin-right: 13px;
 `;
 
 export const buttonStyl = `
   background-color: rgba(0, 0, 0, 1);
   border: 2px solid white;
-  margin: 0px 10px;
-  left: 310px;
-  top: 230px;
-`;
-
-export const Linha = styled.div`
-  position: absolute;
-  width: 1200px;
-  height: 0px;
-  top: 200px;
-
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-weight: 200;
+  font-size: 13px;
+  line-height: 1em;
+  height: 30px;
+  transition-duration: 0.4s;
+  &:hover {
+    background-color: #ffffff;
+    color: #000;
+  }
 `;
 
 export const ResultSection = styled.div`
-  width: 50%;
-  flex-direction: row;
-  position: absolute;
-  padding: 20px;
-  left: 0px;
-  top: 64px;
+  margin-top: 38px;
+  padding-top: 30px;
+  border-top: solid 1px rgba(255, 255, 255, 0.2);
+`;
+
+export const ResultScope = styled.header``;
+
+export const Subtitle = styled.h2`
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1em;
+  color: #ffffff;
+  margin-bottom: 32px;
+`;
+
+export const NotFoundResults = styled.output`
+  display: block;
+
+  > button {
+    border-color: rgba(255, 255, 255, 0.2);
+    transition-duration: 0.2s;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+  }
+`;
+
+export const NotFoundText = styled.p`
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1em;
+  color: #ffffff;
+  margin-bottom: 16px;
+`;
+
+export const ListResults = styled.ul`
+  padding: 14px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  row-gap: 48px;
 `;

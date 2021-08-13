@@ -1,14 +1,19 @@
-import {
-  gql
-} from 'apollo-boost';
+import { gql } from 'apollo-boost';
 
-export const searchEventsQuery = gql`
+export const searchOpportunitiesQuery = gql`
   query searchEvents($text: String) {
     searchEvents(text: $text) {
       id
       name
+      photo {
+        thumbnail
+        mimified
+      }
       event_date
+      subscribe_closing_date
       location {
+        address
+        district
         city
         state
       }
@@ -20,6 +25,7 @@ export const searchProducersQuery = gql`
     searchProducers(text: $text) {
       id
       name
+      photo
       occupations {
         label
       }
@@ -34,6 +40,10 @@ export const searchArtistsQuery = gql`
     newSearchArtists(text: $text) {
       id
       name
+      avatar_image {
+        thumbnail
+        mimified
+      }
       musical_styles {
         name
       }
