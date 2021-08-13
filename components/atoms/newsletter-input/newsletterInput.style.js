@@ -19,6 +19,27 @@ export const Icon = styled.img`
   width: 22px;
   height: 22px;
   vertical-align: middle;
+  cursor: pointer;
+`;
+
+export const LoadIcon = styled.img`
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  cursor: pointer;
+  opacity: 0.2;
+  animation-name: rotation;
+  animation-duration: 0.6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 export const NewsletterInputWrapper = styled.div`
