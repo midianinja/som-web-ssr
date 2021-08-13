@@ -17,6 +17,7 @@ import {
   Logo,
   Type
 } from './defaultHeader.style';
+import Input from '../../atoms/input-icon/InputIcon';
 
 /**
  * This render the default header component. The header is variable, it change of according to
@@ -28,6 +29,7 @@ const Header = ({ customStyle }) => {
   const [dropdown, setDropdown] = useState(false);
   const completed =
     state.user && state.user.productor && state.user.productor.status !== 'INCOMPLETE';
+  let searchTimeout = null;
 
   useEffect(() => {
     setDropdown(false);
@@ -82,6 +84,30 @@ const Header = ({ customStyle }) => {
               dispatch({ type: 'SHOW_NAVIGATION_MODAL' });
             }}
             dark={state.connectionType === 'public'}
+          />
+          <Input
+            id="somSearch"
+            placeholder="Buscar"
+            icon="search"
+            customStyle={`
+              margin-left:16px;
+              background-color:rgba(0, 0, 0, 0.3);
+              height: 30px;
+              width: 250px;
+              
+              input::placeholder{
+                color: rgba(255, 255, 255, 0.6);
+                font-weight: 200;
+              }
+            `}
+            onChange={(e) => {
+              if (searchTimeout) {
+                clearTimeout(searchTimeout);
+              }
+              searchTimeout = setTimeout(() => {
+                router.push(`/search?q=${e.target.value}`);
+              }, 1000);
+            }}
           />
         </Group>
         <Logo

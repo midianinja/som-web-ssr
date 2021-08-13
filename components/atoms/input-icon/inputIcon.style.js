@@ -30,11 +30,13 @@ export const InputIconWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  ${(props) => props.customStyle}
 `;
 
 export const icons = {
   calendar: '/icons/calendar.svg',
   info: '/icons/info.svg',
   location: '/icons/location.svg',
-  loading: '/icons/dark-loading.svg'
+  loading: '/icons/dark-loading.svg',
+  search: '/icons/search.svg'
 };

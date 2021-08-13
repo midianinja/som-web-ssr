@@ -7,10 +7,20 @@ import { Input, Icon, InputIconWrapper, icons } from './inputIcon.style';
  * @param {object} props component props
  * @returns contains InputIcon Component
  */
-const InputIcon = ({ onChange, placeholder, value, width, type, icon, iconAlt }) => {
+const InputIcon = ({
+  onChange,
+  placeholder,
+  value,
+  width,
+  type,
+  icon,
+  iconAlt,
+  customStyle,
+  id
+}) => {
   return (
-    <InputIconWrapper width={width}>
-      <Input onChange={onChange} placeholder={placeholder} value={value} type={type} />
+    <InputIconWrapper width={width} customStyle={customStyle}>
+      <Input onChange={onChange} placeholder={placeholder} value={value} type={type} id={id} />
       <Icon src={icons[icon]} alt={iconAlt} />
     </InputIconWrapper>
   );
@@ -19,11 +29,13 @@ const InputIcon = ({ onChange, placeholder, value, width, type, icon, iconAlt })
 InputIcon.propTypes = {
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  id: PropTypes.string,
   value: PropTypes.string.isRequired,
   width: PropTypes.string,
   type: PropTypes.string,
   icon: PropTypes.string,
-  iconAlt: PropTypes.string
+  iconAlt: PropTypes.string,
+  customStyle: PropTypes.string
 };
 
 InputIcon.defaultProps = {
@@ -31,7 +43,9 @@ InputIcon.defaultProps = {
   width: 'auto',
   type: 'text',
   icon: 'calendar',
-  iconAlt: ''
+  iconAlt: '',
+  customStyle: '',
+  id: ''
 };
 
 export default InputIcon;

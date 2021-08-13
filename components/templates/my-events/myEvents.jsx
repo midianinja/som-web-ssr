@@ -10,6 +10,7 @@ import Store from '../../../store/Store';
 import { fetchEventsData, initialLoading } from './myEvents.controller';
 import EventCard from './components/my-event-card/myEventCard';
 import {
+
   Container,
   GlobalForm,
   LocationContainer,

@@ -246,7 +246,7 @@ const Wall = () => {
                 events
               )
             }
-            customStyle="margin-bottom: 24px;"
+            customStyle="margin-bottom: 2px;"
             user={state.user}
             event={evt}
             onClick={() => router.push(`/event/${evt.id}`)}

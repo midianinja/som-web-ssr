@@ -81,6 +81,10 @@ const CarouselLatest = ({ opportunities }) => {
   const [page, setPage] = useState(0);
   const carouselRef = useRef();
 
+  const handleCardClick = (id) => {
+     router.push(`/event/${id}`);
+  };
+
   useLayoutEffect(() => {
     initListeners({
       layoutManager,
@@ -103,7 +107,7 @@ const CarouselLatest = ({ opportunities }) => {
     <Wrapper>
       <CarouselWrapper>
         <CarouselContent ref={carouselRef} card={page} quantity={opportunities.length}>
-          {renderItems(opportunities)}
+          {renderItems(opportunities, handleCardClick)}
         </CarouselContent>
       </CarouselWrapper>
       <Controls>
