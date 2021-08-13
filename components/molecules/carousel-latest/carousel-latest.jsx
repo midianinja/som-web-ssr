@@ -1,5 +1,6 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import {
   CarouselContent,
   CarouselItem,
@@ -18,9 +19,9 @@ import {
  * @param {*} items
  * @returns
  */
-const renderItems = (items) =>
+const renderItems = (items, onClick) =>
   items.map((item) => (
-    <CarouselItem key={item.id}>
+    <CarouselItem key={item.id} onClick={() => onClick(item.id)}>
       <ItemImage src={item.photo?.mimified} alt="" />
       <ItemContent>
         <div>
@@ -79,10 +80,11 @@ const initListeners = async ({
 const CarouselLatest = ({ opportunities }) => {
   const [layoutManager, setLayoutManager] = useState(null);
   const [page, setPage] = useState(0);
+  const router = useRouter();
   const carouselRef = useRef();
 
   const handleCardClick = (id) => {
-     router.push(`/event/${id}`);
+    router.push(`/event/${id}`);
   };
 
   useLayoutEffect(() => {

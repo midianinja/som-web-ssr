@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import CommunityCarrousel from '../../../../organisms/community-carrousel/communityCarrousel';
 import { aboutCard } from './about.collection';
@@ -8,6 +8,13 @@ import { AboutSection, Title, Subtitle, Text, Grid, ToggleButton, VideoModal } f
 const About = ({ communityUsers }) => {
   const [aboutSelectedCard, setAboutSelectedCard] = useState(null);
   const [videoOpened, setVideoOpened] = useState(false);
+  const videoRef = useRef();
+
+  useEffect(() => {
+    if (!videoOpened) {
+      document.querySelector('#somVideo').pause();
+    }
+  }, [videoOpened]);
 
   return (
     <AboutSection id="about">
@@ -199,7 +206,13 @@ const About = ({ communityUsers }) => {
         </div>
       </Grid>
       <VideoModal hide={!videoOpened} onClick={() => setVideoOpened(false)}>
-        <video width="320" height="240" controls onClick={(e) => e.stopPropagation()}>
+        <video
+          ref={videoRef}
+          id="somVideo"
+          width="320"
+          height="240"
+          controls
+          onClick={(e) => e.stopPropagation()}>
           <source
             src="https://som-assets.s3.us-west-2.amazonaws.com/Render+total+-+No+sound_3.mp4"
             type="video/mp4"
