@@ -62,27 +62,13 @@ const ArtistCard = ({
       }))
     );
   }, []);
+
   return (
     <Container>
       <ImageContainer>
-        <Image
-          onClick={() => router.push(`/artist/${artists.id}`)}
-          image={artists.avatar_image?.mimified}></Image>
+        <Image onClick={() => router.push(`/artist/${artists.id}`)} src={artists.photo}></Image>
       </ImageContainer>
-      <TagList
-        data={stateOccupations}
-        customStyle={`
-          padding-left: 30px;
-          padding-right: 30px;
-          margin-bottom: 20px;
-          display: flex;
 
-          @media (min-width: 1024px) {
-            padding-left: 0;
-            padding-right: 0;
-          }
-        `}
-      />
       <Title onClick={() => router.push(`/artist/${artists.id}`)}>{artists.name} </Title>
 
       <FollowText>

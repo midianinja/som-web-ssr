@@ -63,13 +63,13 @@ const ProducersCard = ({
       }))
     );
   }, []);
-  console.log('oi');
+  console.log(producers);
   return (
     <Container>
       <ImageContainer>
         <Image
           onClick={() => router.push(`/producer/${producers.id}`)}
-          image={producers.photo}></Image>
+          src={producers.photo}></Image>
       </ImageContainer>
       <TagList
         data={stateOccupations}

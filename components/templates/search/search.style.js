@@ -6,13 +6,14 @@ export const Container = styled.div`
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 80px;
 `;
 
 export const HeaderWrapper = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 10px;
-  margin-top: 80px;
+  margin-top: 120px;
 `;
 
 export const Title = styled.h3`
@@ -48,7 +49,7 @@ export const ResultScope = styled.header``;
 
 export const Subtitle = styled.h2`
   font-weight: 500;
-  font-size: 32px;
+  font-size: 28px;
   line-height: 1em;
   color: #ffffff;
   margin-bottom: 32px;

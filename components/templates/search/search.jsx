@@ -1,19 +1,16 @@
-/* eslint-disable react/jsx-key */
+import React, { useState, useContext, useEffect } from 'react';
 import EventCard from '../../molecules/event-card/eventCard';
 import ArtistCard from '../../molecules/artist-card/artistCard';
 import ProducerCard from '../../molecules/producer-card/producerCard';
-
-import React, { useState, useContext, useEffect } from 'react';
+import PrimaryButton from '../../atoms/primary-button/primaryButton';
 import Store from '../../../store/Store';
 import { useRouter } from 'next/router';
 import DefaultHeader from '../../organisms/default-header/defaultHeader';
-
 import {
   fetchOpportunitiesFromSearch,
   fetchArtistFromSearch,
   fetchProducersFromSearch
 } from './search.controller';
-
 import {
   Title,
   buttonStyl,
@@ -26,14 +23,13 @@ import {
   NotFoundText,
   ListResults
 } from './search.style';
-import PrimaryButton from '../../atoms/primary-button/primaryButton';
 
 /**
  * This render the my search components. The my search component, render events, producers and artists created by
  * logged productor profile
  */
 const Search = () => {
-  const { state } = useContext(Store);
+  // const { state } = useContext(Store);
   const [opportunities, setOpportunities] = useState([]);
   const [artists, setArtists] = useState([]);
   const [producers, setProducers] = useState([]);
@@ -74,18 +70,14 @@ const Search = () => {
           </NotFoundResults>
         ) : (
           <ListResults>
-            {artists.map(
-              (artist) => (
-                console.log(artist),
-                (
-                  <ArtistCard
-                    artists={artist}
-                    followersAmount={artist?.follows.length}
-                    isUserArtist={true}
-                  />
-                )
-              )
-            )}
+            {artists.map((artist) => (
+              <ArtistCard
+                key={artist.id}
+                artists={artist}
+                followersAmount={artist.follows.length}
+                isUserArtist={true}
+              />
+            ))}
           </ListResults>
         )}
       </ResultSection>
