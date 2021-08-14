@@ -62,6 +62,7 @@ const EventCard = ({
               city={event.location.city}
               state={event.location.state}
               district={event.location.district}
+              online={event.is_online}
             />
           </View>
         </View>

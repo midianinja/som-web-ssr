@@ -25,6 +25,8 @@ export const getAllEventsQuery = gql`
       has_accommodation
       has_city_transportation
       has_local_transportation
+      is_online
+      is_physical
       location {
         number
         address

@@ -18,12 +18,15 @@ import {
   handleStateSelect,
   handleCreateEvent
 } from './opportunity-form.controller';
-import { handleEditEvent, loadOpportunity, removeOpportunity } from './edit-opportunity-form.controller';
+import {
+  handleEditEvent,
+  loadOpportunity,
+  removeOpportunity
+} from './edit-opportunity-form.controller';
 import { ConditionsWrapper, Form, FormWrapper, LoadingWrapper } from './opportunity-form.style';
 import WhoSubscribe from './components/who-subscribe/who-subscribe';
 import EventTypes from './components/event-type/event-type';
 import moment from 'moment';
-import { route } from 'next/dist/next-server/server/router';
 
 const steps = [
   {
@@ -344,21 +347,23 @@ const OpportunityForm = () => {
             errors
           })}
         </ConditionsWrapper>
-        {renderAddressFieldset({
-          values,
-          setState,
-          setCountry,
-          setCity,
-          countries,
-          states,
-          setStates,
-          setAddress,
-          setZipcode,
-          setComplement,
-          setDistrict,
-          setNumber,
-          errors
-        })}
+        {values.eventTypes.find((id) => id === 'PHYSICAL')
+          ? renderAddressFieldset({
+              values,
+              setState,
+              setCountry,
+              setCity,
+              countries,
+              states,
+              setStates,
+              setAddress,
+              setZipcode,
+              setComplement,
+              setDistrict,
+              setNumber,
+              errors
+            })
+          : ''}
       </FormWrapper>
       <StepEventFormFooter
         hideDeleteAction={!router?.query?.id}
