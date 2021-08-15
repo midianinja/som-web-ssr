@@ -90,7 +90,7 @@ const Header = ({ customStyle }) => {
           <Input
             id="somSearch"
             placeholder="Buscar"
-            icon="search"
+            icon={state.connectionType === 'public' ? 'dark-search' : 'search'}
             customStyle={`
               background-color:rgba(0, 0, 0, 0.3);
               height: 30px;
@@ -104,9 +104,25 @@ const Header = ({ customStyle }) => {
                 margin-right: 10px;
               }
 
-              input::placeholder{
-                color: rgba(255, 255, 255, 0.6);
-                font-weight: 200;
+              ${
+                state.connectionType === 'public'
+                  ? `
+                background-color:rgba(0, 0, 0, 0.1);
+                input {
+                  color: #000000;
+                }
+                
+                input::placeholder{
+                  color: rgba(0, 0, 0, 0.5);
+                  font-weight: 400;
+                }
+              `
+                  : `
+                    input::placeholder{
+                      color: rgba(255, 255, 255, 0.6);
+                      font-weight: 200;
+                    }
+                  `
               }
             `}
             onChange={(e) => {
@@ -125,7 +141,8 @@ const Header = ({ customStyle }) => {
             placeholder="Buscar"
             icon="search"
             customStyle={`
-              background-color:rgba(0, 0, 0, 0.3);
+              background-color:rgba(0, 0, 0, 0.1);
+              color: #000;
               height: 30px;
               width: 100%;
               display: flex;
@@ -134,9 +151,25 @@ const Header = ({ customStyle }) => {
                 display: none;
               }
 
-              input::placeholder{
-                color: rgba(255, 255, 255, 0.6);
-                font-weight: 200;
+              ${
+                state.connectionType === 'public'
+                  ? `
+                background-color:rgba(0, 0, 0, 0.1);
+                input {
+                  color: #000;
+                }
+
+                input::placeholder{
+                  color: rgba(0, 0, 0, 0.5);
+                  font-weight: 400;
+                }
+              `
+                  : `
+                    input::placeholder{
+                      color: rgba(255, 255, 255, 0.6);
+                      font-weight: 200;
+                    }
+                  `
               }
             `}
             onChange={(e) => {
