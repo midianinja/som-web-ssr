@@ -18,6 +18,10 @@ import {
 const getLinks = (user, connectionType) => {
   const links = [
     {
+      href: '/',
+      label: 'Início'
+    },
+    {
       href: '/opportunities',
       label: 'Oportunidades'
     },
