@@ -93,7 +93,7 @@ export const subscribeAction = async (
     return;
   }
 
-  if (!user.artist || !user.productor) {
+  if (!user.artist && !user.productor) {
     setDialog({
       title: 'Página incompleta',
       icon: '/icons/guita-error.svg',
