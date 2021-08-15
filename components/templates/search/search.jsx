@@ -123,7 +123,15 @@ const Search = () => {
         ) : (
           <ListResults>
             {opportunities.map(
-              (opportunity) => (console.log(opportunity), (<EventCard event={opportunity} />))
+              (opportunity) => (
+                console.log(opportunity.id),
+                (
+                  <EventCard
+                    onClick={() => router.push(`/event/${opportunity.id}`)}
+                    event={opportunity}
+                  />
+                )
+              )
             )}
           </ListResults>
         )}

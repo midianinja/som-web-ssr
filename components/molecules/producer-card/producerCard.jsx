@@ -14,8 +14,9 @@ import {
   followButtonCustomStyled,
   buttonCustomStyled,
   EditIcon
-
 } from './producerCard.style';
+import { useRouter } from 'next/router';
+import { searchProducers } from '../../templates/search/search.repository';
 
 const ProducersCard = ({
   onClick,
@@ -30,6 +31,7 @@ const ProducersCard = ({
 }) => {
   const [stateOccupations, setStateOccupations] = useState([]);
   const colors = ['green', 'orange', 'magenta', 'yellow'];
+  const router = useRouter();
 
   const renderSubiscribeActions = (isFollowing, followToggle) => (
     <>
@@ -65,7 +67,9 @@ const ProducersCard = ({
   return (
     <Container>
       <ImageContainer>
-        <Image onClick={onClick} src={producers.photo}></Image>
+        <Image
+          onClick={() => router.push(`/producer/${producers.id}`)}
+          src={producers.photo}></Image>
       </ImageContainer>
       <TagList
         data={stateOccupations}
@@ -81,7 +85,7 @@ const ProducersCard = ({
           }
         `}
       />
-      <Title>{producers.name} </Title>
+      <Title onClick={() => router.push(`/producer/${producers.id}`)}> {producers.name} </Title>
 
       <FollowText>
         <FollowNumber>{followersAmount}</FollowNumber>
