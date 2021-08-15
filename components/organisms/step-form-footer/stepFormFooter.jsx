@@ -6,9 +6,9 @@ import { gray } from '../../../settings/colors';
 import { Footer, Wrapper, Icon, LoadingWrapper, LoadingText } from './stepFormFooter.style';
 
 const colors = {
-  productor: "purple",
-  artist: "magenta",
-}
+  productor: 'purple',
+  artist: 'magenta'
+};
 
 const StepFormFooter = ({
   nextAction,
@@ -20,7 +20,7 @@ const StepFormFooter = ({
   formType,
   lastStep,
   disabled,
-  dark,
+  dark
 }) => (
   <Wrapper customStyle={customStyle}>
     {!loading ? (
@@ -54,9 +54,7 @@ const StepFormFooter = ({
       </Footer>
     ) : (
       <LoadingWrapper>
-        <Loading
-          loadingIcon={!dark ? '/icons/white-loading.svg' : '/icons/dark-loading.svg'}
-        />
+        <Loading loadingIcon={!dark ? '/icons/white-loading.svg' : '/icons/dark-loading.svg'} />
         {loadingText ? <LoadingText dark={dark}>{loadingText}</LoadingText> : null}
       </LoadingWrapper>
     )}
@@ -71,17 +69,17 @@ StepFormFooter.propTypes = {
   loadingText: PropTypes.string,
   formType: PropTypes.string,
   noShowSkip: PropTypes.bool,
+  lastStep: PropTypes.bool,
   disabled: PropTypes.bool,
-  dark: PropTypes.bool,
+  dark: PropTypes.bool
 };
 
 StepFormFooter.defaultProps = {
   customStyle: '',
   loadingText: '',
-  loadingText: '',
   noShowSkip: false,
   disabled: false,
-  dark: false,
+  dark: false
 };
 
 export default StepFormFooter;

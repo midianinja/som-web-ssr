@@ -11,7 +11,6 @@ import Store from '../../../store/Store';
 import {
   fetchEventsData,
   initialLoading,
-  fetchLocations,
   fetchMusicalStyleOptions,
   handleMusicalStyleSelect,
   removeTagAction,
@@ -86,23 +85,20 @@ const Wall = () => {
   const [selectedCountries, setSelectedCountries] = useState({});
   const [selectedStates, setSelectedStates] = useState({});
 
-
   useEffect(() => {
     fetchCountries({
       setCountries
-    })
-  }, [])
+    });
+  }, []);
 
   useEffect(() => {
-    if(selectedCountries){
+    if (selectedCountries) {
       fetchStates({
         setStates,
         country: selectedCountries.id
-      })
+      });
     }
-   
-  }, [selectedCountries])
-
+  }, [selectedCountries]);
 
   useEffect(() => {
     fetchEventsData({
@@ -119,7 +115,7 @@ const Wall = () => {
     //   // fetchLocations({ setCountries, setStates, setCities});
     //   console.log("fetchLocation" + cities)
 
-      fetchMusicalStyleOptions(setMusicalStylesOptions);
+    fetchMusicalStyleOptions(setMusicalStylesOptions);
     // }
   }, [musicStyles, years, months]);
 
@@ -128,17 +124,16 @@ const Wall = () => {
       <DefaultHeader />
       <Title>Oportunidades</Title>
       <Form>
-      <InputGroup customStyle={filterGroupsStyle}>
+        <InputGroup customStyle={filterGroupsStyle}>
           <ListInput
             selected={selectedCountries}
             id="countries"
             placeholder="País"
             options={countries}
             onSelect={setSelectedCountries}
-            
           />
         </InputGroup>
-      
+
         <InputGroup customStyle={filterGroupsStyle}>
           <ListInput
             selected={selectedStates}
@@ -148,7 +143,7 @@ const Wall = () => {
             onSelect={setSelectedStates}
           />
         </InputGroup>
-        
+
         <InputGroup customStyle={filterGroupsStyle}>
           <ListInput
             id="musical_style"
@@ -220,7 +215,7 @@ const Wall = () => {
                 setYears,
                 setMonths,
                 setCountries,
-                setStates,
+                setStates
               })
             }
             data={musicStyles.concat(years).concat(months)}

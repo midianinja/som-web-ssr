@@ -13,7 +13,8 @@ export const validation = ({
   zipcode,
   closingSubscribeDate,
   eventDate,
-  endEventDate
+  endEventDate,
+  eventTypes
 }) => {
   let validated = true;
   const errors = {};
@@ -23,34 +24,46 @@ export const validation = ({
     errors.title = 'Informe o título do evento.';
   }
 
-  if (!address) {
-    validated = false;
-    errors.address = 'Informe o endereço do evento.';
+  if (eventTypes.find((id) => id === 'PHYSICAL')) {
+    if (!address) {
+      validated = false;
+      errors.address = 'Informe o endereço do evento.';
+    }
+
+    if (!city) {
+      validated = false;
+      errors.city = 'Informe a cidade do evento.';
+    }
+
+    if (!zipcode) {
+      validated = false;
+      errors.zipcode = 'Informe a CEP do evento.';
+    }
+
+    if (!number) {
+      validated = false;
+      errors.number = 'Informe o número do local do evento.';
+    }
+
+    if (!district) {
+      validated = false;
+      errors.district = 'Informe o bairro do evento.';
+    }
+
+    if (!country.short_name) {
+      validated = false;
+      errors.country = 'Selecione um país.';
+    }
+
+    if (!state.short_name) {
+      validated = false;
+      errors.state = 'Selecione um estado.';
+    }
   }
 
   if (!openingsNumber) {
     validated = false;
     errors.openingsNumber = 'Informe o número de vagas para o evento.';
-  }
-
-  if (!city) {
-    validated = false;
-    errors.city = 'Informe a cidade do evento.';
-  }
-
-  if (!zipcode) {
-    validated = false;
-    errors.zipcode = 'Informe a CEP do evento.';
-  }
-
-  if (!number) {
-    validated = false;
-    errors.number = 'Informe o número do local do evento.';
-  }
-
-  if (!district) {
-    validated = false;
-    errors.district = 'Informe o bairro do evento.';
   }
 
   if (!description) {
@@ -66,16 +79,6 @@ export const validation = ({
   if (!cover.file && !cover.mimified) {
     validated = false;
     errors.cover = 'Selecione uma foto de capa.';
-  }
-
-  if (!country.short_name) {
-    validated = false;
-    errors.country = 'Selecione um país.';
-  }
-
-  if (!state.short_name) {
-    validated = false;
-    errors.state = 'Selecione um estado.';
   }
 
   const splitedClosingSubscribeDate = closingSubscribeDate.split('/');
