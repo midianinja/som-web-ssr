@@ -118,7 +118,6 @@ export const subscribeAction = async (
   if (loggedAs === 'artist') {
     resp = await subscribeEvent(event.id, user.artist.id);
   } else {
-    console.log(user.productor.id);
     resp = await subscribeProductorOnEvent(event.id, user.productor.id);
   }
 
