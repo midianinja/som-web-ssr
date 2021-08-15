@@ -436,7 +436,8 @@ const Productor = () => {
               setLocationId,
               dispatch,
               user: state.user,
-              setId
+              setId,
+              setErrors: setProductorStepErrors
             });
           } else {
             handleEditProductor(
@@ -449,6 +450,7 @@ const Productor = () => {
               setLocationId,
               dispatch,
               state.user,
+              setProductorStepErrors,
               router
             );
           }
