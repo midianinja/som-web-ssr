@@ -228,4 +228,5 @@ export const MobileLoginIcon = styled.svg`
 
 export const MiddleWrapper = styled.div`
   display: flex;
+  justify-content: center;
 `;
