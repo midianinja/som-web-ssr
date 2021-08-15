@@ -16,10 +16,12 @@ export const CarouselContent = styled.ul`
       return `calc(${card} * -90vw - ${card} * 13px)`;
     }}
   );
+  margin-left: 16px;
 
   @media (min-width: 1024px) {
     grid-template-columns: repeat(${({ quantity }) => quantity}, 70vw);
     grid-template-rows: calc(70vw * 0.559);
+    margin-left: 0;
 
     gap: 7.6vw;
 

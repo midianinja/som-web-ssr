@@ -198,11 +198,13 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const Logo = styled.img`
+  display: none;
   height: 18px;
   justify-self: center;
   cursor: pointer;
 
   @media (min-width: 1024px) {
+    display: inline-block;
     height: 24px;
   }
 `;
