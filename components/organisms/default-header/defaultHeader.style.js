@@ -40,7 +40,7 @@ export const HeaderComponent = styled.header`
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 50px 1fr 50px;
   width: 100%;
   max-width: 1024px;
   margin-left: auto;
@@ -49,6 +49,10 @@ export const Wrapper = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
   align-items: center;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 `;
 
 export const BurgerButton = styled.div`
@@ -212,4 +216,16 @@ export const Logo = styled.img`
 export const LoginIcon = styled.img`
   width: 30px;
   height: 30px;
+`;
+
+export const MobileLoginIcon = styled.svg`
+  display: inline-block;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+`;
+
+export const MiddleWrapper = styled.div`
+  display: flex;
 `;
