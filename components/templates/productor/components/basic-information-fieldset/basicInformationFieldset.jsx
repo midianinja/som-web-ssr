@@ -30,7 +30,7 @@ const BasicInformationFieldset = ({
   productorStepErrors,
   values,
   descriptionMaxLength,
-  occupationOptions,
+  occupationOptions
 }) => (
   <Fieldset>
     <Title>Informações do Produtor</Title>
@@ -38,8 +38,7 @@ const BasicInformationFieldset = ({
       <InputGroup
         error={productorStepErrors.avatar}
         customStyle={avatarInputGroupStyle}
-        info="Tamanho sugerido: 500x500px"
-      >
+        info="Tamanho sugerido: 500x500px">
         <UploadAvatar
           alt="botão para subir imagem"
           title="avatar image"
@@ -60,19 +59,15 @@ const BasicInformationFieldset = ({
         <InputGroup
           label={values.occupations.length ? 'Área de Atuação *' : ''}
           error={productorStepErrors.occupations}>
-          {
-            console.log(occupationOptions)
-          }
+          {console.log(occupationOptions)}
           <ListInput
             // selected={values.occupations}
             id="occupation"
             placeholder={values.occupations.length ? '' : 'Área de Atuação *'}
             options={occupationOptions}
             onSelect={handleOccupationSelect}
-            onChange={handleOccupationChange}
-            
-          >
-          {/* <AutocompleteInput
+            onChange={handleOccupationChange}>
+            {/* <AutocompleteInput
             placeholder={values.occupations.length ? '' : 'Área de Atuação *'}
             predict={values.occupationPredict}
             value={values.occupation}
@@ -86,7 +81,7 @@ const BasicInformationFieldset = ({
             handleClose={deleteTag}
             data={values.occupations}
             customStyle={musicalGenresCustomStyle}
-          /> 
+          />
         </InputGroup>
       </TextInpustWrapper>
     </MainInformationWrapper>
