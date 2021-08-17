@@ -14,8 +14,10 @@ const AddressFieldset = ({
   handleZipcodeChange,
   handleComplementChange,
   handleCountrySelect,
+  country,
   countries,
   handleStateSelect,
+  state,
   states,
   handleCityChange,
   handleNumberChange
@@ -86,7 +88,7 @@ const AddressFieldset = ({
           placeholder="País"
           options={countries}
           selected={values.country}
-          value={values.country}
+          value={country}
           onSelect={handleCountrySelect}
         />
       </InputGroup>
@@ -94,7 +96,7 @@ const AddressFieldset = ({
         <ListInput
           id="state"
           placeholder="Estado"
-          value={values.state}
+          value={state}
           selected={values.state}
           options={states}
           onSelect={handleStateSelect}
@@ -140,7 +142,9 @@ AddressFieldset.propTypes = {
   handleStateSelect: PropTypes.func.isRequired,
   handleCountrySelect: PropTypes.func.isRequired,
   states: PropTypes.arrayOf(PropTypes.shape(optionShape)).isRequired,
-  countries: PropTypes.arrayOf(PropTypes.shape(optionShape)).isRequired
+  state: PropTypes.shape(optionShape),
+  countries: PropTypes.arrayOf(PropTypes.shape(optionShape)).isRequired,
+  country: PropTypes.shape(optionShape)
 };
 
 export default AddressFieldset;

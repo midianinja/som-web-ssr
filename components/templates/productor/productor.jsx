@@ -114,7 +114,7 @@ const renderLocationFieldset = ({
   return (
     <LocationFieldset
       values={values}
-      coutry={values.country}
+      country={values.country}
       state={values.state}
       countries={countries}
       states={states}

@@ -175,6 +175,8 @@ const renderAddressFieldset = ({
   <AddressFieldset
     values={values}
     eventStepErrors={{}}
+    country={values.country}
+    state={values.state}
     handleAddressChange={({ target }) => setAddress(target.value)}
     handleCityChange={({ target }) => setCity(target.value)}
     handleDistrictChange={({ target }) => setDistrict(target.value)}
@@ -275,13 +277,13 @@ const OpportunityForm = () => {
     );
   }
 
-  if (
-    !state.user.productor ||
-    !state.user.productor.id ||
-    state.user.productor.status !== 'ACTIVE'
-  ) {
-    router.push('/register-producer');
-  }
+  // if (
+  //   !state.user.productor ||
+  //   !state.user.productor.id ||
+  //   state.user.productor.status !== 'ACTIVE'
+  // ) {
+  //   router.push('/register-producer');
+  // }
 
   const values = {
     avatar,
