@@ -9,6 +9,7 @@ import {
   updateLocation,
   updateSong
 } from './registerArtist.repository';
+import { basicInformationIsValid } from './registerArtist.validate';
 import { allCountriesQuery, allStateQuery } from './registerArtist.queries';
 import { getBase64, uploadImageToStorage } from '../../../utils/file.utils';
 import axios from 'axios';
@@ -336,10 +337,19 @@ export const handleCreateArtist = async ({
   setVisibles,
   dispatch,
   user,
+  setErrors,
   router
 }) => {
   const artist = { ...values };
   let uploadedAvatar;
+
+  const validate = basicInformationIsValid(values);
+
+  if (!validate.valid) {
+    setErrors(validate.errors);
+    setLoading(false);
+    return;
+  }
 
   if (artist.avatar && artist.avatar.file) {
     uploadedAvatar = await uploadAvatar({ setLoading, userId, artist });
@@ -372,10 +382,19 @@ export const handleEditArtist = async ({
   setVisibles,
   dispatch,
   user,
+  setErrors,
   router
 }) => {
   const artist = { ...values };
   let uploadedAvatar;
+
+  const validate = basicInformationIsValid(values);
+
+  if (!validate.valid) {
+    setErrors(validate.errors);
+    setLoading(false);
+    return;
+  }
 
   // verifica se precisa atualizar a imagem de avatar do artista
   if (artist.avatar && artist.avatar.file) {

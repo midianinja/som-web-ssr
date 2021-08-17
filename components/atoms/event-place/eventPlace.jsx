@@ -20,7 +20,6 @@ const EventPlace = ({ address, district, city, state, complement, placeMarkIcon,
           }
               ${city}, ${state}`
         : 'Online'}
-      {}
     </Adress>
   </Container>
 );
