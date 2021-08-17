@@ -232,10 +232,11 @@ export const handleOccupationSelect = ({
   setOccupationPredict,
   setOccupations
 }) => {
-  console.log(value)
   setOccupation(value.label);
   const colors = ['purple', 'green', 'orange', 'magenta', 'yellow'];
-  const style = occupationOptions.filter((o) => o.label.toLowerCase() === value.label.toLowerCase())[0];
+  const style = occupationOptions.filter(
+    (o) => o.label.toLowerCase() === value.label.toLowerCase()
+  )[0];
   const newOccupations = occupations
     .filter((o) => o.text.toLowerCase() !== value.label.toLowerCase())
     .concat([
@@ -336,10 +337,19 @@ export const handleCreateProductor = async ({
   setVisibles,
   dispatch,
   user,
+  setErrors,
   router
 }) => {
   const productor = { ...values };
   let newImage = null;
+
+  const validate = basicInformationIsValid(values);
+
+  if (!validate.valid) {
+    setErrors(validate.errors);
+    setLoading(false);
+    return;
+  }
 
   if (productor.avatar && productor.avatar.file) {
     setLoading({ show: true, text: 'Tratando imagen' });
@@ -401,10 +411,19 @@ export const handleEditProductor = async (
   setLocationId,
   dispatch,
   user,
+  setErrors,
   router
 ) => {
   const productor = { ...values };
   let newImage = null;
+
+  const validate = basicInformationIsValid(values);
+
+  if (!validate.valid) {
+    setErrors(validate.errors);
+    setLoading(false);
+    return;
+  }
 
   if (productor.avatar && productor.avatar.file) {
     setLoading({ show: true, text: 'Tratando imagen' });
@@ -442,7 +461,7 @@ export const handleEditProductor = async (
     promise = await updateProductor(productorId, data);
   } catch (err) {
     setLoading({ show: false });
-    console.log([err])
+    console.log([err]);
     throw err;
   }
 

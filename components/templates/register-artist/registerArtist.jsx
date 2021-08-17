@@ -526,6 +526,7 @@ const RegisterArtistTemplate = () => {
               setVisibles,
               dispatch,
               user: state.user,
+              setErrors: setProductorStepErrors,
               setId,
               userId: state.user.id
             });
@@ -533,11 +534,11 @@ const RegisterArtistTemplate = () => {
             handleEditArtist({
               values,
               setLoading,
-              setAvatar,
               visibles,
               setVisibles,
               dispatch,
               user: state.user,
+              setErrors: setProductorStepErrors,
               router,
               userId: state.user.id
             });
