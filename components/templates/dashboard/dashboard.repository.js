@@ -11,3 +11,14 @@ export const getOpportunities = (id) =>
       }
     }
   });
+
+export const getSubscribedOpportunities = (id) =>
+  client().query({
+    query: getAllOpportunitiesQuery,
+    variables: {
+      event: { subscri: id },
+      paginator: {
+        limit: 20
+      }
+    }
+  });

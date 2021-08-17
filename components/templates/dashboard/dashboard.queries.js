@@ -10,6 +10,7 @@ export const getAllOpportunitiesQuery = gql`
       has_food
       has_money_paid
       subscribe_closing_date
+      end_event_date
       has_accommodation
       has_city_transportation
       has_local_transportation

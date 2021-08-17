@@ -50,6 +50,8 @@ export const Tab = styled.li`
   font-size: 16px;
   line-height: 30px;
 
+  cursor: pointer;
+
   color: rgba(255, 255, 255, ${({ selected }) => (!selected ? 0.5 : 1)});
 
   @media (min-width: 1024px) {

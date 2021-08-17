@@ -202,7 +202,6 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const Logo = styled.img`
-  display: none;
   height: 18px;
   justify-self: center;
   cursor: pointer;
@@ -229,4 +228,6 @@ export const MobileLoginIcon = styled.svg`
 export const MiddleWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 8px;
 `;

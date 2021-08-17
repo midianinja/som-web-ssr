@@ -15,7 +15,9 @@ const EventPlace = ({ address, district, city, state, complement, placeMarkIcon,
     </IconWrapper>
     <Adress>
       {!online
-        ? `${address ? `${address} ${complement ? `(${complement})` : ''} / ` : ''} ${district},
+        ? `${address ? `${address} ${complement ? `(${complement})` : ''} / ` : ''} ${
+            district ? `${district},` : ''
+          }
               ${city}, ${state}`
         : 'Online'}
       {}

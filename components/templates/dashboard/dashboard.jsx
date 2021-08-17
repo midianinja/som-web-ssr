@@ -13,7 +13,10 @@ const renderMyOpporunities = (opportunities) =>
       <DashboardOpportunityCard
         name={opportunity.name}
         subscribeClosingDate={opportunity.subscribe_closing_date}
-        location={location}
+        eventDate={opportunity.event_date}
+        endEventDate={opportunity.end_event_date}
+        location={opportunity.location}
+        photo={opportunity.photo}
         subscriptionAmount={opportunity.subscribers.length}
       />
     </li>
@@ -22,16 +25,22 @@ const renderMyOpporunities = (opportunities) =>
 const Dashboard = () => {
   const { state } = useContext(Store);
   const [myOpportunities, setMyOpportunities] = useState([]);
+  const [subscribedOpportunities, setSubscribedOpportunities] = useState([]);
+  const [selected, setSelected] = useState('created-by-me');
 
   useEffect(() => {
-    load({ id: state.user.productor.id, setMyOpportunities });
+    load({ id: state.user.productor.id, setMyOpportunities, setSubscribedOpportunities });
   }, []);
 
   return (
     <DashboardContainer>
       <Header logged={!!state.user} />
-      <DashboardHeader />
-      <DashboardOpportunityList>{renderMyOpporunities(myOpportunities)}</DashboardOpportunityList>
+      <DashboardHeader selected={selected} setSelected={setSelected} />
+      <DashboardOpportunityList>
+        {renderMyOpporunities(
+          selected === 'created-by-me' ? myOpportunities : subscribedOpportunities
+        )}
+      </DashboardOpportunityList>
       <OverlayWrapper>
         <PrimaryButton color="darkGray">+ Adicionar nova oportunidade</PrimaryButton>
       </OverlayWrapper>
