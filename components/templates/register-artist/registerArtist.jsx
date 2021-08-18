@@ -59,7 +59,8 @@ const renderBasicInfos = ({
   setMusicalStyles,
   setAvatar,
   setCNPJ,
-  handleIntegrants
+  handleIntegrants,
+  setUsername
 }) => (
   <BasicInformationFieldset
     descriptionMaxLength={2000}
@@ -78,6 +79,7 @@ const renderBasicInfos = ({
         file: target.files[0]
       })
     }
+    handleUsernameChange={({ target }) => setUsername(target.value)}
     handleCNPJChange={({ target }) => setCNPJ(target.value)}
     handleIntegrants={({ target }) => handleIntegrants(target.value)}
     handleNameChange={({ target }) => setName(target.value)}
@@ -279,6 +281,7 @@ const renderMusics = ({ visibles, setSongs, songs, setSubmitDisabled }) => {
 const RegisterArtistTemplate = () => {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
+  console.log('🚀 ~ state', state);
   const [about, setAbout] = useState('');
   const [address, setAddress] = useState('');
   const [zipcode, setZipcode] = useState('');
@@ -302,6 +305,7 @@ const RegisterArtistTemplate = () => {
   const [locationState, setState] = useState({});
   const [states, setStates] = useState([]);
   const [telegram, setTelegram] = useState('');
+  const [username, setUsername] = useState('');
   const [twitter, setTwitter] = useState('https://twitter.com/');
   const [whatsapp, setWhatsapp] = useState('');
   const [youtube, setYoutube] = useState('https://www.youtube.com/');
@@ -323,6 +327,7 @@ const RegisterArtistTemplate = () => {
     setId(artist.id || '');
     setName(artist.name || '');
     setAbout(artist.about || '');
+    setUsername(artist.username || '');
     setAvatar({ url: artist.avatar_image.mimified || '' });
     setMusicalStyles(mapMusicalStyles(artist.musical_styles || []));
     handleIntegrants(artist.integrants.join(', '));
@@ -419,6 +424,7 @@ const RegisterArtistTemplate = () => {
     about,
     musicalStyles,
     musicalStylePredict,
+    username,
     musicalStyle,
     country,
     state: locationState,
@@ -456,6 +462,7 @@ const RegisterArtistTemplate = () => {
           values,
           setAbout,
           setMusicalStyle,
+          setUsername,
           musicalStyles,
           setMusicalStylePredict,
           musicalStylesOptions,
@@ -540,7 +547,7 @@ const RegisterArtistTemplate = () => {
               user: state.user,
               setErrors: setProductorStepErrors,
               router,
-              userId: state.user.id
+              userId: state.user.id,
             });
           }
         }}

@@ -13,7 +13,7 @@ import {
 } from './productorCard.style';
 
 const ProductorCard = ({ productor, router }) => (
-  <Container onClick={() => router.push(`/producer/${productor?.id}`)}>
+  <Container onClick={() => router.push(`/producer/${productor?.username}`)}>
     <ImageWrapper>
       <Avatar customStyle={avatarStyle} src={productor?.photo} />
       <ProductorTitle>Produtor</ProductorTitle>

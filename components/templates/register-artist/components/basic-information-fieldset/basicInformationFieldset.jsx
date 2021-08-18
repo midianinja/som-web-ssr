@@ -17,13 +17,14 @@ import {
 
 /**
  * This contains the Basic Informations Fildset Component
- * 
+ *
  * @returns {React.Component} React Component
  */
 const BasicInformationFieldset = ({
   handleNameChange,
   handleAboutChange,
   handleIntegrants,
+  handleUsernameChange,
   deleteTag,
   handleAvatarChange,
   handleMusicalStyleChange,
@@ -56,6 +57,17 @@ const BasicInformationFieldset = ({
             placeholder="Nome da banda/artista *"
             value={values.name}
             onChange={handleNameChange}
+          />
+        </InputGroup>
+        <InputGroup
+          label={values.username ? 'Nome de usuário *' : ''}
+          error={productorStepErrors.username}>
+          <Input
+            id="username"
+            type="text"
+            placeholder="Nome de usuário *"
+            value={values.username}
+            onChange={handleUsernameChange}
           />
         </InputGroup>
         <InputGroup
@@ -129,6 +141,8 @@ BasicInformationFieldset.propTypes = {
   handleMusicalStyleSelect: PropTypes.func.isRequired,
   handleNameChange: PropTypes.func.isRequired,
   handleCPFChange: PropTypes.func.isRequired,
+  handleIntegrants: PropTypes.func.isRequired,
+  handleUsernameChange: PropTypes.func.isRequired,
   values: PropTypes.shape(valuesShape).isRequired,
   productorStepErrors: PropTypes.shape(errorsShape).isRequired
 };

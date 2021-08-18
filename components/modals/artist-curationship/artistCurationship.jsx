@@ -105,7 +105,7 @@ const ArtistCurationshipModal = ({
                 <ArtistInfos>
                   <ArtistName>{artist.name}</ArtistName>
                   <ArtistDescription>{artist.about}</ArtistDescription>
-                  <ProfileLink onClick={() => router.push(`/artist/${artist.id}`)}>
+                  <ProfileLink onClick={() => router.push(`/artist/${artist.username}`)}>
                     Ver perfil completo
                   </ProfileLink>
                 </ArtistInfos>

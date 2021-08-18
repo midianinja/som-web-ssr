@@ -6,7 +6,7 @@ import {
   deleteSongMutation,
   editSongMutation,
   favoriteSongMutation,
-  unfavoriteSongMutation,
+  unfavoriteSongMutation
 } from './artistProfile.mutations';
 
 const fetchSongs = (artist) =>
@@ -49,9 +49,9 @@ export const fetchRelatedArtsts = async (artist, setArtsts) => {
     query: searchArtistsQuery,
     variables: {
       paginator: {
-        limit: 10,
-      },
-    },
+        limit: 10
+      }
+    }
   });
 
   setArtsts(artsts.data.searchArtists);
@@ -64,7 +64,7 @@ export const fetchArtistData = async (id, setArtist, setArtistLoading, setSongs,
   try {
     promise = await client().query({
       query: oneArtistQuery,
-      variables: { id }
+      variables: { username: id }
     });
   } catch (err) {
     setArtistLoading(false);
@@ -138,7 +138,7 @@ export const favoriteSong = async (user, song, dispatch, favoritedSongs) => {
   let newUser = { ...user, favorited_songs: newFavoritedSongs };
   dispatch({
     type: 'SET_USER',
-    user: newUser,
+    user: newUser
   });
 
   try {
@@ -148,13 +148,16 @@ export const favoriteSong = async (user, song, dispatch, favoritedSongs) => {
     });
   } catch (err) {
     newFavoritedSongs = [...newUser.favorited_songs];
-    newFavoritedSongs.splice(newFavoritedSongs.indexOf(s => s.id === song.id), 1);
+    newFavoritedSongs.splice(
+      newFavoritedSongs.indexOf((s) => s.id === song.id),
+      1
+    );
 
     newUser = { ...newUser, favorited_songs: newFavoritedSongs };
 
     dispatch({
       type: 'SET_USER',
-      user: newUser,
+      user: newUser
     });
 
     throw err;
@@ -163,13 +166,16 @@ export const favoriteSong = async (user, song, dispatch, favoritedSongs) => {
 
 export const unfavoriteSong = async (user, song, dispatch, favoritedSongs) => {
   let newFavoritedSongs = [...user.favorited_songs];
-  newFavoritedSongs.splice(newFavoritedSongs.indexOf(s => s.id === song.id), 1);
+  newFavoritedSongs.splice(
+    newFavoritedSongs.indexOf((s) => s.id === song.id),
+    1
+  );
 
   let newUser = { ...newUser, favorited_songs: newFavoritedSongs };
 
   dispatch({
     type: 'SET_USER',
-    user: newUser,
+    user: newUser
   });
 
   try {
@@ -180,11 +186,11 @@ export const unfavoriteSong = async (user, song, dispatch, favoritedSongs) => {
   } catch (err) {
     newFavoritedSongs = [...favoritedSongs];
     newFavoritedSongs.push(song);
-  
+
     newUser = { ...newUser, favorited_songs: newFavoritedSongs };
     dispatch({
       type: 'SET_USER',
-      user: newUser,
+      user: newUser
     });
 
     throw err;

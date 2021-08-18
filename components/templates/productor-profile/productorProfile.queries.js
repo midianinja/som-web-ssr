@@ -7,6 +7,7 @@ export const oneProductorQuery = gql`
       photo
       name
       description
+      username
       musical_styles {
         id
         name
