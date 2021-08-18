@@ -631,10 +631,10 @@
   resolved "https://registry.npmjs.org/@oclif/screen/-/screen-1.0.4.tgz"
   integrity sha512-60CHpq+eqnTxLZQ4PGHYNwUX572hgpMHGPtTWMjdTMsAvlm69lZV/4ly6O3sAYkomo4NggGcomrDpBe34rxUqw==
 
-"@resystem/ida-js-sdk@^0.2.18":
-  version "0.2.18"
-  resolved "https://registry.yarnpkg.com/@resystem/ida-js-sdk/-/ida-js-sdk-0.2.18.tgz#e01de793494bbe3e4933f546402e5484a6554a1c"
-  integrity sha512-bDihg8xF59nc+xBwMVpwAVvvm7CacbJBvapYYXIyrycqaxi6bPstZqFNRYwDFsawikZVt4tcezTqtcp0FpFqbA==
+"@resystem/ida-js-sdk@^0.2.19":
+  version "0.2.19"
+  resolved "https://registry.yarnpkg.com/@resystem/ida-js-sdk/-/ida-js-sdk-0.2.19.tgz#a5e28e6084e45d42bd81be10d8928c754265ddb4"
+  integrity sha512-idt9CQHL/HcxphxYc8Wfgcd3E5c1O/xrikW/1qKirosqyjQA91WWWpKXlMmXa5/zq1R/gi8V8iqc8OmyoQCi2g==
   dependencies:
     "@babel/core" "^7.11.6"
     "@babel/helper-regex" "^7.10.5"
