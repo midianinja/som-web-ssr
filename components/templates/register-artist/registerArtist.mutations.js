@@ -1,13 +1,16 @@
 import { gql } from 'apollo-boost';
 
 export const createArtistMutation = gql`
-  mutation ($artist: ArtistInput!) {
+  mutation($artist: ArtistInput!) {
     createArtist(artist: $artist) {
       id
       name
       phone
       members_number
-      avatar_image { mimified }
+      username
+      avatar_image {
+        mimified
+      }
       about
       telegram
       integrants
@@ -57,13 +60,15 @@ export const createArtistMutation = gql`
 `;
 
 export const updateArtistMutation = gql`
-  mutation ($artist_id: ID! $artist: ArtistInput!) {
-    updateArtist(artist_id: $artist_id artist: $artist) {
+  mutation($artist_id: ID!, $artist: ArtistInput!) {
+    updateArtist(artist_id: $artist_id, artist: $artist) {
       id
       name
       phone
       members_number
-      avatar_image { mimified }
+      avatar_image {
+        mimified
+      }
       about
       country
       integrants
@@ -130,9 +135,7 @@ export const updateLocationMutation = gql`
 
 export const createSongMutation = gql`
   mutation($song: SongInput!) {
-    createSong(
-      song: $song
-    ) {
+    createSong(song: $song) {
       id
       url
       title
@@ -141,11 +144,8 @@ export const createSongMutation = gql`
   }
 `;
 export const updateSongMutation = gql`
-  mutation($song_id: ID! $song: SongInput!) {
-    updateSong(
-      song_id: $song_id
-      song: $song
-    ) {
+  mutation($song_id: ID!, $song: SongInput!) {
+    updateSong(song_id: $song_id, song: $song) {
       id
       url
       title
@@ -154,12 +154,9 @@ export const updateSongMutation = gql`
   }
 `;
 
-
 export const deleteSongMutation = gql`
   mutation($song_id: ID!) {
-    deleteSong(
-      song_id: $song_id
-    ) {
+    deleteSong(song_id: $song_id) {
       id
       url
       title

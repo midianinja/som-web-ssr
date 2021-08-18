@@ -16,6 +16,7 @@ export const oneUserQuery = gql`
         members_number
         integrants
         telegram
+        username
         tec_rider
         stage_map
         tec_release
@@ -61,6 +62,7 @@ export const oneUserQuery = gql`
         id
         name
         photo
+        username
         events {
           id
         }

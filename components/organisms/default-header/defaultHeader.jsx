@@ -167,7 +167,7 @@ const Header = ({ customStyle }) => {
             }}
             toArtist={() => {
               if (state.user.artist) {
-                router.push(`/artist/${state.user.artist.id}`);
+                router.push(`/artist/${state.user.artist.username}`);
               }
             }}
             toProductor={() => {
@@ -176,7 +176,7 @@ const Header = ({ customStyle }) => {
                 return;
               }
               if (state.user.productor) {
-                router.push(`/producer/${state.user.productor.id}`);
+                router.push(`/producer/${state.user.productor.username}`);
               }
             }}
           />

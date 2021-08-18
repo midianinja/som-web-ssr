@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import VMasker from 'vanilla-masker';
-import styled from 'styled-components';
 import Input from '../../../../atoms/input/input';
 import UploadAvatar from '../../../../atoms/upload-avatar/uploadAvatar';
 import ListInput from '../../../../molecules/list-input/listInput';
@@ -9,7 +7,6 @@ import ListInput from '../../../../molecules/list-input/listInput';
 import TextArea from '../../../../atoms/text-area/TextArea';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
 import TagList from '../../../../molecules/tag-list/tagList';
-import AutocompleteInput from '../../../../molecules/autocomplete-input/autocompleteInput';
 import {
   Fieldset,
   MainInformationWrapper,
@@ -22,7 +19,6 @@ import {
 const BasicInformationFieldset = ({
   handleNameChange,
   handleAboutChange,
-  handleCPFChange,
   deleteTag,
   handleAvatarChange,
   handleOccupationChange,
@@ -31,6 +27,7 @@ const BasicInformationFieldset = ({
   values,
   descriptionMaxLength,
   occupationOptions,
+  handleUsernameChange
 }) => (
   <Fieldset>
     <Title>Informações do Produtor</Title>
@@ -38,8 +35,7 @@ const BasicInformationFieldset = ({
       <InputGroup
         error={productorStepErrors.avatar}
         customStyle={avatarInputGroupStyle}
-        info="Tamanho sugerido: 500x500px"
-      >
+        info="Tamanho sugerido: 500x500px">
         <UploadAvatar
           alt="botão para subir imagem"
           title="avatar image"
@@ -58,21 +54,28 @@ const BasicInformationFieldset = ({
           />
         </InputGroup>
         <InputGroup
+          label={values.username ? 'Nome de usuário *' : ''}
+          error={productorStepErrors.username}>
+          <Input
+            id="username"
+            type="text"
+            placeholder="Nome de usuário *"
+            value={values.username}
+            onChange={handleUsernameChange}
+          />
+        </InputGroup>
+        <InputGroup
           label={values.occupations.length ? 'Área de Atuação *' : ''}
           error={productorStepErrors.occupations}>
-          {
-            console.log(occupationOptions)
-          }
+          {console.log(occupationOptions)}
           <ListInput
             // selected={values.occupations}
             id="occupation"
             placeholder={values.occupations.length ? '' : 'Área de Atuação *'}
             options={occupationOptions}
             onSelect={handleOccupationSelect}
-            onChange={handleOccupationChange}
-            
-          >
-          {/* <AutocompleteInput
+            onChange={handleOccupationChange}>
+            {/* <AutocompleteInput
             placeholder={values.occupations.length ? '' : 'Área de Atuação *'}
             predict={values.occupationPredict}
             value={values.occupation}
@@ -86,7 +89,7 @@ const BasicInformationFieldset = ({
             handleClose={deleteTag}
             data={values.occupations}
             customStyle={musicalGenresCustomStyle}
-          /> 
+          />
         </InputGroup>
       </TextInpustWrapper>
     </MainInformationWrapper>
@@ -131,8 +134,12 @@ BasicInformationFieldset.propTypes = {
   descriptionMaxLength: PropTypes.number.isRequired,
   handleMusicalStyleChange: PropTypes.func.isRequired,
   handleMusicalStyleSelect: PropTypes.func.isRequired,
+  handleOccupationChange: PropTypes.func.isRequired,
+  handleOccupationSelect: PropTypes.func.isRequired,
   handleNameChange: PropTypes.func.isRequired,
   handleCPFChange: PropTypes.func.isRequired,
+  occupationOptions: PropTypes.arrayOf(PropTypes.node).isRequired,
+  handleUsernameChange: PropTypes.func.isRequired,
   values: PropTypes.shape(valuesShape).isRequired,
   productorStepErrors: PropTypes.shape(errorsShape).isRequired
 };

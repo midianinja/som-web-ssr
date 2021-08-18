@@ -1,12 +1,13 @@
 import { gql } from 'apollo-boost';
 
 export const oneArtistQuery = gql`
-  query($id: ID!) {
-    oneArtist(id: $id) {
+  query($username: String) {
+    oneArtist(username: $username) {
       id
       name
       email
       about
+      username
       user {
         following_artists {
           id
@@ -63,6 +64,7 @@ export const searchArtistsQuery = gql`
     searchArtists(artist: $artist, paginator: $paginator) {
       id
       name
+      username
       avatar_image {
         mimified
         thumbnail

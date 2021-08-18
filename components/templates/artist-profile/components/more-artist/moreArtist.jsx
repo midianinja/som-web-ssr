@@ -12,7 +12,7 @@ import {
 
 const renderArtists = (artists, history) =>
   artists.map((art) => (
-    <Card onClick={() => history.push(`/artist/${art.id}`)}>
+    <Card onClick={() => history.push(`/artist/${art.username}`)}>
       <Avatar src={art.avatar_image.mimified} customStyle={avatarCustomStyle} />
       <ArtistName>{art.name}</ArtistName>
     </Card>

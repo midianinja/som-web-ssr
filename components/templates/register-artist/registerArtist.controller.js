@@ -219,7 +219,7 @@ export const fetchMusicalStyleOptions = (setMusicalStylesOptions) => {
     .then((resp) => setMusicalStylesOptions(resp.data.allMusicalStyleOptions));
 };
 
-export const nextCallback = ({ visibles, setVisibles, router, id }) => {
+export const nextCallback = ({ visibles, setVisibles, router, username }) => {
   const next = Object.entries(visibles).find((item) => !item[1]);
   const newVisibles = { ...visibles };
 
@@ -228,7 +228,7 @@ export const nextCallback = ({ visibles, setVisibles, router, id }) => {
     setVisibles(newVisibles);
   } else {
     setVisibles(newVisibles);
-    router.push(`/artist/${id}`);
+    router.push(`/artist/${username}`);
   }
 };
 
@@ -277,6 +277,7 @@ const mapArtistToApi = (values, userId, locationId) => ({
   user: userId,
   name: values.name,
   about: values.about,
+  username: values.username,
   musical_styles: values.musicalStyles.map(({ id }) => id),
   // status: basicInformationIsValid(values) ? 'INCOMPLETE' : 'ACTIVE',
   phone: values.mainPhone,
@@ -362,6 +363,10 @@ export const handleCreateArtist = async ({
     setLoading({ show: true, text: 'Atualizando Artista' });
     promise = await createArtist(data);
   } catch (err) {
+    if (err.graphQLErrors && err.graphQLErrors[0].message == 'invalid/username') {
+      setLoading({ show: false });
+      return setErrors({ username: 'Nome de usuário já em uso, ou inválido' });
+    }
     console.error([err]);
     setLoading({ show: false });
     throw err;
@@ -484,6 +489,10 @@ export const handleEditArtist = async ({
     setLoading({ show: true, text: 'Atualizando Artista' });
     promise = await updateArtist(values.id, data);
   } catch (err) {
+    if (err.graphQLErrors && err.graphQLErrors[0].message == 'invalid/username') {
+      setLoading({ show: false });
+      return setErrors({ username: 'Nome de usuário já em uso, ou inválido' });
+    }
     console.error([err]);
     setLoading({ show: false });
     throw err;
@@ -498,7 +507,7 @@ export const handleEditArtist = async ({
     visibles,
     setVisibles,
     router,
-    id: values.id
+    username: values.username
   });
 };
 

@@ -5,6 +5,7 @@ export const createProductorMutation = gql`
     createProductor(productor: $productor) {
       id
       name
+      username
       photo
       musical_styles {
         id
@@ -46,6 +47,7 @@ export const updateProductorMutation = gql`
     updateProductor(productor_id: $productor_id, productor: $productor) {
       id
       name
+      username
       photo
       musical_styles {
         id

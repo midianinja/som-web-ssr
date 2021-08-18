@@ -275,7 +275,7 @@ export const fetchOccupationsOptions = (setOccupations) => {
     .then((resp) => setOccupations(resp.data.allProductorOccupations));
 };
 
-export const nextCallback = ({ visibles, setVisibles, router, id }) => {
+export const nextCallback = ({ visibles, setVisibles, router, username }) => {
   const next = Object.entries(visibles).find((item) => !item[1]);
   const newVisibles = { ...visibles };
 
@@ -284,7 +284,7 @@ export const nextCallback = ({ visibles, setVisibles, router, id }) => {
     setVisibles(newVisibles);
   } else {
     setVisibles(newVisibles);
-    router.push(`/producer/${id}`);
+    router.push(`/producer/${username}`);
   }
 };
 
@@ -294,6 +294,7 @@ const mapProductorToApi = (values, userId, locationId) => ({
   name: values.name,
   description: values.about,
   cpf: values.cpf,
+  username: values.username,
   cnpj: values.cnpj,
   location: locationId,
   musical_styles: values.musicalStyles.map(({ id }) => id),
@@ -373,6 +374,10 @@ export const handleCreateProductor = async ({
   try {
     promise = await createProductor(data);
   } catch (err) {
+    if (err.graphQLErrors && err.graphQLErrors[0].message == 'invalid/username') {
+      setLoading({ show: false });
+      return setErrors({ username: 'Nome de usuário já em uso, ou inválido' });
+    }
     setLoading({ show: false });
     throw err;
   }
@@ -461,7 +466,11 @@ export const handleEditProductor = async (
     promise = await updateProductor(productorId, data);
   } catch (err) {
     setLoading({ show: false });
-    console.log([err]);
+    if (err.graphQLErrors && err.graphQLErrors[0].message == 'invalid/username') {
+      setLoading({ show: false });
+      return setErrors({ username: 'Nome de usuário já em uso, ou inválido' });
+    }
+    console.log(err.graphQLErrors[0].message);
     throw err;
   }
 
@@ -474,6 +483,6 @@ export const handleEditProductor = async (
     visibles,
     setVisibles,
     router,
-    id: productorId
+    username: data.username
   });
 };
