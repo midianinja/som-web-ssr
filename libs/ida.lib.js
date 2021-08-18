@@ -16,14 +16,13 @@ const idaConfiguration = {
  * @returns {Promise} contains new IDa user or error
  */
 export const init = ({ onAuthChange }) =>
-new Promise(async (res) => {
-  console.log('🚀 ~ process.env.DEV_MODE', process.env.DEV_MODE);
+  new Promise(async (res) => {
+    console.log('🚀 ~ process.env.DEV_MODE', process.env.DEV_MODE);
     console.log('🚀 ~ idaConfiguration', idaConfiguration);
     const localIda = await ida();
     localIda.initializeApp({
       ...idaConfiguration,
       onAuthChange,
-      
       onLoad: (payload) => res(payload),
       onOpen: (data) => console.log('Initialized IDa!', data)
     });
