@@ -277,13 +277,13 @@ const OpportunityForm = () => {
     );
   }
 
-  // if (
-  //   !state.user.productor ||
-  //   !state.user.productor.id ||
-  //   state.user.productor.status !== 'ACTIVE'
-  // ) {
-  //   router.push('/register-producer');
-  // }
+  if (
+    !state.user.productor ||
+    !state.user.productor.id ||
+    state.user.productor.status !== 'ACTIVE'
+  ) {
+    router.push('/register-producer');
+  }
 
   const values = {
     avatar,
