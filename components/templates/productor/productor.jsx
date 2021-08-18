@@ -45,7 +45,8 @@ const renderBasicInfos = ({
   setOccupationPredict,
   setAvatar,
   setCPF,
-  setCNPJ
+  setCNPJ,
+  setUsername
 }) => (
   <BasicInformationFieldset
     descriptionMaxLength={2000}
@@ -68,6 +69,7 @@ const renderBasicInfos = ({
     handleCNPJChange={({ target }) => setCNPJ(target.value)}
     handleCPFChange={({ target }) => setCPF(target.value)}
     handleNameChange={({ target }) => setName(target.value)}
+    handleUsernameChange={({ target }) => setUsername(target.value)}
     handleOccupationChange={({ target }) =>
       handleACOccupation({
         value: target.value,
@@ -211,6 +213,7 @@ const Productor = () => {
   const [musicalStylePredict, setMusicalStylePredict] = useState('');
   const [musicalStyle, setMusicalStyle] = useState('');
   const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [secondaryPhone, setSecondaryPhone] = useState('');
   const [productorStepErrors, setProductorStepErrors] = useState({});
   const [locationState, setState] = useState({});
@@ -242,6 +245,7 @@ const Productor = () => {
     setSecondaryPhone(productor.secondary_phone || '');
     setWhatsapp(productor.whatsapp || '');
     setTelegram(productor.telegram || '');
+    setUsername(productor.username || '');
     setContactEmail(productor.contact_email || '');
     setFacebook(productor.facebook || 'https://www.facebook.com/');
     setInstagram(productor.instagram || 'https://www.instagram.com/');
@@ -334,6 +338,7 @@ const Productor = () => {
     secondaryPhone,
     whatsapp,
     telegram,
+    username,
     occupations,
     occupationPredict,
     occupation,
@@ -385,6 +390,7 @@ const Productor = () => {
           productorStepErrors,
           setProductorStepErrors,
           setCNPJ,
+          setUsername,
           setCPF
         })}
         {renderLocationFieldset({

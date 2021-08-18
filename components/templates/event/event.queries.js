@@ -22,6 +22,7 @@ export const getOneEventQuery = gql`
       approved_productors {
         id
         name
+        username
         photo
         description
       }
@@ -29,12 +30,14 @@ export const getOneEventQuery = gql`
         id
         name
         photo
+        username
         description
       }
       subscribed_productors {
         id
         name
         photo
+        username
         description
       }
       location {
@@ -52,6 +55,7 @@ export const getOneEventQuery = gql`
           thumbnail
         }
         name
+        username
       }
       approved_artists {
         id
@@ -60,6 +64,7 @@ export const getOneEventQuery = gql`
           thumbnail
         }
         name
+        username
       }
       reproved_artists {
         id
@@ -68,6 +73,7 @@ export const getOneEventQuery = gql`
           thumbnail
         }
         name
+        username
       }
       subscribe_closing_date
       cover {

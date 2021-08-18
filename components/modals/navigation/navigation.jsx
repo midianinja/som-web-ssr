@@ -1,19 +1,8 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import Store from '../../../store/Store';
 import { allowBodyScroll } from '../../../utils/scroll.utils';
-import {
-  openModalKeyframes,
-  openMObileModalKeyframes,
-  Wrapper,
-  Nav,
-  Link,
-  Logout,
-  Terms,
-  ExitButton,
-  Community
-} from './navigation.style';
+import { Wrapper, Nav, Link, Logout, Terms, ExitButton, Community } from './navigation.style';
 
 const getLinks = (user, connectionType) => {
   const links = [
@@ -23,14 +12,16 @@ const getLinks = (user, connectionType) => {
     },
     {
       href:
-        user && user.artist && user.artist.id ? `/artist/${user.artist.id}` : '/register-artist',
+        user && user.artist && user.artist.id
+          ? `/artist/${user.artist.username}`
+          : '/register-artist',
       label: 'Meu perfil',
       hide: !user || connectionType !== 'artist'
     },
     {
       href:
         user && user.productor && user.productor.id
-          ? `/producer/${user.productor.id}`
+          ? `/producer/${user.productor.username}`
           : '/producer',
       label: 'Meu perfil',
       hide: !user || connectionType !== 'productor'

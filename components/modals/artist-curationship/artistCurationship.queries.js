@@ -6,6 +6,7 @@ export const oneArtistQuery = gql`
       id
       name
       about
+      username
       approved_events {
         id
         name

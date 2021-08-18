@@ -17,7 +17,7 @@ export const fetchProductorData = async (id, setProductor, setProductorLoading, 
   try {
     promise = await client().query({
       query: oneProductorQuery,
-      variables: { productor: { id } }
+      variables: { productor: { username: id } }
     });
   } catch (err) {
     setProductorLoading(false);

@@ -5,6 +5,7 @@ export const oneArtistQuery = gql`
     oneArtist(artist: $artist) {
       name
       hometown
+      username
     }
   }
 `;

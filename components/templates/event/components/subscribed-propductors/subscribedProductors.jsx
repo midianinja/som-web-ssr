@@ -16,7 +16,7 @@ const renderProducts = (productors, productorClick, approveds) =>
   [...approveds, ...productors].map((productor) => {
     return (
       <Card key={productor.id} id={productor.id} onClick={() => productorClick(productor.id)}>
-        <ApprovedTag show={approveds.findIndex(({ id }) => productor.id === id) !== -1}>
+        <ApprovedTag show={approveds.findIndex(({ username }) => productor.username === username) !== -1}>
           APROVADO
         </ApprovedTag>
         <Avatar src={productor.photo} customStyle={avatarCustomStyle} />
