@@ -280,7 +280,7 @@ const OpportunityForm = () => {
     !state.user.productor.id ||
     state.user.productor.status !== 'ACTIVE'
   ) {
-    router.push('/register-producer');
+    router.push('/producer');
   }
 
   const values = {

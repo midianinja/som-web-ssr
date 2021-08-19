@@ -2,7 +2,11 @@ import React from 'react';
 import PrimaryButton from '../../../../atoms/primary-button/primaryButton';
 import { Header, HeaderWrapper, Title, Tabs, Tab } from './dashboard-header.style';
 
+<<<<<<< Updated upstream
 const DashboardHeader = () => (
+=======
+const DashboardHeader = ({ selected, setSelected, toCreateOpportunity }) => (
+>>>>>>> Stashed changes
   <Header>
     <HeaderWrapper>
       <Title>Minhas Oportunidades</Title>
@@ -18,6 +22,7 @@ const DashboardHeader = () => (
               display: inline-block
             }
           `}
+          onClick={toCreateOpportunity}
           color="darkGray">
           + Adicionar nova oportunidade
         </PrimaryButton>
@@ -26,4 +31,13 @@ const DashboardHeader = () => (
   </Header>
 );
 
+<<<<<<< Updated upstream
+=======
+DashboardHeader.propTypes = {
+  selected: PropTypes.string.isRequired,
+  setSelected: PropTypes.func.isRequired,
+  toCreateOpportunity: PropTypes.func.isRequired
+};
+
+>>>>>>> Stashed changes
 export default DashboardHeader;
