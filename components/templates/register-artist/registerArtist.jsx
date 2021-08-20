@@ -102,6 +102,7 @@ const renderBasicInfos = ({
       })
     }
     productorStepErrors={productorStepErrors}
+    musicalStylesOptions={musicalStylesOptions}
     values={values}
   />
 );

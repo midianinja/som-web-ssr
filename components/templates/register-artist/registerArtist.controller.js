@@ -179,8 +179,12 @@ export const handleMusicalStyleSelect = ({
   setMusicalStyles
 }) => {
   setMusicalStyle(value);
+  console.log(value.name);
   const colors = ['purple', 'green', 'orange', 'magenta', 'yellow'];
-  const style = musicalStylesOptions.filter((o) => o.name.toLowerCase() === value)[0];
+  const style = musicalStylesOptions.filter(
+    (o) => o.name.toLowerCase() === value.label.toLowerCase()
+  )[0];
+
   const newMusicalStyles = musicalStyles
     .filter((o) => o.text.toLowerCase() !== value)
     .concat([
