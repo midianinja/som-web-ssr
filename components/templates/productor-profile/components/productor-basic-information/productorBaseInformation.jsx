@@ -41,9 +41,9 @@ const ProductorBasicInfo = ({
 
   useEffect(() => {
     setStateOccupations(
-      occupations.map(({ id, name }) => ({
+      occupations.map(({ id, label }) => ({
         id,
-        text: name,
+        text: label,
         color: colors[Math.floor(Math.random() * colors.length)]
       }))
     );

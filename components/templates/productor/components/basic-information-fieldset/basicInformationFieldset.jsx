@@ -25,7 +25,6 @@ const BasicInformationFieldset = ({
   handleOccupationSelect,
   productorStepErrors,
   values,
-  descriptionMaxLength,
   occupationOptions,
   handleUsernameChange
 }) => (

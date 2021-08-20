@@ -356,6 +356,7 @@ export const handleCreateArtist = async ({
   const validate = basicInformationIsValid(values);
 
   if (!validate.valid) {
+    console.log('Create Invalid');
     setErrors(validate.errors);
     setLoading(false);
     return;
@@ -405,6 +406,7 @@ export const handleEditArtist = async ({
   const validate = basicInformationIsValid(values);
 
   if (!validate.valid) {
+    console.log('Edit Invalid');
     setErrors(validate.errors);
     setLoading(false);
     return;
