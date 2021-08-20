@@ -175,6 +175,8 @@ const renderAddressFieldset = ({
   <AddressFieldset
     values={values}
     eventStepErrors={{}}
+    country={values.country}
+    state={values.state}
     handleAddressChange={({ target }) => setAddress(target.value)}
     handleCityChange={({ target }) => setCity(target.value)}
     handleDistrictChange={({ target }) => setDistrict(target.value)}
