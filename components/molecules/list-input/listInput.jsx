@@ -29,8 +29,10 @@ const normalizeString = (text) => {
   return str.replace(/[^a-zA-Z ]/g, '').toUpperCase();
 };
 
-const handleChange = (event, setValue, options, setList) => {
+const handleChange = (event, setValue, options, setList, setSelect) => {
   const { value } = event.target;
+
+  setSelect({});
 
   const list = options.filter((op) => {
     const label = normalizeString(op.label);
@@ -83,7 +85,7 @@ function ListInput(props) {
           placeholder={selected.label || placeholder}
           onBlur={(e) => e.preventDefault()}
           value={value || selected.label || ''}
-          onChange={(e) => handleChange(e, setValue, options, setList)}
+          onChange={(e) => handleChange(e, setValue, options, setList, onSelect)}
         />
       </Label>
       <Options focus={focus && list.length}>{renderOptions(list, select)}</Options>

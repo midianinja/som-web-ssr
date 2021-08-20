@@ -83,6 +83,12 @@ export const deleteSong = async (newSong, list, setList) => {
  * @param {function} props.cb callback function
  */
 export const handleCountrySelect = async ({ data, setStates, setCountry, cb }) => {
+  setCountry(data);
+  if (!data?.id) {
+    setStates([]);
+    return;
+  }
+  
   const countries = await client().query({
     query: allStateQuery,
     variables: {
@@ -100,7 +106,6 @@ export const handleCountrySelect = async ({ data, setStates, setCountry, cb }) =
 
   if (cb) cb({ states });
   setStates(states);
-  setCountry(data);
 };
 
 /**
