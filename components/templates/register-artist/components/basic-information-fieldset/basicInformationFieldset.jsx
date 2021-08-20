@@ -5,7 +5,9 @@ import UploadAvatar from '../../../../atoms/upload-avatar/uploadAvatar';
 import TextArea from '../../../../atoms/text-area/TextArea';
 import InputGroup from '../../../../molecules/input-group/inputGroup';
 import TagList from '../../../../molecules/tag-list/tagList';
-import AutocompleteInput from '../../../../molecules/autocomplete-input/autocompleteInput';
+// import AutocompleteInput from '../../../../molecules/autocomplete-input/autocompleteInput';
+import ListInput from '../../../../molecules/list-input/listInput';
+
 import {
   Fieldset,
   MainInformationWrapper,
@@ -31,7 +33,8 @@ const BasicInformationFieldset = ({
   handleMusicalStyleSelect,
   productorStepErrors,
   values,
-  descriptionMaxLength
+  descriptionMaxLength,
+  musicalStylesOptions
 }) => (
   <Fieldset>
     <Title>Informações do Artista/Banda</Title>
@@ -84,6 +87,24 @@ const BasicInformationFieldset = ({
         <InputGroup
           label={values.musicalStyles.length ? 'Estilos de música *' : ''}
           error={productorStepErrors.musicalStyles}>
+          {console.log(musicalStylesOptions)}
+          <ListInput
+            // selected={values.occupations}
+            id="musical_styles"
+            placeholder={values.musicalStyles.length ? '' : 'Estilos de música *'}
+            options={musicalStylesOptions.map(({ id, name }) => ({ id, label: name }))}
+            onSelect={handleMusicalStyleSelect}
+            onChange={handleMusicalStyleChange}></ListInput>
+
+          <TagList
+            handleClose={deleteTag}
+            data={values.musicalStyles}
+            customStyle={musicalGenresCustomStyle}
+          />
+        </InputGroup>
+        {/* <InputGroup
+          label={values.musicalStyles.length ? 'Estilos de música *' : ''}
+          error={productorStepErrors.musicalStyles}>
           <AutocompleteInput
             placeholder={values.musicalStyles.length ? '' : 'Estilos de música *'}
             predict={values.musicalStylePredict}
@@ -96,7 +117,7 @@ const BasicInformationFieldset = ({
             data={values.musicalStyles}
             customStyle={musicalGenresCustomStyle}
           />
-        </InputGroup>
+        </InputGroup> */}
       </TextInpustWrapper>
     </MainInformationWrapper>
     <InputGroup label={values.about ? 'Sobre você *' : ''} error={productorStepErrors.about}>
@@ -144,7 +165,8 @@ BasicInformationFieldset.propTypes = {
   handleIntegrants: PropTypes.func.isRequired,
   handleUsernameChange: PropTypes.func.isRequired,
   values: PropTypes.shape(valuesShape).isRequired,
-  productorStepErrors: PropTypes.shape(errorsShape).isRequired
+  productorStepErrors: PropTypes.shape(errorsShape).isRequired,
+  musicalStylesOptions: PropTypes.func.isRequired
 };
 
 export default BasicInformationFieldset;

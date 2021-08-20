@@ -67,7 +67,6 @@ const BasicInformationFieldset = ({
         <InputGroup
           label={values.occupations.length ? 'Área de Atuação *' : ''}
           error={productorStepErrors.occupations}>
-          {console.log(occupationOptions)}
           <ListInput
             // selected={values.occupations}
             id="occupation"
