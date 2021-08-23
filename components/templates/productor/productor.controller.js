@@ -299,7 +299,7 @@ const mapProductorToApi = (values, userId, locationId) => ({
   location: locationId,
   musical_styles: values.musicalStyles.map(({ id }) => id),
   occupations: values.occupations.map(({ id }) => id),
-  status: basicInformationIsValid(values) ? 'INCOMPLETE' : 'ACTIVE',
+  status: !basicInformationIsValid(values).valid ? 'INCOMPLETE' : 'ACTIVE',
   main_phone: values.mainPhone,
   secondary_phone: values.secondaryPhone,
   whatsapp: values.whatsapp,
@@ -422,14 +422,6 @@ export const handleEditProductor = async (
   const productor = { ...values };
   let newImage = null;
 
-  const validate = basicInformationIsValid(values);
-
-  if (!validate.valid) {
-    setErrors(validate.errors);
-    setLoading(false);
-    return;
-  }
-
   if (productor.avatar && productor.avatar.file) {
     setLoading({ show: true, text: 'Tratando imagen' });
 
@@ -470,7 +462,6 @@ export const handleEditProductor = async (
       setLoading({ show: false });
       return setErrors({ username: 'Nome de usuário já em uso, ou inválido' });
     }
-    console.log(err.graphQLErrors[0].message);
     throw err;
   }
 

@@ -7,6 +7,10 @@ import { Wrapper, Nav, Link, Logout, Terms, ExitButton, Community } from './navi
 const getLinks = (user, connectionType) => {
   const links = [
     {
+      href: '/',
+      label: 'Início'
+    },
+    {
       href: '/opportunities',
       label: 'Oportunidades'
     },

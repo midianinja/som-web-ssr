@@ -21,7 +21,10 @@ const renderMyOpporunities = (opportunities) =>
       <DashboardOpportunityCard
         name={opportunity.name}
         subscribeClosingDate={opportunity.subscribe_closing_date}
-        location={location}
+        eventDate={opportunity.event_date}
+        endEventDate={opportunity.end_event_date}
+        location={opportunity.location}
+        photo={opportunity.photo}
         subscriptionAmount={opportunity.subscribers.length}
       />
     </li>
@@ -42,9 +45,11 @@ const Dashboard = () => {
   const router = useRouter();
   const { state } = useContext(Store);
   const [myOpportunities, setMyOpportunities] = useState([]);
+  const [subscribedOpportunities, setSubscribedOpportunities] = useState([]);
+  const [selected, setSelected] = useState('created-by-me');
 
   useEffect(() => {
-    load({ id: state.user.productor.id, setMyOpportunities });
+    load({ id: state.user.productor.id, setMyOpportunities, setSubscribedOpportunities });
   }, []);
 
   let empty = false;

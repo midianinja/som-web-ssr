@@ -29,7 +29,7 @@ import {
  * logged productor profile
  */
 const Search = () => {
-  // const { state } = useContext(Store);
+  const { state } = useContext(Store);
   const [opportunities, setOpportunities] = useState([]);
   const [artists, setArtists] = useState([]);
   const [producers, setProducers] = useState([]);
@@ -75,7 +75,7 @@ const Search = () => {
                 key={artist.id}
                 artists={artist}
                 followersAmount={artist.follows.length}
-                isUserArtist={true}
+                isUserArtist={artist.id === state.user?.artist?.id}
               />
             ))}
           </ListResults>
@@ -94,18 +94,14 @@ const Search = () => {
           </NotFoundResults>
         ) : (
           <ListResults>
-            {producers.map(
-              (producer) => (
-                console.log(producer),
-                (
-                  <ProducerCard
-                    producers={producer}
-                    followersAmount={producer?.followers.length}
-                    isUserProducer={false}
-                  />
-                )
-              )
-            )}
+            {producers.map((producer) => (
+              <ProducerCard
+                key={producer.id}
+                producers={producer}
+                followersAmount={producer?.followers.length}
+                isUserProducer={producer.id === state?.user?.productor?.id}
+              />
+            ))}
           </ListResults>
         )}
       </ResultSection>

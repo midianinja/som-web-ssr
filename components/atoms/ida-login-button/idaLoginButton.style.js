@@ -19,6 +19,8 @@ export const IDALoginButtonWrapper = styled.button`
   background-color: transparent;
   padding: 4px 12px;
   cursor: pointer;
+
+  ${(props) => props.customStyle}
 `;
 
 export const IDALogo = styled.img`

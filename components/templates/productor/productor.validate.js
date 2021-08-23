@@ -1,7 +1,14 @@
-export const basicInformationIsValid = (
-  { name, about, cpf, cnpj, contactEmail, zipcode, address, number, country, state, city },
-  locationId
-) => {
+export const basicInformationIsValid = ({
+  name,
+  about,
+  contactEmail,
+  zipcode,
+  address,
+  number,
+  country,
+  state,
+  city
+}) => {
   let validated = true;
   const errors = {};
 
@@ -13,11 +20,6 @@ export const basicInformationIsValid = (
   if (!about) {
     validated = false;
     errors.about = 'Fale algo sobre você.';
-  }
-
-  if (!cpf || !cnpj) {
-    validated = false;
-    errors.cpf = 'Informe seu CPF.';
   }
 
   if (!contactEmail) {
@@ -55,9 +57,7 @@ export const basicInformationIsValid = (
     errors.city = 'Informe sua cidade.';
   }
 
-  zipcode;
-  if (!locationId) validated = false;
-
+  // if (!locationId) validated = false;
   return { valid: validated, errors };
 };
 
