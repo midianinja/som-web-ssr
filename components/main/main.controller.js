@@ -12,9 +12,9 @@ export const fetchLoggedUser = async (ida, dispatch, router) => {
     let response = await getUser(ida);
     let user = response.data.oneUser;
 
-    if (user && router.pathname === '/') {
-      router.push('/opportunities');
-    }
+    // if (user && router.pathname === '/') {
+    //   router.push('/opportunities');
+    // }
 
     // cria um novo usuário S.O.M caso não seja encontrado
     if (!user) {
