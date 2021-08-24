@@ -46,7 +46,7 @@ const ArtistPage = () => {
   });
   const [songs, setSongs] = useState([]);
 
-  const isUserArtist = state.user && state.user.artist && state.user.artist.id === label;
+  const isUserArtist = state.user && state.user.artist && state.user.artist.id === artist.id;
   useEffect(() => {
     if (label !== artist.id) {
       const fetchArtist = async () => {

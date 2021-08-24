@@ -25,6 +25,7 @@ export const searchProducersQuery = gql`
     searchProducers(text: $text) {
       id
       name
+      username
       photo
       followers {
         id
@@ -44,6 +45,7 @@ export const searchArtistsQuery = gql`
     newSearchArtists(text: $text) {
       id
       name
+      username
       avatar_image {
         thumbnail
         mimified

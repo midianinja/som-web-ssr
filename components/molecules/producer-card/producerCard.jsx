@@ -68,7 +68,7 @@ const ProducersCard = ({
     <Container>
       <ImageContainer>
         <Image
-          onClick={() => router.push(`/producer/${producers.id}`)}
+          onClick={() => router.push(`/producer/${producers.username}`)}
           src={producers.photo}></Image>
       </ImageContainer>
 

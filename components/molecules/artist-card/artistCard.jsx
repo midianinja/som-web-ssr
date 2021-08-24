@@ -66,10 +66,12 @@ const ArtistCard = ({
   return (
     <Container>
       <ImageContainer>
-        <Image onClick={() => router.push(`/artist/${artists.id}`)} src={artists.photo}></Image>
+        <Image
+          onClick={() => router.push(`/artist/${artists.username}`)}
+          src={artists.photo}></Image>
       </ImageContainer>
 
-      <Title onClick={() => router.push(`/artist/${artists.id}`)}>{artists.name} </Title>
+      <Title onClick={() => router.push(`/artist/${artists.username}`)}>{artists.name} </Title>
 
       <FollowText>
         <FollowNumber>{followersAmount}</FollowNumber>
