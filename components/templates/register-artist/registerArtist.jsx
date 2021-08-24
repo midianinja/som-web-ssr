@@ -282,7 +282,6 @@ const renderMusics = ({ visibles, setSongs, songs, setSubmitDisabled }) => {
 const RegisterArtistTemplate = () => {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
-  console.log('🚀 ~ state', state);
   const [about, setAbout] = useState('');
   const [address, setAddress] = useState('');
   const [zipcode, setZipcode] = useState('');
@@ -548,7 +547,7 @@ const RegisterArtistTemplate = () => {
               user: state.user,
               setErrors: setProductorStepErrors,
               router,
-              userId: state.user.id,
+              userId: state.user.id
             });
           }
         }}

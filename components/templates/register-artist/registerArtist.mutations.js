@@ -11,6 +11,7 @@ export const createArtistMutation = gql`
       avatar_image {
         mimified
       }
+      status
       about
       telegram
       integrants
@@ -65,6 +66,7 @@ export const updateArtistMutation = gql`
       id
       name
       phone
+      username
       members_number
       avatar_image {
         mimified

@@ -82,7 +82,7 @@ const Home = () => {
       />
       <DashBoard
         highlightedOportunities={highlightedOportunities}
-        news={news}
+        news={news.reverse()}
         latestOpportunities={latestOpportunities}
         artistOportunities={artistOportunities}
         productorOportunities={productorOportunities}

@@ -17,6 +17,13 @@ export const Card = styled.div`
 export const Figure = styled.figure`
   background: ${getGradient()};
   max-width: 70vw;
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
 `;
 
 export const Content = styled.div`
@@ -37,4 +44,15 @@ export const OpportunityName = styled.h3`
   line-height: 1.2em;
 
   color: #ffffff;
+`;
+
+export const SubscriptionText = styled.p`
+  color: #ffffff;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+
+  letter-spacing: 0.16px;
 `;

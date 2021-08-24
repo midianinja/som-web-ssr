@@ -17,6 +17,8 @@ export const oneUserQuery = gql`
         integrants
         telegram
         username
+        username
+        status
         tec_rider
         stage_map
         tec_release

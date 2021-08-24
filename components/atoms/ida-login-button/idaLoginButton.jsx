@@ -5,8 +5,8 @@ import { IDALoginButtonWrapper, IDALogo } from './idaLoginButton.style';
 /**
  * This render the button that open IDA Login modal component
  */
-const IDALoginButton = ({ onClick, dark }) => (
-  <IDALoginButtonWrapper type="button" dark={dark} onClick={onClick}>
+const IDALoginButton = ({ onClick, dark, customStyle }) => (
+  <IDALoginButtonWrapper type="button" dark={dark} onClick={onClick} customStyle={customStyle}>
     <IDALogo
       src={
         dark
@@ -21,11 +21,13 @@ const IDALoginButton = ({ onClick, dark }) => (
 
 IDALoginButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  dark: PropTypes.bool
+  dark: PropTypes.bool,
+  customStyle: PropTypes.string
 };
 
 IDALoginButton.defaultProps = {
-  dark: false
+  dark: false,
+  customStyle: ''
 };
 
 export default IDALoginButton;

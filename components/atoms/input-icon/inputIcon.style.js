@@ -38,5 +38,6 @@ export const icons = {
   info: '/icons/info.svg',
   location: '/icons/location.svg',
   loading: '/icons/dark-loading.svg',
-  search: '/icons/search.svg'
+  search: '/icons/search.svg',
+  'dark-search': '/icons/dark-search.svg'
 };

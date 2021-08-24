@@ -84,11 +84,17 @@ export const deleteSong = async (newSong, list, setList) => {
  */
 export const handleCountrySelect = async ({ data, setStates, setCountry, cb }) => {
   setCountry(data);
+<<<<<<< HEAD
   if (!data?.id) {
     setStates([]);
     return;
   }
   
+=======
+
+  if (!data?.id) return;
+
+>>>>>>> 072aaf2e716c09ff7b0bb18b342fbc59c2cb6951
   const countries = await client().query({
     query: allStateQuery,
     variables: {
@@ -288,7 +294,7 @@ const mapArtistToApi = (values, userId, locationId) => ({
   about: values.about,
   username: values.username,
   musical_styles: values.musicalStyles.map(({ id }) => id),
-  // status: basicInformationIsValid(values) ? 'INCOMPLETE' : 'ACTIVE',
+  status: !basicInformationIsValid(values).valid ? 'INCOMPLETE' : 'ACTIVE',
   phone: values.mainPhone,
   email: values.contactEmail,
   location: locationId,
@@ -353,12 +359,17 @@ export const handleCreateArtist = async ({
   const artist = { ...values };
   let uploadedAvatar;
 
+<<<<<<< HEAD
   const validate = basicInformationIsValid(values);
 
   if (!validate.valid) {
     console.log('Create Invalid');
     setErrors(validate.errors);
     setLoading(false);
+=======
+  if (!artist.username) {
+    setErrors({ username: 'Nome de usuário já em uso, ou inválido' });
+>>>>>>> 072aaf2e716c09ff7b0bb18b342fbc59c2cb6951
     return;
   }
 
@@ -403,11 +414,8 @@ export const handleEditArtist = async ({
   const artist = { ...values };
   let uploadedAvatar;
 
-  const validate = basicInformationIsValid(values);
-
-  if (!validate.valid) {
-    console.log('Edit Invalid');
-    setErrors(validate.errors);
+  if (!artist.username) {
+    setErrors({ username: 'Nome de usuário já em uso, ou inválido' });
     setLoading(false);
     return;
   }
@@ -504,7 +512,7 @@ export const handleEditArtist = async ({
       setLoading({ show: false });
       return setErrors({ username: 'Nome de usuário já em uso, ou inválido' });
     }
-    console.error([err]);
+
     setLoading({ show: false });
     throw err;
   }

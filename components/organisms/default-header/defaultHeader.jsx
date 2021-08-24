@@ -15,7 +15,9 @@ import {
   Name,
   ProfileWrapper,
   Logo,
-  Type
+  Type,
+  MobileLoginIcon,
+  MiddleWrapper
 } from './defaultHeader.style';
 import Input from '../../atoms/input-icon/InputIcon';
 
@@ -88,21 +90,39 @@ const Header = ({ customStyle }) => {
           <Input
             id="somSearch"
             placeholder="Buscar"
-            icon="search"
+            icon={state.connectionType === 'public' ? 'dark-search' : 'search'}
             customStyle={`
-              margin-left:16px;
               background-color:rgba(0, 0, 0, 0.3);
               height: 30px;
-              width: 130px;
-              margin-right: 10px;
+              width: 100%;
+              display: none;
               
               @media (min-width: 1024px) {
+                display: inline-flex;
                 width: 250px;
+                margin-left:16px;
+                margin-right: 10px;
               }
 
-              input::placeholder{
-                color: rgba(255, 255, 255, 0.6);
-                font-weight: 200;
+              ${
+                state.connectionType === 'public'
+                  ? `
+                background-color:rgba(0, 0, 0, 0.1);
+                input {
+                  color: #000000;
+                }
+                
+                input::placeholder{
+                  color: rgba(0, 0, 0, 0.5);
+                  font-weight: 400;
+                }
+              `
+                  : `
+                    input::placeholder{
+                      color: rgba(255, 255, 255, 0.6);
+                      font-weight: 200;
+                    }
+                  `
               }
             `}
             onChange={(e) => {
@@ -115,11 +135,58 @@ const Header = ({ customStyle }) => {
             }}
           />
         </Group>
-        <Logo
-          src={getSOMBrand()}
-          onClick={() => router.push('/')}
-          alt="Som, Sistema Operacional da Música"
-        />
+        <MiddleWrapper>
+          <Input
+            id="somSearch"
+            placeholder="Buscar"
+            icon="search"
+            customStyle={`
+              background-color:rgba(0, 0, 0, 0.1);
+              color: #000;
+              height: 30px;
+              width: 100%;
+              display: flex;
+              
+              @media (min-width: 1024px) {
+                display: none;
+              }
+
+              ${
+                state.connectionType === 'public'
+                  ? `
+                background-color:rgba(0, 0, 0, 0.1);
+                input {
+                  color: #000;
+                }
+
+                input::placeholder{
+                  color: rgba(0, 0, 0, 0.5);
+                  font-weight: 400;
+                }
+              `
+                  : `
+                    input::placeholder{
+                      color: rgba(255, 255, 255, 0.6);
+                      font-weight: 200;
+                    }
+                  `
+              }
+            `}
+            onChange={(e) => {
+              if (searchTimeout) {
+                clearTimeout(searchTimeout);
+              }
+              searchTimeout = setTimeout(() => {
+                router.push(`/search?q=${e.target.value}`);
+              }, 1000);
+            }}
+          />
+          <Logo
+            src={getSOMBrand()}
+            onClick={() => router.push('/')}
+            alt="Som, Sistema Operacional da Música"
+          />
+        </MiddleWrapper>
         <RightGroup hide={!state.auth || !state.auth._id}>
           <ProfileWrapper onClick={() => setDropdown(!dropdown)}>
             <Type dark={state.connectionType === 'public'}>{types[state.connectionType]}</Type>
@@ -184,10 +251,32 @@ const Header = ({ customStyle }) => {
         <RightGroup hide={state.auth && state.auth._id}>
           <IDALoginButton
             dark
+            customStyle={`
+              display: none;
+              @media (min-width: 1024px) {
+                display: inline-flex;
+              }
+            `}
             onClick={() => {
               if (state.idaSDK) state.idaSDK.signinWithPopup();
             }}
           />
+          <MobileLoginIcon
+            onClick={() => {
+              if (state.idaSDK) state.idaSDK.signinWithPopup();
+            }}
+            width="30"
+            height="30"
+            viewBox="0 0 36 36"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M18 3C9.72 3 3 9.72 3 18C3 26.28 9.72 33 18 33C26.28 33 33 26.28 33 18C33 9.72 26.28 3 18 3ZM10.6052 27.42C11.2502 26.07 15.1802 24.75 18.0002 24.75C20.8202 24.75 24.7652 26.07 25.3952 27.42C23.3552 29.04 20.7902 30 18.0002 30C15.2102 30 12.6452 29.04 10.6052 27.42ZM18 21.75C20.19 21.75 25.395 22.635 27.54 25.245C29.07 23.235 30 20.73 30 18C30 11.385 24.615 6 18 6C11.385 6 6 11.385 6 18C6 20.73 6.93 23.235 8.46 25.245C10.605 22.635 15.81 21.75 18 21.75ZM18 9C15.09 9 12.75 11.34 12.75 14.25C12.75 17.16 15.09 19.5 18 19.5C20.91 19.5 23.25 17.16 23.25 14.25C23.25 11.34 20.91 9 18 9ZM15.75 14.25C15.75 15.495 16.755 16.5 18 16.5C19.245 16.5 20.25 15.495 20.25 14.25C20.25 13.005 19.245 12 18 12C16.755 12 15.75 13.005 15.75 14.25Z"
+              fill="black"
+            />
+          </MobileLoginIcon>
         </RightGroup>
       </Wrapper>
     </HeaderComponent>

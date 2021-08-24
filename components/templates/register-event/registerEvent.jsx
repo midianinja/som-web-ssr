@@ -216,14 +216,12 @@ const RegisterEvent = () => {
   const [loading, setLoading] = useState(false);
 
   const mapContextToState = (event) => {
-    console.log("aloo", event)
-    setAddress(event.location)
-    setName(event.name || '');
+    setAddress(event.location);
+    setTitle(event.name || '');
     setDescription(event.about || '');
     setStreamUrl({ url: event.site || '' });
     setCover(event.cover || '');
     setAvatar(event.photo || '');
- 
   };
 
   useEffect(() => {
@@ -238,7 +236,16 @@ const RegisterEvent = () => {
     if (state.user && state.user.productor) {
       mapContextToState(state);
     }
-    fetchEventData(state.user.productor.events.findIndex(event => (event.id)));
+
+    if (router.query?.id)
+      fetchEventData(
+        router.query.id,
+        mapContextToState,
+        false,
+        () => {},
+        () => {},
+        router
+      );
   }, []);
 
   if (!state.user) {
@@ -251,14 +258,11 @@ const RegisterEvent = () => {
 
   if (
     !state.user.productor ||
-    !state.user.productor.id ||
-    state.user.productor.status !== 'ACTIVE'
+    !state.user.productor.id
+    // state.user.productor.status !== 'ACTIVE'
   ) {
-    router.push('/register-producer');
+    router.push('/producer');
   }
-
-  
-   
 
   const values = {
     avatar,
@@ -342,7 +346,7 @@ const RegisterEvent = () => {
       </FormWrapper>
       <StepEventFormFooter
         saveAction={() => {
-          if (!id) {
+          if (!router?.query?.id) {
             handleCreateEvent(
               values,
               state.user.id,
@@ -352,7 +356,7 @@ const RegisterEvent = () => {
               dispatch,
               state.user,
               router
-            )
+            );
           } else {
             handleEditEvent(
               values,
@@ -362,14 +366,12 @@ const RegisterEvent = () => {
               dispatch,
               state.user,
               router
-            )
+            );
           }
-        }
-        }
+        }}
         actionLabel="Criar oportunidade"
         loading={loading}
         cancelAction={() => null}
-
       />
     </Form>
   );

@@ -29,7 +29,7 @@ const normalizeString = (text) => {
   return str.replace(/[^a-zA-Z ]/g, '').toUpperCase();
 };
 
-const handleChange = (event, setValue, options, setList, setSelect) => {
+const handleChange = (event, setValue, options, setList, setSelect, onSelect) => {
   const { value } = event.target;
 
   setSelect({});
@@ -40,6 +40,7 @@ const handleChange = (event, setValue, options, setList, setSelect) => {
     return label.indexOf(myValue) >= 0;
   });
 
+  onSelect({});
   setValue(value);
   setList(list);
 };
