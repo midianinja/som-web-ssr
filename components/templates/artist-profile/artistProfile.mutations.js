@@ -1,26 +1,22 @@
 import { gql } from 'apollo-boost';
 
 export const followMutation = gql`
-  mutation($user: ID!, $artist: ID!) {
-    followArtist(user: $user, artist: $artist) {
-      id
+  mutation($id: String!, $user_id: String!) {
+    followArtist(id: $id, user_id: $user_id) {
+      name
       follows {
-        user {
-          id
-        }
+        id
       }
     }
   }
 `;
 
 export const unfollowMutation = gql`
-  mutation($user: ID!, $artist: ID!) {
-    unfollowArtist(user: $user, artist: $artist) {
-      id
+  mutation($id: String!, $user_id: String!) {
+    followArtist(id: $id, user_id: $user_id) {
+      name
       follows {
-        user {
-          id
-        }
+        id
       }
     }
   }

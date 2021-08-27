@@ -1,5 +1,6 @@
 import { client } from '../../../libs/apollo.lib';
 import { oneProductorQuery } from './productorProfile.queries';
+import { followProductor, unfollowProductor } from './productorProfile.repository';
 
 /**
  * this function request on S.O.M api infomation about the productor.
@@ -56,4 +57,21 @@ export const fetchProductorInstaImages = async (instaUri, setInstaPics) => {
   const { data } = await promise.json();
 
   setInstaPics(data);
+};
+
+export const follow = async (productor, user, follows, setFollows) => {
+  const newFollows = [...follows];
+
+  newFollows.push(user);
+  setFollows(newFollows);
+
+  await followProductor(productor.id, user.id);
+};
+
+export const unfollow = async (productor, user, follows, setFollows) => {
+  const newFollows = [...follows];
+  newFollows.splice(follows.indexOf(user), 1);
+  setFollows(newFollows);
+
+  await unfollowProductor(productor.id, user.id);
 };
