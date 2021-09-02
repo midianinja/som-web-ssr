@@ -84,17 +84,9 @@ export const deleteSong = async (newSong, list, setList) => {
  */
 export const handleCountrySelect = async ({ data, setStates, setCountry, cb }) => {
   setCountry(data);
-<<<<<<< HEAD
-  if (!data?.id) {
-    setStates([]);
-    return;
-  }
-  
-=======
 
   if (!data?.id) return;
 
->>>>>>> 072aaf2e716c09ff7b0bb18b342fbc59c2cb6951
   const countries = await client().query({
     query: allStateQuery,
     variables: {
@@ -359,17 +351,9 @@ export const handleCreateArtist = async ({
   const artist = { ...values };
   let uploadedAvatar;
 
-<<<<<<< HEAD
-  const validate = basicInformationIsValid(values);
-
-  if (!validate.valid) {
-    console.log('Create Invalid');
-    setErrors(validate.errors);
-    setLoading(false);
-=======
   if (!artist.username) {
     setErrors({ username: 'Nome de usuário já em uso, ou inválido' });
->>>>>>> 072aaf2e716c09ff7b0bb18b342fbc59c2cb6951
+    setLoading(false);
     return;
   }
 

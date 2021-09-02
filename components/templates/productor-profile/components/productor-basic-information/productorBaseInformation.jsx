@@ -16,6 +16,11 @@ import {
   LerMoreBio
 } from './productorBasicInformation.style';
 
+
+const renderFollowsActions = (isFollowing, followToggle) => (
+    
+);
+
 /**
  * This render the component that show basic information about
  * the productor.
@@ -33,14 +38,16 @@ const ProductorBasicInfo = ({
   twitter,
   email,
   isMyProductor,
-  history
+  history,
+  followToggle,
+  isFollowing,
 }) => {
   const [lerMoreBio, setLerMoreBio] = useState(false);
   const [stateOccupations, setStateOccupations] = useState([]);
   const colors = ['green', 'orange', 'magenta', 'yellow'];
 
   useEffect(() => {
-    console.log(occupations)
+    console.log(occupations);
     setStateOccupations(
       occupations.map(({ id, label }) => ({
         id,
@@ -101,12 +108,18 @@ const ProductorBasicInfo = ({
         </PrimaryButton>
       ) : (
         <div>
-          <PrimaryButton
-            customStyle={`
-        width: 200px;
-        `}>
-            Seguir
-          </PrimaryButton>
+          {isFollowing ? (
+            <PrimaryButton onClick={followToggle}  
+            customStyle={`width: 200px;`}>
+              Deixar de seguir
+            </PrimaryButton>
+          ) : (
+            <PrimaryButton onClick={followToggle}  
+            customStyle={`width: 200px;`}>
+              Seguir
+            </PrimaryButton>
+          )}
+          
           <PrimaryButton
             color="transparent"
             hoverColors="transparent"
@@ -152,6 +165,7 @@ ProductorBasicInfo.propTypes = {
   facebook: PropTypes.string.isRequired,
   instagram: PropTypes.string.isRequired,
   twitter: PropTypes.string.isRequired,
+  followToggle: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired
 };
 
