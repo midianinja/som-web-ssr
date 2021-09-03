@@ -16,11 +16,6 @@ import {
   LerMoreBio
 } from './productorBasicInformation.style';
 
-
-const renderFollowsActions = (isFollowing, followToggle) => (
-    
-);
-
 /**
  * This render the component that show basic information about
  * the productor.
@@ -40,7 +35,7 @@ const ProductorBasicInfo = ({
   isMyProductor,
   history,
   followToggle,
-  isFollowing,
+  isFollowing
 }) => {
   const [lerMoreBio, setLerMoreBio] = useState(false);
   const [stateOccupations, setStateOccupations] = useState([]);
@@ -109,17 +104,15 @@ const ProductorBasicInfo = ({
       ) : (
         <div>
           {isFollowing ? (
-            <PrimaryButton onClick={followToggle}  
-            customStyle={`width: 200px;`}>
+            <PrimaryButton onClick={followToggle} customStyle={`width: 200px;`}>
               Deixar de seguir
             </PrimaryButton>
           ) : (
-            <PrimaryButton onClick={followToggle}  
-            customStyle={`width: 200px;`}>
+            <PrimaryButton onClick={followToggle} customStyle={`width: 200px;`}>
               Seguir
             </PrimaryButton>
           )}
-          
+
           <PrimaryButton
             color="transparent"
             hoverColors="transparent"

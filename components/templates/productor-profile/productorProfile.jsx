@@ -75,7 +75,7 @@ const ProductorPage = () => {
   const [productorLoading, setProductorLoading] = useState(false);
   const [update, setUpdate] = useState(false);
   const [more, setMore] = useState(false);
-  const [follows, setFollows] = useState(false);
+  const [follows, setFollows] = useState();
   const [productor, setProductor] = useState(null);
   const [instagramPhotos] = useState([]);
   const [alertModal, setAlertModal] = useState({
@@ -88,7 +88,6 @@ const ProductorPage = () => {
     disagreeAction: '',
     isOpen: false
   });
-
   useEffect(() => {
     if (label) {
       fetchProductorData(label, setProductor, setProductorLoading, setAlertModal);
@@ -105,6 +104,12 @@ const ProductorPage = () => {
     if (productor) fetchProductorData(productor.id, setProductor, () => '', setAlertModal);
   }, [update]);
 
+  useEffect(() => {
+    if (productor?.follows) {
+      setFollows(productor?.follows.map(({ user }) => user.id));
+    }
+  }, [productor]);
+
   if (!productor || productorLoading) return null;
 
   if (alertModal.isOpen) {
@@ -120,11 +125,6 @@ const ProductorPage = () => {
       />
     );
   }
-  useEffect(() => {
-    if (productor?.follows) {
-      setFollows(productor.follows.map(({ user }) => user.id));
-    }
-  }, [productor]);
 
   const isMyProductor =
     state.user && state.user.productor && state.user.productor.id === productor.id;
