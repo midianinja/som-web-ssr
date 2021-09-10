@@ -129,7 +129,7 @@ const CarouselNews = ({ opportunities }) => {
         </IconWrapper>
         <IconWrapper
           onClick={() => {
-            if (page < Math.ceil(opportunities.length / 3) - 1) {
+            if (page < Math.ceil(opportunities.length / 4) - 1) {
               const newPage = page + 1;
               setPage(newPage);
             }

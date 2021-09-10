@@ -47,8 +47,12 @@ const ProducersCard = ({
     </>
   );
 
-  const renderEditAction = (onClick) => (
-    <PrimaryButton onClick={onClick} customStyle={followButtonCustomStyled}>
+  const renderEditAction = () => (
+    <PrimaryButton
+      onClick={() => {
+        router.push(`/producer`);
+      }}
+      customStyle={followButtonCustomStyled}>
       <EditIcon src="/icons/edit-white.svg" />
       Editar
     </PrimaryButton>
@@ -80,9 +84,7 @@ const ProducersCard = ({
       </FollowText>
 
       <ActionWrapper>
-        {!isUserProducer
-          ? renderSubiscribeActions(isFollowing, followToggle)
-          : renderEditAction(editAction)}
+        {!isUserProducer ? renderSubiscribeActions(isFollowing, followToggle) : renderEditAction()}
       </ActionWrapper>
     </Container>
   );
