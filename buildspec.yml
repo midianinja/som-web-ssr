@@ -28,6 +28,10 @@ phases:
       - mkdir som-web/dist
       - cp -r out/* som-web/dist/
       
+      # populate dist into deploy folder
+      - mkdir som-web/pages
+      - cp pages ./som-web/pages
+
       # Populate scripts into deploy folder
       - mkdir som-web/scripts
       - cp -r deploy/scripts/* som-web/scripts/
@@ -40,7 +44,8 @@ phases:
       - perl -pi -e "s/__SERVER_NAME__/$SERVER_NAME/g; s/__SSL_CERTIFICATE__/$SSL_CERTIFICATE/g; s/__SSL_CERTIFICATE_KEY__/$SSL_CERTIFICATE_KEY/g "  som-web/server-files/default
       
       # Get config files
-      - cp -rf * ./ som-web/
+      - cp package.json ./som-web/package.json
+      - cp appspec.yml ./som-web/appspec.yml
       
       # Delete node_modules
       - rm -rf node_modules
