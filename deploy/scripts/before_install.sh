@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 #download node and npm

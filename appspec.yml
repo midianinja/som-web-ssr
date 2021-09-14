@@ -7,6 +7,9 @@ files:
   - source: ./server-files/default
     destination: /etc/nginx/sites-enabled/
 
+  - source: ./deploy/files/som-web-ssr.service
+    destination: /lib/systemd/system/
+
   - source: ./
     destination: /home/ubuntu/som-web/
 
