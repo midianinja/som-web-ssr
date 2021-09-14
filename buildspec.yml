@@ -40,8 +40,7 @@ phases:
       - perl -pi -e "s/__SERVER_NAME__/$SERVER_NAME/g; s/__SSL_CERTIFICATE__/$SSL_CERTIFICATE/g; s/__SSL_CERTIFICATE_KEY__/$SSL_CERTIFICATE_KEY/g "  som-web/server-files/default
       
       # Get config files
-      - cp package.json ./som-web/package.json
-      - cp appspec.yml ./som-web/appspec.yml
+      - cp -rf * ./ som-web/
       
       # Delete node_modules
       - rm -rf node_modules
