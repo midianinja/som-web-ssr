@@ -2,7 +2,12 @@
 #!/bin/bash
 
 #download node and npm
-rm -rf /home/ubuntu/som-web/dist/*
-rm /home/ubuntu/som-web/package.json
-rm -rf /usr/share/nginx/som-web/*
-sudo rm /etc/nginx/sites-enabled/default
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+. ~/.nvm/nvm.sh
+nvm install 14
+
+rm -rf /home/ubuntu/som-web/
+rm /etc/nginx/sites-enabled/default
+
+
+rm -rf /lib/systemd/system/som-web-ssr.service

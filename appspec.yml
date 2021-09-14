@@ -3,12 +3,12 @@ os: linux
 files:
   - source: ./dist/
     destination: /usr/share/nginx/som-web/
-
-  - source: ./package.json
-    destination: /home/ubuntu/som-web/
  
   - source: ./server-files/default
     destination: /etc/nginx/sites-enabled/
+
+  - source: ./
+    destination: /home/ubuntu/som-web/
 
 hooks:
   BeforeInstall:

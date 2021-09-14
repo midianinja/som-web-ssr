@@ -1,0 +1,16 @@
+[Unit]
+Description=SOM WEB SSR
+Documentation=https://github.com/midianinja/som-web-ssr
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/som-web-ssr
+ExecStart=/usr/bin/npm run start
+EnvironmentFile=/etc/environments/som-web-ssr.config
+Restart=always
+StartLimitBurst=0
+
+[Install]
+WantedBy=multi-user.target
