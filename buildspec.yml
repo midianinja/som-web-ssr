@@ -34,6 +34,7 @@ phases:
     
       # Populate server files into deploy folder
       - mkdir som-web/server-files
+      - cp -r deploy/files/som-web-ssr.service som-web/server-files/som-web-ssr.service
       - cp -r deploy/files/nginx.config som-web/server-files/default
 
       - perl -pi -e "s/__SERVER_NAME__/$SERVER_NAME/g; s/__SSL_CERTIFICATE__/$SSL_CERTIFICATE/g; s/__SSL_CERTIFICATE_KEY__/$SSL_CERTIFICATE_KEY/g "  som-web/server-files/default
