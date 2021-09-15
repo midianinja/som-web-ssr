@@ -7,7 +7,11 @@ import {
   updateLocation,
   getViaCepLocation
 } from './productor.repository';
-import { basicInformationIsValid } from './productor.validate';
+import {
+  basicInformationIsValid,
+  contactInformationValid,
+  locationInformationValid
+} from './productor.validate';
 import { allCountriesQuery, allStateQuery } from './productor.queries';
 import { getBase64, uploadImageToStorage } from '../../../utils/file.utils';
 
@@ -344,12 +348,34 @@ export const handleCreateProductor = async ({
   const productor = { ...values };
   let newImage = null;
 
-  const validate = basicInformationIsValid(values);
+  let validate;
+
+  validate = basicInformationIsValid(values);
 
   if (!validate.valid) {
     setErrors(validate.errors);
     setLoading(false);
     return;
+  }
+
+  if (visibles.location) {
+    validate = locationInformationValid(values);
+
+    if (!validate.valid) {
+      setErrors(validate.errors);
+      setLoading(false);
+      return;
+    }
+  }
+
+  if (visibles.contact) {
+    validate = contactInformationValid(values);
+
+    if (!validate.valid) {
+      setErrors(validate.errors);
+      setLoading(false);
+      return;
+    }
   }
 
   if (productor.avatar && productor.avatar.file) {
@@ -419,6 +445,36 @@ export const handleEditProductor = async (
   setErrors,
   router
 ) => {
+  let validate;
+
+  validate = basicInformationIsValid(values);
+
+  if (!validate.valid) {
+    setErrors(validate.errors);
+    setLoading(false);
+    return;
+  }
+
+  if (visibles.location) {
+    validate = locationInformationValid(values);
+
+    if (!validate.valid) {
+      setErrors(validate.errors);
+      setLoading(false);
+      return;
+    }
+  }
+
+  if (visibles.contact) {
+    validate = contactInformationValid(values);
+
+    if (!validate.valid) {
+      setErrors(validate.errors);
+      setLoading(false);
+      return;
+    }
+  }
+
   const productor = { ...values };
   let newImage = null;
 
