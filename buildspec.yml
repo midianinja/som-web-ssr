@@ -46,7 +46,7 @@ phases:
       
       # populate dist into deploy folder
       - mkdir som-web/components
-      - cp/* -r components ./som-web/components
+      - cp -r components/* ./som-web/components
       
       # populate dist into deploy folder
       - mkdir som-web/mutations
