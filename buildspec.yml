@@ -42,7 +42,7 @@ phases:
       
       # populate dist into deploy folder
       - mkdir som-web/.next
-      - cp -r .next ./som-web/.next
+      - cp -r .next/ ./som-web/.next
       
       # populate dist into deploy folder
       - mkdir som-web/components
