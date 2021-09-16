@@ -30,43 +30,43 @@ phases:
       
       # populate dist into deploy folder
       - mkdir som-web/pages
-      - cp -r pages ./som-web/pages
+      - cp/ -r pages/* ./som-web/pages
       
       # populate dist into deploy folder
       - mkdir som-web/out
-      - cp -r out ./som-web/out
+      - cp -r out/* ./som-web/out
       
       # populate dist into deploy folder
       - mkdir som-web/store
-      - cp -r store ./som-web/store
+      - cp -r store/* ./som-web/store
       
       # populate dist into deploy folder
       - mkdir som-web/.next
-      - cp -r .next/ ./som-web/.next
+      - cp -r .next/* ./som-web/.next/
       
       # populate dist into deploy folder
       - mkdir som-web/components
-      - cp -r components ./som-web/components
+      - cp/* -r components ./som-web/components
       
       # populate dist into deploy folder
       - mkdir som-web/mutations
-      - cp -r mutations ./som-web/mutations
+      - cp -r mutations/* ./som-web/mutations
       
       # populate dist into deploy folder
       - mkdir som-web/libs
-      - cp -r libs ./som-web/libs
+      - cp -r libs/* ./som-web/libs
       
       # populate dist into deploy folder
       - mkdir som-web/public
-      - cp -r public ./som-web/public
+      - cp -r public/* ./som-web/public
       
       # populate dist into deploy folder
       - mkdir som-web/queries
-      - cp -r queries ./som-web/queries
+      - cp -r queries/* ./som-web/queries
       
       # populate dist into deploy folder
       - mkdir som-web/css
-      - cp -r css ./som-web/css
+      - cp -r css/* ./som-web/css
 
       # Populate scripts into deploy folder
       - mkdir som-web/scripts
