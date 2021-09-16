@@ -30,7 +30,7 @@ phases:
       
       # populate dist into deploy folder
       - mkdir som-web/pages
-      - cp/ -r pages/* ./som-web/pages
+      - cp -r pages/* ./som-web/pages
       
       # populate dist into deploy folder
       - mkdir som-web/out
