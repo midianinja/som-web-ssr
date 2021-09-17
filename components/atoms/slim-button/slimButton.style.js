@@ -46,8 +46,8 @@ const getColor = (key) => {
 
 export const SlimButtonStyle = styled.button`
   height: ${(props) => getSize(props.size)};
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 18px;
+  padding-right: 18px;
   background-color: transparent;
   border-radius: ${(props) => getSize(props.size)};
   border: solid 2px ${(props) => getColor(props.color)};

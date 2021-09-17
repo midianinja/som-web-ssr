@@ -40,7 +40,6 @@ const ProductorBasicInfo = ({
   const colors = ['green', 'orange', 'magenta', 'yellow'];
 
   useEffect(() => {
-    console.log(occupations)
     setStateOccupations(
       occupations.map(({ id, label }) => ({
         id,

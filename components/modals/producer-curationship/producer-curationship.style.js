@@ -1,7 +1,17 @@
 import styled from 'styled-components';
-import { black50, white, purple, black, green, red, gray04 } from '../../../settings/colors';
+import {
+  black50,
+  white,
+  black,
+  green,
+  red,
+  gray04,
+  secondaryGreen,
+  secondaryRed
+} from '../../../settings/colors';
+import { getGradient } from '../../../settings/gradients';
 
-export const ArtistCurationshipModalWrapper = styled.section`
+export const ProducerCurationshipModalWrapper = styled.section`
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -27,33 +37,51 @@ export const CloseIcon = styled.img`
   cursor: pointer;
 `;
 
-export const ProfileImage = styled.img`
+export const ProfileImage = styled.figure`
   width: 120px;
-  border-radius: 100%;
+  height: 120px;
+  border-radius: 50%;
+  background: ${getGradient()};
+
   @media (max-width: 768px) {
     width: 90px;
+    height: 90px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    object-fit: cover;
+    object-position: center;
+  }
+
+  img[src=''] {
+    display: none;
   }
 `;
 
-export const ArtistWrapper = styled.div`
+export const ProducerWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
 `;
 
-export const ArtistInfos = styled.div`
+export const ProducerInfos = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   width: 290px;
+
   @media (max-width: 768px) {
     width: 200px;
   }
 `;
 
-export const ArtistName = styled.h2`
+export const ProducerName = styled.h2`
   font-size: 1.5em;
   max-height: 50px;
   overflow: hidden;
@@ -67,6 +95,17 @@ export const ArtistName = styled.h2`
   -webkit-box-orient: vertical;
 `;
 
+export const ProducerLabel = styled.label`
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 18px;
+
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  color: #ffffff;
+`;
+
 export const Label = styled.p`
   font-size: 0.8em;
   padding-top: 20px;
@@ -74,12 +113,14 @@ export const Label = styled.p`
 
 export const Empty = styled.p`
   color: ${gray04};
-  padding: 20px;
+  padding: 24px;
   display: flex;
   justify-content: center;
   letter-spacing: 0.1em;
   align-items: center;
-  font-size: 1em;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+
   @media (max-width: 768px) {
     height: 60vh;
   }
@@ -91,35 +132,29 @@ export const Bold = styled.label`
 
 export const GreenBold = styled.label`
   font-weight: bold;
-  color: ${green};
+  color: ${white};
 `;
 
 export const RedBold = styled.label`
   font-weight: bold;
-  color: ${red};
+  color: ${white};
 `;
 
-export const ArtistDescription = styled.p`
-  font-size: 0.7em;
+export const ProducerDescription = styled.p`
+  font-size: 14px;
   line-height: 1em;
   color: ${white};
-  max-height: 20px;
   overflow: hidden;
   text-align: left;
   font-weight: 100;
   width: 100%;
-  white-space: normal;
-  display: -webkit-box;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 `;
 
 export const ProfileLink = styled.a`
   font-size: 0.7em;
   line-height: 1em;
-  padding-top: 32px;
-  color: ${white};
+  padding-top: 16px;
+  color: ${green};
   cursor: pointer;
 `;
 
@@ -157,13 +192,17 @@ export const Container = styled.div`
 export const WhiteZone = styled.div`
   width: 100%;
   text-align: center;
-  background-color: ${white};
+  background-color: ${({ approved }) => {
+    if (!approved) return white;
+    return approved === 'approved' ? '#20a676' : red;
+  }};
   align-self: flex-end;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: ${black};
+  color: ${({ approved }) => (approved ? white : black)};
+
   @media (max-width: 768px) {
     position: fixed;
     bottom: 0;
@@ -179,14 +218,22 @@ export const ButtonsWrapper = styled.div`
 export const aprroveButtonStyle = `
   padding: 7px 21px;
   height: auto;
-  background-color: ${green};
+  background-color: ${secondaryGreen};
   margin: 0 7px;
+
+  &:hover {
+    background-color: ${green};
+  }
 `;
 
 export const reproveButtonStyle = `
   padding: 7px 21px;
   height: auto;
   background-color: ${red};
+
+  &:hover {
+    background-color: ${secondaryRed};
+  }
 `;
 
 export const audioListStyle = `
@@ -199,9 +246,8 @@ export const audioListStyle = `
 `;
 export const resetSubscriptionStyle = `
   margin-bottom: 10px;
-  margin-top: 10px;
   background-color: transparent;
-  color: ${black};
+  color: ${white};
   font-weight: 600;
   text-decoration: underline;
 

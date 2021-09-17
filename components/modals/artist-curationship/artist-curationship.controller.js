@@ -1,5 +1,5 @@
 import { client } from '../../../libs/apollo.lib';
-import { allSongsQuery } from './artistCurationship.queries';
+import { allSongsQuery } from './artist-curationship.queries';
 
 export const fetchSongs = async ({ artist, setSongs }) => {
   const songsPromise = await client().query({

@@ -31,7 +31,7 @@ const getLinks = (user, connectionType) => {
       hide: !user || connectionType !== 'productor'
     },
     {
-      href: '/my-events',
+      href: '/dashboard',
       label: 'Painel de Oportunidades',
       hide: !user || connectionType !== 'productor'
     },

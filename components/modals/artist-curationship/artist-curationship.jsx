@@ -5,7 +5,7 @@ import { purple, purple15, purple50 } from '../../../settings/colors';
 import Cover from '../../atoms/cover/cover';
 import AudioPlayer from '../../organisms/audio-player/audioPlayer';
 import PrimaryButton from '../../atoms/primary-button/primaryButton';
-import { fetchSongs } from './artistCurationship.controller';
+import { fetchSongs } from './artist-curationship.controller';
 import {
   ArtistCurationshipModalWrapper,
   CloseWrapper,
@@ -14,6 +14,7 @@ import {
   ArtistWrapper,
   ArtistInfos,
   ArtistName,
+  ArtistLabel,
   Label,
   Empty,
   Bold,
@@ -30,14 +31,14 @@ import {
   reproveButtonStyle,
   audioListStyle,
   resetSubscriptionStyle
-} from './artistCurationship.style';
+} from './artist-curationship.style';
 
-const curatorAction = ({ artist, approveAction, reproveAction }) => (
+const curatorAction = ({ opportunity, artist, approveAction, reproveAction }) => (
   <WhiteZone>
     <Label>
-      <Bold>{`${artist.name} `}</Bold>
+      <Bold>{`${artist?.name} `}</Bold>
       se inscreveu em
-      <Bold>{` ${artist.event.name} `}</Bold>
+      <Bold>{` ${opportunity?.name} `}</Bold>
     </Label>
     <ButtonsWrapper>
       <PrimaryButton customStyle={aprroveButtonStyle} onClick={approveAction}>
@@ -50,16 +51,16 @@ const curatorAction = ({ artist, approveAction, reproveAction }) => (
   </WhiteZone>
 );
 
-const resetRateAction = ({ artist, resetSubscriptionAction }) => (
-  <WhiteZone>
+const resetRateAction = ({ opportunity, artist, resetSubscriptionAction }) => (
+  <WhiteZone approved={artist?.approved}>
     <Label>
       Banda
-      {artist.approved === 'aprovada' ? (
+      {artist?.approved === 'approved' ? (
         <GreenBold>{' aprovada '}</GreenBold>
       ) : (
         <RedBold>{' reprovada '}</RedBold>
       )}
-      para o<Bold>{` ${artist.event.name} `}</Bold>
+      para o<Bold>{` ${opportunity?.name} `}</Bold>
     </Label>
     <PrimaryButton onClick={resetSubscriptionAction} customStyle={resetSubscriptionStyle}>
       Reavaliar artista
@@ -69,10 +70,11 @@ const resetRateAction = ({ artist, resetSubscriptionAction }) => (
 
 const ArtistCurationshipModal = ({
   artist,
+  opportunity,
   closeModal,
   resetSubscriptionAction,
   reproveAction,
-  approveAction,
+  approveAction
 }) => {
   const router = useRouter();
   const [songs, setSongs] = useState([]);
@@ -84,12 +86,14 @@ const ArtistCurationshipModal = ({
   if (!artist) return null;
 
   return (
-    <ArtistCurationshipModalWrapper id="artists-curationship" onClick={() => {
-      closeModal();
-    }}>
+    <ArtistCurationshipModalWrapper
+      id="artists-curationship"
+      onClick={() => {
+        closeModal();
+      }}>
       <Container onClick={(e) => e.stopPropagation()}>
         <CoverWrapper>
-          <Cover customStyle="padding: 0; height: 180px;" cover={artist.cover}>
+          <Cover customStyle="padding: 0; min-height: 100px;" cover={artist?.cover}>
             <HeaderWrapper>
               <CloseWrapper>
                 <CloseIcon
@@ -101,11 +105,17 @@ const ArtistCurationshipModal = ({
                 />
               </CloseWrapper>
               <ArtistWrapper>
-                <ProfileImage src={artist.avatar.mimified} />
+                <ProfileImage>
+                  <img alt="" src={artist?.avatar_image?.mimified} />
+                </ProfileImage>
                 <ArtistInfos>
-                  <ArtistName>{artist.name}</ArtistName>
-                  <ArtistDescription>{artist.about}</ArtistDescription>
-                  <ProfileLink onClick={() => router.push(`/artist/${artist.username}`)}>
+                  <ArtistLabel>Artista</ArtistLabel>
+                  <ArtistName>{artist?.name}</ArtistName>
+                  <ArtistDescription>
+                    {artist?.about.slice(0, 100)}
+                    {artist?.about.length > 100 ? '...' : ''}
+                  </ArtistDescription>
+                  <ProfileLink onClick={() => router.push(`/artist/${artist?.username}`)}>
                     Ver perfil completo
                   </ProfileLink>
                 </ArtistInfos>
@@ -127,8 +137,8 @@ const ArtistCurationshipModal = ({
           <Empty>Artista sem musicas</Empty>
         )}
         {artist.approved
-          ? resetRateAction({ artist, resetSubscriptionAction })
-          : curatorAction({ artist, approveAction, reproveAction })}
+          ? resetRateAction({ opportunity, artist, resetSubscriptionAction })
+          : curatorAction({ opportunity, artist, approveAction, reproveAction })}
       </Container>
     </ArtistCurationshipModalWrapper>
   );
@@ -153,6 +163,7 @@ resetRateAction.propTypes = {
 
 ArtistCurationshipModal.propTypes = {
   artist: PropTypes.shape(artistShape).isRequired,
+  opportunity: PropTypes.shape({ name: PropTypes.string }).isRequired,
   closeModal: PropTypes.func.isRequired,
   reproveAction: PropTypes.func.isRequired,
   approveAction: PropTypes.func.isRequired,

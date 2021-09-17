@@ -8,13 +8,16 @@ import { CoverStyle } from './cover.style';
  * @param {object} props component props
  * @returns contains CoverAtom Component
  */
-const CoverAtom = ({ cover, customStyle }) => (
-  <CoverStyle cover={cover} customStyle={customStyle} />
+const CoverAtom = ({ cover, customStyle, children }) => (
+  <CoverStyle cover={cover} customStyle={customStyle}>
+    {children}
+  </CoverStyle>
 );
 
 CoverAtom.propTypes = {
   cover: PropTypes.string,
-  customStyle: PropTypes.string
+  customStyle: PropTypes.string,
+  children: PropTypes.any
 };
 
 CoverAtom.defualtProps = {

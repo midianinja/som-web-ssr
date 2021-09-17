@@ -19,6 +19,7 @@ const renderMyOpporunities = (opportunities) =>
   opportunities.map((opportunity) => (
     <li key={opportunity.id}>
       <DashboardOpportunityCard
+        id={opportunity.id}
         name={opportunity.name}
         subscribeClosingDate={opportunity.subscribe_closing_date}
         eventDate={opportunity.event_date}
