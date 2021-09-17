@@ -8,7 +8,7 @@ import Eventcard from '../../molecules/event-card/eventCard';
 import DialogModal from '../../modals/dialog/dialog';
 import ProductorBasicInfo from './components/productor-basic-information/productorBaseInformation';
 import Store from '../../../store/Store';
-import { fetchProductorData } from './productorProfile.controller';
+import { fetchProductorData, follow, unfollow } from './productorProfile.controller';
 import {
   ProductorWrapper,
   CoverWrapper,
@@ -75,6 +75,7 @@ const ProductorPage = () => {
   const [productorLoading, setProductorLoading] = useState(false);
   const [update, setUpdate] = useState(false);
   const [more, setMore] = useState(false);
+  const [follows, setFollows] = useState();
   const [productor, setProductor] = useState(null);
   const [instagramPhotos] = useState([]);
   const [alertModal, setAlertModal] = useState({
@@ -87,7 +88,6 @@ const ProductorPage = () => {
     disagreeAction: '',
     isOpen: false
   });
-
   useEffect(() => {
     if (label) {
       fetchProductorData(label, setProductor, setProductorLoading, setAlertModal);
@@ -103,6 +103,12 @@ const ProductorPage = () => {
   useEffect(() => {
     if (productor) fetchProductorData(productor.id, setProductor, () => '', setAlertModal);
   }, [update]);
+
+  useEffect(() => {
+    if (productor?.follows) {
+      setFollows(productor?.follows.map(({ user }) => user.id));
+    }
+  }, [productor]);
 
   if (!productor || productorLoading) return null;
 
@@ -122,6 +128,16 @@ const ProductorPage = () => {
 
   const isMyProductor =
     state.user && state.user.productor && state.user.productor.id === productor.id;
+
+  const handleFollow = () => {
+    if (!state.user) {
+      state.idaSDK.signinWithPopup();
+    } else if (state.user && follows.indexOf(state.user.id) !== -1) {
+      unfollow(productor.id, state.user.id, setFollows, follows);
+    } else {
+      follow(productor.id, state.user.id, setFollows, follows);
+    }
+  };
 
   return (
     <ProductorWrapper>
@@ -145,6 +161,10 @@ const ProductorPage = () => {
           email={productor.contact_email}
           isMyProductor={isMyProductor}
           history={router}
+          followToggle={handleFollow}
+          isFollowing={
+            state.user && productor.follows ? follows.indexOf(state.user.id) !== -1 : false
+          }
         />
         <ColumnWrapper>
           <EventsTitle>Oportunidades</EventsTitle>

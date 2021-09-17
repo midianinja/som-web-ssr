@@ -1,13 +1,12 @@
 import { client } from '../../../libs/apollo.lib';
 import { oneArtistQuery, allSongsQuery, searchArtistsQuery } from './artistProfile.queries';
 import {
-  followMutation,
-  unfollowMutation,
   deleteSongMutation,
   editSongMutation,
   favoriteSongMutation,
   unfavoriteSongMutation
 } from './artistProfile.mutations';
+import { followArtist, unfollowArtist } from './artistProfile.repository';
 
 const fetchSongs = (artist) =>
   client().query({
@@ -114,10 +113,7 @@ export const follow = async (artist, user, setFollows, follows) => {
   newFollows.push(user);
   setFollows(newFollows);
 
-  await client().mutate({
-    mutation: followMutation,
-    variables: { artist, user }
-  });
+  await followArtist(artist.id, user.id);
 };
 
 export const unfollow = async (artist, user, setFollows, follows) => {
@@ -125,10 +121,7 @@ export const unfollow = async (artist, user, setFollows, follows) => {
   newFollows.splice(follows.indexOf(user), 1);
   setFollows(newFollows);
 
-  await client().mutate({
-    mutation: unfollowMutation,
-    variables: { artist, user }
-  });
+  await unfollowArtist(artist.id, user.id);
 };
 
 export const favoriteSong = async (user, song, dispatch, favoritedSongs) => {

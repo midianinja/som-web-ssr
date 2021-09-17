@@ -37,9 +37,7 @@ export const oneArtistQuery = gql`
       instagram
       youtube
       follows {
-        user {
-          id
-        }
+        id
       }
       spotify_artist_link
     }
