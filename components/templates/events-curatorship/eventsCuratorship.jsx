@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Store from '../../../store/Store';
-import ArtistCurationshipModal from '../../modals/artist-curationship/artistCurationship';
+import ArtistCurationshipModal from '../../modals/artist-curationship/artist-curationship';
 import Header from '../../organisms/default-header/defaultHeader';
 import Avatar from '../../atoms/avatar/avatar';
 import {
