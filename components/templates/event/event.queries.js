@@ -88,6 +88,7 @@ export const getOneEventQuery = gql`
         id
         photo
         name
+        username
         description
         followers {
           id

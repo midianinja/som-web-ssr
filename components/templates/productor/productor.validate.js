@@ -1,21 +1,15 @@
-export const basicInformationIsValid = ({
-  name,
-  about,
-  contactEmail,
-  zipcode,
-  address,
-  number,
-  country,
-  state,
-  city,
-  occupations
-}) => {
+export const basicInformationIsValid = ({ name, username, about, occupations }) => {
   let validated = true;
   const errors = {};
 
   if (!name) {
     validated = false;
     errors.name = 'Informe o seu nome completo.';
+  }
+
+  if (!username) {
+    validated = false;
+    errors.username = 'Informe o seu nome de usuário.';
   }
 
   if (!occupations.length) {
@@ -28,10 +22,24 @@ export const basicInformationIsValid = ({
     errors.about = 'Fale algo sobre você.';
   }
 
+  return { valid: validated, errors };
+};
+
+export const contactInformationValid = ({ contactEmail }) => {
+  let validated = true;
+  const errors = {};
+
   if (!contactEmail) {
     validated = false;
     errors.contactEmail = 'Informe seu e-mail.';
   }
+
+  return { valid: validated, errors };
+};
+
+export const locationInformationValid = ({ zipcode, address, number, country, state, city }) => {
+  let validated = true;
+  const errors = {};
 
   if (!zipcode) {
     validated = false;
@@ -66,4 +74,4 @@ export const basicInformationIsValid = ({
   return { valid: validated, errors };
 };
 
-export default basicInformationIsValid;
+export default { basicInformationIsValid, contactInformationValid, locationInformationValid };

@@ -16,8 +16,9 @@ const renderArtists = (artists, artistClick, approveds) =>
   [...approveds, ...artists].map((artist) => {
     const src = artist && artist.avatar_image ? artist.avatar_image.mimified : '';
     return (
-      <Card key={artist.id} id={artist.id} onClick={() => artistClick(artist.id)}>
-        <ApprovedTag show={approveds.findIndex(({ username }) => artist.username === username) !== -1}>
+      <Card key={artist.id} id={artist.id} onClick={() => artistClick(artist.username)}>
+        <ApprovedTag
+          show={approveds.findIndex(({ username }) => artist.username === username) !== -1}>
           APROVADO
         </ApprovedTag>
         <Avatar src={src} customStyle={avatarCustomStyle} />
