@@ -15,6 +15,7 @@ import {
 const ProductorCard = ({ productor, router }) => (
   <Container onClick={() => router.push(`/producer/${productor?.username}`)}>
     <ImageWrapper>
+      {console.log(productor)}
       <Avatar customStyle={avatarStyle} src={productor?.photo} />
       <ProductorTitle>Produtor</ProductorTitle>
     </ImageWrapper>
