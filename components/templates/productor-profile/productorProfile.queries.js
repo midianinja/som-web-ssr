@@ -53,6 +53,9 @@ export const oneProductorQuery = gql`
       facebook
       twitter
       youtube
+      follows {
+        id
+      }
       location {
         city
         state

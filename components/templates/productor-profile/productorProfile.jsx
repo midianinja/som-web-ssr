@@ -106,7 +106,7 @@ const ProductorPage = () => {
 
   useEffect(() => {
     if (productor?.follows) {
-      setFollows(productor?.follows.map(({ user }) => user.id));
+      setFollows(productor?.follows.map((id) => id));
     }
   }, [productor]);
 
@@ -132,10 +132,10 @@ const ProductorPage = () => {
   const handleFollow = () => {
     if (!state.user) {
       state.idaSDK.signinWithPopup();
-    } else if (state.user && follows.indexOf(state.user.id) !== -1) {
-      unfollow(productor.id, state.user.id, setFollows, follows);
+    } else if (state.user && follows.some((obj) => obj?.id === state.user.id)) {
+      unfollow(productor, state.user, follows, setFollows);
     } else {
-      follow(productor.id, state.user.id, setFollows, follows);
+      follow(productor, state.user, follows, setFollows);
     }
   };
 
@@ -163,7 +163,9 @@ const ProductorPage = () => {
           history={router}
           followToggle={handleFollow}
           isFollowing={
-            state.user && productor.follows ? follows.indexOf(state.user.id) !== -1 : false
+            state.user && productor.follows
+              ? follows.some((obj) => obj.id === state.user.id)
+              : false
           }
         />
         <ColumnWrapper>
