@@ -118,7 +118,7 @@ export const follow = async (artist, user, setFollows, follows) => {
 
 export const unfollow = async (artist, user, setFollows, follows) => {
   const newFollows = [...follows];
-  newFollows.splice(follows.indexOf(user), 1);
+  newFollows.splice(follows.indexOf(user.id), 1);
   setFollows(newFollows);
 
   await unfollowArtist(artist.id, user.id);

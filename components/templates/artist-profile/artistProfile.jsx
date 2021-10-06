@@ -62,7 +62,7 @@ const ArtistPage = () => {
     }
 
     if (artist.follows) {
-      setFollows(artist.follows.map(({ user }) => user.id));
+      setFollows(artist.follows.map((id) => id));
     }
   }, [artist]);
 
@@ -72,10 +72,10 @@ const ArtistPage = () => {
   const handleFollow = () => {
     if (!state.user) {
       state.idaSDK.signinWithPopup();
-    } else if (state.user && follows.indexOf(state.user.id) !== -1) {
-      unfollow(artist.id, state.user.id, setFollows, follows);
+    } else if (state.user && follows.some((obj) => obj.id === state.user.id)) {
+      unfollow(artist, state.user, setFollows, follows);
     } else {
-      follow(artist.id, state.user.id, setFollows, follows);
+      follow(artist, state.user, setFollows, follows);
     }
   };
 
@@ -92,17 +92,6 @@ const ArtistPage = () => {
       />
     );
   }
-
-  console.log(
-    'sooongs',
-    songs.map(
-      (s) =>
-        ({
-          ...s,
-          liked: state.user.favorited_songs.findIndex(({ id }) => s.id === id)
-        } !== -1)
-    )
-  );
 
   return (
     <ArtistWrapper>
@@ -125,7 +114,9 @@ const ArtistPage = () => {
           instagram={artist.instagram}
           followers={follows.length}
           following={artist.user.following_artists.length}
-          isFollowing={state.user && artist.follows ? follows.indexOf(state.user.id) !== -1 : false}
+          isFollowing={
+            state.user && artist.follows ? follows.some((obj) => obj.id === state.user.id) : false
+          }
           followToggle={handleFollow}
           editAction={() => router.push('/register-artist')}
         />
