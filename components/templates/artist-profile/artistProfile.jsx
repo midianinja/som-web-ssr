@@ -93,17 +93,6 @@ const ArtistPage = () => {
     );
   }
 
-  // console.log(
-  //   'sooongs',
-  //   songs.map(
-  //     (s) =>
-  //       ({
-  //         ...s,
-  //         liked: state.user.favorited_songs.findIndex(({ id }) => s.id === id)
-  //       } !== -1)
-  //   )
-  // );
-
   return (
     <ArtistWrapper>
       <Header />
