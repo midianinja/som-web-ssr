@@ -5,7 +5,7 @@ export const getOpportunities = (id) =>
   client().query({
     query: getAllOpportunitiesQuery,
     variables: {
-      event: { productor: id },
+      event: id,
       paginator: {
         limit: 20
       }

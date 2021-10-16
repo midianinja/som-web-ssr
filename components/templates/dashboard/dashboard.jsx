@@ -50,8 +50,19 @@ const Dashboard = () => {
   const [selected, setSelected] = useState('created-by-me');
 
   useEffect(() => {
-    load({ id: state.user.productor.id, setMyOpportunities, setSubscribedOpportunities });
+    const dataQuery =
+      state.connectionType === 'artist'
+        ? { sub: { subscribers: state.user.artist.id } }
+        : {
+            id: { productor: state.user.productor.id },
+            sub: { subscribed_productors: state.user.productor.id }
+          };
+    load({ dataQuery, setMyOpportunities, setSubscribedOpportunities });
   }, []);
+
+  useEffect(() => {
+    if (state.connectionType === 'artist') setSelected('i-subscribe');
+  });
 
   let empty = false;
   empty = selected === 'created-by-me' && !myOpportunities.length;
@@ -69,6 +80,7 @@ const Dashboard = () => {
         toCreateOpportunity={() => router.push('/opportunity')}
         selected={selected}
         setSelected={setSelected}
+        connectionType={state.connectionType}
       />
       {!empty ? (
         <DashboardOpportunityList>

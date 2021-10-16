@@ -33,7 +33,7 @@ const getLinks = (user, connectionType) => {
     {
       href: '/dashboard',
       label: 'Painel de Oportunidades',
-      hide: !user || connectionType !== 'productor'
+      hide: !user
     },
     {
       href: 'http://conteudo.som.vc',
