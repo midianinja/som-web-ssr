@@ -54,6 +54,8 @@ export const Tab = styled.li`
 
   color: rgba(255, 255, 255, ${({ selected }) => (!selected ? 0.5 : 1)});
 
+  display: ${({ hide }) => (hide ? 'none' : 'inline-block')};
+
   @media (min-width: 1024px) {
     font-size: 20px;
   }

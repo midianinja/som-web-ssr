@@ -3,24 +3,25 @@ import PropTypes from 'prop-types';
 import PrimaryButton from '../../../../atoms/primary-button/primaryButton';
 import { Header, HeaderWrapper, Title, Tabs, Tab } from './dashboard-header.style';
 
-const DashboardHeader = ({ selected, setSelected, toCreateOpportunity }) => (
+const DashboardHeader = ({ selected, setSelected, toCreateOpportunity, connectionType }) => (
   <Header>
     <HeaderWrapper>
       <Title>Minhas Oportunidades</Title>
       <div>
         <Tabs>
-          <Tab onClick={() => setSelected('created-by-me')} selected={selected === 'created-by-me'}>
+          <Tab hide={connectionType !== 'productor'} onClick={() => setSelected('created-by-me')} selected={selected === 'created-by-me'}>
             Criadas por mim
           </Tab>
-          <Tab onClick={() => setSelected('i-subscribe')} selected={selected === 'i-subscribe'}>
+          <Tab onClick={() => setSelected('subscribe-myself')} selected={selected === 'subscribe-myself'}>
             Me inscrevi
           </Tab>
         </Tabs>
         <PrimaryButton
           customStyle={`
             display: none;
+            
             @media (min-width: 1024px) {
-              display: inline-block
+              display: ${connectionType !== 'productor' ? 'none' : 'inline-block'};
             }
           `}
           onClick={toCreateOpportunity}

@@ -12,8 +12,9 @@ import {
   OpportunityName,
   Content,
   InfoWrapper,
-  SubscriptionText
-} from './dashboard-opportunity-card.style';
+  SubscriptionText,
+  StatusTag
+} from './dashboard-subscribed-opportunity-card.style';
 
 const getButtonText = (subscriptionAmount, eventDate, endEventDate) => {
   const eventDateDiff = moment(+eventDate).diff(Date.now(), 'days');
@@ -56,24 +57,32 @@ const getSubscriptionText = (subscriptionDate, eventDate, endEventDate) => {
  * @param {*} param0
  * @returns
  */
-const DashboardOpportunityCard = ({
+const DashboardSubscribedOpportunityCard = ({
   id,
   name,
   eventDate,
   endEventDate,
   subscribeClosingDate,
   location,
-  subscriptionAmount,
+  status,
   photo
 }) => {
   const router = useRouter();
-
+  const statusTexts = {
+    refused: 'Fica pra próxima',
+    subscribed: 'Inscrição em avaliação',
+    approved: 'Inscrição aprovada!'
+  };
+  
   return (
     <Card>
       <Figure onClick={() => router.push(`/event/${id}`)}>
         <img src={photo.mimified} alt="" />
       </Figure>
       <Content>
+        <div>
+          <StatusTag status={status}>{statusTexts[status || 'subscribed']}</StatusTag>
+        </div>
         <OpportunityName>{name}</OpportunityName>
         <InfoWrapper>
           <EventDate
@@ -87,43 +96,28 @@ const DashboardOpportunityCard = ({
           </SubscriptionText>
         </InfoWrapper>
         <div>
-          {subscriptionAmount <= 0 ? (
-            <SlimButton
-              onClick={() => {
-                router.push(`/dashboard/${id}/curatorship`);
-              }}
-              color="white"
-              disabled={disabledButton(subscriptionAmount, eventDate, endEventDate)}
-              customStyle={`
-                  width: auto;
-                  height: 30px;
-                  padding-left: 12px;
-                  padding-right: 12px;
-                `}>
-              {getButtonText(subscriptionAmount, eventDate, endEventDate)}
-            </SlimButton>
-          ) : (
-            <PrimaryButton
-              onClick={() => {
-                router.push(`/dashboard/${id}/curatorship`);
-              }}
-              disabled={disabledButton(subscriptionAmount, eventDate, endEventDate)}
-              customStyle={`
-                  width: auto;
-                  height: 30px;
-                  padding-left: 12px;
-                  padding-right: 12px;
-                `}>
-              {getButtonText(subscriptionAmount, eventDate, endEventDate)}
-            </PrimaryButton>
-          )}
+          <PrimaryButton
+            onClick={() => null}
+            disabled={false}
+            color="white"
+            customStyle={`
+                width: auto;
+                height: 30px;
+
+                font-size: 12px;
+                
+                padding-left: 12px;
+                padding-right: 12px;
+              `}>
+            Cancelar Inscrição
+          </PrimaryButton>
         </div>
       </Content>
     </Card>
   );
 };
 
-DashboardOpportunityCard.propTypes = {
+DashboardSubscribedOpportunityCard.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   subscribeClosingDate: PropTypes.string.isRequired,
@@ -139,4 +133,4 @@ DashboardOpportunityCard.propTypes = {
   subscriptionAmount: PropTypes.number.isRequired
 };
 
-export default DashboardOpportunityCard;
+export default DashboardSubscribedOpportunityCard;

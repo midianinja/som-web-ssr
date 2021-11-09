@@ -4,6 +4,7 @@ import Header from '../../organisms/default-header/defaultHeader';
 import PrimaryButton from '../../atoms/primary-button/primaryButton';
 import DashboardHeader from './components/dashboard-header/dashboard-header';
 import DashboardOpportunityCard from './components/dashboard-opportunity-card/dashboard-opportunity-card';
+import DashboardSubscribedOpportunityCard from './components/dashboard-subscribed-opportunity-card/dashboard-subscribed-opportunity-card';
 import { load } from './dashboard.controller';
 import {
   DashboardContainer,
@@ -20,6 +21,23 @@ const renderMyOpporunities = (opportunities) =>
     <li key={opportunity.id}>
       <DashboardOpportunityCard
         id={opportunity.id}
+        name={opportunity.name}
+        subscribeClosingDate={opportunity.subscribe_closing_date}
+        eventDate={opportunity.event_date}
+        endEventDate={opportunity.end_event_date}
+        location={opportunity.location}
+        photo={opportunity.photo}
+        subscriptionAmount={opportunity.subscribers.length}
+      />
+    </li>
+  ));
+
+const renderSubscribedOpportunities = (opportunities) =>
+  opportunities.map((opportunity) => (
+    <li key={opportunity.id}>
+      <DashboardSubscribedOpportunityCard
+        id={opportunity.id}
+        status={opportunity.status}
         name={opportunity.name}
         subscribeClosingDate={opportunity.subscribe_closing_date}
         eventDate={opportunity.event_date}
@@ -50,8 +68,21 @@ const Dashboard = () => {
   const [selected, setSelected] = useState('created-by-me');
 
   useEffect(() => {
-    load({ id: state.user.productor.id, setMyOpportunities, setSubscribedOpportunities });
-  }, []);
+    if (state.connectionType === 'public') {
+      router.push('/opportunity')
+    }
+
+    load({
+      id: state.connectionType === 'artist' ? state.user.artist.id : state.user.productor.id,
+      connectionType: state.connectionType,
+      setMyOpportunities,
+      setSubscribedOpportunities
+    });
+
+    if (state.connectionType === 'artist') {
+      setSelected('subscribe-myself')
+    }
+  }, [state.connectionType]);
 
   let empty = false;
   empty = selected === 'created-by-me' && !myOpportunities.length;
@@ -69,12 +100,11 @@ const Dashboard = () => {
         toCreateOpportunity={() => router.push('/opportunity')}
         selected={selected}
         setSelected={setSelected}
+        connectionType={state.connectionType}
       />
       {!empty ? (
         <DashboardOpportunityList>
-          {renderMyOpporunities(
-            selected === 'created-by-me' ? myOpportunities : subscribedOpportunities
-          )}
+          {selected === 'created-by-me' ? renderMyOpporunities(myOpportunities) : renderSubscribedOpportunities(subscribedOpportunities)}
         </DashboardOpportunityList>
       ) : (
         <EmptyWrapper>
